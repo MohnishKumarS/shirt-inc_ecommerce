@@ -26,7 +26,7 @@
                 <div class="col-md-6 mb-3">
                     <label for="" class="form-label">Current Image</label>
                     <div>
-                        <img src="{{ asset('image/category/'.$data->image)}}" alt="" width="200">
+                        <img src="{{ asset('image/category/'.$data->image)}}" alt="" width="200" style="object-fit: contain">
                     </div>
                   
                 </div>
@@ -34,7 +34,7 @@
                     <label for="" class="form-label">Current Poster</label>
                     <div>
                         @if ($data->poster)
-                        <img src="{{ asset('image/category/'.$data->poster)}}" alt="" class="img-fluid" width="500">
+                        <img src="{{ asset('image/category/'.$data->poster)}}" alt="" class="img-fluid" height="130" style="object-fit: contain">
                         @else
                          <div class="text-danger">
                             No poster image selected
@@ -54,11 +54,11 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <div>
-                        <label for="" class="form-label">Trending</label>
+                        <label for="" class="form-label">Action</label>
                        </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" name="status" {{$data->status == '1'? 'checked' : ''}}>
-                            <label class="form-check-label" >Status</label>
+                            <label class="form-check-label" >Status header</label>
                           </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" name="popular" {{$data->popular == '1'? 'checked' : ''}}>
@@ -114,7 +114,7 @@
                 @endphp
                 <tr class="align-middle">
                     <td>{{$i++}}</td>
-                    <td><img src="{{asset('/image/product/'.$img[0])}}" alt="" width="100" height="150" style="object-fit: contain"></td>
+                    <td><img src="{{asset('/image/product/'.$img[0])}}" alt="" width="120" height="150" style="object-fit: cover"></td>
                     <td>{{$val->name}}</td>
                     <td>{{$val->type}}</td>
                     <td class="text-break">{{$val->quantity}}</td>

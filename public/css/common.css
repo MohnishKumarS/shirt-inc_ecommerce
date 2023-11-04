@@ -7,6 +7,7 @@
   .title-hlorg{
     color: #ff5400;
     font-weight: 600;
+    font-family: 'Niconne', cursive;
 }
 .title-hover{
     transition:all 0.3s ;
@@ -28,61 +29,9 @@
   /* --------------------------------
      -_-__-_-__-_- Title Heading Section -_-__-_-__-_-
     -----------------------------------  */
-    .title-show .stroke{
-  
-            position:relative;
-            font-family:'Niconne', cursive;
-            font-size:6rem;
-            text-transform: uppercase;
-            text-align: center;
-            -webkit-text-fill-color:transparent;
-            -webkit-text-stroke-width: 0.1rem;
-             -webkit-text-stroke-color: rgb(23, 190, 231); 
-            
-        
-    }
-    .title-show .shadows{
-        font-size: 6rem;
-	    text-align: center;
-	    color: #fcedd8;
-	   	font-family: 'Niconne', cursive;
-	    font-weight: 700;
-      text-shadow: 5px 5px 0px #eb452b, 
-                  10px 10px 0px #efa032, 
-                  15px 15px 0px #46b59b, 
-                  20px 20px 0px #017e7f, 
-                  25px 25px 0px #052939, 
-                  30px 30px 0px #c11a2b, 
-                  35px 35px 0px #c11a2b, 
-                  40px 40px 0px #c11a2b, 
-                  45px 45px 0px #c11a2b;
-    }
-    .title-show .strokeshadow{
-        font-size: 10rem;
-        font-weight: bold;
-        letter-spacing: 5px;
-            font-family: "Sacramento", cursive;
-          -webkit-text-stroke-width: 2px;
-          -moz-text-stroke-width: 2px;
-          -webkit-text-stroke-color: #111827;
-          -moz-text-stroke-color: #111827;
-          color: transparent;
-          text-transform: capitalize;
-          text-align: center;
-          text-shadow: 8px 8px #1697dc;
-        
-    }
-    .stroke-shadow {
-        font-size: 10rem;
-        font-weight: bold;
-        letter-spacing: 5px;
-        font-family: "Sacramento", cursive;
-      color: #f6f6f6;
-      text-align: center;
-      text-shadow: -2px 0 #111827, 0 -2px #111827, 2px 0 #111827, 0 2px #111827, 2px 2px #111827, -2px -2px #111827, -2px 2px #111827, 2px -2px #111827, 8px 8px #fc5e02;
-    }
+
     .title-show .glows{
-        font-size: 10rem;
+        font-size: 9rem;
         /* line-height: calc(20px + 20vh); */
       /*   text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
           0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
@@ -91,8 +40,25 @@
           color: #fff6a9;
         font-family: "Sacramento", cursive;
         text-align: center;
-        animation: blink 12s infinite;
-        -webkit-animation: blink 12s infinite;
+        margin-bottom: 60px;
+        animation: blink 6s infinite;
+        -webkit-animation: blink 6s infinite;
+    }
+
+    @media (max-width:991px){
+        .title-show .glows{
+            font-size: 7rem;
+        }
+    }
+    @media (max-width:768px){
+        .title-show .glows{
+            font-size: 5rem;
+        }
+    }
+    @media (max-width:576px){
+        .title-show .glows{
+            font-size: 3.9rem;
+        }
     }
     
 @-webkit-keyframes blink {

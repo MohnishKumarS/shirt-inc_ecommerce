@@ -19,6 +19,9 @@ class ProductController extends Controller
         $product = Product::when($req->cat_id != null , function($q) use ($req){
             return $q->where('category_id',$req->cat_id);
         })
+        ->when($req->action != null , function($q) use ($req){
+            return $q->where($req->action,true);
+        })
         ->latest()->paginate(10);
         return \view('admin/products/index', \compact('product','cat_list'));
     }

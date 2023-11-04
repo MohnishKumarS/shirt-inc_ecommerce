@@ -10,6 +10,14 @@ use WHMCS\Module\Addon\ewall_discount_center\Promo;
 
 class WishlistController extends Controller
 {
+
+       // ---------- count cart -------------
+
+       public function count_wishlist(){
+        $count = Wishlist::where('user_id',Auth::id())->count();
+        return \response()->json(['count'=>$count]);
+    }
+
     public function index(){
         $wishlist = Wishlist::where('user_id',Auth::id())->get();
         $cat = Wishlist::join('products', 'wishlists.product_id', '=', 'products.id')

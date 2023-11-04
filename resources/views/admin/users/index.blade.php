@@ -75,7 +75,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="6">
+                                    <td colspan="7">
                                         <div class="text-danger my-5 text-center">
                                             No user Found !
                                         </div>

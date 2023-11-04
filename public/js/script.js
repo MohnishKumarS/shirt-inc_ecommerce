@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
     countcart();
+    countwishlist();
 
     
     // ------------ addTocart btn --------------------
@@ -100,6 +101,7 @@ $(document).ready(function () {
                 // console.log(data);
                 // --------- alert message --------------
                     swal.fire('', data.message, data.status);
+                    countwishlist();
                     // $.Toast("Awww!", data.message, data.status, {
                     //     has_icon:true,
                     //     has_close_btn:true,
@@ -146,6 +148,7 @@ $(document).ready(function () {
 
             success:function(data){
                 swal.fire('', data.message, data.status);
+                countcart();
             }
         })
 
@@ -189,14 +192,33 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
                 $('.cart-counts').css('display','none');
-                // $('.cart-counts').html(data.count);
+
                 if(data.count > 0){
                     $('.cart-counts').css('display','initial');
                     $('.cart-counts').html(data.count);
                 }
-                else{
-                   
+              
+           
+            }
+        });
+    }
+    //  ---------------------- count cart ----------------------
+
+    function countwishlist() {
+
+        $.ajax({
+            type: "get",
+            url: "/count-wishlist",
+            success: function (data) {
+                console.log(data);
+                $('.wishlist-counts').css('display','none');
+                $('.nav-wishlist .fa-heart').css('color','initial');
+                if(data.count > 0){
+                    $('.nav-wishlist .fa-heart').css('color','#d85151');
+                    $('.wishlist-counts').css('display','initial');
+                    $('.wishlist-counts').html(data.count);
                 }
+               
            
             }
         });
@@ -220,6 +242,7 @@ $(document).ready(function () {
             success: function (data) {
 
                 swal.fire('', data.status, 'success');
+                countwishlist();
                 //    window.location.reload();
                 $('.wish-item').load(location.href + ' .wish-item');
             }

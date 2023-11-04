@@ -42,9 +42,9 @@
 
                         <li class="nav-item">
                             <a class="tooltip-link nav-link icon-nav-link" href="{{ url('/wishlist') }}">
-                                <div>
+                                <div class="nav-wishlist">
                                     <i class="fa-solid fa-heart"></i>
-                                    {{-- <sup class=" cart-count ">1</sup> --}}
+                                    {{-- <sup class=" cart-count wishlist-counts"></sup> --}}
                                 </div>
                                 <span class="tooltiptext"> wishlist</span>
                             </a>
@@ -97,7 +97,7 @@
                                         <li>
                                             <a href="{{ route('logout') }}" class="btn btn-danger dropdown-item"
                                                 onclick="event.preventDefault();
-                  document.getElementById('logout-form').submit();">
+                                             document.getElementById('logout-form').submit();">
                                                 <i class="fa-solid fa-arrow-right-to-bracket me-1"></i>
                                                 <span class="d-sm-inline d-none">Logout</span>
                                             </a>
@@ -118,17 +118,7 @@
                     {{-- ------- mobile - view -------  --}}
 
                     <ul class="navbar-nav d-md-navbar-nav ">
-                        {{-- <li class="nav-item">
-              <form action="{{url('search-product')}}" method="post" class=" nav-form d-flex justify-content-start align-items-center me-1">
-                @csrf
-                <div class="search ">
 
-                  <input type="search" class="form-control" placeholder="search here"  id="search-product-list" name="search_item">
-                  <button class="navsearch-btn" type="submit" name="" value="search"> <i class="fa fa-search"></i>
-                  </button>
-                </div>
-              </form>
-            </li> --}}
                         <li class="nav-item">
                             <a class="nav-link " href="{{ url('/collections') }}">
                                 Collections <i class="fa-solid fa-gift"></i>
@@ -136,13 +126,20 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="{{ url('/wishlist') }}">
-                                wishlist <i class="fa-solid fa-heart"></i>
-                                {{-- <sup class=" cart-count">1</sup>         --}}
+                            <a class="nav-link " href="{{ url('/new-arrival') }}">
+                                New Arrival 
+                                <img src="{{asset('image/gif/gif4.gif')}}" alt="new-collection" width="30">
+                                {{-- <i class="fa-regular fa-newspaper"></i> --}}
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="{{ url('/my-cart') }}">
+                            <a class="nav-link " href="{{ url('/wishlist') }}">
+                                wishlist <i class="fa-solid fa-heart"></i>
+                                <sup class=" cart-count wishlist-counts"></sup>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-wishlist" href="{{ url('/my-cart') }}">
                                 cart <i class="fa-solid fa-cart-shopping"></i>
                                 <sup class=" cart-count cart-counts"></sup>
                             </a>
@@ -150,15 +147,26 @@
                         <li class="nav-item">
 
                             <div class="dropdown ">
-                                <div class="nav-link " data-bs-toggle="dropdown" aria-expanded="false">
-                                    <div>
+                                <div class="nav-link " data-bs-toggle="dropdown"  style="cursor: pointer">
+                                    <div >
                                         Account <i class="fa-solid fa-user"></i>
                                     </div>
                                 </div>
                                 <ul class="dropdown-menu dropdown-menu-lg-end">
-                                    <li><a class="dropdown-item" href="{{ url('acc/signin') }}">Login</a></li>
-                                    <li><a class="dropdown-item" href="{{ url('acc/signup') }}">Register</a></li>
-                                    <li><a class="dropdown-item" href="#">Orders</a></li>
+                                    @guest
+                                        <li><a class="dropdown-item" href="{{ url('acc/signin') }}"><i class="fa-regular fa-face-smile me-1"></i> Login</a></li>
+                                        <li><a class="dropdown-item" href="{{ url('acc/signup') }}"><i class="fa-regular fa-registered me-1"></i> Register</a></li>
+                                    @endguest
+                                    <li><a class="dropdown-item" href="{{ url('my-order') }}">
+                                        <i class="fa-solid fa-bag-shopping me-1"></i> Orders</a></li>
+                                    <li>
+                                        <a href="{{ route('logout') }}" class=" dropdown-item"
+                                            onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                            <i class="fa-solid fa-arrow-right-to-bracket me-1"></i>
+                                            <span class="d-sm-inline d-none">Logout</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>

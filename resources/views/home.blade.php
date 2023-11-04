@@ -6,15 +6,17 @@
     {{-- ------------- carousel ------------------ --}}
     <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="{{$slider_active->timer}}">
-                <img src="{{ asset('image/slider/'.$slider_active->image) }}" class="img-fluid" alt="slider-poster" loading="lazy">
+            <div class="carousel-item active" data-bs-interval="{{ $slider_active->timer }}">
+                <img src="{{ asset('image/slider/' . $slider_active->image) }}" class="img-fluid" alt="slider-poster"
+                    loading="lazy">
             </div>
             @foreach ($slider as $item)
-            <div class="carousel-item" data-bs-interval="{{$item->timer}}">
-                <img src="{{ asset('image/slider/'.$item->image) }}" class="img-fluid" alt="slider-poster" loading="lazy">
-            </div>
+                <div class="carousel-item" data-bs-interval="{{ $item->timer }}">
+                    <img src="{{ asset('image/slider/' . $item->image) }}" class="img-fluid" alt="slider-poster"
+                        loading="lazy">
+                </div>
             @endforeach
-           
+
 
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
@@ -29,11 +31,14 @@
 
 
     <!-- ---------------------------------------------
-                    ^^^^^^^^^^^^^ ~~ Trending Product list ~~  ^^^^^^^^^^^^^^
-                     --------------------------------------------- -->
+                        ^^^^^^^^^^^^^ ~~ Trending Product list ~~  ^^^^^^^^^^^^^^
+                         --------------------------------------------- -->
     <section class="trending-list">
-        <div class="title-show">
-            <h1 class="stroke">Trendings</h1>
+        <div class="row mb-5 pb-3">
+            <div class="col-12 heading-section text-center">
+                <h1 class="big-title">Trending</h1>
+                <h2 class="mb-4">our trendings</h2>
+            </div>
         </div>
         <div class="container">
             <div class="row">
@@ -54,12 +59,12 @@
                                     <input type="hidden" class="qty-value" value="1">
                                     <div class="product-image">
                                         @if (count($img) > 1)
-                                            <a  class="image">
+                                            <a class="image">
                                                 <img src="{{ asset('image/product/' . $img[0]) }}" class="pic-1 rotate">
                                                 <img src="{{ asset('image/product/' . $img[1]) }}" class="pic-2 rotate">
                                             </a>
                                         @else
-                                            <a  class="image">
+                                            <a class="image">
                                                 <img src="{{ asset('image/product/' . $val->image) }}" class="pic-1">
                                             </a>
                                         @endif
@@ -78,7 +83,8 @@
                                         </ul>
 
                                         <div class="content">
-                                            <span class="category"><a href="{{url('category/'.$val->category->slug)}}">{{ $val->category->name }}</a></span>
+                                            <span class="category"><a
+                                                    href="{{ url('category/' . $val->category->slug) }}">{{ $val->category->name }}</a></span>
                                             <h3 class="title"><a
                                                     href="{{ url('category/' . $val->category->slug . '/' . $val->slug) }}">{{ $val->name }}</a>
                                             </h3>
@@ -100,11 +106,14 @@
     </section>
 
     <!-- ---------------------------------------------
-                    ^^^^^^^^^^^^^ ~~ category list ~~  ^^^^^^^^^^^^^^
-                     --------------------------------------------- -->
+                        ^^^^^^^^^^^^^ ~~ category list ~~  ^^^^^^^^^^^^^^
+                         --------------------------------------------- -->
     <section>
-        <div class="title-show">
-            <h1 class="shadows">Collections</h1>
+        <div class="row mb-5 pb-3">
+            <div class="col-12 heading-section text-center">
+                <h1 class="big-title">Category</h1>
+                <h2 class="mb-4">our Category</h2>
+            </div>
         </div>
         <div class="container">
 
@@ -133,96 +142,103 @@
 
 
     <!-- ---------------------------------------------
-                    ^^^^^^^^^^^^^ ~~ popular list ~~  ^^^^^^^^^^^^^^
-                     --------------------------------------------- -->
+                        ^^^^^^^^^^^^^ ~~ popular list ~~  ^^^^^^^^^^^^^^
+                         --------------------------------------------- -->
+    @if (count($popular) > 0)
 
-    <section>
-        <div class="title-show">
-            <h1 class="stroke-shadow">Popular</h1>
-        </div>
-        <div class="container">
+        <section>
+            <div class="row mb-5 pb-3">
+                <div class="col-12 heading-section text-center">
+                    <h1 class="big-title">Popular</h1>
+                    <h2 class="mb-4">our popular</h2>
+                </div>
+            </div>
+            <div class="container">
 
-            <div class="popular-list">
-                <div class="products">
-                    <h2 class="lg-title">Special T-shirt With Offers</h2>
-                    <p class="text-lights">
-                        Explore the combination of style and comfort with cool T-shirts in various themes and ... Wrangler
-                        Solid Men Round Neck Black T-Shirt ... Offer ends soon.
-                    </p>
+                <div class="popular-list">
+                    <div class="products">
+                        <h2 class="lg-title">Special T-shirt With Offers</h2>
+                        <p class="text-lights">
+                            Explore the combination of style and comfort with cool T-shirts in various themes and ...
+                            Wrangler
+                            Solid Men Round Neck Black T-Shirt ... Offer ends soon.
+                        </p>
 
-                    <div class="product-items">
+                        <div class="product-items">
 
-                        <div class="row row-cols-lg-3 row-cols-md-2  gy-4">
+                            <div class="row row-cols-lg-3 row-cols-md-2  gy-4">
 
-                            @foreach ($popular as $val)
-                                @php
-                                    $img_pop = explode(',', $val->image);
-                                    // echo '<pre>';
-                                    // print_r($img)
-                                @endphp
-                                {{-- {{$val}} --}}
+                                @foreach ($popular as $val)
+                                    @php
+                                        $img_pop = explode(',', $val->image);
+                                        // echo '<pre>';
+                                        // print_r($img)
+                                    @endphp
+                                    {{-- {{$val}} --}}
 
-                                <div class="col">
-                                    <!-- ------------- view product  list ---------------- -->
+                                    <div class="col">
+                                        <!-- ------------- view product  list ---------------- -->
 
-                                    <div class="product-data">
-                                        <div class="product-content">
-                                            <input type="hidden" class="product_id" value="{{ $val['id'] }}">
-                                            <input type="hidden" class="qty-value" value="1">
-                                            <div class="product-img">
-                                                <img src="{{ asset('image/product/' . $img_pop[0]) }}" alt="">
-                                            </div>
-                                            <div class="product-btns">
-                                                <a href="" class="btn-cart addToCart">
-                                                    add to cart <span><i class="fa-solid fa-plus"></i></span>
-                                                </a>
-                                                <a href="" class="btn-buy addtoWishlist">
-                                                    add to fav <span><i class="fa-regular fa-heart"></i></span>
-                                                </a>
-                                            </div>
-                                            <div class="product-info">
-                                                <div class="product-info-top">
-                                                    <a class="text-sm" href="{{url('category/'.$val->category->slug)}}">{{ $val->category->name }}</a>
-                                                    <div class="rating">
-                                                        <span><i class="fa-solid fa-star"></i></span>
-                                                        <span><i class="fa-solid fa-star"></i></span>
-                                                        <span><i class="fa-solid fa-star"></i></span>
-                                                        <span><i class="fa-solid fa-star"></i></span>
-                                                        <span><i class="fa-regular fa-star"></i></span>
+                                        <div class="product-data">
+                                            <div class="product-content">
+                                                <input type="hidden" class="product_id" value="{{ $val['id'] }}">
+                                                <input type="hidden" class="qty-value" value="1">
+                                                <div class="product-img">
+                                                    <img src="{{ asset('image/product/' . $img_pop[0]) }}"
+                                                        alt="">
+                                                </div>
+                                                <div class="product-btns">
+                                                    <a href="" class="btn-cart addToCart">
+                                                        add to cart <span><i class="fa-solid fa-plus"></i></span>
+                                                    </a>
+                                                    <a href="" class="btn-buy addtoWishlist">
+                                                        add to fav <span><i class="fa-regular fa-heart"></i></span>
+                                                    </a>
+                                                </div>
+                                                <div class="product-info">
+                                                    <div class="product-info-top">
+                                                        <a class="text-sm"
+                                                            href="{{ url('category/' . $val->category->slug) }}">{{ $val->category->name }}</a>
+                                                        <div class="rating">
+                                                            <span><i class="fa-solid fa-star"></i></span>
+                                                            <span><i class="fa-solid fa-star"></i></span>
+                                                            <span><i class="fa-solid fa-star"></i></span>
+                                                            <span><i class="fa-solid fa-star"></i></span>
+                                                            <span><i class="fa-regular fa-star"></i></span>
+                                                        </div>
                                                     </div>
+                                                    <a href="{{ url('category/' . $val->category->slug . '/' . $val->slug) }}"
+                                                        class="text-md">{{ $val->name }}</a>
+                                                    <p class="product-price">Rs {{ $val->original_price }}</p>
+                                                    <p class="product-price">Rs {{ $val->selling_price }}</p>
                                                 </div>
-                                                <a href="{{ url('category/' . $val->category->slug . '/' . $val->slug) }}"
-                                                    class="text-md">{{ $val->name }}</a>
-                                                <p class="product-price">Rs {{ $val->original_price }}</p>
-                                                <p class="product-price">Rs {{ $val->selling_price }}</p>
+                                                @if ($val->offer_menu)
+                                                    <div class="offer-info">
+                                                        <h2 class="text-sm">{{ $val->offer_msg }}</h2>
+                                                    </div>
+                                                @endif
+                                                <!-- <div class="offer-info">
+                                                        <h2 class="sm-title">24% Off</h2>
+                                                    </div> -->
                                             </div>
-                                            @if ($val->offer_menu)
-                                                <div class="offer-info">
-                                                    <h2 class="text-sm">{{$val->offer_msg}}</h2>
-                                                </div>
-                                            @endif
-                                            <!-- <div class="offer-info">
-                                                    <h2 class="sm-title">24% Off</h2>
-                                                </div> -->
                                         </div>
+                                        <!-- -------------end of  view product  list  ---------------- -->
                                     </div>
-                                    <!-- -------------end of  view product  list  ---------------- -->
-                                </div>
-                            @endforeach
+                                @endforeach
 
+
+                            </div>
 
                         </div>
-
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-
+    @endif
     <!-- ---------------------------------------------
-                    ^^^^^^^^^^^^^ ~~ Unique Collection  ~~  ^^^^^^^^^^^^^^
-                     --------------------------------------------- -->
+                        ^^^^^^^^^^^^^ ~~ Unique Collection  ~~  ^^^^^^^^^^^^^^
+                         --------------------------------------------- -->
 
     {{-- <section>
         <div class="unique-collection">
@@ -241,12 +257,15 @@
 
 
     <!-- ---------------------------------------------
-                        ^^^^^^^^^^^^^ ~~ Overall Collection list  ~~  ^^^^^^^^^^^^^^
-                         --------------------------------------------- -->
+                            ^^^^^^^^^^^^^ ~~ Overall Collection list  ~~  ^^^^^^^^^^^^^^
+                             --------------------------------------------- -->
 
     <section>
-        <div class="title-show">
-            <h1 class="strokeshadow">Trendy Tees</h1>
+        <div class="row mb-5 pb-3">
+            <div class="col-12 heading-section text-center">
+                <h1 class="big-title">collection</h1>
+                <h2 class="mb-4">our collection</h2>
+            </div>
         </div>
         <div class="overall-collection px-3">
             <div class="row">
@@ -279,7 +298,7 @@
                                     <h2>Free Shipping</h2>
                                     <h3>On All Orders Above ₹999</h3>
                                     <div>
-                                        <a href="{{url('collections')}}" class="btn-black fw-light">view collection</a>
+                                        <a href="{{ url('collections') }}" class="btn-black fw-light">view collection</a>
                                     </div>
                                 </div>
                             </div>
@@ -294,8 +313,8 @@
 
 
     <!-- ---------------------------------------------
-                    ^^^^^^^^^^^^^ ~~ Our Advantage  ~~  ^^^^^^^^^^^^^^
-                     --------------------------------------------- -->
+                        ^^^^^^^^^^^^^ ~~ Our Advantage  ~~  ^^^^^^^^^^^^^^
+                         --------------------------------------------- -->
 
     <section>
         <div class="our-advantage">
@@ -333,12 +352,12 @@
     </section>
 
     <!-- ---------------------------------------------
-                    ^^^^^^^^^^^^^ ~~ base collection product ~~  ^^^^^^^^^^^^^^
-                     --------------------------------------------- -->
+                        ^^^^^^^^^^^^^ ~~ base collection product ~~  ^^^^^^^^^^^^^^
+                         --------------------------------------------- -->
 
     <section>
         <div class="row mb-5 pb-3">
-            <div class="col-lg-12 heading-section text-center">
+            <div class="col-12 heading-section text-center">
                 <h1 class="big-title">Arrival</h1>
                 <h2 class="mb-4">new arrival</h2>
             </div>
@@ -354,7 +373,7 @@
                             <div class="base-content text-center mt-4 mb-4 mb-lg-0">
                                 <small class="text-sm">MEN</small>
                                 <h3>The base collection - Ideal every day.</h3>
-                                <a href="{{url('new-arrival')}}" class="btn-black">Shop Now</a>
+                                <a href="{{ url('new-arrival') }}" class="btn-black">Shop Now</a>
                             </div>
                         </div>
                     </div>
@@ -373,8 +392,8 @@
 
 
     <!-- ---------------------------------------------
-                    ^^^^^^^^^^^^^ ~~ advertise add- offer  ~~  ^^^^^^^^^^^^^^
-                     --------------------------------------------- -->
+                        ^^^^^^^^^^^^^ ~~ advertise add- offer  ~~  ^^^^^^^^^^^^^^
+                         --------------------------------------------- -->
 
     <section>
         <div class="advertise-offer">
@@ -404,8 +423,8 @@
 
 
     <!-- ---------------------------------------------
-                        ^^^^^^^^^^^^^ ~~ subscription user  ~~  ^^^^^^^^^^^^^^
-                         --------------------------------------------- -->
+                            ^^^^^^^^^^^^^ ~~ subscription user  ~~  ^^^^^^^^^^^^^^
+                             --------------------------------------------- -->
 
     <section>
         <div class="subscribe">

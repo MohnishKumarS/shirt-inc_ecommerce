@@ -20,10 +20,19 @@
                             <select class="form-select" name="cat_id">
                                 <option selected value="">Choose a category</option>
                                 @forelse ($cat_list as $item)
-                                <option  value="{{$item->id}}" {{Request::get('cat_id') == $item->id ? 'selected' : ''}}>{{$item->name}}</option>
+                                <option  value="{{$item->id}}"  {{Request::get('cat_id') == $item->id ? 'selected' : ''}}>{{$item->name}}</option>
                                 @empty
                                 <option  value="">No category found</option>
                                 @endforelse
+                              </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label>Filter by action</label>
+                            <select class="form-select" name="action">
+                                <option selected value="">Choose a status</option>
+                                <option  value="status" {{Request::get('action') == 'status' ? 'selected' : ''}}>Popular</option>
+                                <option  value="trending" {{Request::get('action') == 'popular' ? 'selected' : ''}}>trending</option>
+                               
                               </select>
                         </div>
                         <div class="col-md-2">
@@ -45,27 +54,46 @@
                 <th style="width:10%">Price</th>
                 <th style="width:20%">Action</th>
             </tr>
-            @php
-                $i = 1; 
-            @endphp
-            @foreach ($product as $val)
-                @php
-                     $img = explode(',',$val->image);
+
+            @if (count($product) > 0)
+                    {{--check if product is available or not ----- --}}
+                    @php
+                    $i = 1; 
+                  
                 @endphp
-                <tr class="align-middle ">
-                    <td>{{$i++}}</td>
-                    <td><img src="{{asset('/image/product/'.$img[0])}}" alt="" width="100" height="150" style="object-fit: contain"></td>
-                    <td>{{$val->category->slug}}</td>
-                    <td>{{$val->name}}</td>
-                    <td class="text-break">{{$val->desc}}</td>
-                    <td >₹ {{$val->selling_price}}  <s> <small>₹{{$val->original_price}}</small></s></td>
-                    <td>
-                        <a href="{{ url('edit-product/'.$val->id) }}" class="btn btn-info">Edit</a>
-                        <a href="{{ url('delete-product/'.$val->id) }}" class="btn btn-danger" onclick="return confirm('Are you sure to delete it');">Delete</a>
+                @foreach ($product as $val)
+                    @php
+                         $img = explode(',',$val->image);
+                    @endphp
+                    <tr class="align-middle ">
+                        <td>{{$i++}}</td>
+                        <td><img src="{{asset('/image/product/'.$img[0])}}" alt="" width="100" height="150" style="object-fit: contain"></td>
+                        <td>{{$val->category->slug}}</td>
+                        <td>{{$val->name}}</td>
+                        <td class="text-break">{{$val->desc}}</td>
+                        <td >₹ {{$val->selling_price}}  <s> <small>₹{{$val->original_price}}</small></s></td>
+                        <td>
+                            <a href="{{ url('edit-product/'.$val->id) }}" class="btn btn-info">Edit</a>
+                            <a href="{{ url('delete-product/'.$val->id) }}" class="btn btn-danger" onclick="return confirm('Are you sure to delete it');">Delete</a>
+                        </td>
+                        
+                    </tr>
+                @endforeach
+
+              
+                @else
+
+                <tr>
+                    <td colspan="7">
+                        <div class="my-5 text-center text-danger">
+                            No Products found.....
+                        </div>
                     </td>
-                    
                 </tr>
-            @endforeach
+
+
+            @endif
+       
 
            
         </table>

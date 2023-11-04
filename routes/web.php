@@ -168,6 +168,8 @@ Route::view('terms-and-conditions', 'policy.terms-condition');
 
    Route::get('/count-cart',[CartController::class,'count_cart']);
 
+   Route::get('/count-wishlist',[WishlistController::class,'count_wishlist']);
+
 
 
 

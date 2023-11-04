@@ -4,7 +4,7 @@
 
 @section('content')
 
-<section>
+<section class="mt-5">
     <style>
         body{
             background: #222;
@@ -30,7 +30,7 @@
                     @forelse ($all_category as $val)
                         
                     {{-- -- loop iteration -- --}}
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 col-md-6 col-12">
                         <div class="card">
                             <div class="imgBx">
                                 <img src="{{asset('image/category/'.$val->image)}}" alt="collection-image" loading="lazy">

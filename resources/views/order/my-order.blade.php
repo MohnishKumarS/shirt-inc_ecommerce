@@ -14,8 +14,8 @@
               
                     @if ($order->count() > 0)
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped text-center">
-                            <tr>
+                        <table class="table table-bordered  text-center">
+                            <tr class="table-primary">
                                 <th>Order date</th>
                                 <th>Order Id </th>
                                 <th>Total Price</th>

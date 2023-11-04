@@ -97,7 +97,7 @@
                     @endphp
                    <div>
                         @foreach ($img as $val)
-                            <img src="{{asset('image/product/'.$val)}}" alt="" width="150" class="border p-1" style="object-fit: contain">
+                            <img src="{{asset('image/product/'.$val)}}" alt="" width="150" class="border p-1" style="object-fit: cover" loading="lazy">
                         @endforeach
                    </div>
                 </div>
@@ -196,11 +196,11 @@
                 </div>
                 <div class="col-md-12 mb-3">
                     <div>
-                        <label for="" class="form-label">Popular</label>
+                        <label for="" class="form-label">Action</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox"  name="status"  {{$data->status == '1'? 'checked' : ''}}>
-                        <label class="form-check-label" >Status</label>
+                        <label class="form-check-label" >popular</label>
                       </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox"  name="trending"  {{$data->trending == '1'? 'checked' : ''}}>
