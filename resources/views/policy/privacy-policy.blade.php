@@ -9,6 +9,10 @@
         margin-bottom: 16px;
         padding-left: 32px;
     }
+    .term-contents a{
+        color: rgb(57, 57, 231);
+        /* text-decoration: underline; */
+    }
     .term-contents a:hover{
         text-decoration:underline;
     }
@@ -27,7 +31,7 @@
         </div>
 
         <div class="term-contents">
-            <p >At Shirt Inc, accessible from <a href="https://shirt-inc.com/" class="text-primary">https://shirt-inc.com/</a>, one of our main priorities is the privacy of our
+            <p >At Shirt Inc, accessible from <a href="https://shirt-inc.com/">https://shirt-inc.com/</a>, one of our main priorities is the privacy of our
                 visitors. This Privacy Policy document contains types of information that is collected and recorded by
                 Shirt Inc and how we use it.</p>
 
