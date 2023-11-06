@@ -38,11 +38,12 @@
                 <div>
                     <h4 class="ft-title">help</h4>
                     <ul>
-                        <li><a href="{{url('cancellation-policy')}}"><i class="fa-solid fa-angle-right"></i> Cancellation policy</a></li>
+                        <li><a href="{{url('return-policy')}}"><i class="fa-solid fa-angle-right"></i>Return Policy</a></li>
+                        <li><a href="{{url('shipping-and-delivery-policy')}}"><i class="fa-solid fa-angle-right"></i> Shipping & delivery Policy</a></li>
                         <li><a href="{{url('privacy-policy')}}"><i class="fa-solid fa-angle-right"></i> Privacy policy</a></li>
+                        <li><a href="{{url('cancellation-policy')}}"><i class="fa-solid fa-angle-right"></i> Cancellation policy</a></li>
                         <li><a href="{{url('terms-and-conditions')}}"><i class="fa-solid fa-angle-right"></i> Terms and conditions</a></li>
-                        <li><a href=""><i class="fa-solid fa-angle-right"></i> Copyright information</a></li>
-                        <li><a href=""><i class="fa-solid fa-angle-right"></i> License agreement</a></li>
+                     
                     </ul>
                 </div>
             </div>

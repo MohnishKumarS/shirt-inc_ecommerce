@@ -71,6 +71,10 @@ Route::view('privacy-policy', 'policy.privacy-policy');
 
 Route::view('terms-and-conditions', 'policy.terms-condition'); 
 
+Route::view('return-policy', 'policy.return-policy'); 
+
+Route::view('shipping-and-delivery-policy', 'policy.shipping-and-delivery-policy'); 
+
 // -------------  controls ----------------
    Route::middleware(['auth'])->group(function(){
 
