@@ -50,7 +50,7 @@
                             <div class="row">
                                 <div class="col-lg-3">
                                     <div class="cart-img">
-                                        <img src="{{ asset('image/product/'.$img[0])}}" alt="" >
+                                        <img src="{{ asset('image/product/'.$img[0])}}" alt="product-show" loading="lazy">
                                     </div>
                                 </div>
                                 <div class="col-lg-9">
@@ -96,7 +96,7 @@
                 {{-- ---- empty favorite ---- --}}
                 <div class="" style="padding: 0px 0 40px">
                     <div class="text-center"> 
-                        <img src="{{asset('image/empty/emp-3.webp')}}"  alt="wishlist-empty" class="img-fluid">
+                        <img src="{{asset('image/empty/emp-3.webp')}}"  alt="wishlist-empty" class="img-fluid" loading="lazy"> 
                         <h3 >Your Lists is <span class="title-hlorg"> Empty!</span></h3>
                         <p class="text-sm text-normal">Look like you have not added anything to you cart. Go ahead & explore top Collections... </p>
                         <div class="mt-4">

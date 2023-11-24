@@ -24,7 +24,7 @@
         {{-- ------- ---- Poster Image ---------  --}}
       @if ($category[0]->poster != null)
       <div class="poster-img mb-4">
-        <img src="{{asset('image/category/'.$category[0]->poster)}}" alt="" class="img-fluid">
+        <img src="{{asset('image/category/'.$category[0]->poster)}}" alt="poster" class="img-fluid" loading="lazy">
     </div>
           
       @endif

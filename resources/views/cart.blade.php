@@ -102,7 +102,7 @@
                     </style>
                     <div class="row border-bottom py-3 product-data ">
 
-                        <div class="col-lg-12">
+                        <div class="col-lg-12 ">
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-3 ">
@@ -275,7 +275,7 @@
 
                 <div class="col-lg-4 mt-4 mt-lg-0">
                     @if ($total > 0)
-                    <div class="card">
+                    <div class="card shadow">
                         <div class="card-body">
                             <h5 class="card-title text-body-secondary">Price Details</h5>
                             <hr>

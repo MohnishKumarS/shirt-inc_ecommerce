@@ -13,7 +13,7 @@
             <div class="row  d-flex justify-content-center py-5 py-lg-0">
                 <div class="col-lg-2 col-md-10 col-sm-10 col-one d-none d-lg-block">
                     <div class="elog-reg-img">
-                        <img src="{{ asset('image/products/bb/bb1.png') }}" alt="" class="rounded">
+                        <img src="{{ asset('image/products/bb/bb1.png') }}" alt="register-image" class="rounded" loading="lazy">
                     </div>
                 </div>
 

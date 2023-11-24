@@ -8,7 +8,7 @@
             <div class="container-fluid">
                 <div class="d-flex align-items-center justify-content-center me-3">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="{{ asset('image/shirtinc-logo.png') }}" alt="Logo" class="logo">
+                        <img src="{{ asset('image/shirtinc-logo.png') }}" alt="shirtInc-logo" class="logo" loading="lazy">
                     </a>
                     <h1 class="nav-head"></h1>
                 </div>
@@ -128,7 +128,7 @@
                         <li class="nav-item">
                             <a class="nav-link " href="{{ url('/new-arrival') }}">
                                 New Arrival 
-                                <img src="{{asset('image/gif/gif4.gif')}}" alt="new-collection" width="30">
+                                <img src="{{asset('image/gif/gif4.gif')}}" alt="new-collection" width="30" loading="lazy">
                                 {{-- <i class="fa-regular fa-newspaper"></i> --}}
                             </a>
                         </li>
@@ -255,7 +255,7 @@
                         <div class="list-item">
                             <h4 class="title">Trendy Tees</h4>
                             <img src="{{ asset('image/Badass tshirt-01.png') }}" class="responsive"
-                                alt="Shop Product" />
+                                alt="Shop Product" loading="lazy"/>
                         </div>
                     </div>
                 </li>
@@ -270,7 +270,7 @@
                         <a href="{{ url('category/' . $category->slug) }}">{{ $category->slug }} <span
                                 class='align-middle'>
                                 <img src="{{ asset('image/gif/gif3.gif') }}" width="18"
-                                    style="object-fit: contain" alt="">
+                                    style="object-fit: contain" alt="new-trendy" loading="lazy">
                             </span></a>
 
                     </li>

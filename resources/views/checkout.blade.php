@@ -16,7 +16,7 @@
                         <div class="cart-bag text-center">
                             <div class="icon-image">
                                 <img class="active" src="https://img.icons8.com/clouds/100/shopping-basket-success.png"
-                                    alt="shopping-basket-success" />
+                                    alt="shopping-basket-success" loading="lazy"/>
 
                             </div>
                             <div class="timeline-divider-sep active"></div>
@@ -26,7 +26,7 @@
                     <div class="col">
                         <div class="cart-address text-center">
                             <div class="icon-image">
-                                <img class="active" src="https://img.icons8.com/clouds/100/address.png" alt="address" />
+                                <img class="active" src="https://img.icons8.com/clouds/100/address.png" alt="address" loading="lazy"/>
 
                             </div>
                             <div class="timeline-divider-sep"></div>
@@ -36,7 +36,7 @@
                     <div class="col">
                         <div class="cart-payment text-center">
                             <div class="icon-image">
-                                <img src="https://img.icons8.com/clouds/100/card-in-use.png" alt="card-in-use" />
+                                <img src="https://img.icons8.com/clouds/100/card-in-use.png" alt="card-in-use" loading="lazy"/>
 
                             </div>
                             <div class="text-sm">Payment</div>
@@ -153,7 +153,7 @@
 
 
                 </div>
-                <div class="col-lg-5 mt-4 mt-lg-0  border py-3 bg-white">
+                <div class="col-lg-5 mt-4 mt-lg-0  border py-3 bg-white shadow">
                     <h5>Order Summary</h5>
                     <hr>
 
@@ -176,7 +176,7 @@
                                 @endphp
                                 <tr class="align-middle">
                                     <td><img src="{{ asset('image/product/' . $img[0]) }}" width="65" class="img-fluid"
-                                            alt=""></td>
+                                            alt="products-image" loading="lazy"></td>
                                     <td>{{ $item->product->name }} <br>
                                         {{-- - -- size cart --- --}}
                                         @if ($item->mens_size)
@@ -205,6 +205,9 @@
                         {{-- -------- place order btn --- --}}
                         <div class="my-3">
                             <button class="btn-float w-100 payment-btn" type="button">Place Order</button>
+                        </div>
+                        <div class="my-3">
+                            <a class="btn-float w-100" href="payment-method" >Place Order Phonepay</a>
                         </div>
                       
                             
@@ -247,19 +250,19 @@
       <input type="hidden" name="total" value="{{Session::get('total')}}">
       <input type="hidden" name="addr_id" value="{{Session::get('addr_id')}}">
       </form>
-  
+ 
     </div>
     <style>
         .razorpay-payment-button{
             visibility: hidden;
         }
     </style>
-    <script>
+    {{-- <script>
         window.onload = function(){
             document.querySelector('.razorpay-payment-button').style.visiblity = 'hidden';
             document.querySelector('.razorpay-payment-button').click();
 }
-      </script>
+      </script> --}}
     @endif
     <!-- Button trigger modal -->
     <style>

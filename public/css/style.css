@@ -57,7 +57,7 @@ ul {
            custom scrollbar 
  ============================ */
  ::-webkit-scrollbar{
-  width: 10px;
+  width: 7px;
  }
  ::-webkit-scrollbar-track{
   background-color: #d1e5ff;
@@ -1324,6 +1324,15 @@ section {
     margin-bottom: 10px;
     color: #1697dc;
 }
+.single-product .row-sin{
+    align-items: flex-start;
+}
+.single-product .row-sin .col-sin-1{
+    height: 100dvh;
+    position: sticky;
+    top: 15%;
+    
+}
 
 .timeline-date {
     display: flex;
@@ -1372,99 +1381,6 @@ section {
     border-color: #1697dc !important;
 }
 
-/* - ------- common class ---------------- */
-.text-sm {
-    display: inline-block;
-    font-size: 12px;
-    color: #636464;
-    font-weight: 200;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-}
-
-.text-md {
-    display: block;
-    font-size: 15px;
-    text-transform: capitalize;
-    margin: 0px;
-}
-
-.text-md-b {
-    font-size: 15px;
-    font-weight: 600;
-    text-transform: capitalize;
-    margin: 0px;
-}
-
-.text-lights {
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 1.4;
-    opacity: 0.5;
-    margin: 0.4rem 0;
-}
-
-.text-sm-bold {
-    font-size: 14px;
-    font-weight: 800;
-    margin-bottom: 0;
-    text-transform: capitalize;
-}
-
-.text-sm-b {
-    color: #212529;
-    font-size: 12px;
-    font-weight: 800;
-    margin-bottom: 0;
-    text-transform: capitalize;
-}
-
-.text-xs {
-    font-size: 12px;
-    line-height: 1.42;
-    font-weight: 500;
-    color: #424242;
-}
-
-.icon-circle {
-    display: inline-block;
-    background-color: #f3f3f3;
-    border-radius: 50px;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    color: #e04a2f;
-    font-size: 18px;
-}
-
-.icon-circle i {
-    line-height: 40px;
-}
-
-.sec-title {
-    width: 100%;
-    border-bottom: 1px solid #e5e3e3;
-    margin-bottom: 55px;
-    margin-top: 80px;
-    text-transform: capitalize;
-    text-align: start;
-    line-height: 1px;
-}
-
-.sec-title.center {
-    text-align: center;
-}
-
-.sec-title span {
-    background-color: #fff;
-    padding: 0 20px;
-    font-size: 24px;
-    font-weight: 700;
-    font-family: 'lora';
-
-}
 
 .product-policy .row {
     padding: 15px 0;

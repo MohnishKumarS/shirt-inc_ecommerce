@@ -20,7 +20,7 @@
                             <h2 class="elog-title text-center">
                                 <img width="94" height="94"
                                     src="https://img.icons8.com/3d-fluency/94/user-male-circle.png"
-                                    alt="user-male-circle" />
+                                    alt="user-male-circle" loading="lazy"/>
                             </h2>
 
                             <div class="elog-box">
@@ -59,7 +59,7 @@
 
                 <div class="col-lg-6 col-md-12">
                     <div class="elog-img d-flex justify-content-center mt-5 mt-lg-0">
-                        <img src="{{ asset('image/products/bb/bb10.webp') }}" alt="" class="img-fluid rounded">
+                        <img src="{{ asset('image/products/bb/bb10.webp') }}" alt="sponser" class="img-fluid rounded" loading="lazy">
                     </div>
                 </div>
             </div>

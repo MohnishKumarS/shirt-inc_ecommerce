@@ -3,7 +3,7 @@
 @section('title', 'Products')
 
 @section('content')
-    <link rel="stylesheet" href="{{asset('exzoom/jquery.exzoom.css')}}">
+    <link rel="stylesheet" href="{{ asset('exzoom/jquery.exzoom.css') }}">
     <div class="container pb-5 mt-4">
 
         <!-- ----------- breadcrumb ------- -->
@@ -175,109 +175,123 @@
 
 
         <!-- ---------------------------------------------
-    ^^^^^^^^^^^^^ ~~ single product list page ~~  ^^^^^^^^^^^^^^
-          --------------------------------------------- -->
+        ^^^^^^^^^^^^^ ~~ single product list page ~~  ^^^^^^^^^^^^^^
+              --------------------------------------------- -->
 
         <section class="m-0">
             @php
-                
+
                 $img = explode(',', $product->image);
                 $freq_img = explode(',', $freq_boug->image);
                 //  echo '<pre>';
-                //     print_r($img);
+                //  print_r($img);
             @endphp
 
             <!-- --------- single product ----------- -->
-            <div class="container product-data">
+            <div class="container product-data p-0">
                 <div class="single-product">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="d-xl-none">
-                                <div class="big-img">
-                                    <img src="{{ asset('image/product/' . $img[0]) }}" alt="shirtinc-products" class="img-fluid"  loading="lazy">
+                    <div class="row row-sin">
+                        <div class="col-lg-6 col-sin-1">
+                            <div>
+                                <div class="d-xl-none">
+                                    <div class="big-img">
+                                        <img src="{{ asset('image/product/' . $img[0]) }}" alt="shirtinc-products"
+                                            class="img-fluid" loading="lazy">
+                                    </div>
+                                    <div class="small-images">
+                                        {{-- ---- all img getting in database ------- --}}
+                                        @foreach ($img as $val)
+                                            <div class="small-img">
+                                                <img src="{{ asset('image/product/' . $val) }}" alt="shirtinc-products"
+                                                    onclick="showImg(this.src)" loading="lazy">
+                                            </div>
+                                        @endforeach
+
+
+                                    </div>
                                 </div>
-                                <div class="small-images">
-                                    {{-- ---- all img getting in database ------- --}}
-                                    @foreach ($img as $val)
-                                        <div class="small-img">
-                                            <img src="{{ asset('image/product/' . $val) }}" alt="shirtinc-products"
-                                                onclick="showImg(this.src)"  loading="lazy">
+                                <style>
+                                    .exzoom .exzoom_img_box {
+                                        background: #fff;
+                                    }
+
+                                    .exzoom_img_ul_outer {
+                                        border: none !important;
+                                    }
+
+                                    .exzoom_img_box,
+                                    .exzoom_zoom_outer,
+                                    .exzoom_img_ul_outer {
+                                        width: 100% !important;
+                                        height: 500px !important;
+                                        text-align: center;
+                                    }
+
+                                    .exzoom_img_ul_outer ul li {
+                                        height: 500px;
+                                    }
+
+                                    .exzoom_img_ul_outer ul li img {
+                                        width: 100%;
+                                        height: 100%;
+                                        object-fit: contain;
+                                    }
+                                </style>
+                                {{-- ---- images --- --}}
+                                <div class="exzoom d-none d-xl-block" id="exzoom">
+                                    <!-- Images -->
+                                    <div class="exzoom_img_box">
+                                        <ul class='exzoom_img_ul'>
+                                            @foreach ($img as $val)
+                                                <li><img src="{{ asset('image/product/' . $val) }}" alt="shirtinc-products"
+                                                        loading="lazy" /></li>
+                                            @endforeach
+
+
+
+                                        </ul>
+                                    </div>
+                                    <!-- <a href="https://www.jqueryscript.net/tags.php?/Thumbnail/">Thumbnail</a> Nav-->
+                                    <div class="exzoom_nav"></div>
+                                    <!-- Nav Buttons -->
+                                    <p class="exzoom_btn">
+                                        <a href="javascript:void(0);" class="exzoom_prev_btn">
+                                            < </a>
+                                                <a href="javascript:void(0);" class="exzoom_next_btn"> > </a>
+                                    </p>
+                                </div>
+
+
+                                <div class="mt-5 product-policy">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="text-center">
+                                                <img src="../../image/products/icons/x1.webp" width="50"
+                                                    alt="shirtinc-icons" loading="lazy">
+                                                <h6 class="text-sm-bold">Cash on Delivery</h6>
+                                                <p>Available</p>
+                                            </div>
                                         </div>
-                                    @endforeach
-    
-    
+                                        <div class="col">
+                                            <div class="text-center">
+                                                <img src="../../image/products/icons/x2.webp" width="50"
+                                                    alt="shirtinc-icons" loading="lazy">
+                                                <h6 class="text-sm-bold">7 Days</h6>
+                                                <p>Exchange & Return</p>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="text-center">
+                                                <img src="../../image/products/icons/x3.webp" width="50"
+                                                    alt="shirtinc-icons" loading="lazy">
+                                                <h6 class="text-sm-bold">Premium Quality</h6>
+                                                <p>Available</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
                             </div>
-                            <style>
-                                .exzoom .exzoom_img_box{
-                                    background: #fff;
-                                }
-                                .exzoom_img_ul_outer{
-                                    border: none !important; 
-                                }
-                                .exzoom_img_box,.exzoom_zoom_outer,.exzoom_img_ul_outer{
-                                    width: 100% !important;
-                                    height: 500px !important;
-                                    text-align: center;
-                                }
-                                .exzoom_img_ul_outer ul li{    
-                                    height: 500px;
-                                }
-                                .exzoom_img_ul_outer ul li img{
-                                    width: 100%;
-                                    height: 100%;
-                                    object-fit: contain;
-                                }
-                            </style>
-                            {{-- ---- images --- --}}
-                            <div class="exzoom d-none d-xl-block" id="exzoom">
-                                <!-- Images -->
-                                <div class="exzoom_img_box">
-                                  <ul class='exzoom_img_ul'>
-                                    @foreach($img as $val)
-                                    <li><img src="{{ asset('image/product/' . $val) }}" alt="shirtinc-products" loading="lazy"/></li>
-                                    @endforeach
-                                   
-                                  
-                                
-                                  </ul>
-                                </div>
-                                <!-- <a href="https://www.jqueryscript.net/tags.php?/Thumbnail/">Thumbnail</a> Nav-->
-                                <div class="exzoom_nav"></div>
-                                <!-- Nav Buttons -->
-                                <p class="exzoom_btn">
-                                    <a href="javascript:void(0);" class="exzoom_prev_btn"> < </a>
-                                    <a href="javascript:void(0);" class="exzoom_next_btn"> > </a>
-                                </p>
-                              </div>
-
-
-                            <div class="mt-5 product-policy">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="text-center">
-                                            <img src="../../image/products/icons/x1.webp" width="50" alt="shirtinc-icons" loading="lazy">
-                                            <h6 class="text-sm-bold">Cash on Delivery</h6>
-                                            <p>Available</p>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="text-center">
-                                            <img src="../../image/products/icons/x2.webp" width="50" alt="shirtinc-icons" loading="lazy">
-                                            <h6 class="text-sm-bold">7 Days</h6>
-                                            <p>Exchange & Return</p>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="text-center">
-                                            <img src="../../image/products/icons/x3.webp" width="50" alt="shirtinc-icons" loading="lazy">
-                                            <h6 class="text-sm-bold">Premium Quality</h6>
-                                            <p>Available</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
 
                         </div>
 
@@ -287,7 +301,7 @@
                             $dis = $product->original_price - $product->selling_price;
                             $dis_count = round(($dis / $product->original_price) * 100);
                         @endphp
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 col-sin-2">
                             <div class="single-product-detail mt-3 mt-lg-0">
                                 <div>
                                     <h2 class="spd-title">{{ $product->name }}</h2>
@@ -424,6 +438,93 @@
                                         </div>
                                     </div>
                                 </div>
+                                {{-- -- deliver date ---- --}}
+                                <div class="mb-4">
+                                    <label for="" class="spd-label-title">delivery*</label>
+                                    <div class="listing-delivery-date">
+                                        <div class="row px-3">
+                                            <div class="col p-0">
+                                                {{--   -- delivery time ---- --}}
+                                                @php
+                                                    $cur_date = date('d M');
+                                                    $disp_date = date('d M', strtotime('+2 days'));
+                                                    $deli_date1 = date('d', strtotime('+5 days'));
+                                                    $deli_date2 = date('d M', strtotime('+7 days'));
+                                                    $est_date1 = date('l,M d', strtotime('+5 days'));
+                                                    $est_date2 = date('l,M d', strtotime('+7 days'));
+                                                    // echo $cur_date;
+                                                @endphp
+                                                <div>
+                                                    <div class="timeline-date">
+                                                        <div><span class="icon-circle">
+                                                                {{-- <i class="fa-solid fa-bag-shopping"></i> --}}
+                                                                <img width="70" height="70"
+                                                                    src="https://img.icons8.com/clouds/100/shopping-basket-success.png"
+                                                                    alt="shopping-basket-success" loading="lazy" />
+                                                            </span>
+                                                        </div>
+                                                        <div class="flex-grow-1 ps-1">
+                                                            <div class="border-line"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="timeline-details">
+                                                        <h4 class="text-sm-bold">{{ $cur_date }}</h4>
+                                                        <p>Ordered</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col p-0">
+                                                <div>
+                                                    <div class="timeline-date">
+                                                        <div class="flex-grow-1 ">
+                                                            <div class="border-line"></div>
+                                                        </div>
+                                                        <div class="px-2"><span class="icon-circle ">
+                                                                {{-- <i
+                                                                    class="fa-solid fa-truck-fast"></i> --}}
+                                                                <img width="70" height="70"
+                                                                    src="https://img.icons8.com/clouds/100/truck.png"
+                                                                    alt="truck" loading="lazy" />
+                                                            </span>
+                                                        </div>
+                                                        <div class="flex-grow-1 ">
+                                                            <div class="border-line"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="timeline-details text-center">
+                                                        <h4 class="text-sm-bold">{{ $disp_date }}</h4>
+                                                        <p>dispatches</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col p-0">
+                                                <div>
+                                                    <div class="timeline-date">
+                                                        <div class="flex-grow-1 pe-1">
+                                                            <div class="border-line"></div>
+                                                        </div>
+                                                        <div><span class="icon-circle">
+                                                                {{-- <i class="fa-solid fa-gift"></i> --}}
+                                                                <img width="70" height="70"
+                                                                    src="https://img.icons8.com/clouds/100/gift.png"
+                                                                    alt="gift" loading="lazy" />
+                                                            </span></div>
+                                                    </div>
+                                                    <div class="timeline-details text-end">
+                                                        <h4 class="text-sm-bold">{{ $deli_date1 . ' - ' . $deli_date2 }}</h4>
+                                                        <p>Delivered!</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm">Estimated arrival on :
+                                                <span class="text-sm-bold" style="color: #212529">
+                                                    {{ $est_date1 . ' - ' . $est_date2 }} </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div>
                                     <label for="" class="spd-label-title">details*</label>
                                     <!-- --- accordion -------------- -->
@@ -496,9 +597,7 @@
                                                 <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
                                                     data-bs-target="#nav-profile" type="button" role="tab"
                                                     aria-controls="nav-profile" aria-selected="false">our promise</button>
-                                                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
-                                                    data-bs-target="#nav-profile1" type="button" role="tab"
-                                                    aria-controls="nav-profile" aria-selected="false">Delivery</button>
+
                                                 <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
                                                     data-bs-target="#nav-profile2" type="button" role="tab"
                                                     aria-controls="nav-profile" aria-selected="false">Customer
@@ -522,92 +621,7 @@
                                                 aria-labelledby="nav-profile-tab" tabindex="0">
                                                 We assure the authenticity and quality of our products
                                             </div>
-                                            <div class="tab-pane fade" id="nav-profile1" role="tabpanel"
-                                                aria-labelledby="nav-profile-tab" tabindex="0">
-                                                <div class="listing-delivery-date">
-                                                    <div class="row px-3">
-                                                        <div class="col p-0">
-                                                            {{--   -- delivery time ---- --}}
-                                                            @php
-                                                            $cur_date = date('d M');
-                                                            $disp_date = date('d M', strtotime('+2 days'));
-                                                            $deli_date1 = date('d', strtotime('+5 days'));
-                                                            $deli_date2 = date('d M', strtotime('+7 days'));
-                                                            $est_date1 = date('l,M d', strtotime('+5 days'));
-                                                            $est_date2 = date('l,M d', strtotime('+7 days'));
-                                                            // echo $cur_date;
-                                                          @endphp
-                                                            <div>
-                                                                <div class="timeline-date">
-                                                                    <div><span class="icon-circle">
-                                                                            {{-- <i class="fa-solid fa-bag-shopping"></i> --}}
-                                                                            <img width="70" height="70"
-                                                                                src="https://img.icons8.com/clouds/100/shopping-basket-success.png"
-                                                                                alt="shopping-basket-success" />
-                                                                        </span>
-                                                                    </div>
-                                                                    <div class="flex-grow-1 ps-1">
-                                                                        <div class="border-line"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="timeline-details">
-                                                                    <h4 class="text-sm-bold">{{$cur_date}}</h4>
-                                                                    <p>Ordered</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col p-0">
-                                                            <div>
-                                                                <div class="timeline-date">
-                                                                    <div class="flex-grow-1 ">
-                                                                        <div class="border-line"></div>
-                                                                    </div>
-                                                                    <div class="px-2"><span class="icon-circle ">
-                                                                            {{-- <i
-                                                                                class="fa-solid fa-truck-fast"></i> --}}
-                                                                            <img width="70" height="70"
-                                                                                src="https://img.icons8.com/clouds/100/truck.png"
-                                                                                alt="truck" />
-                                                                        </span>
-                                                                    </div>
-                                                                    <div class="flex-grow-1 ">
-                                                                        <div class="border-line"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="timeline-details text-center">
-                                                                    <h4 class="text-sm-bold">{{$disp_date}}</h4>
-                                                                    <p>dispatches</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col p-0">
-                                                            <div>
-                                                                <div class="timeline-date">
-                                                                    <div class="flex-grow-1 pe-1">
-                                                                        <div class="border-line"></div>
-                                                                    </div>
-                                                                    <div><span class="icon-circle">
-                                                                            {{-- <i class="fa-solid fa-gift"></i> --}}
-                                                                            <img width="70" height="70"
-                                                                                src="https://img.icons8.com/clouds/100/gift.png"
-                                                                                alt="gift" />
-                                                                        </span></div>
-                                                                </div>
-                                                                <div class="timeline-details text-end">
-                                                                    <h4 class="text-sm-bold">{{$deli_date1.' - '.$deli_date2}}</h4>
-                                                                    <p>Delivered!</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="text-sm">Estimated arrival on :
-                                                        <span class="text-sm-bold" style="color: #212529"> {{$est_date1.' - '.$est_date2}}  </span> 
-                                                        </p>
-                                                    </div>
-                                                </div>
 
-                                            </div>
                                             <div class="tab-pane fade" id="nav-profile2" role="tabpanel"
                                                 aria-labelledby="nav-profile-tab" tabindex="0">
                                                 <div class="">
@@ -622,10 +636,12 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>   <!-- end of single product   -->
+                    
+                     <!-- -----------  frequently - bought ----------- -->
                     @if (!($product->name == $freq_boug->name))
                         <div>
-                            <!-- -----------  frequently - bought ----------- -->
+                           
                             <h4 class="sec-title center">
                                 <span>Frequently Bought Together</span>
                             </h4>
@@ -698,94 +714,100 @@
 
                 <div class="related-product-section">
 
-
                     {{-- ----------- related products ----------- --}}
-                    @if(count($related_product) > 0)
-                    <div class="rel-pro">
+                    @if (count($related_product) > 0)
+                        <div class="rel-pro">
 
-                        <div class="row">
-                            <h4 class="sec-title center mt-3">
-                                <span>Related Products</span>
-                            </h4>
+                            <div class="row">
+                                <h4 class="sec-title center mt-3">
+                                    <span>Related Products</span>
+                                </h4>
 
-                            @foreach ($related_product as $item)
-                                @php
-                                    $related_img = explode(',', $item->image);
-                                    // ------ discount percentage ------
-                                    $dis = $item->original_price - $item->selling_price;
-                                    $dis_count = round(($dis / $item->original_price) * 100);
-                                @endphp
-                                <div class="col-lg-2 col-md-3 col-sm-4 col-12 product-data">
-                                    <input type="hidden" class="product_id" value="{{ $item['id'] }}">
+                                @foreach ($related_product as $item)
+                                    @php
+                                        $related_img = explode(',', $item->image);
+                                        // ------ discount percentage ------
+                                        $dis = $item->original_price - $item->selling_price;
+                                        $dis_count = round(($dis / $item->original_price) * 100);
+                                    @endphp
+                                    <div class="col-lg-2 col-md-3 col-sm-4 col-12 product-data">
+                                        <input type="hidden" class="product_id" value="{{ $item['id'] }}">
                                         <input type="hidden" class="qty-value" value="1">
-                                    <div class="rp-details text-center">
-                                        <div class="rp-img">
-                                            <img src="{{ asset('image/product/' . $related_img[0]) }}" alt="related-products"
-                                                class="img-fluid" loading="lazy">
+                                        <div class="rp-details text-center">
+                                            <div class="rp-img">
+                                                <img src="{{ asset('image/product/' . $related_img[0]) }}"
+                                                    alt="related-products" class="img-fluid" loading="lazy">
+                                            </div>
+                                            <div class="rp-cat"><a
+                                                    href="{{ url('category/' . $item->category->slug) }}">{{ $item->category->name }}</a>
+                                            </div>
+                                            <h6 class="rp-title"><a
+                                                    href="{{ url('category/' . $item->category->slug . '/' . $item->slug) }}">
+                                                    {{ $item->name }}</a></h6>
+                                            <div class="rp-price">₹{{ $item->selling_price }} <span
+                                                    class="rp-selling">₹{{ $item->original_price }}</span><span
+                                                    class="rp-discount">({{ $dis_count }}% off)</span></div>
+                                            <div class="mt-3"><a class="btn-float addToCart">Add to cart</a></div>
+
                                         </div>
-                                        <div class="rp-cat"><a href="{{ url('category/' . $item->category->slug) }}">{{ $item->category->name }}</a></div>
-                                        <h6 class="rp-title"><a href="{{ url('category/' . $item->category->slug . '/' . $item->slug) }}">
-                                            {{ $item->name }}</a></h6>
-                                        <div class="rp-price">₹{{ $item->selling_price }} <span
-                                                class="rp-selling">₹{{ $item->original_price }}</span><span
-                                                class="rp-discount">({{ $dis_count }}% off)</span></div>
-                                        <div class="mt-3"><a class="btn-float addToCart" >Add to cart</a></div>
-
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
 
 
+                            </div>
                         </div>
-                    </div>
                     @endif
-                  
+
 
 
                     {{-- --------------- similar products ------------------ --}}
-                    @if (count($popular_product) > 0 )
-                    <div class="similar-product">
-                        <div class="rel-pro">
-    
-                            <div class="row">
-                                <h4 class="sec-title center mt-3">
-                                    <span>You may also like</span>
-                                </h4>
-                                <div class="owl-carousel owl-theme">
-                                    @foreach ($popular_product as $item)
-                                        @php
-                                            $popular_img = explode(',', $item->image);
-                                            // ------ discount percentage ------
-                                            $dis = $item->original_price - $item->selling_price;
-                                            $dis_count = round(($dis / $item->original_price) * 100);
-                                        @endphp
-                                        <div class="item product-data">
-                                            <input type="hidden" class="product_id" value="{{ $item['id'] }}">
-                                            <input type="hidden" class="qty-value" value="1">
-                                            <div class="rp-details text-center">
-                                                <div class="rp-img">
-                                                    <img src="{{ asset('image/product/' . $popular_img[0]) }}" alt="similar-products"
-                                                        class="img-fluid" loading="lazy">
+                    @if (count($popular_product) > 0)
+                        <div class="similar-product">
+                            <div class="rel-pro">
+
+                                <div class="row">
+                                    <h4 class="sec-title center mt-3">
+                                        <span>You may also like</span>
+                                    </h4>
+                                    <div class="owl-carousel owl-theme">
+                                        @foreach ($popular_product as $item)
+                                            @php
+                                                $popular_img = explode(',', $item->image);
+                                                // ------ discount percentage ------
+                                                $dis = $item->original_price - $item->selling_price;
+                                                $dis_count = round(($dis / $item->original_price) * 100);
+                                            @endphp
+                                            <div class="item product-data">
+                                                <input type="hidden" class="product_id" value="{{ $item['id'] }}">
+                                                <input type="hidden" class="qty-value" value="1">
+                                                <div class="rp-details text-center">
+                                                    <div class="rp-img">
+                                                        <img src="{{ asset('image/product/' . $popular_img[0]) }}"
+                                                            alt="similar-products" class="img-fluid" loading="lazy">
+                                                    </div>
+                                                    <div class="rp-cat"><a
+                                                            href="{{ url('category/' . $item->category->slug) }}">{{ $item->category->name }}</a>
+                                                    </div>
+                                                    <h6 class="rp-title"><a
+                                                            href="{{ url('category/' . $item->category->slug . '/' . $item->slug) }}">
+                                                            {{ $item->name }}</a></h6>
+                                                    <div class="rp-price">₹{{ $item->selling_price }} <span
+                                                            class="rp-selling">₹{{ $item->original_price }}</span><span
+                                                            class="rp-discount">({{ $dis_count }}% off)</span></div>
+                                                    <div class="mt-3"><a class="btn-float addToCart">Add to cart</a>
+                                                    </div>
+
                                                 </div>
-                                                <div class="rp-cat"><a href="{{url('category/'.$item->category->slug)}}">{{ $item->category->name }}</a></div>
-                                                <h6 class="rp-title"><a href="{{ url('category/' . $item->category->slug . '/' . $item->slug) }}">
-                                                    {{ $item->name }}</a></h6>
-                                                <div class="rp-price">₹{{ $item->selling_price }} <span
-                                                        class="rp-selling">₹{{ $item->original_price }}</span><span
-                                                        class="rp-discount">({{ $dis_count }}% off)</span></div>
-                                                <div class="mt-3"><a class="btn-float addToCart">Add to cart</a></div>
-    
                                             </div>
-                                        </div>
-                                    @endforeach
+                                        @endforeach
+                                    </div>
+
+
                                 </div>
-    
-    
                             </div>
                         </div>
-                      </div>
                     @endif
-               
+
 
                 </div>
         </section>
@@ -853,29 +875,29 @@
 
 
 @section('scripts')
-    <script src="{{asset('exzoom/jquery.exzoom.js')}}"></script>
-  
+    <script src="{{ asset('exzoom/jquery.exzoom.js') }}"></script>
+
     <script>
-          $(function(){
+        $(function() {
 
-$("#exzoom").exzoom({
+            $("#exzoom").exzoom({
 
-  // thumbnail nav options
-  "navWidth": 70,
-  "navHeight": 70,
-  "navItemNum": 5,
-  "navItemMargin": 7,
-  "navBorder": 1,
+                // thumbnail nav options
+                "navWidth": 70,
+                "navHeight": 70,
+                "navItemNum": 5,
+                "navItemMargin": 7,
+                "navBorder": 1,
 
-  // autoplay
-  "autoPlay": false,
+                // autoplay
+                "autoPlay": false,
 
-  // autoplay interval in milliseconds
-  "autoPlayTimeout": 3000
-  
-});
+                // autoplay interval in milliseconds
+                "autoPlayTimeout": 3000
 
-});
+            });
+
+        });
         // -----------small img hover change -----------------
 
         let bigImg = document.querySelector('.big-img img');

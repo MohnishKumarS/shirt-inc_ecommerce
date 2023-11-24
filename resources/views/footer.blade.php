@@ -8,7 +8,7 @@
             <div class="col-lg-3 col-md-6 col-12">
                 <div>
                     <div class="text-center">
-                        <img src="{{asset('image/shirtinc-logo2.png')}}" width="100" alt="shirt-inc-logo">
+                        <img src="{{asset('image/shirtinc-logo2.png')}}" width="100" alt="shirt-inc-logo" loading="lazy">
                     </div>
                     <p class="pt-4">Providing you with designs for homeland and movie lovers. We provide products from T-shirts to hoodies in which you can pick the design, color and add it to your preferred T-shirt or hoodie.</p>
                 </div>

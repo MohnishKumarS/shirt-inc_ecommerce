@@ -51,9 +51,16 @@ Route::get('/category/{cate_slug}/{prod_slug}',[UserController::class,'view_prod
 
 Route::get('/new-arrival',[UserController::class,'view_new_product']);
 
-// ----------- payment gateway ---------------
+// -----------razorpay  payment gateway ---------------
 
 Route::post('/proceed-to-pay',[PaymentController::class,'payment']);
+
+// ------------- Phonepay payment gateway ---------------
+Route::get("/payment-sample",[PaymentController::class,'sample']);
+
+Route::get('/payment-method',[PaymentController::class,'makePhonePePayment'])->name('phonepe.payment');
+
+Route::post('/payment/callback',[PaymentController::class,'phonePeCallback'])->name('phonepe.payment.callback');
 
 // --------------- search  product --------------
 
@@ -75,7 +82,7 @@ Route::view('return-policy', 'policy.return-policy');
 
 Route::view('shipping-and-delivery-policy', 'policy.shipping-and-delivery-policy'); 
 
-// -------------  controls ----------------
+// -------------Auth   controls ----------------
    Route::middleware(['auth'])->group(function(){
 
       Route::get('/my-cart',[CartController::class,'my_cart']);

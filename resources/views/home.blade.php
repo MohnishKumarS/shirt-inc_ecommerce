@@ -60,12 +60,12 @@
                                     <div class="product-image">
                                         @if (count($img) > 1)
                                             <a class="image">
-                                                <img src="{{ asset('image/product/' . $img[0]) }}" class="pic-1 rotate">
-                                                <img src="{{ asset('image/product/' . $img[1]) }}" class="pic-2 rotate">
+                                                <img src="{{ asset('image/product/' . $img[0]) }}" class="pic-1 rotate" alt="product-show" loading="lazy">
+                                                <img src="{{ asset('image/product/' . $img[1]) }}" class="pic-2 rotate" alt="product-show" loading="lazy">
                                             </a>
                                         @else
                                             <a class="image">
-                                                <img src="{{ asset('image/product/' . $val->image) }}" class="pic-1">
+                                                <img src="{{ asset('image/product/' . $val->image) }}" class="pic-1" alt="product-show" loading="lazy">
                                             </a>
                                         @endif
 
@@ -123,7 +123,7 @@
                         <div class="item">
                             <div class="card">
                                 <div class="imgbox">
-                                    <img src="{{ asset('image/category/' . $val->image) }}" alt="">
+                                    <img src="{{ asset('image/category/' . $val->image) }}" alt="category-list" loading="lazy">
                                 </div>
                                 <div class="contentbox">
                                     <h3>{{ $val->name }}</h3>
@@ -185,7 +185,7 @@
                                                 <input type="hidden" class="qty-value" value="1">
                                                 <div class="product-img">
                                                     <img src="{{ asset('image/product/' . $img_pop[0]) }}"
-                                                        alt="">
+                                                        alt="popular-tees" loading="lazy">
                                                 </div>
                                                 <div class="product-btns">
                                                     <a href="" class="btn-cart addToCart">
@@ -324,26 +324,26 @@
                     <div class="col-lg-3 col-sm-6 mt-4 mt-lg-0 ">
                         <div class="icon">
                             <img width="90" height="90" src="https://img.icons8.com/clouds/100/truck.png"
-                                alt="truck" />
+                                alt="truck" loading="lazy"/>
                         </div>
                         <h3>Free shipping <br>from ₹500</h3>
                     </div>
                     <div class="col-lg-3 col-sm-6 mt-4 mt-lg-0">
                         <div class="icon">
                             <img width="90" height="90" src="https://img.icons8.com/clouds/100/headset.png"
-                                alt="headset" />
+                                alt="headset" loading="lazy"/>
                         </div>
                         <h3>24/7 <br>Help Center</h3>
                     </div>
                     <div class="col-lg-3 col-sm-6 mt-4 mt-lg-0">
                         <div class="icon"><img width="90" height="90"
-                                src="https://img.icons8.com/bubbles/100/u-turn-to-left.png" alt="u-turn-to-left" />
+                                src="https://img.icons8.com/bubbles/100/u-turn-to-left.png" alt="u-turn-to-left" loading="lazy"/>
                         </div>
                         <h3>Exchange and return <br>within 14 days</h3>
                     </div>
                     <div class="col-lg-3 col-sm-6 mt-4 mt-lg-0">
                         <div class="icon"><img width="90" height="90"
-                                src="https://img.icons8.com/bubbles/100/discount.png" alt="discount" /></div>
+                                src="https://img.icons8.com/bubbles/100/discount.png" alt="discount" loading="lazy"/></div>
                         <h3>Discounts for <br>customers</h3>
                     </div>
                 </div>
@@ -368,7 +368,7 @@
                     <div class="col-lg-6">
                         <div>
                             <div class="base-img text-center">
-                                <img src="../image/products/ts/base1.jpg" alt="" class="img-fluid">
+                                <img src="../image/products/ts/base1.jpg" alt="new-arrival" class="img-fluid" loading="lazy">
                             </div>
                             <div class="base-content text-center mt-4 mb-4 mb-lg-0">
                                 <small class="text-sm">MEN</small>
@@ -379,7 +379,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="text-center">
-                            <img src="../image/products/ts/base2.jpg" alt="" class="img-fluid">
+                            <img src="../image/products/ts/base2.jpg" alt="new-arrival" class="img-fluid" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -402,7 +402,7 @@
                     <div class="col-lg-6 col-12 d-flex align-items-center justify-content-center">
                         <div class="advertise-content bg-light  p-4 text-center rounded">
                             <img width="100" height="100" src="https://img.icons8.com/clouds/100/discount.png"
-                                alt="discount" />
+                                alt="discount" loading="lazy"/>
                             <h2>25% OFF</h2>
                             <h5>On All Orders Above <span class="text-danger">₹1199!</span></h5>
                             <p class="text-muted">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi,
@@ -413,7 +413,7 @@
                     </div>
                     <div class="col-lg-6 col-12 d-flex justify-content-center">
                         <div class="img">
-                            <img src="../image/products/bb/ba3.png" alt="">
+                            <img src="../image/products/bb/ba3.png" alt="offer-products" loading="lazy">
                         </div>
                     </div>
                 </div>

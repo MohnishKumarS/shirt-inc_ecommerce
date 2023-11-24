@@ -48,14 +48,14 @@
         ^^^^^^^^^^^^^ ~~ preloading    ~~  ^^^^^^^^^^^^^^
          --------------------------------------------- -->
          
-         <div class="preloader" id="preloader">
+         {{-- <div class="preloader" id="preloader">
           <div class="loader">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
           </div>
-        </div>
+        </div> --}}
         
         {{-- ---- space top ------ --}}
 
