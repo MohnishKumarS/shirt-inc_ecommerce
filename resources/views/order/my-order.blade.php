@@ -77,7 +77,7 @@
                     {{-- ---- empty orders list ---- --}}
                     <div class="" style="padding: 0px 0 40px">
                         <div class="text-center">
-                            <img src="{{asset('image/empty/emp-4.webp')}}" alt="orders-empty" class="img-fluid">
+                            <img src="{{asset('image/empty/no-orders.webp')}}" alt="orders-empty" class="img-fluid">
                             <h3>Sorry, You have no<span class="title-hlorg"> Order!</span></h3>
                             <p class="text-sm text-normal">Go find the product you like. Looks like you haven't made your choice yet... </p>
                             <div class="mt-4">

@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="container">
-        <div class="card my-5">
+        <div class="card my-5 shadow ">
             <div class="card-header">
                 <h3>View Order <i class="fa-regular fa-handshake fs-4"></i>
                     <div class="float-end">

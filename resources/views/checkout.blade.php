@@ -203,11 +203,11 @@
                         </table>
                         <hr>
                         {{-- -------- place order btn --- --}}
-                        <div class="my-3">
+                        {{-- <div class="my-3">
                             <button class="btn-float w-100 payment-btn" type="button">Place Order</button>
-                        </div>
+                        </div> --}}
                         <div class="my-3">
-                            <a class="btn-float w-100" href="payment-method" >Place Order Phonepay</a>
+                            <a class="btn-float w-100 payment-btn" href="payment-method" >Place Order Phonepay</a>
                         </div>
                       
                             

@@ -23,7 +23,7 @@ class PaymentController extends Controller
         //   $amount = session()->get('phonepe_amount') ?? 100;
           $data = array (
             'merchantId' => 'PGTESTPAYUAT101',
-            'merchantTransactionId' => 'PGTESTPAYUAT101',
+            'merchantTransactionId' => uniqid(),
             'merchantUserId' => 'MUID123',
             'amount' => 1 * 100,
             'redirectUrl' => route('phonepe.payment.callback'),
@@ -74,16 +74,22 @@ class PaymentController extends Controller
           curl_close($curl);
   
           $rData = json_decode($response);
-  
-          return redirect()->to($rData->data->instrumentResponse->redirectInfo->url);
-        // return "asd";
+
+          if($rData->success){
+            // return $rData;
+            return redirect()->to($rData->data->instrumentResponse->redirectInfo->url);
+          }
+          
+          
   
       }
   
       public function phonePeCallback(Request $request)
       {
+        
           $input = $request->all();
   
+        if($input['code'] == "PAYMENT_SUCCESS"){
           $saltKey = '4c1eba6b-c8a8-44d3-9f8b-fe6402f037f3';
           $saltIndex = 1;
   
@@ -118,10 +124,69 @@ class PaymentController extends Controller
           $response = curl_exec($curl);
   
           curl_close($curl);
-  
-          dd(json_decode($response));
-          // flash(translate('Your order has been placed successfully. Please submit payment information from purchase history'))->success();
-          // return redirect()->route('order_confirmed');
+          
+          $rData = json_decode($response);
+          
+          // ---- after payment was success ----
+          if($rData->success){
+          
+            // ---- insert a buy product to database 
+                    
+        $order = new Order();
+        $order->user_id = Auth::id();
+        $order->address_id =  22;
+        $order->tracking_no = 'shirt_inc-'.rand(1111,9999);
+        $order->payment_mode = $rData->data->paymentInstrument->type;
+        $order->payment_id = $response;
+
+        // ----------- to calculate a total price --------------
+        $tot_price = Cart::where('user_id',Auth::id())->get();
+        $total = 0;
+        foreach($tot_price as $price){
+            $total += $price->product->selling_price;
+        }
+        $order->total_price = $total;
+        $order->save();
+
+
+        $cartItem =  Cart::where('user_id',Auth::id())->get();
+
+        foreach($cartItem as $item){
+            $data = [
+                'order_id' => $order->id,
+                'product_id'=> $item->product_id,
+                'quantity' => $item->product_qty,
+                'price' => $item->product->selling_price,
+                'size' => $item->product_size,
+                'mens_size' => $item->mens_size,
+                'womens_size' => $item->womens_size,
+            ];
+
+            Order_item::create($data);
+
+            // ---------- reduce a product quantity ----------------
+
+            $product_qty  = Product::where('id', $item->product_id)->first();
+            
+            $product_qty->quantity = $product_qty->quantity - $item->product_qty;
+            $product_qty->update();
+         
+        }
+
+        
+        // ---------- delete a cart item -------------
+        $cartItem =  Cart::where('user_id',Auth::id())->get();
+        Cart::destroy($cartItem);
+ 
+     
+
+        return redirect('/my-order');
+          }
+
+
+        }
+          
+         
       }
   
       // Refund API from api
@@ -177,7 +242,7 @@ class PaymentController extends Controller
   
           $rData = json_decode($response);
   
-  
+          
   
           $finalXHeader1 = hash('sha256','/pg/v1/status/'.'MERCHANTUAT'.'/'.$tra_id.$saltKey).'###'.$saltIndex;
   
