@@ -66,7 +66,7 @@
             <tr  class="align-middle text-center">
                 <td>{{$i++}}</td>
                 <td>
-                    <img src="{{asset('image/slider/'.$val->image)}}" width="400" height='200' style="object-fit: contain" alt="">
+                    <img src="{{asset('image/slider/'.$val->image)}}" width="400" height='200' style="object-fit: contain" alt="slider-poster">
                 </td>
                 <td>{{$val->timer}}</td>
                 <td>

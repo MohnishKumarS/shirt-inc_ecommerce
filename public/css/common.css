@@ -10,20 +10,20 @@
     font-family: 'Niconne', cursive;
 }
 .title-hover{
-    transition:all 0.3s ;
+    transition:all 0.3s ease-in;
 }
 .title-hover:hover{
     color: #ff5400;
 }
 .title-hover1{
-    transition:all 0.1s ;
+    transition:all 0.1s ease;
     color: #1697dc;
 }
 .title-hover1:hover{
     color: #78bee4;
 }
 .text-normal{
-    text-transform: initial;
+    text-transform: initial !important;
 }
 
 
@@ -36,6 +36,20 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     margin-bottom: 10px;
+}
+.text-sm-bold {
+    font-size: 14px;
+    font-weight: 800;
+    margin-bottom: 0;
+    text-transform: capitalize;
+}
+
+.text-sm-b {
+    color: #212529;
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 0;
+    text-transform: capitalize;
 }
 
 .text-md {
@@ -60,20 +74,7 @@
     margin: 0.4rem 0;
 }
 
-.text-sm-bold {
-    font-size: 14px;
-    font-weight: 800;
-    margin-bottom: 0;
-    text-transform: capitalize;
-}
 
-.text-sm-b {
-    color: #212529;
-    font-size: 12px;
-    font-weight: 800;
-    margin-bottom: 0;
-    text-transform: capitalize;
-}
 
 .text-xs {
     font-size: 12px;
@@ -119,6 +120,19 @@
     font-weight: 700;
     font-family: 'lora';
 
+}
+
+/* --- sticky column --- */
+@media only screen and (min-width:992px){
+    .row-sticky{
+        align-items: flex-start;
+    }
+     .row-sticky .col-stick{
+        /* height: 100dvh; */
+        position: sticky;
+        top: 15%;
+        
+    }
 }
 
   /* --------------------------------

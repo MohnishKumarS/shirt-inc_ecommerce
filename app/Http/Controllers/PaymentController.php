@@ -143,7 +143,7 @@ class PaymentController extends Controller
         $tot_price = Cart::where('user_id',Auth::id())->get();
         $total = 0;
         foreach($tot_price as $price){
-            $total += $price->product->selling_price;
+            $total += $price->product->selling_price * $price->product_qty;
         }
         $order->total_price = $total;
         $order->save();
@@ -180,7 +180,7 @@ class PaymentController extends Controller
  
      
 
-        return redirect('/my-order');
+        return redirect('/order-success');
           }
 
 
@@ -303,9 +303,9 @@ class PaymentController extends Controller
             'addr_id' => $req->addr_id
         ];
 
-     Session::put('total',100);
-     Session::put('order_id',$orderId);
-     Session::put('addr_id',$req->addr_id);
+    //  Session::put('total',100);
+    //  Session::put('order_id',$orderId);
+    //  Session::put('addr_id',$req->addr_id);
         // return redirect('/checkout')->with('data', $data);
        
         

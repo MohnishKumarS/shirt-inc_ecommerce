@@ -159,8 +159,8 @@
 
                     @if ($cart->count() > 0)
                         {{-- ---------- product in carts table --------------- --}}
-                        <table class="table">
-                            <tr>
+                        <table class="table text-center">
+                            <tr class="text-sm-bold">
                                 <th>Image</th>
                                 <th>Name</th>
                                 <th>Qty</th>
@@ -177,14 +177,16 @@
                                 <tr class="align-middle">
                                     <td><img src="{{ asset('image/product/' . $img[0]) }}" width="65" class="img-fluid"
                                             alt="products-image" loading="lazy"></td>
-                                    <td>{{ $item->product->name }} <br>
+                                    <td><span class="text-sm text-normal">{{ $item->product->name }}</span> <br>
                                         {{-- - -- size cart --- --}}
+                                      <span class="text-md-b">
                                         @if ($item->mens_size)
-                                            <small>(size for men:{{ $item->mens_size }} &
-                                                women:{{ $item->womens_size }})</small>
-                                        @else
-                                            <small>(size:{{ $item->product_size }})</small>
-                                        @endif
+                                        <small>(size for men:{{ $item->mens_size }} &
+                                            women:{{ $item->womens_size }})</small>
+                                    @else
+                                        <small>(size:{{ $item->product_size }})</small>
+                                    @endif
+                                      </span>
 
                                     </td>
                                     <td>{{ $item->product_qty }}</td>
@@ -201,13 +203,13 @@
                             </tr>
 
                         </table>
-                        <hr>
+                      
                         {{-- -------- place order btn --- --}}
                         {{-- <div class="my-3">
                             <button class="btn-float w-100 payment-btn" type="button">Place Order</button>
                         </div> --}}
-                        <div class="my-3">
-                            <a class="btn-float w-100 payment-btn" href="payment-method" >Place Order Phonepay</a>
+                        <div class="my-4">
+                            <a class="btn-float w-100 payment-btn" href="payment-method" >Place Order</a>
                         </div>
                       
                             

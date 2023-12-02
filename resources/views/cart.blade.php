@@ -69,8 +69,8 @@
             @php
             $total = 0;
             @endphp
-            <div class="row">
-                <div class="col-lg-8">
+            <div class="row row-sticky">
+                <div class="col-lg-8 col-12">
                     {{-- ------ display error ------ --}}
                    
                     <div class="text-danger size-error text-sm"></div>
@@ -87,19 +87,7 @@
                     $dis = $val->product->original_price - $val->product->selling_price;
                     $dis_count = round(($dis / $val->product->original_price) * 100);
                     @endphp
-                    <style>
-                        .cart-img {
-                            height: 220px;
-                            width: 100%
-                        }
 
-                        .cart-img img {
-                            height: inherit;
-                            width: 100%;
-                            object-fit: contain;
-                        }
-
-                    </style>
                     <div class="row border-bottom py-3 product-data ">
 
                         <div class="col-lg-12 ">
@@ -226,7 +214,7 @@
                                                         <label for="" class="text-danger text-sm text-normal">Available
                                                             only
                                                             {{ $val->product->quantity }} item, your order exceed
-                                                            click remove & order
+                                                            click delete & order
                                                             again</label>
                                                         @endif
 
@@ -273,7 +261,7 @@
 
 
 
-                <div class="col-lg-4 mt-4 mt-lg-0">
+                <div class="col-lg-4 col-12 mt-4 mt-lg-0 col-stick">
                     @if ($total > 0)
                     <div class="card shadow">
                         <div class="card-body">

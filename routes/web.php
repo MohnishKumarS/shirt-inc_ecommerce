@@ -285,6 +285,18 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
       Route::post('/update-slider/{id}', 'update_slider');
 
       Route::get('/delete-slider/{id}', 'delete_slider');
+
+      // ---- ads poster ---
+
+      Route::get('/ads-poster',"ads_poster");
+
+      Route::post('/add-poster-ads','add_poster_ads');
+
+      Route::get('/edit-poster/{id}', 'edit_poster');
+
+      Route::post('/update-poster/{id}', 'update_poster');
+
+      Route::get('/delete-poster/{id}', 'delete_poster');
    });
 
 

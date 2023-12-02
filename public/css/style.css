@@ -819,7 +819,9 @@ section {
 }
 
 
-/* -------- product section 2  ------- */
+/* ------------------------------------------------ 
+*================  Product design 2  popular ================*
+-------------------------------------------------- */
 
 .products {
     background: #fff;
@@ -981,7 +983,9 @@ section {
     z-index: 1;
 }
 
-/* ------------------ product trend  section 1 -------------------- */
+/* ------------------------------------------------ 
+*================  Product design 1 home page  ================*
+-------------------------------------------------- */
 
 .product {
     text-align: center;
@@ -1324,15 +1328,7 @@ section {
     margin-bottom: 10px;
     color: #1697dc;
 }
-.single-product .row-sin{
-    align-items: flex-start;
-}
-.single-product .row-sin .col-sin-1{
-    height: 100dvh;
-    position: sticky;
-    top: 15%;
-    
-}
+
 
 .timeline-date {
     display: flex;
@@ -1604,10 +1600,6 @@ section {
     transition: 0.5s;
 }
 
-/* .category-list .card:hover .imgbox {
-  align-items: flex-start !important;
-} */
-
 .category-list .card .contentbox {
     position: relative;
     padding: 20px;
@@ -1654,81 +1646,6 @@ section {
 
 
 
-
-/* ================= product collection ==================== */
-.product-collection .md-title {
-    font-weight: 600;
-    /* text-shadow: 2px 2px 10px  rgba(0, 0, 0, 0.747); */
-    text-shadow: -2px -5px 10px rgb(228, 54, 54);
-}
-
-.product-collection .sm-title {
-    text-shadow: 2px 2px 5px black;
-    letter-spacing: 1px;
-}
-
-.product-col-left {
-    background: linear-gradient(rgb(0, 0, 0, 0), rgba(0, 0, 0, 0.542)), url('../image/products/bb/bb3.webp')no-repeat center/cover;
-}
-
-.product-col-r-top {
-    background: linear-gradient(rgb(0, 0, 0, 0), rgba(0, 0, 0, 0.542)), url('../image/products/bb/bb6.jpg')no-repeat center/cover;
-}
-
-.product-collection .flex {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    height: 50vh;
-    padding: 2rem 1.5rem 3.2rem;
-    margin: 5px;
-
-}
-
-.product-col-r-bottom>div:first-child {
-    background-color: yellowgreen;
-}
-
-.product-col-r-bottom>div:last-of-type {
-    background-color: rgb(235, 168, 23);
-}
-
-.product-col-content {
-    color: white;
-    text-align: center;
-}
-
-.product-collection .text-lights {
-    opacity: 1;
-    font-size: 0.9rem;
-    font-weight: 400;
-    line-height: 1.7;
-}
-
-/* --------- media query -------------- */
-@media screen and (min-width:992px) {
-    .product-col-r-bottom {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media screen and (min-width:1330px) {
-    .product-col-wrapper {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .flex {
-        height: 60vh;
-    }
-
-    .product-col-left {
-        height: 121.5vh;
-    }
-}
-
-
 /* ------------------ our advantage background ---------------------- */
 
 .our-advantage {
@@ -1747,10 +1664,6 @@ section {
 
 }
 
-/* .our-advantage .icon{
-  color: rgb(247, 247, 38);
-  font-size: 40px;
-} */
 .our-advantage h3 {
     font-size: 22px;
     margin-top: 15px;
@@ -1835,7 +1748,6 @@ section {
     background-attachment: fixed;
     text-align: center;
     padding: 25% 15%;
-    /* height: 100vh; */
     color: #fff;
 }
 
@@ -1855,6 +1767,7 @@ section {
 }
 
 /* ---------------------- overall collection list -------------- */
+
 .overall-collection .all-col-1 {
     background: linear-gradient(rgb(0, 0, 0, 0)50%, rgba(219, 78, 78, 0.442)), url('../image/products/bb/bb3.webp')no-repeat left center/contain;
     background-attachment: fixed;
@@ -1933,18 +1846,18 @@ section {
     }
 }
 
-/* --------------- - subscribe -  - ------------- */
+/* -------------------- - subscribe -  - -------------------- */
 
 .subscribe {
     background: linear-gradient(to right, rgba(0, 0, 0, 0.6)40%, rgba(0, 0, 0, 0.142)), url('../image/products/ts/ts6.png')no-repeat center/cover;
     color: #fff;
     background-attachment: fixed;
     padding: 150px 0;
-    font-family: "Teko", sans-serif;
     position: relative;
 }
 
 .subscribe .subscribe-content h2 {
+    font-family: "Teko", sans-serif;
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 1px;
@@ -1974,6 +1887,16 @@ section {
 
 
 /* --------------- cart page ----------------- */
+.cart-img {
+    height: 220px;
+    width: 100%
+}
+
+.cart-img img {
+    height: inherit;
+    width: 100%;
+    object-fit: contain;
+}
 /* - -- cart timeline -- */
 .cart-timeline {
     margin-bottom: 20px;
@@ -2216,7 +2139,6 @@ section {
 }
 
 
-
 /* <!-- ---------------------------------------------
 ^^^^^^^^^^^^^ ~~ Footer  ~~  ^^^^^^^^^^^^^^
  --------------------------------------------- --> */
@@ -2288,7 +2210,7 @@ section {
     border-radius: 50%;
     text-align: center;
     line-height: 43px;
-    transition: 0.3s ease;
+    transition:transform 0.4s ease;
     box-shadow: 2px 2px 15px #e25914d2;
     position: relative;
 
@@ -2296,6 +2218,7 @@ section {
 
 .footer .social-icons ul li:hover {
     background: #ff5400;
+     transform: translateY(-5px);
 }
 
 .footer .social-icons ul li i {
@@ -2318,4 +2241,5 @@ section {
 
 .footer .footer-brand:hover {
     color: #ff5400;
+   
 }

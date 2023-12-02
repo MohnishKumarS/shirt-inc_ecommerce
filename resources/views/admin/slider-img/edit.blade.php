@@ -15,7 +15,7 @@
                     <div class="col-md-12 mb-3">
                         <label for="" class="form-label">Current Poster Image</label>
                         <div>
-                            <img src="{{asset('image/slider/'.$slider->image)}}" alt="" class="img-fluid" width="400">
+                            <img src="{{asset('image/slider/'.$slider->image)}}" alt="slider-poster" class="img-fluid" width="400">
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">

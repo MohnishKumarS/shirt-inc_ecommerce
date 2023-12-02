@@ -190,8 +190,8 @@
             <!-- --------- single product ----------- -->
             <div class="container product-data p-0">
                 <div class="single-product">
-                    <div class="row row-sin">
-                        <div class="col-lg-6 col-sin-1">
+                    <div class="row row-sticky">
+                        <div class="col-lg-6 col-stick">
                             <div>
                                 <div class="d-xl-none">
                                     <div class="big-img">
