@@ -9,18 +9,27 @@ use App\Models\Order_item;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Monolog\SignalHandler;
 use Razorpay\Api\Api;
 use Razorpay\Api\Errors\SignatureVerificationError;
-use Session;
+
 
 
 class PaymentController extends Controller
 {
       // PhonePe Integration
-      public function makePhonePePayment(Request $request)
+      public function makePhonePePayment(Request $request,$addr_id)
       {
-        //   $amount = session()->get('phonepe_amount') ?? 100;
+        Session::put('addr_id',$addr_id);
+        // --- total price ---
+        $tot_price = Cart::where('user_id',Auth::id())->get();
+
+        $total = 0;
+        foreach($tot_price as $price){
+            $total += $price->product->selling_price * $price->product_qty;
+        }
+        
           $data = array (
             'merchantId' => 'PGTESTPAYUAT101',
             'merchantTransactionId' => uniqid(),
@@ -128,13 +137,14 @@ class PaymentController extends Controller
           $rData = json_decode($response);
           
           // ---- after payment was success ----
+
           if($rData->success){
           
             // ---- insert a buy product to database 
                     
         $order = new Order();
         $order->user_id = Auth::id();
-        $order->address_id =  22;
+        $order->address_id =  Session::get('addr_id');
         $order->tracking_no = 'shirt_inc-'.rand(1111,9999);
         $order->payment_mode = $rData->data->paymentInstrument->type;
         $order->payment_id = $response;

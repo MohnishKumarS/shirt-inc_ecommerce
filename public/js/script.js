@@ -406,15 +406,24 @@ $(document).ready(function () {
     // ---------------------- validate select size in cart page ----------------
 
     $(document).on('click','.checkout-event',function(){
-        let select = $('select');
-    //    console.log(typeof select);
 
     var check = true; // <=== Default return value
         $("select").each(function(ind,val){
             $opt  =  $(val).find(":selected").val();
             // console.log($opt);
             if(!$opt){
-                $('.size-error').html('please select a size <i class="fa-solid fa-circle-exclamation fa-beat ms-2 fs-6 "></i>');
+                $.Toast("Oops!", "please select a product size ...", "error", {
+                    has_icon: true,
+                    has_close_btn: true,
+                    position_class: 'toast-top-right',
+                    stack: true,
+                    fullscreen: false,
+                    timeout: 6000,
+                    sticky: false,
+                    has_progress: true,
+                    rtl: false,
+                });
+                
                return check = false;
               
             }

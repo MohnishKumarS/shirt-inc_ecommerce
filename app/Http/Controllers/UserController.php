@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Models\Category;
+use App\Models\Poster;
 use App\Models\Rating;
 use App\Models\Review;
 use App\Models\Slider;
+use App\Models\Product;
+use App\Models\Category;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -29,8 +30,9 @@ class UserController extends Controller
         $popular = Product::where('status',1)->latest('id')->take(9)->get();
         $slider_active = Slider::where('active',1)->latest('id')->take(1)->first();
         $slider = Slider::where('active',0)->latest('id')->take(3)->get();
+        $poster = Poster::where('active',1)->latest('id')->take(1)->first();
         // return $slider_active;
-        return view('home',\compact('trending',"category","popular",'slider_active','slider'));
+        return view('home',\compact('trending',"category","popular",'slider_active','slider','poster'));
     }
 
    // ------------- view category -----------------------

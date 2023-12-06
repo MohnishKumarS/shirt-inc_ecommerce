@@ -25,9 +25,11 @@
                         <div class="text-end">
                             <h6 class="pe-4">Invoice:</h6>
                             <a href="{{ url('invoice/' . $order->id) }}" class="btn-warning btn p-2" target="_blank"
-                                title="view"> <i class="material-icons">visibility</i> </a>
+                                title="view invoice"> <i class="material-icons">visibility</i> </a>
                             <a href="{{ url('invoice/' . $order->id . '/download') }}" class="btn-danger btn ms-3 p-2"
-                                title="download"> <i class="material-icons">downloading</i> </a>
+                                title="download invoice"> <i class="material-icons">downloading</i> </a>
+                            <a href="{{ url('invoice/' . $order->id . '/mail') }}" class="btn-danger btn ms-3 p-2"
+                                title="send invoice via mail"> <i class="material-icons">forward_to_inbox</i> </a>
                         </div>
                     </div>
                 </div>
@@ -51,7 +53,7 @@
                             <th>Qty</th>
                             <th>Price</th>
                         </tr>
-
+                        
                         @foreach ($order->orderitem as $item)
                             @php
                                 $img = explode(',', $item->product->image);
@@ -109,9 +111,9 @@
 
                         <div>
                             <p class="fw-bold">User details :</p>
-                            <p><i class="fa-solid fa-user me-2 "></i> {{ Auth::user()->name }}</p>
-                            <p><i class="fa-solid fa-envelope-circle-check me-2  "></i> {{ Auth::user()->email }}</p>
-                            <p><i class="fa-solid fa-phone me-2 "></i> {{ Auth::user()->mobile }}</p>
+                            <p><i class="fa-solid fa-user me-2 "></i> {{ $order->user->name }}</p>
+                            <p><i class="fa-solid fa-envelope-circle-check me-2  "></i> {{ $order->user->email }}</p>
+                            <p><i class="fa-solid fa-phone me-2 "></i> {{ $order->user->mobile }}</p>
                         </div>
                     </div>
 
@@ -138,9 +140,9 @@
                             <div class="mt-2">
                                 <p class="fw-bold">Add message/Instruction</p>
                                 <textarea class="form-control" name="order_message" rows="2">
-                        @if ($order->message)
-{{ $order->message }}
-@endif
+                                    @if ($order->message)
+                                    {{ $order->message }}
+                                    @endif
                     </textarea>
                             </div>
                             <div class="mt-3">

@@ -31,7 +31,7 @@
                             <select class="form-select" name="action">
                                 <option selected value="">Choose a status</option>
                                 <option  value="status" {{Request::get('action') == 'status' ? 'selected' : ''}}>Popular</option>
-                                <option  value="trending" {{Request::get('action') == 'popular' ? 'selected' : ''}}>trending</option>
+                                <option  value="trending" {{Request::get('action') == 'trending' ? 'selected' : ''}}>trending</option>
                                
                               </select>
                         </div>

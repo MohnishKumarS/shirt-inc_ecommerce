@@ -82,7 +82,7 @@ Route::view('shipping-and-delivery-policy', 'policy.shipping-and-delivery-policy
 // -------------Auth   controls ----------------
 Route::middleware(['auth'])->group(function () {
 
-   Route::get('/payment-method', [PaymentController::class, 'makePhonePePayment'])->name('phonepe.payment');
+   Route::get('/payment-method/{addr_id}', [PaymentController::class, 'makePhonePePayment'])->name('phonepe.payment');
 
    Route::post('/payment/callback', [PaymentController::class, 'phonePeCallback'])->name('phonepe.payment.callback');
 
@@ -131,6 +131,7 @@ Route::middleware(['auth'])->group(function () {
    Route::controller(AdminOrderController::class)->group(function () {
       Route::get('invoice/{orderid}', 'viewInvoice');
       Route::get('invoice/{orderid}/download', 'downloadInvoice');
+      Route::get('invoice/{orderid}/mail', 'mailInvoice');
    });
 
    // ----------------- -- account   profile -------------------
@@ -183,6 +184,10 @@ Route::get('/count-wishlist', [WishlistController::class, 'count_wishlist']);
 
 
 Auth::routes();
+
+Route::fallback(function () {
+   return redirect()->route('signin');
+});
 
 // <!-- ---------------------------------------------
 // ^^^^^^^^^^^^^ ~~ admin control ~~  ^^^^^^^^^^^^^^

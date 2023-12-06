@@ -71,10 +71,7 @@
             @endphp
             <div class="row row-sticky">
                 <div class="col-lg-8 col-12">
-                    {{-- ------ display error ------ --}}
-                   
-                    <div class="text-danger size-error text-sm"></div>
-                    {{-- {{$cat}} --}}
+
                     @php
                         $i= 0;
                     @endphp

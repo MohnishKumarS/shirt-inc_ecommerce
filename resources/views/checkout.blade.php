@@ -82,11 +82,6 @@
 
                         {{-- ------ delivery address --}}
 
-                        {{-- ------ display error ------ --}}
-
-                        <div class="text-danger error text-sm"></div>
-
-
                         @forelse ($user_address as $item)
                             <div class="select-address mb-2 px-2">
                                 <div class="row border py-3 justify-content-center">
@@ -209,7 +204,7 @@
                             <button class="btn-float w-100 payment-btn" type="button">Place Order</button>
                         </div> --}}
                         <div class="my-4">
-                            <a class="btn-float w-100 payment-btn" href="payment-method" >Place Order</a>
+                            <a class="btn-float w-100 payment-btn" >Place Order</a>
                         </div>
                       
                             

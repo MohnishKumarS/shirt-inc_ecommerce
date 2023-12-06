@@ -3,6 +3,7 @@
 @section('title', 'Shirt-inc | Online Shopping for Men & Women Clothing')
 
 @section('content')
+
     {{-- ------------- carousel ------------------ --}}
     <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -31,8 +32,8 @@
 
 
     <!-- ---------------------------------------------
-                        ^^^^^^^^^^^^^ ~~ Trending Product list ~~  ^^^^^^^^^^^^^^
-                         --------------------------------------------- -->
+      ^^^^^^^^^^^^^ ~~ Trending Product list ~~  ^^^^^^^^^^^^^^
+         --------------------------------------------- -->
     <section class="trending-list">
         <div class="row mb-5 pb-3">
             <div class="col-12 heading-section text-center">
@@ -60,12 +61,15 @@
                                     <div class="product-image">
                                         @if (count($img) > 1)
                                             <a class="image">
-                                                <img src="{{ asset('image/product/' . $img[0]) }}" class="pic-1 rotate" alt="product-show" loading="lazy">
-                                                <img src="{{ asset('image/product/' . $img[1]) }}" class="pic-2 rotate" alt="product-show" loading="lazy">
+                                                <img src="{{ asset('image/product/' . $img[0]) }}" class="pic-1 rotate"
+                                                    alt="product-show" loading="lazy">
+                                                <img src="{{ asset('image/product/' . $img[1]) }}" class="pic-2 rotate"
+                                                    alt="product-show" loading="lazy">
                                             </a>
                                         @else
                                             <a class="image">
-                                                <img src="{{ asset('image/product/' . $val->image) }}" class="pic-1" alt="product-show" loading="lazy">
+                                                <img src="{{ asset('image/product/' . $val->image) }}" class="pic-1"
+                                                    alt="product-show" loading="lazy">
                                             </a>
                                         @endif
 
@@ -106,8 +110,8 @@
     </section>
 
     <!-- ---------------------------------------------
-                        ^^^^^^^^^^^^^ ~~ category list ~~  ^^^^^^^^^^^^^^
-                         --------------------------------------------- -->
+  ^^^^^^^^^^^^^ ~~ category list ~~  ^^^^^^^^^^^^^^
+     --------------------------------------------- -->
     <section>
         <div class="row mb-5 pb-3">
             <div class="col-12 heading-section text-center">
@@ -123,7 +127,8 @@
                         <div class="item">
                             <div class="card">
                                 <div class="imgbox">
-                                    <img src="{{ asset('image/category/' . $val->image) }}" alt="category-list" loading="lazy">
+                                    <img src="{{ asset('image/category/' . $val->image) }}" alt="category-list"
+                                        loading="lazy">
                                 </div>
                                 <div class="contentbox">
                                     <h3>{{ $val->name }}</h3>
@@ -142,8 +147,8 @@
 
 
     <!-- ---------------------------------------------
-                        ^^^^^^^^^^^^^ ~~ popular list ~~  ^^^^^^^^^^^^^^
-                         --------------------------------------------- -->
+     ^^^^^^^^^^^^^ ~~ popular list ~~  ^^^^^^^^^^^^^^
+      --------------------------------------------- -->
     @if (count($popular) > 0)
 
         <section>
@@ -218,8 +223,8 @@
                                                     </div>
                                                 @endif
                                                 <!-- <div class="offer-info">
-                                                        <h2 class="sm-title">24% Off</h2>
-                                                    </div> -->
+                                                      <h2 class="sm-title">24% Off</h2>
+                                               </div> -->
                                             </div>
                                         </div>
                                         <!-- -------------end of  view product  list  ---------------- -->
@@ -237,8 +242,8 @@
 
     @endif
     <!-- ---------------------------------------------
-                        ^^^^^^^^^^^^^ ~~ Unique Collection  ~~  ^^^^^^^^^^^^^^
-                         --------------------------------------------- -->
+      ^^^^^^^^^^^^^ ~~ Unique Collection  ~~  ^^^^^^^^^^^^^^
+    --------------------------------------------- -->
 
     {{-- <section>
         <div class="unique-collection">
@@ -257,8 +262,8 @@
 
 
     <!-- ---------------------------------------------
-                            ^^^^^^^^^^^^^ ~~ Overall Collection list  ~~  ^^^^^^^^^^^^^^
-                             --------------------------------------------- -->
+     ^^^^^^^^^^^^^ ~~ Overall Collection list  ~~  ^^^^^^^^^^^^^^
+        --------------------------------------------- -->
 
     <section>
         <div class="row mb-5 pb-3">
@@ -313,8 +318,8 @@
 
 
     <!-- ---------------------------------------------
-                        ^^^^^^^^^^^^^ ~~ Our Advantage  ~~  ^^^^^^^^^^^^^^
-                         --------------------------------------------- -->
+      ^^^^^^^^^^^^^ ~~ Our Advantage  ~~  ^^^^^^^^^^^^^^
+      --------------------------------------------- -->
 
     <section>
         <div class="our-advantage">
@@ -324,26 +329,28 @@
                     <div class="col-lg-3 col-sm-6 mt-4 mt-lg-0 ">
                         <div class="icon">
                             <img width="90" height="90" src="https://img.icons8.com/clouds/100/truck.png"
-                                alt="truck" loading="lazy"/>
+                                alt="truck" loading="lazy" />
                         </div>
                         <h3>Free shipping <br>from ₹500</h3>
                     </div>
                     <div class="col-lg-3 col-sm-6 mt-4 mt-lg-0">
                         <div class="icon">
                             <img width="90" height="90" src="https://img.icons8.com/clouds/100/headset.png"
-                                alt="headset" loading="lazy"/>
+                                alt="headset" loading="lazy" />
                         </div>
                         <h3>24/7 <br>Help Center</h3>
                     </div>
                     <div class="col-lg-3 col-sm-6 mt-4 mt-lg-0">
                         <div class="icon"><img width="90" height="90"
-                                src="https://img.icons8.com/bubbles/100/u-turn-to-left.png" alt="u-turn-to-left" loading="lazy"/>
+                                src="https://img.icons8.com/bubbles/100/u-turn-to-left.png" alt="u-turn-to-left"
+                                loading="lazy" />
                         </div>
                         <h3>Exchange and return <br>within 14 days</h3>
                     </div>
                     <div class="col-lg-3 col-sm-6 mt-4 mt-lg-0">
                         <div class="icon"><img width="90" height="90"
-                                src="https://img.icons8.com/bubbles/100/discount.png" alt="discount" loading="lazy"/></div>
+                                src="https://img.icons8.com/bubbles/100/discount.png" alt="discount" loading="lazy" />
+                        </div>
                         <h3>Discounts for <br>customers</h3>
                     </div>
                 </div>
@@ -352,8 +359,8 @@
     </section>
 
     <!-- ---------------------------------------------
-                        ^^^^^^^^^^^^^ ~~ base collection product ~~  ^^^^^^^^^^^^^^
-                         --------------------------------------------- -->
+     ^^^^^^^^^^^^^ ~~ base collection product ~~  ^^^^^^^^^^^^^^
+      --------------------------------------------- -->
 
     <section>
         <div class="row mb-5 pb-3">
@@ -368,7 +375,8 @@
                     <div class="col-lg-6">
                         <div>
                             <div class="base-img text-center">
-                                <img src="../image/products/ts/base1.jpg" alt="new-arrival" class="img-fluid" loading="lazy">
+                                <img src="../image/products/ts/base1.jpg" alt="new-arrival" class="img-fluid"
+                                    loading="lazy">
                             </div>
                             <div class="base-content text-center mt-4 mb-4 mb-lg-0">
                                 <small class="text-sm">MEN</small>
@@ -379,7 +387,8 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="text-center">
-                            <img src="../image/products/ts/base2.jpg" alt="new-arrival" class="img-fluid" loading="lazy">
+                            <img src="../image/products/ts/base2.jpg" alt="new-arrival" class="img-fluid"
+                                loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -392,8 +401,8 @@
 
 
     <!-- ---------------------------------------------
-                        ^^^^^^^^^^^^^ ~~ advertise add- offer  ~~  ^^^^^^^^^^^^^^
-                         --------------------------------------------- -->
+       ^^^^^^^^^^^^^ ~~ advertise add- offer  ~~  ^^^^^^^^^^^^^^
+      --------------------------------------------- -->
 
     <section>
         <div class="advertise-offer">
@@ -402,7 +411,7 @@
                     <div class="col-lg-6 col-12 d-flex align-items-center justify-content-center">
                         <div class="advertise-content bg-light  p-4 text-center rounded">
                             <img width="100" height="100" src="https://img.icons8.com/clouds/100/discount.png"
-                                alt="discount" loading="lazy"/>
+                                alt="discount" loading="lazy" />
                             <h2>25% OFF</h2>
                             <h5>On All Orders Above <span class="text-danger">₹1199!</span></h5>
                             <p class="text-muted">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi,
@@ -423,8 +432,8 @@
 
 
     <!-- ---------------------------------------------
-                            ^^^^^^^^^^^^^ ~~ subscription user  ~~  ^^^^^^^^^^^^^^
-                             --------------------------------------------- -->
+       ^^^^^^^^^^^^^ ~~ subscription user  ~~  ^^^^^^^^^^^^^^
+      --------------------------------------------- -->
 
     <section>
         <div class="subscribe">
@@ -453,6 +462,33 @@
     </section>
 
 
+
+    @if ($poster)
+        <!--Ads Poster Modal -->
+        <div class="modal fade" id="popup" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-4" id="exampleModalLabel"> {{ $poster->title }}</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <img src="{{ asset('image/Ads-poster/' . $poster->image) }}" class="img-fluid"
+                                width="100%" alt="Ads-banner">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div>
+                            <a href="{{ route('signin') }}" class="btn-blue">Login Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
+
 @endsection
 
 
@@ -461,6 +497,15 @@
 @section('scripts')
 
     <script>
+        // ------------ Ads poster -----------------
+        $(document).ready(function() {
+            if (sessionStorage.getItem('#popup') != 'true') {
+
+                $('#popup').modal('show');
+                sessionStorage.setItem('#popup', true);
+
+            }
+        })
         // --------------- pop up ---------------------
         const popup = document.querySelector('.popup');
         const closes = document.querySelector('.close');

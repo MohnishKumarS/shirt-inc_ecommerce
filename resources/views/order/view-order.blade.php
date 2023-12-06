@@ -59,7 +59,7 @@
                         </div>
                         <div class="table-responsive">
                             <table class="table table-bordered text-center">
-                                <tr>
+                                <tr class="text-sm-bold">
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th>Qty</th>

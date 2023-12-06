@@ -4,24 +4,36 @@ $(document).ready(function () {
 
     $('.payment-btn').on('click', function (e) {
         // console.log(e.target);
-   $addr = $('input[type="radio"][name="select_address"]:checked').val();
-   if($addr){
-    $addr_id = $addr;
+        $addr = $('input[type="radio"][name="select_address"]:checked').val();
 
-    return true;
+        if ($addr) {
+            const addr_id = $addr;
+            // Update the href attribute of the anchor tag with the new value
+            $(this).attr('href', "payment-method/"+ addr_id);
+            // return false;
 
-   }
-   else{
-       $('.error').html('Choose a shipping address to continue...<i class="fa-solid fa-map-pin fa-bounce fs-5"></i>');
-       return false;
-   }
-       
+        } else {
+            $.Toast("Oops!", "Choose a shipping address to continue", "error", {
+                has_icon: true,
+                has_close_btn: true,
+                position_class: 'toast-top-right',
+                stack: true,
+                fullscreen: false,
+                timeout: 6000,
+                sticky: false,
+                has_progress: true,
+                rtl: false,
+            });
+            
+            return false;
+        }
 
 
 
 
 
-       
+
+
 
 
     })
