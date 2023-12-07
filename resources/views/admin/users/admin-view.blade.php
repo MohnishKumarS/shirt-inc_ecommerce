@@ -39,7 +39,8 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
-                               
+                                <th>Last seen</th>
+                                <th>Active</th>
                                 <th>Logged</th>
                                 <th>Action</th>
 
@@ -57,8 +58,20 @@
                                         <td>{{ $val->name }}</td>
                                         <td>{{ $val->email }}</td>
                                         <td>{{ $val->mobile }}</td>
-                                     
+                                        <td>
+                                            {{ Carbon\Carbon::parse($val->last_seen)->diffForHumans() }}
+                                        </td>
+                                        <td>
+                                           
+                                            @if(Cache::has('user-is-online-' . $val->id))
+                                                <span class="text-success">Online</span>
+                                            @else
+                                                <span class="text-secondary">Offline</span>
+                                            @endif
+                                        </td>
                                         <td>{{ $val->created_at->format('d-M-Y') }}</td>
+                                     
+                      
 
                                         <td>
                                             <a href="{{ url('admin-profile/' . $val->id) }}" class="btn btn-primary btn-sm">View

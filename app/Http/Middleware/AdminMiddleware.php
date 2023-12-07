@@ -29,7 +29,7 @@ class AdminMiddleware
         }
         else
         {
-            return redirect('/acc/signin')->with('status','Please Login First');
+            return redirect('/acc/signin')->with('status','Please Login to continue');
         }
     }
 }

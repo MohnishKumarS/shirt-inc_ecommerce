@@ -248,6 +248,8 @@
       left: 0;
       right: 0;
       text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.15);
+      font-family: 'Niconne', cursive;
+      /* font-family: 'lora'; */
 
   }
 
@@ -257,6 +259,8 @@
       text-transform: uppercase;
       letter-spacing: 6px;
       position: relative;
+      /* font-family: 'Niconne', cursive; */
+      /* font-family: 'lora'; */
 
   }
 

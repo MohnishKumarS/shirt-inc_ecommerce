@@ -1,3 +1,9 @@
+{{-- ------------- top promo status ---------- --}}
+@if ($appsetting->promo_status !== null)
+    <div class="top-marq">
+        <marquee behavior="alternate">{{ $appsetting->promo_status }}</marquee>
+    </div>
+@endif
 {{-- ------------- navbar ------------------- --}}
 
 <header id="header_nav">
@@ -8,7 +14,8 @@
             <div class="container-fluid">
                 <div class="d-flex align-items-center justify-content-center me-3">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="{{ asset('image/shirtinc-logo.png') }}" alt="shirtInc-logo" class="logo" loading="lazy">
+                        <img src="{{ asset('image/shirtinc-logo.png') }}" alt="shirtInc-logo" class="logo"
+                            loading="lazy">
                     </a>
                     <h1 class="nav-head"></h1>
                 </div>
@@ -127,8 +134,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link " href="{{ url('/new-arrival') }}">
-                                New Arrival 
-                                <img src="{{asset('image/gif/gif4.gif')}}" alt="new-collection" width="30" loading="lazy">
+                                New Arrival
+                                <img src="{{ asset('image/gif/gif4.gif') }}" alt="new-collection" width="30"
+                                    loading="lazy">
                                 {{-- <i class="fa-regular fa-newspaper"></i> --}}
                             </a>
                         </li>
@@ -147,26 +155,30 @@
                         <li class="nav-item">
 
                             <div class="dropdown ">
-                                <div class="nav-link " data-bs-toggle="dropdown"  style="cursor: pointer">
-                                    <div >
+                                <div class="nav-link " data-bs-toggle="dropdown" style="cursor: pointer">
+                                    <div>
                                         Account <i class="fa-solid fa-user"></i>
                                     </div>
                                 </div>
                                 <ul class="dropdown-menu dropdown-menu-lg-end">
                                     @guest
-                                        <li><a class="dropdown-item" href="{{ url('acc/signin') }}"><i class="fa-regular fa-face-smile me-1"></i> Login</a></li>
-                                        <li><a class="dropdown-item" href="{{ url('acc/signup') }}"><i class="fa-regular fa-registered me-1"></i> Register</a></li>
+                                        <li><a class="dropdown-item" href="{{ url('acc/signin') }}"><i
+                                                    class="fa-regular fa-face-smile me-1"></i> Login</a></li>
+                                        <li><a class="dropdown-item" href="{{ url('acc/signup') }}"><i
+                                                    class="fa-regular fa-registered me-1"></i> Register</a></li>
                                     @endguest
-                                    <li><a class="dropdown-item" href="{{ url('my-order') }}">
-                                        <i class="fa-solid fa-bag-shopping me-1"></i> Orders</a></li>
-                                    <li>
-                                        <a href="{{ route('logout') }}" class=" dropdown-item"
-                                            onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                            <i class="fa-solid fa-arrow-right-to-bracket me-1"></i>
-                                            <span class="d-sm-inline d-none">Logout</span>
-                                        </a>
-                                    </li>
+                                    @auth
+                                        <li><a class="dropdown-item" href="{{ url('my-order') }}">
+                                                <i class="fa-solid fa-bag-shopping me-1"></i> Orders</a></li>
+                                        <li>
+                                            <a href="{{ route('logout') }}" class=" dropdown-item"
+                                                onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                                                <i class="fa-solid fa-arrow-right-to-bracket me-1"></i>
+                                                <span class="d-sm-inline d-none">Logout</span>
+                                            </a>
+                                        </li>
+                                    @endauth
                                 </ul>
                             </div>
                         </li>
@@ -255,7 +267,7 @@
                         <div class="list-item">
                             <h4 class="title">Trendy Tees</h4>
                             <img src="{{ asset('image/Badass tshirt-01.png') }}" class="responsive"
-                                alt="Shop Product" loading="lazy"/>
+                                alt="Shop Product" loading="lazy" />
                         </div>
                     </div>
                 </li>

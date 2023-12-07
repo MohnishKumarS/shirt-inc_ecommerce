@@ -20,13 +20,18 @@
                         <label >Filter by Email</label>
                         <input type="text" name="email"  class="form-control" value="{{Request::get('email') ?? ''}}">
                     </div>
-                    <div class="col-md-2">
+                    {{-- <div class="col-md-2">
                         <label >Filter by most purchased user</label>
                         <input type="text" name="order_item"  class="form-control" value="{{Request::get('order_item') ?? ''}}">
-                    </div>
+                    </div> --}}
             
                     <div class="col-md-3">
                         <button type="submit" class="btn btn-secondary mt-4">Filter</button>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="text-end ">
+                            <a class="text-primary text-bold" href="{{url('/subscription')}}">User Subscription</a>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -43,9 +48,10 @@
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Orders</th>
+                                <th>Last seen</th>
+                                <th>Active</th>
                                 <th>Logged</th>
                                 <th>Action</th>
-
                             </tr>
 
                             @if (count($user) > 0)
@@ -63,6 +69,17 @@
                                         <td>
                                             @if ($val->orders)
                                               {{count($val->orders)}}  
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {{ Carbon\Carbon::parse($val->last_seen)->diffForHumans() }}
+                                        </td>
+                                        <td>
+                                           
+                                            @if(Cache::has('user-is-online-' . $val->id))
+                                                <span class="text-success">Online</span>
+                                            @else
+                                                <span class="text-secondary">Offline</span>
                                             @endif
                                         </td>
                                         <td>{{ $val->created_at->format('d-M-Y') }}</td>

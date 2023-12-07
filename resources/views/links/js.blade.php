@@ -19,9 +19,9 @@
 
 <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
 
-
 {{-- -------------- toast popup ---------------- --}}
 <script src="{{ asset('toast-popup/toast.script.js') }}"></script>
+
 
 {{-- ------------ customs js -------------- --}}
 <script src="{{ asset('js/script.js') }}"></script>

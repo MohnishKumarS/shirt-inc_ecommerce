@@ -43,7 +43,7 @@ ul {
     margin: 10px;
 }
 
-.space-top {
+/* .space-top {
     height: 125px;
 }
 
@@ -51,21 +51,24 @@ ul {
     .space-top {
         height: 76px;
     }
-}
+} */
 
 /* ==========================
            custom scrollbar 
  ============================ */
- ::-webkit-scrollbar{
-  width: 7px;
- }
- ::-webkit-scrollbar-track{
-  background-color: #d1e5ff;
- }
- ::-webkit-scrollbar-thumb{
-  background-color: #ff5400;
-  border-radius: 10px;
- }
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #d1e5ff;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #ff5400;
+    border-radius: 10px;
+}
+
 /* ==========================
            preloading 
  ============================ */
@@ -140,8 +143,21 @@ ul {
 /*=============================
            header nav
   ========================= */
+.top-marq {
+    font-family: 'Niconne', cursive;
+    background-color: rgb(9, 138, 245);
+    padding: 4px 0 0px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+    user-select: none;
+}
+.top-marq:hover{
+    background-color: #19d4b5;
+}
+
 #header_nav {
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     width: 100%;
@@ -154,16 +170,18 @@ ul {
     top: 75px !important;
     padding: 10px 0;
     border-radius: 10px;
-    -webkit-box-shadow: 3px 3px 6px  #00000041,-3px -1px 6px  #00000041;
-     -moz-box-shadow: 3px 3px 6px  #00000041,-3px -1px 6px  #00000041;
-          box-shadow: 3px 3px 6px  #00000041,-3px -1px 6px  #00000041;
+    -webkit-box-shadow: 3px 3px 6px #00000041, -3px -1px 6px #00000041;
+    -moz-box-shadow: 3px 3px 6px #00000041, -3px -1px 6px #00000041;
+    box-shadow: 3px 3px 6px #00000041, -3px -1px 6px #00000041;
     z-index: 100000;
 }
-.ui-widget.ui-widget-content .ui-menu-item .ui-menu-item-wrapper:hover{
- color: #ff5400 ;
- background-color: #fafafa ;
- border: 1px solid #dddddd;
+
+.ui-widget.ui-widget-content .ui-menu-item .ui-menu-item-wrapper:hover {
+    color: #ff5400;
+    background-color: #fafafa;
+    border: 1px solid #dddddd;
 }
+
 @media (max-width:992px) {
     .ui-widget.ui-widget-content {
         top: 145px !important;
@@ -699,7 +717,7 @@ ul {
 }
 
 .popup .content p {
-    font-family: 300;
+    font-weight: 300;
 }
 
 .popup .content a {
@@ -1897,6 +1915,7 @@ section {
     width: 100%;
     object-fit: contain;
 }
+
 /* - -- cart timeline -- */
 .cart-timeline {
     margin-bottom: 20px;
@@ -2210,7 +2229,7 @@ section {
     border-radius: 50%;
     text-align: center;
     line-height: 43px;
-    transition:transform 0.4s ease;
+    transition: transform 0.4s ease;
     box-shadow: 2px 2px 15px #e25914d2;
     position: relative;
 
@@ -2218,7 +2237,7 @@ section {
 
 .footer .social-icons ul li:hover {
     background: #ff5400;
-     transform: translateY(-5px);
+    transform: translateY(-5px);
 }
 
 .footer .social-icons ul li i {
@@ -2241,5 +2260,5 @@ section {
 
 .footer .footer-brand:hover {
     color: #ff5400;
-   
+
 }

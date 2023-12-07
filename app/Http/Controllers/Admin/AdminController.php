@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\Useraddress;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Subscribe;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -57,8 +58,11 @@ class AdminController extends Controller
       //   return $q->where('user_id',Auth::id());
       // })
       ->where('role',0)
+      // ->whereNotNull('last_seen')
+      // ->orderBy('last_seen', 'DESC')
       ->latest()
       ->paginate(15);
+      
       return view('admin.users.index',\compact('user'));
     }
 
@@ -152,6 +156,15 @@ class AdminController extends Controller
     else{
         return redirect()->back()->with('status','Your current password is incorrect');
     }
+    }
+
+
+
+    // --------- subscription -----
+
+    public function subscribe(){
+      $sub = Subscribe::paginate(10);
+      return view('admin.users.subscription',['sub'=> $sub]);
     }
 
 

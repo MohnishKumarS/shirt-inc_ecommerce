@@ -443,13 +443,14 @@
                         <div class="subscribe-content">
                             <h2>Subscribe</h2>
                             <p>Subscribe us and you won't miss the new arrivals, as well as discounts and sales.</p>
-                            <form action="">
+                            <form action="{{url('/user-subscribe')}}" method="post">
+                                @csrf
                                 <div class="row">
                                     <div class="col-lg-8 col-md-8">
-                                        <input type="text" class="" placeholder="E-mail">
+                                        <input type="email" name="sub-mail" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,4}" required  placeholder="E-mail">
                                     </div>
                                     <div class="col-lg-4 col-md-4 mt-4 mt-md-0">
-                                        <button class="btn-blue">SEND</button>
+                                        <button class="btn-blue" type="submit">SEND</button>
                                     </div>
                                 </div>
                             </form>

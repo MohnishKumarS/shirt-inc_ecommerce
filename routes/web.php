@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use Illuminate\Routing\Route as RoutingRoute;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,8 +40,10 @@ Route::get('acc/signin', [UserController::class, 'signIn'])->name('signin');
 
 Route::get('acc/signup', [UserController::class, 'signUp'])->name('signup');
 
+
 // -- /////////////////////////////
-//  ------------ home page  ------
+//  ------------ user auth if user logged in ------
+//  -- ////////////////////////////
 
 Route::get('/', [UserController::class, 'index']);
 
@@ -56,14 +59,15 @@ Route::get('/new-arrival', [UserController::class, 'view_new_product']);
 
 Route::post('/proceed-to-pay', [PaymentController::class, 'payment']);
 
-// ------------- Phonepay payment gateway ---------------
-Route::get("/payment-sample", [PaymentController::class, 'sample']);
-
 // --------------- search  product --------------
 
 Route::get('/product-list', [UserController::class, 'search_product_list']);
 
 Route::post('/search-product', [UserController::class, 'search_product']);
+
+// ------------------ user subscription -----------
+
+Route::post('/user-subscribe',[HomeController::class,'user_subscribe']);
 
 // ---------------- policy page  -----------------------
 
@@ -79,12 +83,16 @@ Route::view('return-policy', 'policy.return-policy');
 
 Route::view('shipping-and-delivery-policy', 'policy.shipping-and-delivery-policy');
 
-// -------------Auth   controls ----------------
+// -- /////////////////////////////
+//  ------------ Admin controls  ------
+//  -- ////////////////////////////
 Route::middleware(['auth'])->group(function () {
 
    Route::get('/payment-method/{addr_id}', [PaymentController::class, 'makePhonePePayment'])->name('phonepe.payment');
 
    Route::post('/payment/callback', [PaymentController::class, 'phonePeCallback'])->name('phonepe.payment.callback');
+
+   Route::post('/payment-refund',[PaymentController::class, 'phonePeRefundAPI'])->name('phonepe.payment.refund');
 
    Route::view('/order-success','order.order-success');
 
@@ -186,7 +194,7 @@ Route::get('/count-wishlist', [WishlistController::class, 'count_wishlist']);
 Auth::routes();
 
 Route::fallback(function () {
-   return redirect()->route('signin');
+   return view('errors.404');
 });
 
 // <!-- ---------------------------------------------
@@ -205,6 +213,10 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
    Route::put('update-order-status/{id}', [AdminOrderController::class, 'update_order_status']);
 
    Route::get('order-history', [AdminOrderController::class, 'order_history']);
+
+   // --- subscription --
+
+   Route::get('/subscription',[AdminController::class,'subscribe']);
 
    //  --- user --
 

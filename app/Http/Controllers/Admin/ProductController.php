@@ -51,7 +51,7 @@ class ProductController extends Controller
         if ($files = $req->file('images')) {
             foreach ($files as $file) {
                 $ext = \strtolower($file->getClientOriginalExtension());
-                $img_name =  rand(100, 10000) . '.' . $ext;
+                $img_name =  rand(100, 100000) . '.' . $ext;
                 $destinate = \public_path('image/product');
                 $file->move($destinate, $img_name);
 

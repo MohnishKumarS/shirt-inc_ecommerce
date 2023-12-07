@@ -32,6 +32,7 @@
                                 <option selected value="">Choose a status</option>
                                 <option  value="status" {{Request::get('action') == 'status' ? 'selected' : ''}}>Popular</option>
                                 <option  value="trending" {{Request::get('action') == 'trending' ? 'selected' : ''}}>trending</option>
+                                <option  value="freq_bought" {{Request::get('action') == 'freq_bought' ? 'selected' : ''}}>frequent bought</option>
                                
                               </select>
                         </div>
@@ -47,10 +48,11 @@
         <table class="table table-striped table-sm table-bordered text-center">
             <tr>
                 <th style="width:5%">Id</th>
-                <th style="width:15%">Image</th>
+                <th style="width:10%">Image</th>
                 <th style="width:10%">Category</th>
                 <th style="width:15%">Name</th>
-                <th style="width:20%">Description</th>
+                <th style="width:5%">Trending</th>
+                {{-- <th style="width:5%">Popular</th> --}}
                 <th style="width:10%">Price</th>
                 <th style="width:20%">Action</th>
             </tr>
@@ -70,7 +72,12 @@
                         <td><img src="{{asset('/image/product/'.$img[0])}}" alt="" width="100" height="150" style="object-fit: contain"></td>
                         <td>{{$val->category->slug}}</td>
                         <td>{{$val->name}}</td>
-                        <td class="text-break">{{$val->desc}}</td>
+                       
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" {{$val->trending == 1 ? 'checked' : ''}} disabled>
+                              </div>
+                        </td>
                         <td >₹ {{$val->selling_price}}  <s> <small>₹{{$val->original_price}}</small></s></td>
                         <td>
                             <a href="{{ url('edit-product/'.$val->id) }}" class="btn btn-info">Edit</a>

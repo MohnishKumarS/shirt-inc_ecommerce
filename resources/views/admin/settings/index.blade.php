@@ -39,6 +39,14 @@
 
         </div>
 
+        <div class="row">
+            <h5 class="my-4">Header Information</h5>
+            <div class="col-lg-12 mb-4">
+                <label for="" class="form-label">Promo status</label>
+                <input type="text" class="form-control" name="promo_ads" value="{{$set->promo_status ?? '' }}">
+            </div>
+        </div>
+
 
         <div class="row">
             <h5 class="my-4">Website Information</h5>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Subscribe;
 use App\Models\User;
 use App\Models\Useraddress;
 use Illuminate\Http\Request;
@@ -15,19 +16,30 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
-    {
-        return view('home');
+    // ----------- user subscribe -------------
+
+    public function user_subscribe(Request $req){
+        // return $req->input('sub-mail');
+        $mail = $req->input('sub-mail');
+
+        $check = Subscribe::where('email',$mail)->exists();
+
+        if(!$check){
+            $sub = new Subscribe();
+            $sub->email = $mail;
+            $sub->save();
+
+            return redirect()->back()->with('toast','Success...')->with('text','Thank for your subscription.')->with('type','success');
+        }else{
+            return redirect()->back()->with('toast','Whoops...')->with('text','Email ID already exists...')->with('type','error');
+        }
+        
+
     }
 
     // ------------  account profile ------------------
@@ -64,7 +76,7 @@ class HomeController extends Controller
 
         if($cur_pass){
 
-            user::findOrFail(Auth::user()->id())->update([
+            user::findOrFail(Auth::id())->update([
                 'password' => Hash::make($req->password)
             ]);
 
@@ -105,7 +117,7 @@ class HomeController extends Controller
       
  
       
-        return redirect()->back()->with('toast','Great !')->with('text','User address changed successfully')->with('type','success');
+        return redirect()->back()->with('toast','Whoa !')->with('text','User address changed successfully')->with('type','success');
     }
 
 

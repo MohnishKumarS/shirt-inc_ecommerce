@@ -41,10 +41,10 @@
                     <hr>
 
                     <div>
-                        <p class="fw-bold">OrderNo : #{{ $order->id }}</p>
-                        <p class="fw-bold">OrderId : {{ $order->tracking_no }}</p>
-                        <p class="fw-bold">Order Placed : {{ $order->created_at->format('d-M-Y') }}</p>
-                        <p class="fw-bold">Payment Mode : {{ $order->payment_mode }}</p>
+                        <p class="fw-bold">OrderNo : <span class="text-dark">#{{ $order->id }}</span></p>
+                        <p class="fw-bold">OrderId : <span class="text-dark">{{ $order->tracking_no }}</span></p>
+                        <p class="fw-bold">Order Placed : <span class="text-dark">{{ $order->created_at->format('d-M-Y') }}</span></p>
+                        <p class="fw-bold">Payment Mode : <span class="text-dark">{{ $order->payment_mode }}</span></p>
                     </div>
                     <table class="table table-bordered text-center">
                         <tr>
@@ -93,7 +93,7 @@
                         <address>
                             <p class="fw-bold">Delivery Address :</p>
 
-                            <h5 class="mb-2">{{ $order->address->full_name }}</h5>
+                            <h6 class="mb-2">{{ $order->address->full_name }}</h6>
                             <p class=""><i class="fa-solid fa-location-dot me-2"></i>
                                 {{ $order->address->address }}, @if ($order->address->landmark)
                                     {{ $order->address->landmark . ',' }}
@@ -111,9 +111,9 @@
 
                         <div>
                             <p class="fw-bold">User details :</p>
-                            <p><i class="fa-solid fa-user me-2 "></i> {{ $order->user->name }}</p>
-                            <p><i class="fa-solid fa-envelope-circle-check me-2  "></i> {{ $order->user->email }}</p>
-                            <p><i class="fa-solid fa-phone me-2 "></i> {{ $order->user->mobile }}</p>
+                            <p><i class="fa-solid fa-user me-2 "></i> <span class="fw-bold text-dark">{{ $order->user->name }}</span></p>
+                            <p><i class="fa-solid fa-envelope-circle-check me-2  "></i> <span class="fw-bold text-dark">{{ $order->user->email }}</span></p>
+                            <p><i class="fa-solid fa-phone me-2 "></i> <span class="fw-bold text-dark">{{ $order->user->mobile }}</span></p>
                         </div>
                     </div>
 
@@ -125,7 +125,7 @@
                             @csrf
 
 
-                            <div class="">
+                            <div class="mt-3">
                                 <p class="fw-bold">Delivery status :</p>
                                 <select class="form-select" name="order_status" required>
                                     <option selected value="">Choose one</option>
@@ -137,19 +137,34 @@
                                     <option value="4" {{ $order->status == 4 ? 'selected' : '' }}>Delivered</option>
                                 </select>
                             </div>
-                            <div class="mt-2">
+                            <div class="mt-3">
                                 <p class="fw-bold">Add message/Instruction</p>
                                 <textarea class="form-control" name="order_message" rows="2">
                                     @if ($order->message)
                                     {{ $order->message }}
                                     @endif
-                    </textarea>
+                                </textarea>
                             </div>
                             <div class="mt-3">
                                 <button type="submit" class="btn btn-success btn-sm">Update</button>
                             </div>
                         </form>
                     </div>
+
+                    {{-- ----- refund api ---- --}}
+
+                    {{-- <div>
+                        <form action="{{ url('/payment-refund') }}" method="post">
+                            @csrf
+                            <div>
+                                <label class="form-label">merchantTransactionId</label>
+                                <input type="text" class="form-control" name="trans_Id" required>
+                            </div>
+                            <div class="mt-3">
+                                <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                            </div>
+                        </form>
+                    </div> --}}
 
 
                 </div>

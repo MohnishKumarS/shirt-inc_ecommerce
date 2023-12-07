@@ -17,7 +17,7 @@ class SettingController extends Controller
     }
 
     public function site_setting_store(Request $req){
-     
+        
         $set = Setting::first();
         if($set){
 
@@ -37,6 +37,7 @@ class SettingController extends Controller
                 'instagram'  => $req->insta ,
                 'youtube'  => $req->youtube ,
                 'twitter' => $req->twitter ,
+                'promo_status' => $req->promo_ads ? $req->promo_ads : null,
             ]);
             return redirect()->back()->with('status','Site Settings updated successfully');
         }
@@ -57,6 +58,7 @@ class SettingController extends Controller
                 'instagram'  => $req->insta ,
                 'youtube'  => $req->youtube ,
                 'twitter' => $req->twitter ,
+                'promo_status' => $req->promo_ads ? $req->promo_ads : null,
             ]);
             return redirect()->back()->with('status','Site Settings created successfully');
         }

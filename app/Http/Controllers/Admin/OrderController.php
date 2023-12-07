@@ -104,7 +104,6 @@ class OrderController extends Controller
     public function mailInvoice($orderId)
     {
         $order = Order::findorfail($orderId);
-        return $order;
         // return Auth::user()->email;
         try {
             Mail::to($order->user->email)->send(new InvoiceOrderMailable($order));
