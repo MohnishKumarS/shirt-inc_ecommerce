@@ -75,15 +75,17 @@
                                     <tr class="align-middle">
                                         <td>
                                             <img src="{{ asset('image/product/' . $img[0]) }}" alt="product-image"
-                                                width="80" loading='lazy'>
+                                                width="100" loading='lazy'>
                                         </td>
                                         <td>{{ $item->product->name }} <br>
-                                            @if ($item->mens_size)
+                                            <span class="text-md-b">
+                                                @if ($item->mens_size)
                                                 <small>(size for men : {{ $item->mens_size }} &
                                                     women : {{ $item->womens_size }})</small>
                                             @else
                                                 <small>(size : {{ $item->size }})</small>
                                             @endif
+                                            </span>
                                         </td>
                                         <td>{{ $item->quantity }}</td>
                                         <td>₹{{ $item->price * $item->quantity }}</td>
@@ -91,8 +93,18 @@
                                     </tr>
                                 @endforeach
                                 <tr class="fw-bold text-start">
-                                    <td colspan="3">Grand Total :</td>
-                                    <td>₹{{ $order->total_price }}</td>
+                                 
+                                    <td colspan="3">
+                                        <div class="py-3">
+                                            Grand Total :
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="py-3">
+                                            ₹{{ $order->total_price }}
+                                        </div>
+                                    </td>
+                                  
                                 </tr>
 
 

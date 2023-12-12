@@ -11,7 +11,10 @@
         </div>
 
         <div class="card-body">
-
+            {{-- @foreach ($notify as $msg)
+                {{ $msg }}
+            @endforeach --}}
+            
               {{-- --- filter search --- --}}
         <div class="mb-4">
             <form action="{{URL::current()}}" method="GET">

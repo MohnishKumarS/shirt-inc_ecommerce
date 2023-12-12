@@ -97,7 +97,7 @@
 
                     <tr>
                         <td colspan="5" class="text-center">
-                            <div class="py-5">
+                            <div class="py-5 text-danger">
                                 No Order Available....
                             </div>
                             
