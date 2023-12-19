@@ -9,6 +9,7 @@
             .poster-img{
                 padding: 5px;
                 max-height: 250px;
+                height: 250px;
                 width: 100%;
                 box-shadow: 1px 1px 14px  rgba(0, 0, 0, 0.123);
                 border-radius: 10px
@@ -23,7 +24,7 @@
         </style>
         {{-- ------- ---- Poster Image ---------  --}}
       @if ($category->poster != null)
-      <div class="poster-img mb-4">
+      <div class="poster-img mb-4 shadow">
         <img src="{{asset('image/category/'.$category->poster)}}" alt="poster" class="img-fluid" loading="lazy">
     </div>
           

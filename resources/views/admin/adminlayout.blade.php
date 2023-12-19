@@ -24,6 +24,7 @@
     {{-- ------------- js script ---------------- --}}
     @yield('before_script')
     @include('admin.js')
+    @yield('admin_script')
 
 </body>
 

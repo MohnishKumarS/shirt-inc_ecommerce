@@ -5,8 +5,8 @@
 @section('content')
 
 <div class="container  cart-item">
-    <div class="card cart shadow my-5  ">
-        <div class="card-header ">
+    <div class="card cart  my-5  ">
+        <div class="card-header shadow">
             <h3>Shopping Cart <span><i class="fa-solid fa-cart-shopping fs-4 "></i></span></h3>
         </div>
         <section class="inr" hidden>
@@ -30,7 +30,7 @@
             @else
 
             {{-- ------ timeline ----- --}}
-            <div class="cart-timeline">
+            <div class="cart-timeline mt-3">
                 <div class="row px-5">
                     <div class="col">
                         <div class="cart-bag text-center">

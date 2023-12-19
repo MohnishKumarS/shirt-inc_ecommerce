@@ -48,7 +48,8 @@
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox"  name="status">
-                        <label class="form-check-label">Status Header</label>
+                        <label class="form-check-label">Header status</label>    
+                        {{--  navbar status add category name -- --}}
                       </div>
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox"  name="popular" >
@@ -63,19 +64,19 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="" class="form-label">Poster Image</label>
-                    <input type="file" class="form-control" name="poster"  required>
+                    <input type="file" class="form-control" name="poster"  >
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="" class="form-label">Meta Title</label>
-                    <input type="text" class="form-control" name="meta_title" required>
+                    <input type="text" class="form-control" name="meta_title" >
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="" class="form-label">Meta Keyword</label>
-                    <input type="text" class="form-control" name="meta_keywords" required>
+                    <input type="text" class="form-control" name="meta_keywords" >
                 </div>
                 <div class="col-md-12 mb-3">
                     <label for="" class="form-label">Meta Description</label>
-                    <input type="text" class="form-control" name="meta_desc" required>
+                    <input type="text" class="form-control" name="meta_desc" >
                 </div>
 
                 <div class="col-md-12 mb-3  mt-3">

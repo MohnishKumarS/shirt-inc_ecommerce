@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="" class="form-label">Category Name</label>
-                    <select class="form-select" aria-label="Default select example" name='category_id'>
+                    <select class="form-select" aria-label="Default select example" name='category_id' >
                         <option selected value="">select a Category</option>
 
                         @foreach ($category as $cat)

@@ -4,11 +4,11 @@
 
 @section('content')
 <div class="container">
-    <div class="card shadow my-5">
-        <div class="card-header">
+    <div class="card  my-5">
+        <div class="card-header shadow">
             <h3>My Orders <span> <i class="fa-solid fa-gift fs-4"></i></span> </h3>
         </div>
-        <div class="card-body">
+        <div class="card-body mt-3">
             <div class="row">
                 <div class="col">
               

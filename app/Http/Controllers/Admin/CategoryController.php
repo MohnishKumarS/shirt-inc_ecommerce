@@ -34,6 +34,9 @@ class CategoryController extends Controller
 
     public function insert_category(Request $req)
     {
+        $slug = preg_replace('/\s+/i', ' ', trim($req->slug));
+        $slug =  strtolower(str_replace(' ', '-', $slug));
+
         $cat = new Category();
 
         if ($req->hasFile('images')) {
@@ -52,7 +55,7 @@ class CategoryController extends Controller
         }
 
         $cat->name = $req->name;
-        $cat->slug = $req->slug;
+        $cat->slug = $slug?:$req->slug;
         $cat->desc = $req->desc;
         $cat->product_type = $req->product_type ? \json_encode($req->product_type) : null;
         $cat->status = $req->status == true ? '1' : '0';
@@ -74,6 +77,11 @@ class CategoryController extends Controller
 
     public function update_category(Request $req, $id)
     {
+        // $slug = preg_replace('/[^a-z0-9 -]+/i', '', trim($req->slug));
+        $slug = preg_replace('/\s+/i', ' ', trim($req->slug));
+        $slug =  strtolower(str_replace(' ', '-', $slug));
+
+       
         $data = Category::find($id);
         if ($req->hasFile('images')) {
             $path =  'image/category/' . $data->image;
@@ -99,7 +107,7 @@ class CategoryController extends Controller
         }
 
         $data->name = $req->name;
-        $data->slug = $req->slug;
+        $data->slug = $slug?:$req->slug;
         $data->desc = $req->desc;
         $data->status = $req->status == true ? '1' : '0';
         $data->popular = $req->popular == true ? '1' : '0';

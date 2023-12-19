@@ -16,6 +16,7 @@
 </div>
 {{-- ------------------------------------------------- --}}
 {{-- ----------- dashboard content --------------- --}}
+
 <div class="row mt-5">
     <div class="col-xl-3 col-sm-6  mb-4">
       <div class="card">
@@ -571,7 +572,7 @@
 
 <script>
    var _x_months =  JSON.parse('{!! json_encode($graph_month) !!}');
-  //  console.log(typeof{!! json_encode($graph_month) !!});
+  //  console.log({!! json_encode($graph_month) !!});
    var _y_monthCount =  JSON.parse('{!! json_encode($graph_monthCount) !!}');
 </script>
 

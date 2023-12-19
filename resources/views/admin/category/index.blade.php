@@ -37,11 +37,12 @@
         <div class="table-responsive-lg">
         <table class="table table-striped table-sm table-bordered text-center">
             <tr>
+              
                 <th style="width: 5%">Id</th>
                 <th style="width: 10%">Image</th>
                 <th style="width: 15%">Name</th>
                 <th style="width: 30%">Description</th>
-                <th style="width: 10%">Status</th>
+                <th style="width: 10%">Header</th>
                 <th style="width: 20%">Action</th>
             </tr>
             @php

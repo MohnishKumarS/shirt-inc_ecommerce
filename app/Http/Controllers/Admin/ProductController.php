@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -15,15 +17,17 @@ class ProductController extends Controller
 {
     public function index(Request $req)
     {
+     $pro =   DB::select('SELECT * FROM products');
+        return $pro;
         $cat_list = Category::all();
-        $product = Product::when($req->cat_id != null , function($q) use ($req){
-            return $q->where('category_id',$req->cat_id);
+        $product = Product::when($req->cat_id != null, function ($q) use ($req) {
+            return $q->where('category_id', $req->cat_id);
         })
-        ->when($req->action != null , function($q) use ($req){
-            return $q->where($req->action,true);
-        })
-        ->latest()->paginate(10);
-        return \view('admin/products/index', \compact('product','cat_list'));
+            ->when($req->action != null, function ($q) use ($req) {
+                return $q->where($req->action, true);
+            })
+            ->latest()->paginate(10);
+        return \view('admin/products/index', \compact('product', 'cat_list'));
     }
 
     public function add_product()
@@ -61,13 +65,14 @@ class ProductController extends Controller
 
         $offer_msg = $req->offer_msg ? $req->offer_msg : 'new';
 
-
+        $slug = preg_replace('/\s+/i', ' ', trim($req->slug));
+        $slug =  strtolower(str_replace(' ', '-', $slug));
 
 
         $data = [
             'category_id' => $req->category_id,
             'name' => $req->name,
-            'slug' => $req->slug,
+            'slug' => $slug ?: $req->slug,
             'desc' => $req->desc,
             'original_price' => $req->original_p,
             'selling_price' => $req->selling_p,
@@ -114,7 +119,7 @@ class ProductController extends Controller
             // ----------- delete old image -----
             $old_img = explode(',', $pro->image);
             foreach ($old_img as $val) {
-                $path = \public_path('image/product/'. $val);
+                $path = \public_path('image/product/' . $val);
                 if (File::exists($path)) {
                     File::delete($path);
                 }
@@ -124,69 +129,89 @@ class ProductController extends Controller
             if ($files = $req->file('images')) {
                 foreach ($files as $file) {
                     $ext = \strtolower($file->getClientOriginalExtension());
-                    $img_name =  rand(100, 10000) . '.' . $ext;
+                    $img_name =  rand(100, 100000) . '.' . $ext;
                     $destinate = \public_path('image/product');
                     $file->move($destinate, $img_name);
-    
+
                     $images[] = $img_name;
                 }
-                $pro->image = implode(',',$images);
+                $pro->image = implode(',', $images);
             }
         }
 
         $offer_msg = $req->offer_msg ? $req->offer_msg : 'new';
-
+        $slug = preg_replace('/\s+/i', ' ', trim($req->slug));
+        $slug =  strtolower(str_replace(' ', '-', $slug));
 
 
 
         // -------------- update a  product data ---------
 
-            $pro->category_id = $req->category_id;
-            $pro->name = $req->name;
-            $pro->slug = $req->slug;
-            $pro->desc = $req->desc;
-            $pro->original_price = $req->original_p;
-            $pro->selling_price = $req->selling_p;
-            $pro->quantity = $req->quantity;
-            $pro->type = $req->product_type;
-            $pro->size_list = \json_encode($req->size);
-            $pro->couple_men_size = $req->men_size ? \json_encode($req->men_size) : null;
-            $pro->couple_women_size = $req->women_size ? \json_encode($req->women_size) : null;
-            $pro->status = $req->status  == true ? '1' : '0';
-            $pro->trending = $req->trending  == true ? '1' : '0';
-            $pro->offer_menu = $req->offer_menu  == true ? '1' : '0';
-            $pro->freq_bought = $req->freq_bought  == true ? '1' : '0';
-            $pro->offer_msg = $offer_msg;
+        $pro->category_id = $req->category_id;
+        $pro->name = $req->name;
+        $pro->slug = $slug ?: $req->slug;
+        $pro->desc = $req->desc;
+        $pro->original_price = $req->original_p;
+        $pro->selling_price = $req->selling_p;
+        $pro->quantity = $req->quantity;
+        $pro->type = $req->product_type;
+        $pro->size_list = \json_encode($req->size);
+        $pro->couple_men_size = $req->men_size ? \json_encode($req->men_size) : null;
+        $pro->couple_women_size = $req->women_size ? \json_encode($req->women_size) : null;
+        $pro->status = $req->status  == true ? '1' : '0';
+        $pro->trending = $req->trending  == true ? '1' : '0';
+        $pro->offer_menu = $req->offer_menu  == true ? '1' : '0';
+        $pro->freq_bought = $req->freq_bought  == true ? '1' : '0';
+        $pro->offer_msg = $offer_msg;
 
-            $pro->update();
+        $pro->update();
 
 
-            return \redirect('/products')->with('status', 'Product Updated Successfully');
+        return \redirect('/products')->with('status', 'Product Updated Successfully');
     }
 
 
-    public function delete_product($id){
+    public function delete_product($id)
+    {
         $pro = Product::find($id);
 
-        if($pro->image){
-            $all_img = explode(',',$pro->image);
+        if ($pro->image) {
+            $all_img = explode(',', $pro->image);
 
-            foreach($all_img as $val){
-                $path = \public_path('image/product/'.$val);
-                if(File::exists($path)){
+            foreach ($all_img as $val) {
+                $path = \public_path('image/product/' . $val);
+                if (File::exists($path)) {
                     File::delete($path);
                 }
             }
-            // ---- delete in cart page 
-            
-            if(Cart::where('product_id',$id)->where('user_id',Auth::id())->exists()){
-                $cart = Cart::where('product_id',$id)->where('user_id',Auth::id())->first();
-                $cart->delete();
-                
+            // ---- delete in cart page  and fav page 
+
+            if (Cart::where('product_id', $id)->exists()) {
+                $cartItems = Cart::where('product_id', $id)->get();
+                // Loop through the retrieved items and delete each one
+                foreach ($cartItems as $cartItem) {
+                    $cartItem->delete();
+                }
             }
-           $pro->delete();
+            if (Wishlist::where('product_id', $id)->exists()) {
+                $wishItems = Wishlist::where('product_id', $id)->get();
+                // Loop through the retrieved items and delete each one
+                foreach ($wishItems as $wishItem) {
+                    $wishItem->delete();
+                }
+            }
+
+            $pro->delete();
         }
-        
+
         return \redirect('/products')->with('status', 'Product Deleted Successfully');
+    }
+
+
+    // -------------delete_selected product  ------------
+
+    public function delete_selected(Request $req)
+    {
+        return \response()->json($req->ids);
     }
 }

@@ -13,14 +13,12 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->string('fname');
-            $table->string('lname');
-            $table->string('email');
-            $table->string('mobile');
-            $table->string('address');
-            $table->string('pincode');
+            $table->foreignId('user_id')->constrained('users');
+            $table->smallInteger('address_id')->nullable();
+            $table->smallInteger('total_price')->nullable();
             $table->tinyInteger('status')->default('0');
+            $table->string('payment_mode')->nullable();
+            $table->string('payment_id')->nullable();
             $table->string('message')->nullable();
             $table->string('tracking_no')->nullable();
             $table->timestamps();

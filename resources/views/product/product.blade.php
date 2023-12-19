@@ -9,8 +9,10 @@
             .poster-img{
                 padding: 5px;
                 max-height: 250px;
+                height: 250px;
                 width: 100%;
-                box-shadow: 1px 1px 14px  rgba(0, 0, 0, 0.123);
+                box-shadow: 5px 4px 14px 10px  rgba(0, 0, 0, 0.223);
+                /* filter: drop-shadow(10px 5px 20px rgba(0, 0, 0, 0.411)); */
                 border-radius: 10px
             }
             .poster-img img{
@@ -47,7 +49,7 @@
         <div class="product-view container">
             <div class="row ">
                 <div class="col-lg-3 col-md-3 p-0 d-none d-md-block">
-                    <div class="pro-sidebar-section">
+                    <div class="pro-sidebar-section shadow">
                         <div class="pro-sidebar">
                             <form action="{{ URL::current() }}" method="get">
 

@@ -5,8 +5,8 @@
 @section('content')
 
 <div class="container wish-item">
-    <div class="card shadow my-5  ">
-            <div class="card-header bg-primary-subtle">
+    <div class="card  my-5  ">
+            <div class="card-header shadow">
                 <h3>FAVOURITE <i class="fa-solid fa-hand-holding-heart ms-1 fs-4"></i></h3>
             </div>
             <div class="card-body">

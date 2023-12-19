@@ -1214,7 +1214,7 @@ section {
 
 .sidebar-head {
     display: block;
-    font-size: 16px;
+    font-size: 15px;
     text-transform: uppercase;
     color: #58595b;
     padding: 12px 3px;
@@ -1223,7 +1223,8 @@ section {
 }
 
 .sidebar-head.top {
-    font-size: 18px;
+    font-size: 14px;
+    text-transform: capitalize;
     color: #000;
     padding: 2px 3px;
     letter-spacing: 1px;
@@ -2131,12 +2132,13 @@ section {
 .e-link {
     font-size: 15px;
     color: #1697dc;
+    transition: 0.2s ease;
     text-decoration: none;
 }
 
 .e-link:hover {
     color: #ff5400;
-    text-decoration: underline;
+    text-decoration:underline;
 }
 
 .elog-btns {

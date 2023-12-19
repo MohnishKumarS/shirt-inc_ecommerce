@@ -26,9 +26,9 @@
                             <div class="elog-box">
                                 {{-- -- error display message --- --}}
                                 @error('email')
-                                    <div class="alert alert-danger" role="alert">
-                                        <strong>Login failed!</strong> Incorrect email or password <i
-                                            class="fa-solid fa-circle-exclamation fa-bounce fs-6 ms-1"></i>
+                                    <div class="alert alert-danger " role="alert">
+                                        <strong>Login failed!</strong> Incorrect email or password. <i
+                                            class="fa-solid fa-circle-exclamation fs-6 ms-1"></i>
                                     </div>
                                 @enderror
                                 <div class="elog-item">

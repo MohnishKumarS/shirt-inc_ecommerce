@@ -22,8 +22,8 @@ return new class extends Migration
 
             $table->text('address1')->nullable();
             $table->text('address2')->nullable();
-            $table->string('phone1')->nullable();
-            $table->string('phone2')->nullable();
+            $table->integer('phone1')->nullable();
+            $table->integer('phone2')->nullable();
             $table->string('email1')->nullable();
             $table->string('email2')->nullable();
 
@@ -31,6 +31,8 @@ return new class extends Migration
             $table->string('instagram')->nullable();
             $table->string('youtube')->nullable();
             $table->string('twitter')->nullable();
+
+            $table->text('promo_status')->nullable();
 
             $table->timestamps();
         });

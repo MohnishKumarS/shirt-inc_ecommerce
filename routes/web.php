@@ -288,6 +288,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
    Route::get('/delete-product/{id}', [ProductController::class, 'delete_product']);
 
+   Route::delete('/delete-selected-product', [ProductController::class, 'delete_selected'])->name('selected.products');
+
 
 
    // ---------------------- slider poster adding ---------------
@@ -318,8 +320,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
 
 
-   Route::get('/clear-cache', function () {
-      $exitCode = Artisan::call('cache:clear');
-      // return what you want
-   });
+});
+Route::get('/clear-cache', function () {
+   $exitCode = Artisan::call('cache:clear');
+   // return what you want
 });

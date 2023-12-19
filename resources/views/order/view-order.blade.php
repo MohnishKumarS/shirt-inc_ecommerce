@@ -5,8 +5,8 @@
 @section('content')
 
     <div class="container">
-        <div class="card my-5 shadow ">
-            <div class="card-header">
+        <div class="card my-5  ">
+            <div class="card-header shadow">
                 <h3>View Order <i class="fa-regular fa-handshake fs-4"></i>
                     <div class="float-end">
                         <a href="javascript:void(0)" class="fs-6 text-primary" data-bs-toggle="tooltip" data-bs-placement="top"
@@ -19,7 +19,7 @@
 
             </div>
 
-            <div class="card-body pb-5">
+            <div class="card-body pb-5 mt-2">
              
             <div class="row pb-3">
                 <div class="col-6">

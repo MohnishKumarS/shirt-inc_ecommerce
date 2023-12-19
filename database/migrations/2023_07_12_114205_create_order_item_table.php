@@ -14,9 +14,12 @@ return new class extends Migration
         Schema::create('order_item', function (Blueprint $table) {
             $table->id();
             $table->string('order_id');
-            $table->string('product_id');
-            $table->string('quantity');
-            $table->string('price');
+            $table->tinyInteger('product_id');
+            $table->tinyInteger('quantity');
+            $table->smallInteger('price');
+            $table->string('size');
+            $table->string('mens_size')->nullabel();
+            $table->string('womens_size')->nullabel();
             $table->timestamps();
         });
     }
