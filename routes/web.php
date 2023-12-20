@@ -18,7 +18,6 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
-use Illuminate\Routing\Route as RoutingRoute;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,7 +66,7 @@ Route::post('/search-product', [UserController::class, 'search_product']);
 
 // ------------------ user subscription -----------
 
-Route::post('/user-subscribe',[HomeController::class,'user_subscribe']);
+Route::post('/user-subscribe', [HomeController::class, 'user_subscribe']);
 
 // ---------------- policy page  -----------------------
 
@@ -92,9 +91,9 @@ Route::middleware(['auth'])->group(function () {
 
    Route::post('/payment/callback', [PaymentController::class, 'phonePeCallback'])->name('phonepe.payment.callback');
 
-   Route::post('/payment-refund',[PaymentController::class, 'phonePeRefundAPI'])->name('phonepe.payment.refund');
+   Route::post('/payment-refund', [PaymentController::class, 'phonePeRefundAPI'])->name('phonepe.payment.refund');
 
-   Route::view('/order-success','order.order-success');
+   Route::view('/order-success', 'order.order-success');
 
    Route::get('/my-cart', [CartController::class, 'my_cart']);
 
@@ -216,7 +215,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
    // --- subscription --
 
-   Route::get('/subscription',[AdminController::class,'subscribe']);
+   Route::get('/subscription', [AdminController::class, 'subscribe']);
 
    //  --- user --
 
@@ -236,9 +235,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
    Route::post('/admin-profile-password/{id}', [AdminController::class, 'admin_profile_password']);
 
-   // ---- trash --
-
-   Route::get('/trash-bin', [AdminController::class, 'trash_bin']);
+   // ------- coupons -----
 
    Route::get('/coupons', [AdminController::class, 'coupons']);
 
@@ -289,6 +286,14 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
    Route::get('/delete-product/{id}', [ProductController::class, 'delete_product']);
 
    Route::delete('/delete-selected-product', [ProductController::class, 'delete_selected'])->name('selected.products');
+   
+   // ---- trash --
+
+   Route::get('/trash-bin', [ProductController::class, 'trash_bin'])->name('trash');
+
+   Route::get('/restore-product/{id}', [ProductController::class, 'restore_product'])->name('product.restore');
+
+   Route::get('/delete-permanent-product/{id}', [ProductController::class, 'delete_permanent_product']);
 
 
 
@@ -307,9 +312,9 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
       // ---- ads poster ---
 
-      Route::get('/ads-poster',"ads_poster");
+      Route::get('/ads-poster', "ads_poster");
 
-      Route::post('/add-poster-ads','add_poster_ads');
+      Route::post('/add-poster-ads', 'add_poster_ads');
 
       Route::get('/edit-poster/{id}', 'edit_poster');
 
@@ -317,9 +322,6 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
       Route::get('/delete-poster/{id}', 'delete_poster');
    });
-
-
-
 });
 Route::get('/clear-cache', function () {
    $exitCode = Artisan::call('cache:clear');

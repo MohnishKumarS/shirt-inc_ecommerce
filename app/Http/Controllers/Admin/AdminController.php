@@ -187,12 +187,7 @@ class AdminController extends Controller
   }
 
 
-  // ------- trash bin ---
-
-  public function trash_bin()
-  {
-    return 'trash';
-  }
+  // ------- coupons  ---
 
   public function coupons()
   {

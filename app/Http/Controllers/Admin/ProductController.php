@@ -17,8 +17,7 @@ class ProductController extends Controller
 {
     public function index(Request $req)
     {
-     $pro =   DB::select('SELECT * FROM products');
-        return $pro;
+
         $cat_list = Category::all();
         $product = Product::when($req->cat_id != null, function ($q) use ($req) {
             return $q->where('category_id', $req->cat_id);
@@ -173,38 +172,14 @@ class ProductController extends Controller
 
     public function delete_product($id)
     {
-        $pro = Product::find($id);
 
-        if ($pro->image) {
-            $all_img = explode(',', $pro->image);
-
-            foreach ($all_img as $val) {
-                $path = \public_path('image/product/' . $val);
-                if (File::exists($path)) {
-                    File::delete($path);
-                }
-            }
-            // ---- delete in cart page  and fav page 
-
-            if (Cart::where('product_id', $id)->exists()) {
-                $cartItems = Cart::where('product_id', $id)->get();
-                // Loop through the retrieved items and delete each one
-                foreach ($cartItems as $cartItem) {
-                    $cartItem->delete();
-                }
-            }
-            if (Wishlist::where('product_id', $id)->exists()) {
-                $wishItems = Wishlist::where('product_id', $id)->get();
-                // Loop through the retrieved items and delete each one
-                foreach ($wishItems as $wishItem) {
-                    $wishItem->delete();
-                }
-            }
-
+        if ($pro = Product::find($id)) {
+            
             $pro->delete();
+            return \redirect('/products')->with('status', 'Product Deleted Successfully');
+        } else {
+            return \redirect('/products')->with('status', 'No product found!....');
         }
-
-        return \redirect('/products')->with('status', 'Product Deleted Successfully');
     }
 
 
@@ -212,6 +187,76 @@ class ProductController extends Controller
 
     public function delete_selected(Request $req)
     {
-        return \response()->json($req->ids);
+        // return \response()->json($req->ids);
+        $pro_ids = $req->ids;
+        if (count($pro_ids) > 0) {
+
+            Product::whereIn('id', $pro_ids)->delete();
+
+            return response()->json([
+                'status' => 'Product Deleted Successfully',
+                'message' => 'success'
+            ]);
+        }
+
+        return count($pro_ids);
+    }
+
+
+    // ------------------ Trash Bin --- product --------------
+
+    public function trash_bin()
+    {
+        $product = Product::onlyTrashed()->paginate(10);
+
+        return view('admin.products.trash', compact('product'));
+    }
+
+    public function restore_product($id)
+    {
+        $product = Product::onlyTrashed()->findOrFail($id);
+        $product->restore();
+
+        return redirect()->route('trash');
+    }
+
+    public function delete_permanent_product($id)
+    {
+
+        if ($pro = Product::onlyTrashed()->findOrFail($id)) {
+
+            if ($pro->image) {
+                $all_img = explode(',', $pro->image);
+
+                foreach ($all_img as $val) {
+                    $path = \public_path('image/product/' . $val);
+                    if (File::exists($path)) {
+                        File::delete($path);
+                    }
+                }
+                // ---- delete in cart page  and fav page 
+
+                if (Cart::where('product_id', $id)->exists()) {
+                    $cartItems = Cart::where('product_id', $id)->get();
+                    // Loop through the retrieved items and delete each one
+                    foreach ($cartItems as $cartItem) {
+                        $cartItem->delete();
+                    }
+                }
+                if (Wishlist::where('product_id', $id)->exists()) {
+                    $wishItems = Wishlist::where('product_id', $id)->get();
+                    // Loop through the retrieved items and delete each one
+                    foreach ($wishItems as $wishItem) {
+                        $wishItem->delete();
+                    }
+                }
+
+                $pro->forceDelete();
+            }
+
+            return \redirect()->route('trash')->with('status', 'Product Deleted Successfully');
+        } else {
+            return \redirect()->route('trash')->with('status', 'No product found!....');
+        }
     }
 }

@@ -190,7 +190,9 @@ ul {
 }
 
 .navbar-container {
-    background-color: #fff;
+    background-color: rgb(255, 255, 255,.4);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .header .logo {

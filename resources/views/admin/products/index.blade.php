@@ -77,7 +77,7 @@
                             @php
                                 $img = explode(',', $val->image);
                             @endphp
-                            <tr class="align-middle ">
+                            <tr class="align-middle " id="product_id-{{ $val->id }}">
                                 <td>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input product_select" type="checkbox" name="pro_select"
@@ -85,7 +85,7 @@
                                     </div>
                                 </td>
                                 <td>{{ $i++ }}</td>
-                                <td><img src="{{ asset('/image/product/' . $img[0]) }}" alt="" width="100"
+                                <td><img src="{{ asset('/image/product/' . $img[0]) }}" alt="product-image" width="100"
                                         height="150" style="object-fit: contain"></td>
                                 <td>{{ $val->category->slug }}</td>
                                 <td>{{ $val->name }}</td>
@@ -106,7 +106,8 @@
                             </tr>
                         @endforeach
                         <div>
-                            <button class="btn btn-danger" id="delete_selected">Delete Seleted</button>
+                            <button class="btn btn-danger" id="delete_selected"
+                               >Delete Seleted</button>
                         </div>
                     @else
                         <tr>
@@ -145,32 +146,48 @@
             // --- click delete btn
             $('#delete_selected').click(function(e) {
                 e.preventDefault();
+                if (confirm("Do you want to proceed?")) {
+                    var pro_ids = [];
 
-                var pro_ids = [];
+                    $('input:checkbox[name=pro_select]:checked').each(function(ind, val) {
+                        // console.log(ind,val);
+                        pro_ids.push($(this).val())
+                    })
+                    console.log(pro_ids.length);
 
-                $('input:checkbox[name=pro_select]:checked').each(function(ind, val) {
-                    // console.log(ind,val);
-                    pro_ids.push($(this).val())
-                })
-                console.log(pro_ids);
+                    if (pro_ids.length > 0) {
+                        // -------- send a ajax req 
 
-                // -------- send a ajax req 
+                        $.ajax({
 
-                $.ajax({
+                            url: "{{ route('selected.products') }}",
+                            type: "DELETE",
+                            data: {
+                                ids: pro_ids,
+                                _token: '{{ csrf_token() }}'
+                            },
+                            success: function(data) {
+                                console.log(data);
+                                $.each(pro_ids, function(key, val) {
+                                    $('#product_id-' + val).remove();
+                                })
 
-                    url: "{{ route('selected.products') }}",
-                    type: "DELETE",
-                    data: {
-                        ids: pro_ids,
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function(res) {
-                        console.log(data);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error); // Log any AJAX errors to the console
+
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(error); // Log any AJAX errors to the console
+                            }
+                        })
+                    } else {
+                        Swal.fire("Choose a Product from List")
                     }
-                })
+                } else {
+                    // Code to execute if the user clicks "Cancel"
+                    // For example:
+                    alert("Action cancelled.");
+                }
+
+
             })
         })
     </script>
