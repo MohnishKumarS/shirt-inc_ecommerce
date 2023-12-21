@@ -175,8 +175,8 @@
 
 
         <!-- ---------------------------------------------
-        ^^^^^^^^^^^^^ ~~ single product list page ~~  ^^^^^^^^^^^^^^
-              --------------------------------------------- -->
+                ^^^^^^^^^^^^^ ~~ single product list page ~~  ^^^^^^^^^^^^^^
+                      --------------------------------------------- -->
 
         <section class="m-0">
             @php
@@ -511,7 +511,8 @@
                                                             </span></div>
                                                     </div>
                                                     <div class="timeline-details text-end">
-                                                        <h4 class="text-sm-bold">{{ $deli_date1 . ' - ' . $deli_date2 }}</h4>
+                                                        <h4 class="text-sm-bold">{{ $deli_date1 . ' - ' . $deli_date2 }}
+                                                        </h4>
                                                         <p>Delivered!</p>
                                                     </div>
                                                 </div>
@@ -636,12 +637,12 @@
                                 </div>
                             </div>
                         </div>
-                    </div>   <!-- end of single product   -->
-                    
-                     <!-- -----------  frequently - bought ----------- -->
+                    </div> <!-- end of single product   -->
+
+                    <!-- -----------  frequently - bought ----------- -->
                     @if (!($product->name == $freq_boug->name))
                         <div>
-                           
+
                             <h4 class="sec-title center">
                                 <span>Frequently Bought Together</span>
                             </h4>
@@ -685,17 +686,15 @@
 
                                 <div class="fq-details mt-4 px-3">
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch"
-                                            id="flexSwitchCheckChecked" checked>
-                                        <label class="form-check-label"><span class="fq-this text-sm-bold">This item
+                                        <input class="form-check-input" type="checkbox" role="switch" checked disabled>
+                                        <label><span class="fq-this text-sm-bold">This item
                                                 :</span><span class="fq-title"> {{ $product->name }} --</span>
                                             <span class="fq-selling">₹{{ $product->original_price }}</span><span
                                                 class="fq-price">₹{{ $product->selling_price }}</span></label>
                                     </div>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch"
-                                            id="flexSwitchCheckChecked" checked>
-                                        <label class="form-check-label"><span class="fq-this text-sm-bold">new arrived
+                                        <input class="form-check-input" type="checkbox" role="switch" checked disabled>
+                                        <label><span class="fq-this text-sm-bold">new arrived
                                                 :</span><span class="fq-title"><a
                                                     href="{{ url('category/' . $freq_boug->category->slug . '/' . $freq_boug->slug) }}">{{ $freq_boug->name }}
                                                     --</a></span>
@@ -716,51 +715,58 @@
 
                     {{-- ----------- related products ----------- --}}
                     @if (count($related_product) > 0)
-                        <div class="rel-pro">
+                        <div class="similar-product">
+                            <div class="rel-pro">
 
-                            <div class="row">
-                                <h4 class="sec-title center mt-3">
-                                    <span>Related Products</span>
-                                </h4>
+                                <div class="row">
+                                    <h4 class="sec-title center mt-3">
+                                        <span>Related Products</span>
+                                    </h4>
+                                    <div class="owl-carousel owl-theme">
+                                        @foreach ($related_product as $item)
+                                            @php
+                                                $popular_img = explode(',', $item->image);
+                                                // ------ discount percentage ------
+                                                $dis = $item->original_price - $item->selling_price;
+                                                $dis_count = round(($dis / $item->original_price) * 100);
+                                            @endphp
+                                            <div class="item product-data">
+                                                <input type="hidden" class="product_id" value="{{ $item['id'] }}">
+                                                <input type="hidden" class="qty-value" value="1">
+                                                <div class="rp-details text-center">
+                                                    <div class="rp-img">
+                                                        <img src="{{ asset('image/product/' . $popular_img[0]) }}"
+                                                            alt="similar-products" class="img-fluid" loading="lazy">
+                                                    </div>
+                                                    <div class="rp-content">
+                                                        <div class="rp-cat"><a
+                                                                href="{{ url('category/' . $item->category->slug) }}">{{ $item->category->name }}</a>
+                                                        </div>
+                                                        <h6 class="rp-title"><a
+                                                                href="{{ url('category/' . $item->category->slug . '/' . $item->slug) }}">
+                                                                {{ $item->name }}</a></h6>
+                                                        <div class="rp-price">₹{{ $item->selling_price }} <span
+                                                                class="rp-selling">₹{{ $item->original_price }}</span><span
+                                                                class="rp-discount">({{ $dis_count }}% off)</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-3"><a class="btn-float addToCart">Add to cart</a>
+                                                    </div>
 
-                                @foreach ($related_product as $item)
-                                    @php
-                                        $related_img = explode(',', $item->image);
-                                        // ------ discount percentage ------
-                                        $dis = $item->original_price - $item->selling_price;
-                                        $dis_count = round(($dis / $item->original_price) * 100);
-                                    @endphp
-                                    <div class="col-lg-2 col-md-3 col-sm-4 col-12 product-data">
-                                        <input type="hidden" class="product_id" value="{{ $item['id'] }}">
-                                        <input type="hidden" class="qty-value" value="1">
-                                        <div class="rp-details text-center">
-                                            <div class="rp-img">
-                                                <img src="{{ asset('image/product/' . $related_img[0]) }}"
-                                                    alt="related-products" class="img-fluid" loading="lazy">
+                                                </div>
                                             </div>
-                                            <div class="rp-cat"><a
-                                                    href="{{ url('category/' . $item->category->slug) }}">{{ $item->category->name }}</a>
-                                            </div>
-                                            <h6 class="rp-title"><a
-                                                    href="{{ url('category/' . $item->category->slug . '/' . $item->slug) }}">
-                                                    {{ $item->name }}</a></h6>
-                                            <div class="rp-price">₹{{ $item->selling_price }} <span
-                                                    class="rp-selling">₹{{ $item->original_price }}</span><span
-                                                    class="rp-discount">({{ $dis_count }}% off)</span></div>
-                                            <div class="mt-3"><a class="btn-float addToCart">Add to cart</a></div>
-
-                                        </div>
+                                        @endforeach
                                     </div>
-                                @endforeach
 
 
+                                </div>
                             </div>
                         </div>
                     @endif
 
 
 
-                    {{-- --------------- similar products ------------------ --}}
+                    {{-- --------------- popular products ------------------ --}}
                     @if (count($popular_product) > 0)
                         <div class="similar-product">
                             <div class="rel-pro">
@@ -785,15 +791,18 @@
                                                         <img src="{{ asset('image/product/' . $popular_img[0]) }}"
                                                             alt="similar-products" class="img-fluid" loading="lazy">
                                                     </div>
-                                                    <div class="rp-cat"><a
-                                                            href="{{ url('category/' . $item->category->slug) }}">{{ $item->category->name }}</a>
+                                                    <div class="rp-content">
+                                                        <div class="rp-cat"><a
+                                                                href="{{ url('category/' . $item->category->slug) }}">{{ $item->category->name }}</a>
+                                                        </div>
+                                                        <h6 class="rp-title"><a
+                                                                href="{{ url('category/' . $item->category->slug . '/' . $item->slug) }}">
+                                                                {{ $item->name }}</a></h6>
+                                                        <div class="rp-price">₹{{ $item->selling_price }} <span
+                                                                class="rp-selling">₹{{ $item->original_price }}</span><span
+                                                                class="rp-discount">({{ $dis_count }}% off)</span>
+                                                        </div>
                                                     </div>
-                                                    <h6 class="rp-title"><a
-                                                            href="{{ url('category/' . $item->category->slug . '/' . $item->slug) }}">
-                                                            {{ $item->name }}</a></h6>
-                                                    <div class="rp-price">₹{{ $item->selling_price }} <span
-                                                            class="rp-selling">₹{{ $item->original_price }}</span><span
-                                                            class="rp-discount">({{ $dis_count }}% off)</span></div>
                                                     <div class="mt-3"><a class="btn-float addToCart">Add to cart</a>
                                                     </div>
 

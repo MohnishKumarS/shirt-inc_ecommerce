@@ -32,8 +32,8 @@
 
 
     <!-- ---------------------------------------------
-      ^^^^^^^^^^^^^ ~~ Trending Product list ~~  ^^^^^^^^^^^^^^
-         --------------------------------------------- -->
+                  ^^^^^^^^^^^^^ ~~ Trending Product list ~~  ^^^^^^^^^^^^^^
+                     --------------------------------------------- -->
     <section class="trending-list">
         <div class="row mb-5 pb-3">
             <div class="col-12 heading-section text-center">
@@ -110,45 +110,60 @@
     </section>
 
     <!-- ---------------------------------------------
-  ^^^^^^^^^^^^^ ~~ category list ~~  ^^^^^^^^^^^^^^
-     --------------------------------------------- -->
-    <section>
-        <div class="row mb-5 pb-3">
-            <div class="col-12 heading-section text-center">
-                <h1 class="big-title">Category</h1>
-                <h2 class="mb-4">our Category</h2>
-            </div>
-        </div>
-        <div class="container">
-
-            <div class="category-list row">
-                <div class="owl-carousel owl-theme">
-                    @foreach ($category as $val)
-                        <div class="item">
-                            <div class="card">
-                                <div class="imgbox">
-                                    <img src="{{ asset('image/category/' . $val->image) }}" alt="category-list"
-                                        loading="lazy">
-                                </div>
-                                <div class="contentbox">
-                                    <h3>{{ $val->name }}</h3>
-                                    <h2 class="price">Rs 499</h2>
-                                    <a href="{{ url('category/' . $val->slug) }}" class="btn-prime">Shop Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
+              ^^^^^^^^^^^^^ ~~ category list ~~  ^^^^^^^^^^^^^^
+                 --------------------------------------------- -->
+    @if (count($category) > 0)
+        <section class="">
+            <div class="row mb-5 pb-3 category-stick">
+                <div class="col-12 heading-section text-center">
+                    <h1 class="big-title">Category</h1>
+                    <h2 class="mb-4">our Category</h2>
                 </div>
+            </div>
 
+            <div class="category-section-all">
+                @foreach ($category as $val)
+                    <div class="card">
+                        <a href="{{ url('category/' . $val->slug) }}">
+                            <h2 class="cat-title">{{ $val->name }}</h2>
+                            <img src="{{ asset('image/category/' . $val->image) }}" alt="category-list" class="img-fluid">
+                        </a>
+                    </div>
+                @endforeach
 
             </div>
-        </div>
-    </section>
+            {{-- <div class="container">
+        
+                    <div class="category-list row">
+                        <div class="owl-carousel owl-theme">
+                            @foreach ($category as $val)
+                                <div class="item">
+                                    <div class="card">
+                                        <div class="imgbox">
+                                            <img src="{{ asset('image/category/' . $val->image) }}" alt="category-list"
+                                                loading="lazy">
+                                        </div>
+                                        <div class="contentbox">
+                                            <h3>{{ $val->name }}</h3>
+                                            <h2 class="price">Rs 499</h2>
+                                            <a href="{{ url('category/' . $val->slug) }}" class="btn-prime">Shop Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+        
+        
+                    </div>
+                </div> --}}
+        </section>
+    @endif
+
 
 
     <!-- ---------------------------------------------
-     ^^^^^^^^^^^^^ ~~ popular list ~~  ^^^^^^^^^^^^^^
-      --------------------------------------------- -->
+                 ^^^^^^^^^^^^^ ~~ popular list ~~  ^^^^^^^^^^^^^^
+                  --------------------------------------------- -->
     @if (count($popular) > 0)
 
         <section>
@@ -223,8 +238,8 @@
                                                     </div>
                                                 @endif
                                                 <!-- <div class="offer-info">
-                                                      <h2 class="sm-title">24% Off</h2>
-                                               </div> -->
+                                                                  <h2 class="sm-title">24% Off</h2>
+                                                           </div> -->
                                             </div>
                                         </div>
                                         <!-- -------------end of  view product  list  ---------------- -->
@@ -242,8 +257,8 @@
 
     @endif
     <!-- ---------------------------------------------
-      ^^^^^^^^^^^^^ ~~ Unique Collection  ~~  ^^^^^^^^^^^^^^
-    --------------------------------------------- -->
+                  ^^^^^^^^^^^^^ ~~ Unique Collection  ~~  ^^^^^^^^^^^^^^
+                --------------------------------------------- -->
 
     {{-- <section>
         <div class="unique-collection">
@@ -262,8 +277,8 @@
 
 
     <!-- ---------------------------------------------
-     ^^^^^^^^^^^^^ ~~ Overall Collection list  ~~  ^^^^^^^^^^^^^^
-        --------------------------------------------- -->
+                 ^^^^^^^^^^^^^ ~~ Overall Collection list  ~~  ^^^^^^^^^^^^^^
+                    --------------------------------------------- -->
 
     <section>
         <div class="row mb-5 pb-3">
@@ -318,8 +333,8 @@
 
 
     <!-- ---------------------------------------------
-      ^^^^^^^^^^^^^ ~~ Our Advantage  ~~  ^^^^^^^^^^^^^^
-      --------------------------------------------- -->
+                  ^^^^^^^^^^^^^ ~~ Our Advantage  ~~  ^^^^^^^^^^^^^^
+                  --------------------------------------------- -->
 
     <section>
         <div class="our-advantage">
@@ -359,8 +374,8 @@
     </section>
 
     <!-- ---------------------------------------------
-     ^^^^^^^^^^^^^ ~~ base collection product ~~  ^^^^^^^^^^^^^^
-      --------------------------------------------- -->
+                 ^^^^^^^^^^^^^ ~~ base collection product ~~  ^^^^^^^^^^^^^^
+                  --------------------------------------------- -->
 
     <section>
         <div class="row mb-5 pb-3">
@@ -401,8 +416,8 @@
 
 
     <!-- ---------------------------------------------
-       ^^^^^^^^^^^^^ ~~ advertise add- offer  ~~  ^^^^^^^^^^^^^^
-      --------------------------------------------- -->
+                   ^^^^^^^^^^^^^ ~~ advertise add- offer  ~~  ^^^^^^^^^^^^^^
+                  --------------------------------------------- -->
 
     <section>
         <div class="advertise-offer">
@@ -432,8 +447,8 @@
 
 
     <!-- ---------------------------------------------
-       ^^^^^^^^^^^^^ ~~ subscription user  ~~  ^^^^^^^^^^^^^^
-      --------------------------------------------- -->
+                   ^^^^^^^^^^^^^ ~~ subscription user  ~~  ^^^^^^^^^^^^^^
+                  --------------------------------------------- -->
 
     <section>
         <div class="subscribe">
@@ -443,11 +458,13 @@
                         <div class="subscribe-content">
                             <h2>Subscribe</h2>
                             <p>Subscribe us and you won't miss the new arrivals, as well as discounts and sales.</p>
-                            <form action="{{url('/user-subscribe')}}" method="post">
+                            <form action="{{ url('/user-subscribe') }}" method="post">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-8 col-md-8">
-                                        <input type="email" name="sub-mail" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,4}" required  placeholder="E-mail">
+                                        <input type="email" name="sub-mail"
+                                            pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,4}" required
+                                            placeholder="E-mail">
                                     </div>
                                     <div class="col-lg-4 col-md-4 mt-4 mt-md-0">
                                         <button class="btn-blue" type="submit">SEND</button>
