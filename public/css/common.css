@@ -1,4 +1,10 @@
-
+.container{
+    padding-left: 0;
+    padding-right: 0;
+}
+.min-vh-75{
+    min-height: 80vh;
+}
 .dash-border-line {
       width: 100%;
       margin-top: 15px;
@@ -382,7 +388,7 @@
   .btn-blue:hover,
   .btn-blue:focus,
   .btn-blue:active {
-      color: black;
+      color: black !important;
   }
 
   .btn-blue:hover:before,

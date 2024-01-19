@@ -7,6 +7,7 @@
     <!-- ----------------- login - page ---------------- -->
     <!-- =================================================== -->
 
+   <section>
     <div class="elog-login">
         <div class="container h-100">
 
@@ -66,6 +67,7 @@
 
         </div>
     </div>
+   </section>
 
 @endsection
 

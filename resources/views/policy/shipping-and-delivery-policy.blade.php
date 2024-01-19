@@ -3,26 +3,8 @@
 @section('title', 'Privacy Policy')
 
 @section('content')
-<style>
-    .term-contents ul{
-        list-style-type: disc;
-        margin-bottom: 16px;
-        padding-left: 32px;
-    }
-    .term-contents a{
-        color: rgb(57, 57, 231);
-        /* text-decoration: underline; */
-    }
-    .term-contents a:hover{
-        text-decoration:underline;
-    }
-    .term-contents h5{
-        margin-top: 25px;
-        font-weight: 500;
-    }
-   
-</style>
-<section class="product-shop">
+
+<section class="product-terms">
     <div class="container">
         <div class="row">
 
@@ -54,7 +36,7 @@
 
             <p>We offer worldwide shipping. Free Standard shipping is not valid on international orders.</p>
 
-            <p><b>Please note</b>, we may be subject to various rules and restrictions in relation to some international deliveries and you may be subject to additional taxes and duties over which we have no control. If such cases apply, you are responsible for complying with the laws applicable to the country where you for any such additional costs or taxes.</p>
+            <p><b>Please note : </b> we may be subject to various rules and restrictions in relation to some international deliveries and you may be subject to additional taxes and duties over which we have no control. If such cases apply, you are responsible for complying with the laws applicable to the country where you for any such additional costs or taxes.</p>
 
             <h5>HOW CAN YOU CONTACT US ABOUT THIS POLICY?</h5>
 

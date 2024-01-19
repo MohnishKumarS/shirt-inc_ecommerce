@@ -45,7 +45,7 @@
         content="Shop for t-shirts for men and women online at Shirt-Inc the one-stop destination for all official merchandise of superheroes and movies" />
     <meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" />
 
-
+    @stack('styles')
 </head>
 
 <body>

@@ -192,106 +192,106 @@
 </header>
 
 @php
-use App\Models\Category;
-$category = Category::where('status', 1)
-    ->latest()
-    ->first();
+    use App\Models\Category;
+    $category = Category::where('status', 1)
+        ->latest()
+        ->first();
 @endphp
 {{-- ------- navbar bottom --------------  --}}
 <div class="nav-bottom d-none d-lg-block">
-<div class="container">
-    <ul class="nav-bottom__ul">
-        <li class="menu-item ">
-            <a href="{{ url('/') }}">Home</a>
-        </li>
+    <div class="container">
+        <ul class="nav-bottom__ul">
+            <li class="menu-item ">
+                <a href="{{ url('/') }}">Home</a>
+            </li>
 
-        @auth
-            @if (Auth::user()->role)
-                <li class="menu-item ">
-                    <a href="{{ url('/dashboard') }}">Dashboard</a>
-                </li>
-            @endif
-        @endauth
-        <li class="menu-item {{ Request::is('collections') ? 'active' : '' }}">
-            <a href="{{ url('/collections') }}">Collections</a>
-
-        </li>
-        <li class="menu-item">
-            <a style="cursor:pointer">Category <span class="ms-1"><i
-                        class="fa-solid fa-angle-down"></i></span></a>
-
-            <div class="menu-subs menu-mega menu-column-4">
-                <div class="list-item">
-                    <h4 class="title">Men's Fashion</h4>
-                    <ul>
-                        <li><a href="#">Product List</a></li>
-                        <li><a href="#">Product List</a></li>
-                        <li><a href="#">Product List</a></li>
-                        <li><a href="#">Product List</a></li>
-                    </ul>
-                    <h4 class="title">Season's Hottest Looks</h4>
-                    <ul>
-                        <li><a href="#">Product List</a></li>
-                        <li><a href="#">Product List</a></li>
-                        <li><a href="#">Product List</a></li>
-                        <li><a href="#">Product List</a></li>
-                    </ul>
-                </div>
-                <div class="list-item">
-                    <h4 class="title">Men's Fashion</h4>
-                    <ul>
-                        <li><a href="#">Product List</a></li>
-                        <li><a href="#">Product List</a></li>
-                        <li><a href="#">Product List</a></li>
-                        <li><a href="#">Product List</a></li>
-                    </ul>
-                    <h4 class="title">T-shirt Treasures</h4>
-                    <ul>
-                        <li><a href="#">Product List</a></li>
-                        <li><a href="#">Product List</a></li>
-                        <li><a href="#">Product List</a></li>
-                        <li><a href="#">Product List</a></li>
-                    </ul>
-                </div>
-                <div class="list-item">
-                    <h4 class="title"> New Arrival Tees</h4>
-                    <ul>
-                        <li><a href="#">Product List</a></li>
-                        <li><a href="#">Product List</a></li>
-                        <li><a href="#">Product List</a></li>
-                        <li><a href="#">Product List</a></li>
-                        <li><a href="#">Product List</a></li>
-                        <li><a href="#">Product List</a></li>
-                        <li><a href="#">Product List</a></li>
-                        <li><a href="#">Product List</a></li>
-                        <li><a href="#">Product List</a></li>
-                    </ul>
-                </div>
-                <div class="list-item">
-                    <h4 class="title">Trendy Tees</h4>
-                    <img src="{{ asset('image/Badass tshirt-01.png') }}" class="responsive"
-                        alt="Shop Product" loading="lazy" />
-                </div>
-            </div>
-        </li>
-
-        <li class="menu-item {{ Request::is('new-arrival') ? 'active' : '' }}">
-            <a href="{{ url('/new-arrival') }}">New Arrival</a>
-
-        </li>
-
-        @if ($category)
-            <li class="menu-item {{ Request::is('category/' . $category->slug) ? 'active' : '' }}">
-                <a href="{{ url('category/' . $category->slug) }}">{{ $category->slug }} <span
-                        class='align-middle'>
-                        <img src="{{ asset('image/gif/gif3.gif') }}" width="18"
-                            style="object-fit: contain" alt="new-trendy" loading="lazy">
-                    </span></a>
+            @auth
+                @if (Auth::user()->role)
+                    <li class="menu-item ">
+                        <a href="{{ url('/dashboard') }}">Dashboard</a>
+                    </li>
+                @endif
+            @endauth
+            <li class="menu-item {{ Request::is('collections') ? 'active' : '' }}">
+                <a href="{{ url('/collections') }}">Collections</a>
 
             </li>
-        @endif
+            <li class="menu-item">
+                <a style="cursor:pointer">Category <span class="ms-1"><i
+                            class="fa-solid fa-angle-down"></i></span></a>
 
-        <!-- <li class="menu-item">
+                <div class="menu-subs menu-mega menu-column-4">
+                    <div class="list-item">
+                        <h4 class="title">Men's Fashion</h4>
+                        <ul>
+                            <li><a href="#">Product List</a></li>
+                            <li><a href="#">Product List</a></li>
+                            <li><a href="#">Product List</a></li>
+                            <li><a href="#">Product List</a></li>
+                        </ul>
+                        <h4 class="title">Season's Hottest Looks</h4>
+                        <ul>
+                            <li><a href="#">Product List</a></li>
+                            <li><a href="#">Product List</a></li>
+                            <li><a href="#">Product List</a></li>
+                            <li><a href="#">Product List</a></li>
+                        </ul>
+                    </div>
+                    <div class="list-item">
+                        <h4 class="title">Men's Fashion</h4>
+                        <ul>
+                            <li><a href="#">Product List</a></li>
+                            <li><a href="#">Product List</a></li>
+                            <li><a href="#">Product List</a></li>
+                            <li><a href="#">Product List</a></li>
+                        </ul>
+                        <h4 class="title">T-shirt Treasures</h4>
+                        <ul>
+                            <li><a href="#">Product List</a></li>
+                            <li><a href="#">Product List</a></li>
+                            <li><a href="#">Product List</a></li>
+                            <li><a href="#">Product List</a></li>
+                        </ul>
+                    </div>
+                    <div class="list-item">
+                        <h4 class="title"> New Arrival Tees</h4>
+                        <ul>
+                            <li><a href="#">Product List</a></li>
+                            <li><a href="#">Product List</a></li>
+                            <li><a href="#">Product List</a></li>
+                            <li><a href="#">Product List</a></li>
+                            <li><a href="#">Product List</a></li>
+                            <li><a href="#">Product List</a></li>
+                            <li><a href="#">Product List</a></li>
+                            <li><a href="#">Product List</a></li>
+                            <li><a href="#">Product List</a></li>
+                        </ul>
+                    </div>
+                    <div class="list-item">
+                        <h4 class="title">Trendy Tees</h4>
+                        <img src="{{ asset('image/Badass tshirt-01.png') }}" class="responsive" alt="Shop Product"
+                            loading="lazy" />
+                    </div>
+                </div>
+            </li>
+
+            <li class="menu-item {{ Request::is('new-arrival') ? 'active' : '' }}">
+                <a href="{{ url('/new-arrival') }}">New Arrival</a>
+
+            </li>
+
+            @if ($category)
+                <li class="menu-item {{ Request::is('category/' . $category->slug) ? 'active' : '' }}">
+                    <a href="{{ url('category/' . $category->slug) }}">{{ $category->slug }} <span
+                            class='align-middle'>
+                            <img src="{{ asset('image/gif/gif3.gif') }}" width="18" style="object-fit: contain"
+                                alt="new-trendy" loading="lazy">
+                        </span></a>
+
+                </li>
+            @endif
+
+            <!-- <li class="menu-item">
         <a href="" >Home</a>
         <div class="menu-subs menu-column-1">
             <ul>
@@ -302,6 +302,6 @@ $category = Category::where('status', 1)
             </ul>
         </div>
     </li> -->
-    </ul>
-</div>
+        </ul>
+    </div>
 </div>

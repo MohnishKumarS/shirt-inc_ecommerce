@@ -7,6 +7,7 @@
     <!-- ----------------- register - page ---------------- -->
     <!-- =================================================== -->
 
+ <section>
     <div class="elog-register">
         <div class="container">
 
@@ -82,6 +83,7 @@
 
         </div>
     </div>
+ </section>
 
 @endsection
 

@@ -5,7 +5,7 @@
 @section('content')
 
     {{-- ------------- carousel ------------------ --}}
-    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+    <div id="carousel-head" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="{{ $slider_active->timer }}">
                 <img src="{{ asset('image/slider/' . $slider_active->image) }}" class="img-fluid" alt="slider-poster"
@@ -20,11 +20,11 @@
 
 
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-head" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel-head" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
@@ -32,9 +32,9 @@
 
 
     <!-- ---------------------------------------------
-                  ^^^^^^^^^^^^^ ~~ Trending Product list ~~  ^^^^^^^^^^^^^^
-                     --------------------------------------------- -->
-    <section class="trending-list">
+                              ^^^^^^^^^^^^^ ~~ Trending Product list ~~  ^^^^^^^^^^^^^^
+                                 --------------------------------------------- -->
+    <section class="our-trending">
         <div class="row mb-5 pb-3">
             <div class="col-12 heading-section text-center">
                 <h1 class="big-title">Trending</h1>
@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="container">
-            <div class="row">
+            <div class="row" style="min-height: 445px">
 
                 {{-- --- -trnding list ---- --}}
                 <div class="owl-carousel owl-theme mt-3">
@@ -107,13 +107,20 @@
 
             </div>
         </div>
+        <div class="trending-shape-divider">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                    class="shape-fill"></path>
+            </svg>
+        </div>
     </section>
 
     <!-- ---------------------------------------------
-              ^^^^^^^^^^^^^ ~~ category list ~~  ^^^^^^^^^^^^^^
-                 --------------------------------------------- -->
+                          ^^^^^^^^^^^^^ ~~ category list ~~  ^^^^^^^^^^^^^^
+                             --------------------------------------------- -->
     @if (count($category) > 0)
-        <section class="">
+        <section class="our-category">
             <div class="row mb-5 pb-3 category-stick">
                 <div class="col-12 heading-section text-center">
                     <h1 class="big-title">Category</h1>
@@ -121,7 +128,7 @@
                 </div>
             </div>
 
-            <div class="category-section-all">
+            <div class="category-section-all d-lg-none">
                 @foreach ($category as $val)
                     <div class="card">
                         <a href="{{ url('category/' . $val->slug) }}">
@@ -132,41 +139,46 @@
                 @endforeach
 
             </div>
-            {{-- <div class="container">
-        
-                    <div class="category-list row">
-                        <div class="owl-carousel owl-theme">
-                            @foreach ($category as $val)
-                                <div class="item">
-                                    <div class="card">
-                                        <div class="imgbox">
-                                            <img src="{{ asset('image/category/' . $val->image) }}" alt="category-list"
-                                                loading="lazy">
-                                        </div>
-                                        <div class="contentbox">
-                                            <h3>{{ $val->name }}</h3>
-                                            <h2 class="price">Rs 499</h2>
-                                            <a href="{{ url('category/' . $val->slug) }}" class="btn-prime">Shop Now</a>
-                                        </div>
+
+            <div class="container ">
+
+                <div class="category-sec d-none d-lg-block">
+                    <div class="row">
+                        @foreach ($category as $val)
+                            <div class="col-lg-4 col-xl-3 gy-5">
+                                <div class="card">
+                                    <img src="{{ asset('image/category/' . $val->image) }}" alt="category-list">
+                                    <div class="card-content">
+                                        <h2>
+                                            {{ $val->name }}
+                                        </h2>
+                                        <!-- <p>
+                                                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                                              </p> -->
+                                        <a href="{{ url('category/' . $val->slug) }}" class="btn-blue">
+                                            Find out more
+                                            <i class="fa-solid fa-arrow-right ps-2"></i>
+                                        </a>
                                     </div>
                                 </div>
-                            @endforeach
-                        </div>
-        
-        
+                            </div>
+                        @endforeach
                     </div>
-                </div> --}}
+
+
+                </div>
+            </div>
         </section>
     @endif
 
 
 
     <!-- ---------------------------------------------
-                 ^^^^^^^^^^^^^ ~~ popular list ~~  ^^^^^^^^^^^^^^
-                  --------------------------------------------- -->
+                             ^^^^^^^^^^^^^ ~~ popular list ~~  ^^^^^^^^^^^^^^
+                              --------------------------------------------- -->
     @if (count($popular) > 0)
 
-        <section>
+        <section class="our-popular">
             <div class="row mb-5 pb-3">
                 <div class="col-12 heading-section text-center">
                     <h1 class="big-title">Popular</h1>
@@ -238,8 +250,8 @@
                                                     </div>
                                                 @endif
                                                 <!-- <div class="offer-info">
-                                                                  <h2 class="sm-title">24% Off</h2>
-                                                           </div> -->
+                                                                              <h2 class="sm-title">24% Off</h2>
+                                                                       </div> -->
                                             </div>
                                         </div>
                                         <!-- -------------end of  view product  list  ---------------- -->
@@ -253,12 +265,26 @@
                     </div>
                 </div>
             </div>
+
+            <div class="popular-shape-divider-top">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                    preserveAspectRatio="none">
+                    <path
+                        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                        class="shape-fill"></path>
+                </svg>
+            </div>
+            <div class="popular-shape-divider-bottom">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                </svg>
+            </div>
         </section>
 
     @endif
     <!-- ---------------------------------------------
-                  ^^^^^^^^^^^^^ ~~ Unique Collection  ~~  ^^^^^^^^^^^^^^
-                --------------------------------------------- -->
+                              ^^^^^^^^^^^^^ ~~ Unique Collection  ~~  ^^^^^^^^^^^^^^
+                            --------------------------------------------- -->
 
     {{-- <section>
         <div class="unique-collection">
@@ -277,8 +303,8 @@
 
 
     <!-- ---------------------------------------------
-                 ^^^^^^^^^^^^^ ~~ Overall Collection list  ~~  ^^^^^^^^^^^^^^
-                    --------------------------------------------- -->
+                             ^^^^^^^^^^^^^ ~~ Overall Collection list  ~~  ^^^^^^^^^^^^^^
+                                --------------------------------------------- -->
 
     <section>
         <div class="row mb-5 pb-3">
@@ -333,8 +359,8 @@
 
 
     <!-- ---------------------------------------------
-                  ^^^^^^^^^^^^^ ~~ Our Advantage  ~~  ^^^^^^^^^^^^^^
-                  --------------------------------------------- -->
+                              ^^^^^^^^^^^^^ ~~ Our Advantage  ~~  ^^^^^^^^^^^^^^
+                              --------------------------------------------- -->
 
     <section>
         <div class="our-advantage">
@@ -374,8 +400,8 @@
     </section>
 
     <!-- ---------------------------------------------
-                 ^^^^^^^^^^^^^ ~~ base collection product ~~  ^^^^^^^^^^^^^^
-                  --------------------------------------------- -->
+                             ^^^^^^^^^^^^^ ~~ base collection product ~~  ^^^^^^^^^^^^^^
+                              --------------------------------------------- -->
 
     <section>
         <div class="row mb-5 pb-3">
@@ -416,8 +442,8 @@
 
 
     <!-- ---------------------------------------------
-                   ^^^^^^^^^^^^^ ~~ advertise add- offer  ~~  ^^^^^^^^^^^^^^
-                  --------------------------------------------- -->
+                               ^^^^^^^^^^^^^ ~~ advertise add- offer  ~~  ^^^^^^^^^^^^^^
+                              --------------------------------------------- -->
 
     <section>
         <div class="advertise-offer">
@@ -447,10 +473,10 @@
 
 
     <!-- ---------------------------------------------
-                   ^^^^^^^^^^^^^ ~~ subscription user  ~~  ^^^^^^^^^^^^^^
-                  --------------------------------------------- -->
+                               ^^^^^^^^^^^^^ ~~ subscription user  ~~  ^^^^^^^^^^^^^^
+                              --------------------------------------------- -->
 
-    <section>
+    <section class='pb-0'>
         <div class="subscribe">
             <div class="container">
                 <div class="row">
@@ -523,6 +549,30 @@
                 sessionStorage.setItem('#popup', true);
 
             }
+
+            // Initial scroll position check
+            checkScroll();
+
+            // Scroll event listener
+            $(window).scroll(function() {
+                checkScroll();
+
+            });
+
+            function checkScroll() {
+                // Get the current scroll position
+                var scrollPos = $(window).scrollTop();
+
+                // Set the margin based on the scroll position
+                var marginValue = (scrollPos > 0) ? '0 20px' : '0';
+                var caro_z_index = (scrollPos > 500) ? '-1' : '0';
+                // var footer_z_index = (scrollPos > 1000) ? '0' : '-1';
+
+                // Apply the margin to the carousel
+                $('#carousel-head').css('margin', marginValue);
+                $('#carousel-head').css('z-index', caro_z_index);
+                // $('.footer-main').css('z-index', footer_z_index);
+            }
         })
         // --------------- pop up ---------------------
         const popup = document.querySelector('.popup');
@@ -570,3 +620,15 @@
 
 
 @endsection
+
+@push('styles')
+    <style>
+        section {
+            padding: 9rem 0 100px;
+        }
+
+        .footer-main{
+            position: relative !important;
+        }
+    </style>
+@endpush

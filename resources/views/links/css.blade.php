@@ -13,7 +13,10 @@
 <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
 <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">
 
-{{-- =------------- css style page ----------------------- --}}
+{{-- ---------------- normalize css ------------------ --}}
+{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1Ymy/ruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
+
+{{-- =------------- css custom  style page ----------------------- --}}
 
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 

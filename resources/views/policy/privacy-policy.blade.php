@@ -3,26 +3,8 @@
 @section('title', 'Privacy Policy')
 
 @section('content')
-<style>
-    .term-contents ul{
-        list-style-type: disc;
-        margin-bottom: 16px;
-        padding-left: 32px;
-    }
-    .term-contents a{
-        color: rgb(57, 57, 231);
-        /* text-decoration: underline; */
-    }
-    .term-contents a:hover{
-        text-decoration:underline;
-    }
-    .term-contents h5{
-        margin-top: 25px;
-        font-weight: 500;
-    }
-   
-</style>
-<section class="product-shop">
+
+<section class="product-terms">
     <div class="container">
         <div class="row">
 
@@ -95,7 +77,7 @@
             <p>Google is one of a third-party vendor on our site. It also uses cookies, known as DART cookies, to serve
                 ads to our site visitors based upon their visit to www.website.com and other sites on the internet.
                 However, visitors may choose to decline the use of DART cookies by visiting the Google ad and content
-                network Privacy Policy at the following URL – https://policies.google.com/technologies/ads</p>
+                network Privacy Policy at the following URL – <a href="https://policies.google.com/technologies/ads">https://policies.google.com/technologies/ads</a></p>
 
             <h5>Our Advertising Partners</h5>
 
@@ -107,7 +89,7 @@
 
             <p>
                 <a href="
-                    https://policies.google.com/technologies/ads" class="text-primary ">
+                    https://policies.google.com/technologies/ads" >
                     https://policies.google.com/technologies/ads</a>
             </p>
 

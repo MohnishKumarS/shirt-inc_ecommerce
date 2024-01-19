@@ -193,7 +193,7 @@ class UserController extends Controller
         }
         else
         {
-            return \redirect('all-category');
+            return \redirect('collections');
         }
 
         return $search;

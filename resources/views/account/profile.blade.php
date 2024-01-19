@@ -11,6 +11,7 @@
             border-bottom: 4px dotted #e4e4e4;
         }
     </style>
+ <section>
     <div class="acc-profile ">
 
         <div class="container bg-white p-5">
@@ -210,6 +211,7 @@
 
         </div>
     </div>
+ </section>
 
 
 @endsection

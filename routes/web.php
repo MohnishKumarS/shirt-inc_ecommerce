@@ -323,7 +323,19 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
       Route::get('/delete-poster/{id}', 'delete_poster');
    });
 });
+
 Route::get('/clear-cache', function () {
    $exitCode = Artisan::call('cache:clear');
    // return what you want
+});
+
+Route::get('/clear', function() {
+   
+   Artisan::call('cache:clear');
+   Artisan::call('config:clear');
+   Artisan::call('config:cache');
+   Artisan::call('view:clear');
+
+   return "Cleared!";
+
 });

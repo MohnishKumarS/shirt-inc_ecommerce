@@ -19,7 +19,7 @@
     }
    
 </style>
-<section class="product-shop">
+<section class="product-terms">
     <div class="container">
         <div class="row">
 

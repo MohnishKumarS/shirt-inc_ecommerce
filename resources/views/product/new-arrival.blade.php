@@ -4,46 +4,30 @@
 
 @section('content')
 
-    <div class="container my-5 p-0">
-        <style>
-            .poster-img{
-                padding: 5px;
-                max-height: 250px;
-                height: 250px;
-                width: 100%;
-                box-shadow: 1px 1px 14px  rgba(0, 0, 0, 0.123);
-                border-radius: 10px
-            }
-            .poster-img img{
-                height: inherit;
-                width: inherit;
-                object-fit: cover;
-                border-radius: 10px;
-              
-            }
-        </style>
-        {{-- ------- ---- Poster Image ---------  --}}
-      @if ($category->poster != null)
-      <div class="poster-img mb-4 shadow">
-        <img src="{{asset('image/category/'.$category->poster)}}" alt="poster" class="img-fluid" loading="lazy">
-    </div>
-          
-      @endif
+    <section>
+        <div class="container py-5 ">
+           
+            {{-- ------- ---- Poster Image ---------  --}}
+            @if ($category->poster != null)
+                <div class="poster-img mb-4 shadow">
+                    <img src="{{ asset('image/category/' . $category->poster) }}" alt="poster" class="img-fluid" loading="lazy">
+                </div>
+            @endif
 
-        <!-- ----------- breadcrumb ------- -->
-        <div class="">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                    <li class="breadcrumb-item active">New Arrival</li>
+            <!-- ----------- breadcrumb ------- -->
+            <div class="">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                        <li class="breadcrumb-item active">New Arrival</li>
 
-                </ol>
-            </nav>
-        </div>
+                    </ol>
+                </nav>
+            </div>
 
-        <!-- ---------------------------------------------
-                ^^^^^^^^^^^^^ ~~ product  list page ~~  ^^^^^^^^^^^^^^
-                 --------------------------------------------- -->
+            <!-- ---------------------------------------------
+                    ^^^^^^^^^^^^^ ~~ product  list page ~~  ^^^^^^^^^^^^^^
+                     --------------------------------------------- -->
 
             <div class="new_product-list ">
                 <div class="products px-3">
@@ -73,7 +57,8 @@
                                             <input type="hidden" class="product_id" value="{{ $val['id'] }}">
                                             <input type="hidden" class="qty-value" value="1">
                                             <div class="product-img">
-                                                <img src="{{ asset('image/product/' . $img_pop[0]) }}" alt="product-image" loading="lazy">
+                                                <img src="{{ asset('image/product/' . $img_pop[0]) }}" alt="product-image"
+                                                    loading="lazy">
                                             </div>
                                             <div class="product-btns">
                                                 <a href="" class="btn-cart addToCart">
@@ -85,7 +70,8 @@
                                             </div>
                                             <div class="product-info">
                                                 <div class="product-info-top">
-                                                    <a class="text-sm" href="{{url('category/'.$val->category->slug)}}">{{ $val->category->name }}</a>
+                                                    <a class="text-sm"
+                                                        href="{{ url('category/' . $val->category->slug) }}">{{ $val->category->name }}</a>
                                                     <div class="rating">
                                                         <span><i class="fa-solid fa-star"></i></span>
                                                         <span><i class="fa-solid fa-star"></i></span>
@@ -101,10 +87,10 @@
                                             </div>
                                             @if ($val->offer_menu)
                                                 <div class="offer-info">
-                                                    <h2 class="text-sm">{{$val->offer_msg}}</h2>
+                                                    <h2 class="text-sm">{{ $val->offer_msg }}</h2>
                                                 </div>
                                             @endif
-                                           
+
                                         </div>
                                     </div>
                                     <!-- -------------end of  view product  list  ---------------- -->
@@ -117,10 +103,11 @@
                     </div>
                 </div>
             </div>
-       
 
 
 
-    </div>
+
+        </div>
+    </section>
 
 @endsection
