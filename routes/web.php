@@ -54,6 +54,12 @@ Route::get('/category/{cate_slug}/{prod_slug}', [UserController::class, 'view_pr
 
 Route::get('/new-arrival', [UserController::class, 'view_new_product']);
 
+Route::get('/womens-collections',[UserController::class,'womens_collections']);
+
+Route::get('/mens-collections',[UserController::class,'mens_collections']);
+
+Route::get('/unisex-collections',[UserController::class,'unisex_collections']);
+
 // -----------razorpay  payment gateway ---------------
 
 Route::post('/proceed-to-pay', [PaymentController::class, 'payment']);
@@ -67,6 +73,10 @@ Route::post('/search-product', [UserController::class, 'search_product']);
 // ------------------ user subscription -----------
 
 Route::post('/user-subscribe', [HomeController::class, 'user_subscribe']);
+
+// -------------- contact page ---------------
+Route::view('/contact','contact');
+Route::view('/about-us','about');
 
 // ---------------- policy page  -----------------------
 
@@ -141,10 +151,14 @@ Route::middleware(['auth'])->group(function () {
       Route::get('invoice/{orderid}/mail', 'mailInvoice');
    });
 
-   // ----------------- -- account   profile -------------------
+   // ----------------- --user account   profile -------------------
    Route::controller(HomeController::class)->group(function () {
 
-      Route::get('/profile', 'user_profile');
+      Route::get('/profile/account', 'profile_account');
+      Route::get('/profile/address', 'profile_address');
+      Route::get('/profile/orders', 'profile_orders');
+      Route::get('/profile/wishlist', 'profile_wishlist');
+
 
       Route::post('/profile-about', 'about_profile');
 

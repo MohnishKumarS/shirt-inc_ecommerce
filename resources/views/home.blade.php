@@ -4,631 +4,387 @@
 
 @section('content')
 
-    {{-- ------------- carousel ------------------ --}}
-    <div id="carousel-head" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="{{ $slider_active->timer }}">
-                <img src="{{ asset('image/slider/' . $slider_active->image) }}" class="img-fluid" alt="slider-poster"
-                    loading="lazy">
+    {{-- ````````` HOME SLIDER ```````````` --}}
+    <!-- ``````````````````````````````````` -->
+    <section class="swiper-container js-swiper-slider slideshow full-width_padding swiper-number-pagination" data-settings='{
+      "autoplay": {
+        "delay": 5000
+      },
+      "slidesPerView": 1,
+      "effect": "fade",
+      "loop": true
+    }'>
+  <div class="swiper-wrapper">
+      
+
+      @foreach ($slider as $item)
+      <div class="swiper-slide">
+        <div class="overflow-hidden position-relative h-100">
+            <div class="slideshow-bg">
+                <img loading="lazy" src="{{ asset('image/slider/' . $item->image) }}" width="1783" height="800" alt="" class="slideshow-bg__img object-fit-cover object-position-right">
             </div>
-            @foreach ($slider as $item)
-                <div class="carousel-item" data-bs-interval="{{ $item->timer }}">
-                    <img src="{{ asset('image/slider/' . $item->image) }}" class="img-fluid" alt="slider-poster"
-                        loading="lazy">
-                </div>
-            @endforeach
-
-
+            <div hidden class="slideshow-text container position-absolute start-50 top-50 translate-middle">
+                <h6 class="text_dash text-uppercase fs-base fw-medium animate animate_fade animate_btt animate_delay-3 text-white">
+                    Couples T-shirt
+                </h6>
+                <h2 class="text-uppercase h1 fw-normal mb-0 animate animate_fade animate_btt animate_delay-5 text-white">
+                    Couples T-shirt
+                </h2>
+                <a href="#" class="btn-link btn-link_lg default-underline text-uppercase fw-medium animate animate_fade animate_btt animate_delay-7 text-white">
+                    Discover More
+                </a>
+            </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-head" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carousel-head" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
     </div>
+      @endforeach
 
+  </div>
 
-    <!-- ---------------------------------------------
-                              ^^^^^^^^^^^^^ ~~ Trending Product list ~~  ^^^^^^^^^^^^^^
-                                 --------------------------------------------- -->
-    <section class="our-trending">
-        <div class="row mb-5 pb-3">
-            <div class="col-12 heading-section text-center">
-                <h1 class="big-title">Trending</h1>
-                <h2 class="mb-4">our trendings</h2>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row" style="min-height: 445px">
-
-                {{-- --- -trnding list ---- --}}
-                <div class="owl-carousel owl-theme mt-3">
-                    @foreach ($trending as $val)
-                        @php
-                            $img = explode(',', $val->image);
-                        @endphp
-                        {{-- --- looping a product ---- --}}
-
-                        <div class="item">
-                            <!-- -----------  product view  ------------ -->
-                            <div class="product-data">
-                                <div class="product">
-                                    <input type="hidden" class="product_id" value="{{ $val['id'] }}">
-                                    <input type="hidden" class="qty-value" value="1">
-                                    <div class="product-image">
-                                        @if (count($img) > 1)
-                                            <a class="image">
-                                                <img src="{{ asset('image/product/' . $img[0]) }}" class="pic-1 rotate"
-                                                    alt="product-show" loading="lazy">
-                                                <img src="{{ asset('image/product/' . $img[1]) }}" class="pic-2 rotate"
-                                                    alt="product-show" loading="lazy">
-                                            </a>
-                                        @else
-                                            <a class="image">
-                                                <img src="{{ asset('image/product/' . $val->image) }}" class="pic-1"
-                                                    alt="product-show" loading="lazy">
-                                            </a>
-                                        @endif
-
-                                        {{-- ----- offer message ------- --}}
-                                        @if ($val->offer_menu)
-                                            <span class="discount">{{ $val->offer_msg }}</span>
-                                        @endif
-                                        <a href="" class="cart addToCart">Add to cart</a>
-
-                                        <ul class="links">
-                                            <li><a href="{{ url('category/' . $val->category->slug . '/' . $val->slug) }}"><i
-                                                        class="fa-solid fa-magnifying-glass"></i></a></li>
-                                            <li><a href="" class="addtoWishlist"><i
-                                                        class="fa-regular fa-heart"></i></a></li>
-                                        </ul>
-
-                                        <div class="content">
-                                            <span class="category"><a
-                                                    href="{{ url('category/' . $val->category->slug) }}">{{ $val->category->name }}</a></span>
-                                            <h3 class="title"><a
-                                                    href="{{ url('category/' . $val->category->slug . '/' . $val->slug) }}">{{ $val->name }}</a>
-                                            </h3>
-                                            <div class="price">
-                                                <span>Rs {{ $val->original_price }}</span>Rs {{ $val->selling_price }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
+  <div class="container">
+      <div class="slideshow-pagination slideshow-number-pagination d-flex align-items-center position-absolute bottom-0 mb-5 position-xxl-right-center">
+      </div>
+  </div>
+</section>
+    <div class="pt-1 pb-5"></div>
 
 
 
-            </div>
-        </div>
-        <div class="trending-shape-divider">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path
-                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-                    class="shape-fill"></path>
-            </svg>
-        </div>
-    </section>
-
-    <!-- ---------------------------------------------
-                          ^^^^^^^^^^^^^ ~~ category list ~~  ^^^^^^^^^^^^^^
-                             --------------------------------------------- -->
-    @if (count($category) > 0)
-        <section class="our-category">
-            <div class="row mb-5 pb-3 category-stick">
-                <div class="col-12 heading-section text-center">
-                    <h1 class="big-title">Category</h1>
-                    <h2 class="mb-4">our Category</h2>
-                </div>
-            </div>
-
-            <div class="category-section-all d-lg-none">
-                @foreach ($category as $val)
-                    <div class="card">
-                        <a href="{{ url('category/' . $val->slug) }}">
-                            <h2 class="cat-title">{{ $val->name }}</h2>
-                            <img src="{{ asset('image/category/' . $val->image) }}" alt="category-list" class="img-fluid">
-                        </a>
-                    </div>
-                @endforeach
-
-            </div>
-
-            <div class="container ">
-
-                <div class="category-sec d-none d-lg-block">
-                    <div class="row">
-                        @foreach ($category as $val)
-                            <div class="col-lg-4 col-xl-3 gy-5">
-                                <div class="card">
-                                    <img src="{{ asset('image/category/' . $val->image) }}" alt="category-list">
-                                    <div class="card-content">
-                                        <h2>
-                                            {{ $val->name }}
-                                        </h2>
-                                        <!-- <p>
-                                                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                              </p> -->
-                                        <a href="{{ url('category/' . $val->slug) }}" class="btn-blue">
-                                            Find out more
-                                            <i class="fa-solid fa-arrow-right ps-2"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-
-
-                </div>
-            </div>
-        </section>
-    @endif
-
-
-
-    <!-- ---------------------------------------------
-                             ^^^^^^^^^^^^^ ~~ popular list ~~  ^^^^^^^^^^^^^^
-                              --------------------------------------------- -->
-    @if (count($popular) > 0)
-
-        <section class="our-popular">
-            <div class="row mb-5 pb-3">
-                <div class="col-12 heading-section text-center">
-                    <h1 class="big-title">Popular</h1>
-                    <h2 class="mb-4">our popular</h2>
-                </div>
-            </div>
-            <div class="container">
-
-                <div class="popular-list">
-                    <div class="products">
-                        <h2 class="lg-title">Special T-shirt With Offers</h2>
-                        <p class="text-lights">
-                            Explore the combination of style and comfort with cool T-shirts in various themes and ...
-                            Wrangler
-                            Solid Men Round Neck Black T-Shirt ... Offer ends soon.
-                        </p>
-
-                        <div class="product-items">
-
-                            <div class="row row-cols-lg-3 row-cols-md-2  gy-4">
-
-                                @foreach ($popular as $val)
-                                    @php
-                                        $img_pop = explode(',', $val->image);
-                                        // echo '<pre>';
-                                        // print_r($img)
-                                    @endphp
-                                    {{-- {{$val}} --}}
-
-                                    <div class="col">
-                                        <!-- ------------- view product  list ---------------- -->
-
-                                        <div class="product-data">
-                                            <div class="product-content">
-                                                <input type="hidden" class="product_id" value="{{ $val['id'] }}">
-                                                <input type="hidden" class="qty-value" value="1">
-                                                <div class="product-img">
-                                                    <img src="{{ asset('image/product/' . $img_pop[0]) }}"
-                                                        alt="popular-tees" loading="lazy">
-                                                </div>
-                                                <div class="product-btns">
-                                                    <a href="" class="btn-cart addToCart">
-                                                        add to cart <span><i class="fa-solid fa-plus"></i></span>
-                                                    </a>
-                                                    <a href="" class="btn-buy addtoWishlist">
-                                                        add to fav <span><i class="fa-regular fa-heart"></i></span>
-                                                    </a>
-                                                </div>
-                                                <div class="product-info">
-                                                    <div class="product-info-top">
-                                                        <a class="text-sm"
-                                                            href="{{ url('category/' . $val->category->slug) }}">{{ $val->category->name }}</a>
-                                                        <div class="rating">
-                                                            <span><i class="fa-solid fa-star"></i></span>
-                                                            <span><i class="fa-solid fa-star"></i></span>
-                                                            <span><i class="fa-solid fa-star"></i></span>
-                                                            <span><i class="fa-solid fa-star"></i></span>
-                                                            <span><i class="fa-regular fa-star"></i></span>
-                                                        </div>
-                                                    </div>
-                                                    <a href="{{ url('category/' . $val->category->slug . '/' . $val->slug) }}"
-                                                        class="text-md">{{ $val->name }}</a>
-                                                    <p class="product-price">Rs {{ $val->original_price }}</p>
-                                                    <p class="product-price">Rs {{ $val->selling_price }}</p>
-                                                </div>
-                                                @if ($val->offer_menu)
-                                                    <div class="offer-info">
-                                                        <h2 class="text-sm">{{ $val->offer_msg }}</h2>
-                                                    </div>
-                                                @endif
-                                                <!-- <div class="offer-info">
-                                                                              <h2 class="sm-title">24% Off</h2>
-                                                                       </div> -->
-                                            </div>
-                                        </div>
-                                        <!-- -------------end of  view product  list  ---------------- -->
-                                    </div>
-                                @endforeach
-
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="popular-shape-divider-top">
-                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
-                    preserveAspectRatio="none">
-                    <path
-                        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-                        class="shape-fill"></path>
-                </svg>
-            </div>
-            <div class="popular-shape-divider-bottom">
-                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
-                </svg>
-            </div>
-        </section>
-
-    @endif
-    <!-- ---------------------------------------------
-                              ^^^^^^^^^^^^^ ~~ Unique Collection  ~~  ^^^^^^^^^^^^^^
-                            --------------------------------------------- -->
-
-    {{-- <section>
-        <div class="unique-collection">
-            <div>
-                <small class="text-sm">new collection</small>
-                <h3>Be different in your own way!</h3>
-                <h4>Find your unique style.</h4>
-                <div class="mt-3">
-                    <a href="" class="btn-black">shop collection</a>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-
-
-
-
-    <!-- ---------------------------------------------
-                             ^^^^^^^^^^^^^ ~~ Overall Collection list  ~~  ^^^^^^^^^^^^^^
-                                --------------------------------------------- -->
-
-    <section>
-        <div class="row mb-5 pb-3">
-            <div class="col-12 heading-section text-center">
-                <h1 class="big-title">collection</h1>
-                <h2 class="mb-4">our collection</h2>
-            </div>
-        </div>
-        <div class="overall-collection px-3">
-            <div class="row">
-                <div class="col-lg-6  row-col-1">
-                    <div class="all-col-1 h-100">
-                        <div>
-                            <h2>Summer Collection</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6  row-col-2">
-                    <div class="row h-100">
-                        <div class="col-lg-6 col-md-6 h-50">
-                            <div class="all-col-2 h-100">
-                                <div>
-                                    <h2>Men's Collection</h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 h-50">
-                            <div class="all-col-3 h-100">
-                                <div>
-                                    <h2>Women's Collection</h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 h-50">
-                            <div class="all-col-4 h-100">
-                                <div>
-                                    <h2>Free Shipping</h2>
-                                    <h3>On All Orders Above ₹999</h3>
-                                    <div>
-                                        <a href="{{ url('collections') }}" class="btn-black fw-light">view collection</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <!-- ---------------------------------------------
-                              ^^^^^^^^^^^^^ ~~ Our Advantage  ~~  ^^^^^^^^^^^^^^
-                              --------------------------------------------- -->
-
-    <section>
-        <div class="our-advantage">
-            <div class="container">
-                <h2 class="title">Our advantages</h2>
-                <div class="row mt-5">
-                    <div class="col-lg-3 col-sm-6 mt-4 mt-lg-0 ">
-                        <div class="icon">
-                            <img width="90" height="90" src="https://img.icons8.com/clouds/100/truck.png"
-                                alt="truck" loading="lazy" />
-                        </div>
-                        <h3>Free shipping <br>from ₹500</h3>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 mt-4 mt-lg-0">
-                        <div class="icon">
-                            <img width="90" height="90" src="https://img.icons8.com/clouds/100/headset.png"
-                                alt="headset" loading="lazy" />
-                        </div>
-                        <h3>24/7 <br>Help Center</h3>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 mt-4 mt-lg-0">
-                        <div class="icon"><img width="90" height="90"
-                                src="https://img.icons8.com/bubbles/100/u-turn-to-left.png" alt="u-turn-to-left"
-                                loading="lazy" />
-                        </div>
-                        <h3>Exchange and return <br>within 14 days</h3>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 mt-4 mt-lg-0">
-                        <div class="icon"><img width="90" height="90"
-                                src="https://img.icons8.com/bubbles/100/discount.png" alt="discount" loading="lazy" />
-                        </div>
-                        <h3>Discounts for <br>customers</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ---------------------------------------------
-                             ^^^^^^^^^^^^^ ~~ base collection product ~~  ^^^^^^^^^^^^^^
-                              --------------------------------------------- -->
-
-    <section>
-        <div class="row mb-5 pb-3">
-            <div class="col-12 heading-section text-center">
-                <h1 class="big-title">Arrival</h1>
-                <h2 class="mb-4">new arrival</h2>
-            </div>
-        </div>
-        <div class="container">
-            <div class="base-collection">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div>
-                            <div class="base-img text-center">
-                                <img src="../image/products/ts/base1.jpg" alt="new-arrival" class="img-fluid"
-                                    loading="lazy">
-                            </div>
-                            <div class="base-content text-center mt-4 mb-4 mb-lg-0">
-                                <small class="text-sm">MEN</small>
-                                <h3>The base collection - Ideal every day.</h3>
-                                <a href="{{ url('new-arrival') }}" class="btn-black">Shop Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
+     {{-- ````````` CATEGORY SLIDER ```````````` --}}
+    <!-- ``````````````````````````````````` -->
+    <div class="container mw-1620 bg-white border-radius-10">
+      <div class="mb-3 mb-xl-5 pt-1 pb-4"></div>
+      <section class="category-carousel container">
+          <h2 class="section-title text-center mb-3 pb-xl-2 mb-xl-4">You Might Like</h2>
+  
+          <div class="position-relative">
+              <div class="swiper-container js-swiper-slider" data-settings='{
+                "autoplay": {
+                  "delay": 5000
+                },
+                "slidesPerView": 8,
+                "slidesPerGroup": 1,
+                "effect": "none",
+                "loop": true,
+                "navigation": {
+                  "nextEl": ".products-carousel__next-1",
+                  "prevEl": ".products-carousel__prev-1"
+                },
+                "breakpoints": {
+                  "320": {
+                    "slidesPerView": 2,
+                    "slidesPerGroup": 2,
+                    "spaceBetween": 15
+                  },
+                  "768": {
+                    "slidesPerView": 4,
+                    "slidesPerGroup": 4,
+                    "spaceBetween": 30
+                  },
+                  "992": {
+                    "slidesPerView": 6,
+                    "slidesPerGroup": 1,
+                    "spaceBetween": 45,
+                    "pagination": false
+                  },
+                  "1200": {
+                    "slidesPerView": 8,
+                    "slidesPerGroup": 1,
+                    "spaceBetween": 60,
+                    "pagination": false
+                  }
+                }
+              }'>
+                  <div class="swiper-wrapper">
+                     
+                      @foreach ($category as $item)
+                      <div class="swiper-slide">
+                        <img loading="lazy" class="w-100 h-auto mb-3" src="{{ asset('image/category/' . $item->image) }}" width="124" height="124" alt="category-list">
                         <div class="text-center">
-                            <img src="../image/products/ts/base2.jpg" alt="new-arrival" class="img-fluid"
-                                loading="lazy">
+                            <a href="{{ url('category/'.$item->slug) }}" class="menu-link fw-medium">Women<br>{{$item->name}}</a>
                         </div>
                     </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-
-
-
-    <!-- ---------------------------------------------
-                               ^^^^^^^^^^^^^ ~~ advertise add- offer  ~~  ^^^^^^^^^^^^^^
-                              --------------------------------------------- -->
-
-    <section>
-        <div class="advertise-offer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-12 d-flex align-items-center justify-content-center">
-                        <div class="advertise-content bg-light  p-4 text-center rounded">
-                            <img width="100" height="100" src="https://img.icons8.com/clouds/100/discount.png"
-                                alt="discount" loading="lazy" />
-                            <h2>25% OFF</h2>
-                            <h5>On All Orders Above <span class="text-danger">₹1199!</span></h5>
-                            <p class="text-muted">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi,
-                                tempore.</p>
-                            <a href="" class="btn-black">GRAB THIS OFFER</a>
-
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-12 d-flex justify-content-center">
-                        <div class="img">
-                            <img src="../image/products/bb/ba3.png" alt="offer-products" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ---------------------------------------------
-                               ^^^^^^^^^^^^^ ~~ subscription user  ~~  ^^^^^^^^^^^^^^
-                              --------------------------------------------- -->
-
-    <section class='pb-0'>
-        <div class="subscribe">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-7 col-md-8 col-sm-10">
-                        <div class="subscribe-content">
-                            <h2>Subscribe</h2>
-                            <p>Subscribe us and you won't miss the new arrivals, as well as discounts and sales.</p>
-                            <form action="{{ url('/user-subscribe') }}" method="post">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-lg-8 col-md-8">
-                                        <input type="email" name="sub-mail"
-                                            pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,4}" required
-                                            placeholder="E-mail">
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 mt-4 mt-md-0">
-                                        <button class="btn-blue" type="submit">SEND</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
+                      @endforeach
+                    
+                  </div>
+              </div>
+  
+              <div class="products-carousel__prev products-carousel__prev-1 position-absolute top-50 d-flex align-items-center justify-content-center">
+                   <img src="{{ asset("assets/icons/icon_left_chevron.svg") }}" alt="cart Icon">
+              </div>
+              <div class="products-carousel__next products-carousel__next-1 position-absolute top-50 d-flex align-items-center justify-content-center">
+                   <img src="{{ asset("assets/icons/icon_right_chevron.svg") }}" alt="cart Icon">
+              </div>
+          </div>
+      </section>
+  </div>
+    <div class="mb-4 mb-xl-5 pt-1 pb-5"></div>
 
 
 
-    @if ($poster)
-        <!--Ads Poster Modal -->
-        <div class="modal fade" id="popup" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-4" id="exampleModalLabel"> {{ $poster->title }}</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div>
-                            <img src="{{ asset('image/Ads-poster/' . $poster->image) }}" class="img-fluid"
-                                width="100%" alt="Ads-banner">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div>
-                            <a href="{{ route('signin') }}" class="btn-blue">Login Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endif
+
+
+
+     {{-- ````````` CATEGORY BANNER ```````````` --}}
+    <!-- ``````````````````````````````````` -->
+    <section class="grid-banner container mb-3">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="grid-banner__item grid-banner__item_rect grid-banner__item_rect_3 position-relative">
+                  <div class="background-img" style="background-image: url('<?= $url ?>assets/images/mocks/women-banner.webp');"></div>
+                  <!-- <div class="content_abs content_right d-flex flex-column justify-content-center h-100">
+                      <h3 class="text-uppercase text-white fs-35 fw-bold mb-3">Women's<br>Collections</h3>
+                      <p class="mb-0">
+                          <a href="#" class="btn-link default-underline text-uppercase text-white fw-bold fs-base w-auto">Shop Now</a>
+                      </p>
+                  </div> -->
+              </div>
+          </div>
+          <div class="col-md-12 pt-2">
+              <div class="grid-banner__item grid-banner__item_rect grid-banner__item_rect_3 position-relative">
+                  <div class="background-img" style="background-image: url('<?= $url ?>assets/images/mocks/men-banner.webp');"></div>
+                  <!-- <div class="content_abs content_right d-flex flex-column justify-content-center h-100">
+                      <h3 class="text-uppercase text-white fs-35 fw-bold mb-3">Men's<br>Collections</h3>
+                      <p class="mb-0">
+                          <a href="#" class="btn-link default-underline text-uppercase text-white fw-bold fs-base w-auto">Shop Now</a>
+                      </p>
+                  </div> -->
+              </div>
+          </div>
+          <div class="col-md-12 pt-2">
+              <div class="grid-banner__item grid-banner__item_rect grid-banner__item_rect_3 position-relative">
+                  <div class="background-img" style="background-image: url('<?= $url ?>assets/images/mocks/kids-banner.webp');"></div>
+                  <!-- <div class="content_abs content_left d-flex flex-column justify-content-center h-100">
+                      <h3 class="text-uppercase text-white fs-35 fw-bold mb-3">Kid's<br>Collections</h3>
+                      <p class="mb-0">
+                          <a href="#" class="btn-link default-underline text-uppercase text-white fw-bold fs-base w-auto">Shop Now</a>
+                      </p>
+                  </div> -->
+              </div>
+          </div>
+      </div>
+  </section>
+    <div class="mb-4 mb-xl-5 pt-1 pb-5"></div>
+
+
+
+
+
+     {{-- ````````` TRENDING PRODUCT ```````````` --}}
+    <!-- ``````````````````````````````````` -->
+    <section class="category-masonry container">
+      <div class="row">
+          <div class="col-lg-6 px-4">
+              <div class="category-masonry__item">
+                  <h2 class="category-masonry__title fw-normal mb-0">New Season<br>and New Trends</h2>
+              </div>
+              <div class="pb-4 mb-4 pb-xl-5 mb-xl-5"></div>
+              <div class="category-masonry__item">
+                  <div class="category-masonry__item-image pb-1 mb-4">
+                      <img loading="lazy" class="h-auto" src="<?= $url ?>assets/images/mocks/slider/mock2.jpg" width="570" height="500" alt="">
+                  </div>
+                  <h2>Women’s Collection</h2>
+                  <a href="#" class="btn-link btn-link_md default-underline text-uppercase fw-medium">
+                      Discover Now
+                  </a>
+                  <div class="category-masonry__item-category fw-medium">WOMEN LOOKBOOK</div>
+              </div>
+              <div class="pb-4 mb-4 pb-xl-5 mb-xl-5 pt-4 mt-4 pt-xl-5 mt-xl-5"></div>
+              <div class="category-masonry__item">
+                  <div class="category-masonry__item-image pb-1 mb-4">
+                      <img loading="lazy" class="h-auto" src="<?= $url ?>assets/images/mocks/slider/mock1.webp" width="672" height="480" alt="">
+                  </div>
+                  <h2>Newest Women Clothes</h2>
+                  <a href="#" class="btn-link btn-link_md default-underline text-uppercase fw-medium">Discover
+                      Now</a>
+                  <div class="category-masonry__item-category fw-medium">NEW ARRIVAL</div>
+              </div>
+              <div class="pb-4 mb-4 pb-xl-5 mb-xl-5 pt-4 mt-4 pt-xl-5 mt-xl-5"></div>
+              <div class="category-masonry__item">
+                  <div class="category-masonry__item-image pb-1 mb-4">
+                      <img loading="lazy" class="h-auto" src="<?= $url ?>assets/images/mocks/slider/mock2.jpg" width="570" height="570" alt="">
+                  </div>
+                  <h2>Slouchy Colorblock Tunic Sweater</h2>
+                  <a href="#" class="btn-link btn-link_md default-underline text-uppercase fw-medium">Discover
+                      Now</a>
+                  <div class="category-masonry__item-category fw-medium">SWEATSHIRT</div>
+              </div>
+              <div class="pb-4 mb-4 pb-xl-5 mb-xl-5 pt-4 mt-4 pt-xl-5 mt-xl-5"></div>
+              <div class="category-masonry__item">
+                  <div class="category-masonry__item-image pb-1 mb-4">
+                      <img loading="lazy" class="h-auto" src="<?= $url ?>assets/images/mocks/slider/mock1.webp" width="450" height="550" alt="">
+                  </div>
+                  <h2>Jackets & Coats</h2>
+                  <a href="#" class="btn-link btn-link_md default-underline text-uppercase fw-medium">Discover
+                      Now</a>
+                  <div class="category-masonry__item-category fw-medium">BE WELL DRESSED IN</div>
+              </div>
+              <div class="pb-4 mb-4 pb-xl-5 mb-xl-5 pt-4 mt-4 pt-xl-5 mt-xl-5"></div>
+          </div>
+          <div class="col-lg-6 px-4 d-lg-flex flex-lg-column align-items-lg-end">
+              <div class="category-masonry__item">
+                  <div class="category-masonry__item-image pb-1 mb-4">
+                      <img loading="lazy" class="h-auto" src="<?= $url ?>assets/images/mocks/slider/mock3.png" width="570" height="631" alt="">
+                  </div>
+                  <h2>Men’s Spring Collection 2020</h2>
+                  <a href="#" class="btn-link btn-link_md default-underline text-uppercase fw-medium">
+                      Discover Now
+                  </a>
+                  <div class="category-masonry__item-category fw-medium">MEN COLLECTION</div>
+              </div>
+              <div class="pb-4 mb-4 pb-xl-5 mb-xl-5 pt-4 mt-4 pt-xl-5 mt-xl-5"></div>
+              <div class="category-masonry__item">
+                  <div class="category-masonry__item-image pb-1 mb-4">
+                      <img loading="lazy" class="h-auto" src="<?= $url ?>assets/images/mocks/slider/mock5.webp" width="450" height="550" alt="">
+                  </div>
+                  <h2>Fresh Dresses</h2>
+                  <a href="#" class="btn-link btn-link_md default-underline text-uppercase fw-medium">Discover
+                      Now</a>
+                  <div class="category-masonry__item-category fw-medium">DRESSES</div>
+              </div>
+              <div class="pb-4 mb-4 pb-xl-5 mb-xl-5 pt-4 mt-4 pt-xl-5 mt-xl-5"></div>
+              <div class="category-masonry__item">
+                  <div class="category-masonry__item-image pb-1 mb-4">
+                      <img loading="lazy" class="h-auto" src="<?= $url ?>assets/images/mocks/slider/mock5.png" width="570" height="450" alt="">
+                  </div>
+                  <h2>Shirt in Vintage Plaid</h2>
+                  <a href="#" class="btn-link btn-link_md default-underline text-uppercase fw-medium">Discover
+                      Now</a>
+                  <div class="category-masonry__item-category fw-medium">FIND YOUR FIT</div>
+              </div>
+              <div class="pb-4 mb-4 pb-xl-5 mb-xl-5 pt-4 mt-4 pt-xl-5 mt-xl-5"></div>
+              <div class="pb-0 mb-0 pb-xl-5 mb-xl-5 pt-0 mt-0 pt-xl-5 mt-xl-4"></div>
+              <div class="category-masonry__item">
+                  <div class="category-masonry__item-image pb-1 mb-4">
+                      <img loading="lazy" class="h-auto" src="<?= $url ?>assets/images/mocks/slider/mock3.png" width="450" height="450" alt="">
+                  </div>
+                  <h2>Sleeve Bags</h2>
+                  <a href="#" class="btn-link btn-link_md default-underline text-uppercase fw-medium">Discover
+                      Now</a>
+                  <div class="category-masonry__item-category fw-medium">ACCESSORIES</div>
+              </div>
+              <div class="pb-4 mb-4 pb-xl-5 mb-xl-5 pt-4 mt-4 pt-xl-5 mt-xl-5"></div>
+          </div>
+      </div>
+  </section>
+
+
+
+    {{-- ````````` OFFER CARDS ```````````` --}}
+    <!-- ``````````````````````````````````` -->
+    @include ('blocks.offers-cards')
+    <div class="mb-4 mb-xl-5 pt-1 pb-5"></div>
+
+
+
+     {{-- ````````` LATEST PRODUCT ```````````` --}}
+    <!-- ``````````````````````````````````` -->
+    <section class="products-carousel container">
+      <h2 class="section-title text-uppercase fw-bold text-center mb-4 pb-xl-2 mb-xl-4">Latest Products</h2>
+  
+      <div class="position-relative">
+          <div class="swiper-container js-swiper-slider" data-settings='{
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": 4,
+              "slidesPerGroup": 4,
+              "effect": "none",
+              "loop": false,
+              "scrollbar": {
+                "el": ".products-carousel__scrollbar",
+                "draggable": true
+              },
+              "navigation": {
+                "nextEl": ".products-carousel__next",
+                "prevEl": ".products-carousel__prev"
+              },
+              "breakpoints": {
+                "320": {
+                  "slidesPerView": 2,
+                  "slidesPerGroup": 2,
+                  "spaceBetween": 14
+                },
+                "768": {
+                  "slidesPerView": 3,
+                  "slidesPerGroup": 3,
+                  "spaceBetween": 24
+                },
+                "992": {
+                  "slidesPerView": 4,
+                  "slidesPerGroup": 1,
+                  "spaceBetween": 30,
+                  "pagination": false
+                }
+              }
+            }'>
+              <div class="swiper-wrapper">
+                 
+                  @foreach ($trending as $val)
+                    @php
+                    $img = explode(',', $val->image);
+                   
+                    @endphp
+
+                    {{-- --- loop a trending products --- --}}
+
+                    <div class="swiper-slide product-card">
+                      <div class="pc__img-wrapper">
+                          <a href="{{ url('category/' . $val->category->slug . '/' . $val->slug) }}">
+                           @if (count($img) > 1)
+                           <img loading="lazy" src="{{ asset('image/product/' . $img[0]) }}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
+                           <img loading="lazy" src="{{ asset('image/product/' . $img[1]) }}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
+                           @else
+                           <img loading="lazy" src="{{ asset('image/product/' . $img[0]) }}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
+                           
+                           @endif
+                              
+                          </a>
+                          <div class="anim_appear-bottom position-absolute bottom-0 start-0 w-100 d-none d-sm-flex align-items-center">
+                              <button class="btn btn-primary flex-grow-1 fs-base ps-3 ps-xxl-4 pe-0 border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
+                              <a href="{{ url('category/' . $val->category->slug . '/' . $val->slug) }}" class="btn btn-primary flex-grow-1 fs-base ps-0 pe-3 pe-xxl-4 border-0 text-uppercase fw-medium js-quick-view"  title="Quick view">Quick View</a>
+                          </div>
+                          <button class="pc__btn-wl position-absolute bg-body rounded-circle border-0 text-primary js-add-wishlist" title="Add To Wishlist">
+                              {!!$icon_heart!!}
+                              {{-- <img src="{{ asset("assets/icons/icon_heart.svg") }}" alt="heart Icon"> --}}
+                          </button>
+                      </div>
+  
+                      <div class="pc__info position-relative">
+                          <p class="pc__category third-color">{{ $val->category->name }}</p>
+                          <h6 class="pc__title"><a href="{{ url('category/' . $val->category->slug . '/' . $val->slug) }}">{{ $val->name }}</a></h6>
+                          <div class="product-card__price d-flex">
+                              <span class="money price">Rs.{{ $val->selling_price }}</span>
+                          </div>
+                      </div>
+                  </div>
+
+                  @endforeach
+
+
+              </div>
+          </div>
+  
+          <div class="products-carousel__prev position-absolute top-50 d-flex align-items-center justify-content-center">
+               <img src="{{ asset("assets/icons/icon_left_chevron.svg") }}" alt="cart Icon">
+          </div>
+          <div class="products-carousel__next position-absolute top-50 d-flex align-items-center justify-content-center">
+               <img src="{{ asset("assets/icons/icon_right_chevron.svg") }}" alt="cart Icon">
+          </div>
+  
+          <div class="pb-2 mb-2 mb-xl-4"></div>
+  
+          <div class="products-carousel__scrollbar swiper-scrollbar"></div>
+      </div>
+  
+  </section>
+
+    <div class="mb-4 mb-xl-5 pt-1 pb-5"></div>
+
+
+
+     {{-- ````````` SERVICE BLOCK ```````````` --}}
+    <!-- ``````````````````````````````````` -->
+    @include ('blocks.services-block')
 
 
 @endsection
-
-
-{{-- -------------- scripts ---------------- --}}
-
-@section('scripts')
-
-    <script>
-        // ------------ Ads poster -----------------
-        $(document).ready(function() {
-            if (sessionStorage.getItem('#popup') != 'true') {
-
-                $('#popup').modal('show');
-                sessionStorage.setItem('#popup', true);
-
-            }
-
-            // Initial scroll position check
-            checkScroll();
-
-            // Scroll event listener
-            $(window).scroll(function() {
-                checkScroll();
-
-            });
-
-            function checkScroll() {
-                // Get the current scroll position
-                var scrollPos = $(window).scrollTop();
-
-                // Set the margin based on the scroll position
-                var marginValue = (scrollPos > 0) ? '0 20px' : '0';
-                var caro_z_index = (scrollPos > 500) ? '-1' : '0';
-                // var footer_z_index = (scrollPos > 1000) ? '0' : '-1';
-
-                // Apply the margin to the carousel
-                $('#carousel-head').css('margin', marginValue);
-                $('#carousel-head').css('z-index', caro_z_index);
-                // $('.footer-main').css('z-index', footer_z_index);
-            }
-        })
-        // --------------- pop up ---------------------
-        const popup = document.querySelector('.popup');
-        const closes = document.querySelector('.close');
-
-        // window.onload = popup_show();
-
-        // function popup_show() {
-        //     setTimeout(() => {
-        //         popup.style.display = "block";
-        //     }, 5000);
-
-        // }
-
-        // closes.addEventListener('click', popup_hide)
-
-        // function popup_hide() {
-        //     popup.style.display = "none";
-        // }
-
-
-
-        // -------------------- loading lazy ------------------
-
-        //     const images =  document.querySelectorAll('img');
-
-
-        //     let options = {};
-
-
-        // let observer = new IntersectionObserver((entries,observe)=>{
-        //   entries.forEach((entry)=>{
-        //     const image = entry.target;
-        //     console.log(image);
-        //   })
-
-
-        // }, options);
-
-        // images.forEach(img => {
-        //       observer.observe(img)
-        //       // console.log(img);
-        //     });
-    </script>
-
-
-@endsection
-
-@push('styles')
-    <style>
-        section {
-            padding: 9rem 0 100px;
-        }
-
-        .footer-main{
-            position: relative !important;
-        }
-    </style>
-@endpush

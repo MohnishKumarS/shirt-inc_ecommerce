@@ -25,11 +25,11 @@ class UserController extends Controller
     // ---- home page ----
 
     public function index(){
-        $trending = Product::where("trending",1)->latest('id')->take(10)->get(); 
+        $trending = Product::where("trending",1)->latest('id')->take(12)->get(); 
         $category = Category::orderBy('id','desc')->take(10)->get();
         $popular = Product::where('status',1)->latest('id')->take(9)->get();
         $slider_active = Slider::where('active',1)->latest('id')->take(1)->first();
-        $slider = Slider::where('active',0)->latest('id')->take(3)->get();
+        $slider = Slider::where('active',0)->latest('id')->take(4)->get();
         $poster = Poster::where('active',1)->latest('id')->take(1)->first();
         // return $slider_active;
         return view('home',\compact('trending',"category","popular",'slider_active','slider','poster'));
@@ -50,6 +50,30 @@ class UserController extends Controller
         $category = category::latest()->take(1)->first();
         return view('product.new-arrival',compact('new_product','category'));
     }
+
+    // --------------- womens products -----------------
+
+    public function womens_collections(){
+        $womens_collect = Product::where('type','womens')->latest()->get();
+        return view('product.womens-product',compact('womens_collect'));
+        
+        }
+
+    // --------------- mens products -----------------
+
+    public function mens_collections(){
+        $mens_collect = Product::where('type','mens')->latest()->get();
+        return view('product.mens-product',compact('mens_collect'));
+
+        }
+
+    // --------------- unisex products -----------------
+
+    public function unisex_collections(){
+        $unisex_collect = Product::where('type','unisex')->latest()->get();
+        return view('product.unisex-product',compact('unisex_collect'));
+
+        }
 
     // --------------- view all product in search category -----------
 

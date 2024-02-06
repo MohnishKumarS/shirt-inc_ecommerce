@@ -1,73 +1,129 @@
 @extends('layouts.userpage')
 
-@section('title', 'Welcome to E-Shop')
+@section('title', 'Sign in to Shirt-inc')
 
 @section('content')
 
     <!-- ----------------- login - page ---------------- -->
     <!-- =================================================== -->
-
-   <section>
-    <div class="elog-login">
-        <div class="container h-100">
-
-            <div class="row d-flex justify-content-center  align-items-center py-5 py-lg-0">
-
-                <div class="col-xxl-5 col-lg-6 col-md-10 col-sm-10 col-10">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="elog-wrapper">
-                            <h2 class="elog-title text-center">
-                                <img width="94" height="94"
-                                    src="https://img.icons8.com/3d-fluency/94/user-male-circle.png"
-                                    alt="user-male-circle" loading="lazy"/>
-                            </h2>
-
-                            <div class="elog-box">
-                                {{-- -- error display message --- --}}
-                                @error('email')
-                                    <div class="alert alert-danger " role="alert">
-                                        <strong>Login failed!</strong> Incorrect email or password. <i
-                                            class="fa-solid fa-circle-exclamation fs-6 ms-1"></i>
-                                    </div>
-                                @enderror
-                                <div class="elog-item">
-                                    <input type="text" class="e-input" placeholder="Email ID" name="email"
-                                        value="{{ old('email') }}">
-                                    <span class="e-icon"><i class="fa-solid fa-envelope"></i></span>
-                                </div>
-
-                                <div class="elog-item">
-                                    <input type="password" class="e-input e-input-pass" placeholder="password" name="password">
-                                    <span class="e-icon"  style="cursor:pointer" onclick="showpass(this)">
-                                    <i class="fa-solid fa-eye-slash eye-open" id="eye-open"></i>
-                                </span>
-                                </div>
-                                <div class="elog-item text-end">
-                                    <a href="{{route('password.request')}}" class="e-link">Forget Password ?</a>
-                                </div>
-                                <div class="elog-btns">
-                                    <button class="btn-prime w-100">Login</button>
-                                </div>
-                                <div class="elog-link">
-                                    <h6>Need an account? <a href="{{ route('signup') }}" class="e-link">signup</a></h6>
-                                </div>
+    <main>
+        <div class="mb-4 pb-4"></div>
+        <section class="login-register container">
+            <h2 class="d-none">Login & Register</h2>
+            <ul class="nav nav-tabs mb-5" id="login_register" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link nav-link_underscore active" id="login-tab" data-bs-toggle="tab"
+                        href="#tab-item-login" role="tab" aria-controls="tab-item-login" aria-selected="true">Login</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link nav-link_underscore" id="register-tab" data-bs-toggle="tab"
+                        href="#tab-item-register" role="tab" aria-controls="tab-item-register"
+                        aria-selected="false">Register</a>
+                </li>
+            </ul>
+            <div class="tab-content pt-2" id="login_register_tab_content">
+                <div class="tab-pane fade show active" id="tab-item-login" role="tabpanel" aria-labelledby="login-tab">
+                    <div class="login-form">
+                        <form name="login-form" method="POST" action="{{ route('login') }}" class="needs-validation" novalidate>
+                            @csrf
+                             {{-- -- error display message --- --}}
+                             @error('email')
+                             <div class="alert alert-danger " role="alert">
+                                 <strong>Login failed!</strong> Incorrect email or password. <i
+                                     class="fa-solid fa-circle-exclamation fs-6 ms-1"></i>
+                             </div>
+                         @enderror
+                            <div class="form-floating mb-3">
+                                <input name="email" type="text" class="form-control form-control_gray"
+                                    id="customerNameEmailInput1" placeholder="Email address *" required>
+                                <label for="customerNameEmailInput1">Email address *</label>
                             </div>
-                        </div>
-                    </form>
+
+                            <div class="pb-3"></div>
+
+                            <div class="form-floating mb-3">
+                                <input name="password" type="password" class="form-control form-control_gray"
+                                    id="customerPasswodInput" placeholder="Password *" required>
+                                <label for="customerPasswodInput">Password *</label>
+                            </div>
+
+                            <div class="d-flex align-items-center mb-3 pb-2">
+                                <div class="form-check mb-0">
+                                    <input name="remember" class="form-check-input form-check-input_fill"
+                                        type="checkbox" value="" id="flexCheckDefault1">
+                                    <label class="form-check-label text-secondary" for="flexCheckDefault1">Remember
+                                        me</label>
+                                </div>
+                                <a href="{{route('password.request')}}" class="btn-text ms-auto">Lost password?</a>
+                            </div>
+
+                            <button class="btn btn-primary w-100 text-uppercase" type="submit">Log In</button>
+
+                            <div class="customer-option mt-4 text-center">
+                                <span class="text-secondary">No account yet?</span>
+                                <a href="#register-tab" class="btn-text js-show-register">Create Account</a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
 
-                <div class="col-lg-6 col-md-12">
-                    <div class="elog-img d-flex justify-content-center mt-5 mt-lg-0">
-                        <img src="{{ asset('image/products/bb/bb10.webp') }}" alt="sponser" class="img-fluid rounded" loading="lazy">
+                {{-- --------- register tab ------- --}}
+
+                <div class="tab-pane fade" id="tab-item-register" role="tabpanel" aria-labelledby="register-tab">
+                    <div class="register-form">
+                        <form name="register-form" class="needs-validation" novalidate method="POST" action="{{ route('register') }}">
+                            @csrf
+                            <div class="form-floating mb-3">
+                                <input name="name" type="text" class="form-control form-control_gray" title="Username must be at least 4 characters long."
+                                    id="customerNameRegisterInput" placeholder="Username" required value="{{ old('name') }}" pattern=".{4,}">
+                                <label for="customerNameRegisterInput">Username</label>
+                            </div>
+
+                            <div class="pb-3"></div>
+
+                            <div class="form-floating mb-3">
+                                <input name="email" type="email" class="form-control form-control_gray"
+                                    id="customerEmailRegisterInput" placeholder="Email address *" required>
+                                <label for="customerEmailRegisterInput">Email address *</label>
+                            </div>
+
+                            <div class="pb-3"></div>
+
+                            <div class="form-floating mb-3">
+                                <input name="mobile" type="text" class="form-control form-control_gray" onkeyup="this.value = this.value.replace(/[^0-9]/g,'')" maxlength="10"
+                                pattern="[0-9]{10}" title="Please enter a 10-digit mobile number" id="customermobileRegisterInput" placeholder="Email address *" required>
+                                <label for="customermobileRegisterInput">Mobile *</label>
+                            </div>
+                            @error('mobile')
+                            <span class="text-danger" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+
+                            <div class="pb-3"></div>
+
+                            <div class="form-floating mb-3">
+                                <input name="password" type="password" class="form-control form-control_gray" pattern=".{8,}"
+                                    id="customerPasswodRegisterInput" placeholder="Password *" required>
+                                <label for="customerPasswodRegisterInput">Password *</label>
+                            </div>
+
+                            <div class="d-flex align-items-center mb-3 pb-2">
+                                <p class="m-0">Your personal data will be used to support your experience throughout
+                                    this website, to manage access to your account, and for other purposes described in
+                                    our privacy policy.</p>
+                            </div>
+
+                            <button class="btn btn-primary w-100 text-uppercase" type="submit">Register</button>
+                        </form>
                     </div>
                 </div>
             </div>
+        </section>
+    </main>
 
-        </div>
-    </div>
-   </section>
+    <div class="mb-4 mb-xl-5 pt-1 pb-5"></div>
+
 
 @endsection
 

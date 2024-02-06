@@ -1,307 +1,267 @@
-{{-- ------------- top promo status ---------- --}}
-@if ($appsetting->promo_status !== null)
-    <div class="top-marq">
-        <marquee behavior="alternate">{{ $appsetting->promo_status }}</marquee>
-    </div>
-@endif
-{{-- ------------- navbar ------------------- --}}
+<!-- Elements Begin -->
+<?php
+$logoEle =
+    '<div class="logo">
+        <a href="' .
+    $url .
+    '">
+            <img src="' .
+    $url .
+    'assets/images/logo.png" alt="SHIRT-INC" class="logo__image d-block">
+        </a>
+    </div>';
 
-<header id="header_nav">
+$cart_icon = asset('assets/icons/icon_cart.svg');
+$cartBtn = "<button class='header-tools__item header-tools__cart js-open-aside' data-aside='cartDrawer' title='Cart'>
+    <img src='{$cart_icon}' alt='cart Icon'>
+        <span class='cart-amount d-block position-absolute js-cart-items-count'>3</span>
+    </button>";
 
-    <div class="container-fluid sticky-top p-0 navbar-container header">
+?>
+<!-- Elements End -->
 
-        <nav class="navbar navbar-expand-lg container ">
-            <div class="container-fluid">
-                <div class="d-flex align-items-center justify-content-center me-3">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="{{ asset('image/shirtinc-logo.png') }}" alt="shirtInc-logo" class="logo"
-                            loading="lazy">
-                    </a>
-                    <h1 class="nav-head"></h1>
-                </div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                    <ul class="navbar-nav m-auto">
+<!-- Desktop header begin -->
+<header id="header" class="header header_sticky header-fullwidth">
+    <!-- Topbar Begin -->
+    <nav class="topbar">
+        <div class="btn-wrapper d-flex align-items-center">
+            <a href="{{ url('womens-collections') }}" class="tag-btn active">Women</a>
+            <a href="{{ url('mens-collections') }}" class="tag-btn">Men</a>
+            <a href="{{ url('unisex-collections') }}" class="tag-btn">unisex</a>
+        </div>
+        <div class="link-wrapper d-flex align-items-center">
+            <a class="navigation__link" href="<?= $url ?>">Customize</a>
+            <a class="navigation__link" href="<?= $url ?>contact">Contact Us</a>
+        </div>
+    </nav>
+    <!-- Topbar End -->
+    <div class="header-desk header-desk_type_1">
 
-                        <li class="nav-item mt-3 mt-lg-0">
-                            <form action="{{ url('search-product') }}" method="post"
-                                class=" nav-form d-flex justify-content-start align-items-center me-1">
-                                @csrf
-                                <div class="search ">
+        <?= $logoEle ?>
 
-                                    <input type="text" class="form-control" placeholder="search here"
-                                        id="search-product-list" name="search_item">
-                                    <button class="navsearch-btn" type="submit" name="" value="search"> <i
-                                            class="fa fa-search"></i>
-                                    </button>
-                                </div>
-                            </form>
-                        </li>
+        <nav class="navigation">
+            <ul class="navigation__list list-unstyled d-flex">
+                <li class="navigation__item">
+                    <a href="<?= $url ?>collections" class="navigation__link">Collections</a>
+                    <div class="box-menu" style="width: 600px;">
+                        <div class="col pe-4">
+                            <ul class="sub-menu__list list-unstyled">
+                                <li class="sub-menu__item">
+                                    <a href="<?= $url ?>collections/pants-womens" class="menu-link menu-link_us-s">
+                                        Pants Women
+                                    </a>
+                                </li>
+                                <li class="sub-menu__item">
+                                    <a href="<?= $url ?>collections/thalapathy-leo" class="menu-link menu-link_us-s">
+                                        Thalapathy Leo
+                                    </a>
+                                </li>
+                                <li class="sub-menu__item">
+                                    <a href="<?= $url ?>collections/t-shirt" class="menu-link menu-link_us-s">
+                                        T-Shirt
+                                    </a>
+                                </li>
+                                <li class="sub-menu__item">
+                                    <a href="<?= $url ?>collections/sweat-shirt" class="menu-link menu-link_us-s">
+                                        Swear Shirt
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col pe-4">
+                            <ul class="sub-menu__list list-unstyled">
+                                <li class="sub-menu__item">
+                                    <a href="<?= $url ?>collections/oversized-t-shirt" class="menu-link menu-link_us-s">
+                                        Oversized Shirt
+                                    </a>
+                                </li>
+                                <li class="sub-menu__item">
+                                    <a href="<?= $url ?>collections/couple-t-shirt" class="menu-link menu-link_us-s">
+                                        Couple T-Shirt
+                                    </a>
+                                </li>
+                                <li class="sub-menu__item">
+                                    <a href="<?= $url ?>collections/hoodies" class="menu-link menu-link_us-s">
+                                        Hoodies
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="navigation__item">
+                    <a href="<?= $url ?>new-arrival" class="navigation__link">New Arrival</a>
+                </li>
+                @php
+                    use App\Models\Category;
+                    $category = Category::where('status', 1)
+                        ->latest()
+                        ->first();
+                @endphp
 
-
-                    </ul>
-
-                    <ul class="navbar-nav d-lg-navbar-nav ">
-
-
-                        <li class="nav-item">
-                            <a class="tooltip-link nav-link icon-nav-link" href="{{ url('/wishlist') }}">
-                                <div class="nav-wishlist">
-                                    <i class="fa-solid fa-heart"></i>
-                                    {{-- <sup class=" cart-count wishlist-counts"></sup> --}}
-                                </div>
-                                <span class="tooltiptext"> wishlist</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-item me-1">
-                            <a class=" tooltip-link nav-link icon-nav-link" href="{{ url('/my-cart') }}">
-                                <div>
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                    <sup class="cart-count cart-counts"></sup>
-                                </div>
-                                <span class="tooltiptext"> cart</span>
-                            </a>
-                        </li>
-
-                        @guest
-                            <li class="nav-item">
-                                <a href="{{ url('acc/signin') }}" class="btn-glow p-2"><i
-                                        class="fa-solid fa-paper-plane me-1"></i> Login</a>
-                            </li>
-                        @endguest
-
-                        @auth
-
-                            <li class="nav-item" style="cursor: pointer">
-                                <div class="dropdown ">
-                                    <div class="nav-link " data-bs-toggle="dropdown" aria-expanded="false">
-                                        <div>
-                                            <i class="fa-solid fa-circle-user"></i> Account
-                                        </div>
-
-                                    </div>
-                                    <ul class="dropdown-menu dropdown-menu-lg-end">
-
-                                        <li><a class="dropdown-item" href="{{ url('/profile') }}">
-                                                <i class="fa-solid fa-user me-1"></i> Profile</a></li>
-
-                                        <li>
-                                        <li><a class="dropdown-item" href="{{ url('/my-order') }}">
-                                                <i class="fa-solid fa-bag-shopping me-1"></i> Orders</a></li>
-
-                                        <li>
-                                        <li><a class="dropdown-item" href="{{ url('/my-order') }}">
-                                                <i class="fa-solid fa-gift me-1"></i> Offers Zone</a></li>
-
-                                        <li>
-                                        <li><a class="dropdown-item" href="{{ url('/my-order') }}">
-                                                <i class="fa-solid fa-circle-question me-1"></i> FAQs</a></li>
-
-                                        <li>
-                                            <a href="{{ route('logout') }}" class="btn btn-danger dropdown-item"
-                                                onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                                <i class="fa-solid fa-arrow-right-to-bracket me-1"></i>
-                                                <span class="d-sm-inline d-none">Logout</span>
-                                            </a>
-                                        </li>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            class="d-none">
-                                            @csrf
-                                        </form>
-
-
-                                    </ul>
-                                </div>
-                            </li>
-                        @endauth
-                    </ul>
-
-                    {{-- ------- mobile - view -------  --}}
-
-                    <ul class="navbar-nav d-md-navbar-nav ">
-
-                        <li class="nav-item">
-                            <a class="nav-link " href="{{ url('/collections') }}">
-                                Collections <i class="fa-solid fa-gift"></i>
-
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="{{ url('/new-arrival') }}">
-                                New Arrival
-                                <img src="{{ asset('image/gif/gif4.gif') }}" alt="new-collection" width="30"
-                                    loading="lazy">
-                                {{-- <i class="fa-regular fa-newspaper"></i> --}}
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="{{ url('/wishlist') }}">
-                                wishlist <i class="fa-solid fa-heart"></i>
-                                <sup class=" cart-count wishlist-counts"></sup>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-wishlist" href="{{ url('/my-cart') }}">
-                                cart <i class="fa-solid fa-cart-shopping"></i>
-                                <sup class=" cart-count cart-counts"></sup>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-
-                            <div class="dropdown ">
-                                <div class="nav-link " data-bs-toggle="dropdown" style="cursor: pointer">
-                                    <div>
-                                        Account <i class="fa-solid fa-user"></i>
-                                    </div>
-                                </div>
-                                <ul class="dropdown-menu dropdown-menu-lg-end">
-                                    @guest
-                                        <li><a class="dropdown-item" href="{{ url('acc/signin') }}"><i
-                                                    class="fa-regular fa-face-smile me-1"></i> Login</a></li>
-                                        <li><a class="dropdown-item" href="{{ url('acc/signup') }}"><i
-                                                    class="fa-regular fa-registered me-1"></i> Register</a></li>
-                                    @endguest
-                                    @auth
-                                        <li><a class="dropdown-item" href="{{ url('my-order') }}">
-                                                <i class="fa-solid fa-bag-shopping me-1"></i> Orders</a></li>
-                                        <li>
-                                            <a href="{{ route('logout') }}" class=" dropdown-item"
-                                                onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();">
-                                                <i class="fa-solid fa-arrow-right-to-bracket me-1"></i>
-                                                <span class="d-sm-inline d-none">Logout</span>
-                                            </a>
-                                        </li>
-                                    @endauth
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
-
-
-</header>
-
-@php
-    use App\Models\Category;
-    $category = Category::where('status', 1)
-        ->latest()
-        ->first();
-@endphp
-{{-- ------- navbar bottom --------------  --}}
-<div class="nav-bottom d-none d-lg-block">
-    <div class="container">
-        <ul class="nav-bottom__ul">
-            <li class="menu-item ">
-                <a href="{{ url('/') }}">Home</a>
-            </li>
-
-            @auth
-                @if (Auth::user()->role)
-                    <li class="menu-item ">
-                        <a href="{{ url('/dashboard') }}">Dashboard</a>
+                @if ($category)
+                    <li class="navigation__item">
+                        <a href="{{ url('category/' . $category->slug) }}"
+                            class="navigation__link">{{ $category->name }}
+                            <span class='align-middle'>
+                                <img src="{{ asset('image/gif/gif3.gif') }}" width="18" style="object-fit: contain"
+                                    alt="new-trendy" loading="lazy">
+                            </span>
+                        </a>
                     </li>
                 @endif
-            @endauth
-            <li class="menu-item {{ Request::is('collections') ? 'active' : '' }}">
-                <a href="{{ url('/collections') }}">Collections</a>
 
-            </li>
-            <li class="menu-item">
-                <a style="cursor:pointer">Category <span class="ms-1"><i
-                            class="fa-solid fa-angle-down"></i></span></a>
-
-                <div class="menu-subs menu-mega menu-column-4">
-                    <div class="list-item">
-                        <h4 class="title">Men's Fashion</h4>
-                        <ul>
-                            <li><a href="#">Product List</a></li>
-                            <li><a href="#">Product List</a></li>
-                            <li><a href="#">Product List</a></li>
-                            <li><a href="#">Product List</a></li>
-                        </ul>
-                        <h4 class="title">Season's Hottest Looks</h4>
-                        <ul>
-                            <li><a href="#">Product List</a></li>
-                            <li><a href="#">Product List</a></li>
-                            <li><a href="#">Product List</a></li>
-                            <li><a href="#">Product List</a></li>
-                        </ul>
-                    </div>
-                    <div class="list-item">
-                        <h4 class="title">Men's Fashion</h4>
-                        <ul>
-                            <li><a href="#">Product List</a></li>
-                            <li><a href="#">Product List</a></li>
-                            <li><a href="#">Product List</a></li>
-                            <li><a href="#">Product List</a></li>
-                        </ul>
-                        <h4 class="title">T-shirt Treasures</h4>
-                        <ul>
-                            <li><a href="#">Product List</a></li>
-                            <li><a href="#">Product List</a></li>
-                            <li><a href="#">Product List</a></li>
-                            <li><a href="#">Product List</a></li>
-                        </ul>
-                    </div>
-                    <div class="list-item">
-                        <h4 class="title"> New Arrival Tees</h4>
-                        <ul>
-                            <li><a href="#">Product List</a></li>
-                            <li><a href="#">Product List</a></li>
-                            <li><a href="#">Product List</a></li>
-                            <li><a href="#">Product List</a></li>
-                            <li><a href="#">Product List</a></li>
-                            <li><a href="#">Product List</a></li>
-                            <li><a href="#">Product List</a></li>
-                            <li><a href="#">Product List</a></li>
-                            <li><a href="#">Product List</a></li>
-                        </ul>
-                    </div>
-                    <div class="list-item">
-                        <h4 class="title">Trendy Tees</h4>
-                        <img src="{{ asset('image/Badass tshirt-01.png') }}" class="responsive" alt="Shop Product"
-                            loading="lazy" />
-                    </div>
-                </div>
-            </li>
-
-            <li class="menu-item {{ Request::is('new-arrival') ? 'active' : '' }}">
-                <a href="{{ url('/new-arrival') }}">New Arrival</a>
-
-            </li>
-
-            @if ($category)
-                <li class="menu-item {{ Request::is('category/' . $category->slug) ? 'active' : '' }}">
-                    <a href="{{ url('category/' . $category->slug) }}">{{ $category->slug }} <span
-                            class='align-middle'>
-                            <img src="{{ asset('image/gif/gif3.gif') }}" width="18" style="object-fit: contain"
-                                alt="new-trendy" loading="lazy">
-                        </span></a>
-
-                </li>
-            @endif
-
-            <!-- <li class="menu-item">
-        <a href="" >Home</a>
-        <div class="menu-subs menu-column-1">
-            <ul>
-                <li><a href="#">Article One</a></li>
-                <li><a href="#">Article Two</a></li>
-                <li><a href="#">Article Three</a></li>
-                <li><a href="#">Article Four</a></li>
             </ul>
+        </nav>
+
+        <div class="header-tools d-flex align-items-center">
+
+            <form action="./" method="GET" class="header-search search-field d-none d-xxl-flex mx-4">
+                <input class="header-search__input w-100" type="text" name="search-keyword"
+                    placeholder="Search products...">
+                <button class="btn header-search__btn" type="submit" title="Search">
+                    <img src="{{ asset('assets/icons/icon_search.svg') }}" alt="cart Icon">
+                </button>
+            </form>
+
+            <div class="header-tools__item hover-container">
+                @guest
+                    <a title="Get Started" class="header-tools__item" href="{{ route('signin') }}">
+                        <img src="{{ asset('assets/icons/icon_user.svg') }}" alt="User Icon">
+                    </a>
+                @endguest
+                @auth
+                    <a title="Get Profile" class="header-tools__item" href="{{ url('profile/account') }}">
+                        <img src="{{ asset('assets/icons/icon_user.svg') }}" alt="User Icon">
+                    </a>
+                @endauth
+            </div>
+
+            <a href="<?= $url ?>wishlist" title="Wishlist" class="header-tools__item">
+                <img src="{{ asset('assets/icons/icon_heart.svg') }}" alt="User Icon">
+            </a>
+
+            <?= $cartBtn ?>
         </div>
-    </li> -->
-        </ul>
     </div>
+</header>
+<!-- Desktop header end -->
+
+<!-- Mobile header begin -->
+<div class="header-mobile header_sticky">
+    <!-- Topbar Begin -->
+    <nav class="topbar">
+        <div class="btn-wrapper d-flex align-items-center">
+            <a href="{{ url('womens-collections') }}" class="tag-btn active">Women</a>
+            <a href="{{ url('mens-collections') }}" class="tag-btn">Men</a>
+            <a href="{{ url('unisex-collections') }}" class="tag-btn">unisex</a>
+        </div>
+    </nav>
+    <!-- Topbar End -->
+    <div class="container d-flex align-items-center h-100">
+        <a class="mobile-nav-activator d-block position-relative" href="#">
+            <svg class="nav-icon" width="25" height="18" viewBox="0 0 25 18"
+                xmlns="http://www.w3.org/2000/svg">
+                <rect width="25" height="2" />
+                <rect y="8" width="20" height="2" />
+                <rect y="16" width="25" height="2" />
+            </svg>
+            <span class="btn-close-lg position-absolute top-0 start-0 w-100"></span>
+        </a>
+
+        <?= $logoEle ?>
+        <?= $cartBtn ?>
+
+    </div>
+
+    <nav
+        class="header-mobile__navigation navigation d-flex flex-column w-100 position-absolute top-100 bg-body overflow-auto">
+        <div class="container">
+            <form action="search.html" method="GET" class="search-field position-relative mt-4 mb-3">
+                <div class="position-relative">
+                    <input class="search-field__input w-100 border rounded-1" type="text" name="search-keyword"
+                        placeholder="Search products">
+                    <button class="btn-icon search-popup__submit pb-0 me-2" type="submit">
+                        <img src="{{ asset('assets/icons/icon_search.svg') }}" alt="User Icon">
+                    </button>
+                    <button class="btn-icon btn-close-lg search-popup__reset pb-0 me-2" type="reset"></button>
+                </div>
+
+                <div class="position-absolute start-0 top-100 m-0 w-100">
+                    <div class="search-result"></div>
+                </div>
+            </form>
+        </div>
+
+        <div class="container">
+            <div class="overflow-hidden">
+                <ul class="navigation__list list-unstyled position-relative">
+
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link js-nav-right d-flex align-items-center">
+                            Collections &nbsp;
+                            <img src="{{ asset('assets/icons/icon_right_chevron.svg') }}" alt="User Icon">
+
+                        </a>
+                        <div class="sub-menu position-absolute top-0 start-100 w-100 d-none">
+                            <a href="#"
+                                class="navigation__link js-nav-left d-flex align-items-center border-bottom mb-2">
+                                <img src="{{ asset('assets/icons/icon_left_chevron.svg') }}" alt="User Icon">
+                                &nbsp; Collections
+                            </a>
+                            <ul class="list-unstyled">
+                                <li class="sub-menu__item">
+                                    <a href="<?= $url ?>collections/pants-womens" class="menu-link menu-link_us-s">
+                                        Pants Women
+                                    </a>
+                                </li>
+                                <li class="sub-menu__item">
+                                    <a href="<?= $url ?>collections/thalapathy-leo" class="menu-link menu-link_us-s">
+                                        Thalapathy Leo
+                                    </a>
+                                </li>
+                                <li class="sub-menu__item">
+                                    <a href="<?= $url ?>collections/t-shirt" class="menu-link menu-link_us-s">
+                                        T-Shirt
+                                    </a>
+                                </li>
+                                <li class="sub-menu__item">
+                                    <a href="<?= $url ?>collections/sweat-shirt" class="menu-link menu-link_us-s">
+                                        Swear Shirt
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="navigation__item">
+                        <a href="<?= $url ?>new-arrival" class="navigation__link">new arrival</a>
+                    </li>
+
+                    <li class="navigation__item">
+                        <a href="<?= $url ?>new-arrivals" class="navigation__link">Themes</a>
+                    </li>
+
+                    <li class="navigation__item">
+                        <a href="<?= $url ?>about-us" class="navigation__link">About</a>
+                    </li>
+
+                    <li class="navigation__item">
+                        <a href="<?= $url ?>contact" class="navigation__link">Contact</a>
+                    </li>
+                    @auth
+                        <li class="navigation__item">
+                            <a href="{{ route('logout') }}" class="navigation__link"
+                                onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">Logout</a>
+                        </li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    @endauth
+                </ul>
+            </div><!-- /.overflow-hidden -->
+        </div>
+    </nav>
 </div>
+<!-- Mobile header end-->

@@ -1,0 +1,88 @@
+.notification-wrapper {
+    position: fixed;
+    left: 30px;
+    bottom: 30px;
+    max-width: 26%;
+    width: 100%;
+    background: #f5f5f5;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 1px 0px 6px #0000001f;
+    border: 1px solid #e1e1e1;
+    z-index: 999;
+    transform: translateX(-150%);
+    transition: all .6s;
+}
+
+.notification-wrapper.show{
+    transform: translateX(0);
+}
+
+.notification {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.notification-wrapper .image img {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.notification-wrapper .close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    opacity: 0.6;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+.notification-wrapper .message p {
+    margin-bottom: 0;
+}
+
+@media (max-width: 1200px) {
+    .notification-wrapper {
+        max-width: 28%;
+    }
+}
+
+@media (max-width: 1100px) {
+    .notification-wrapper {
+        max-width: 30%;
+    }
+}
+
+@media (max-width: 992px) {
+    .notification-wrapper {
+        max-width: 35%;
+    }
+}
+
+@media (max-width: 780px) {
+    .notification-wrapper {
+        max-width: 40%;
+        bottom: 80px;
+    }
+}
+
+@media (max-width: 680px) {
+    .notification-wrapper {
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 480px) {
+    .notification-wrapper {
+        max-width: calc(100% - 60px);
+        margin: auto;
+    }
+}

@@ -6,38 +6,40 @@
 
     <!-- ----------------- forget password - page ---------------- -->
     <!-- =================================================== -->
-    <div class="forgot-pass " style="margin:150px 0 ">
-     
-            <div class="row align-items-center h-100">
-                <div class="col-11 col-md-8 col-lg-7 col-xl-5  mx-auto">
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
-            
-                    <div class="p-5 bg-white border rounded-4 shadow">
-                        <h3 class="mb-4">Reset your password</h3>
 
-                        <p>Enter your email address and we'll send you a link to reset your password.</p>
 
-                        <div>
-                            <label class="text-sm-bold pb-2">Your email address</label>
-                            <input type="email" name="email" class="form-control" value="{{ old('email') }}">
-                            @error('email')
-                                    <span class="text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                        </div>
-                        <div class="mt-4">
-                            <button class="btn-blue">Submit</button>
-                        </div>
+    <main>
+        <div class="mb-4 pb-4"></div>
+        <section class="login-register container">
+            <h2 class="section-title text-center fs-3 mb-xl-5">Reset Your Password</h2>
+            <p>We will send you an email to reset your password</p>
+            <div class="reset-form">
+                <form method="POST" action="{{ route('password.email') }}" name="reset-form" class="needs-validation" novalidate >
+                    @csrf
+                    <div class="form-floating mb-3">
+                        <input name="email" type="email" class="form-control form-control_gray"
+                            value="{{ old('email') }}" id="customerNameEmailInput" placeholder="Email address *" required>
+                        <label for="customerNameEmailInput">Email address *</label>
+                    </div>
+
+                    @error('email')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+
+                    <button class="btn btn-primary w-100 text-uppercase" type="submit">Submit</button>
+
+                    <div class="customer-option mt-4 text-center">
+                        <span class="text-secondary">Back to</span>
+                        <a href="{{ route('signin') }}" class="btn-text js-show-register">Login</a>
                     </div>
                 </form>
-                </div>
             </div>
- 
+        </section>
+    </main>
 
-
-    </div>
+    <div class="mb-4 mb-xl-5 pt-1 pb-5"></div>
 
 
 @endsection
