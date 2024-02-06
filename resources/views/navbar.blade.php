@@ -104,7 +104,7 @@ $cartBtn = "<button class='header-tools__item header-tools__cart js-open-aside' 
                         <a href="{{ url('category/' . $category->slug) }}"
                             class="navigation__link">{{ $category->name }}
                             <span class='align-middle'>
-                                <img src="{{ asset('image/gif/gif3.gif') }}" width="18" style="object-fit: contain"
+                                <img src="{{ asset('image/gif/gif3.gif') }}" width="30" style="object-fit: contain"
                                     alt="new-trendy" loading="lazy">
                             </span>
                         </a>
@@ -238,9 +238,18 @@ $cartBtn = "<button class='header-tools__item header-tools__cart js-open-aside' 
                         <a href="<?= $url ?>new-arrival" class="navigation__link">new arrival</a>
                     </li>
 
+                
+                    @if ($category)
                     <li class="navigation__item">
-                        <a href="<?= $url ?>new-arrivals" class="navigation__link">Themes</a>
+                        <a href="{{ url('category/' . $category->slug) }}"
+                            class="navigation__link">{{ $category->name }}
+                            <span class='align-middle'>
+                                <img src="{{ asset('image/gif/gif3.gif') }}" width="30" style="object-fit: contain"
+                                    alt="new-trendy" loading="lazy">
+                            </span>
+                        </a>
                     </li>
+                @endif
 
                     <li class="navigation__item">
                         <a href="<?= $url ?>about-us" class="navigation__link">About</a>

@@ -100,7 +100,7 @@
                       <div class="swiper-slide">
                         <img loading="lazy" class="w-100 h-auto mb-3" src="{{ asset('image/category/' . $item->image) }}" width="124" height="124" alt="category-list">
                         <div class="text-center">
-                            <a href="{{ url('category/'.$item->slug) }}" class="menu-link fw-medium">Women<br>{{$item->name}}</a>
+                            <a href="{{ url('category/'.$item->slug) }}" class="menu-link fw-medium">{{$item->name}}</a>
                         </div>
                     </div>
                       @endforeach
