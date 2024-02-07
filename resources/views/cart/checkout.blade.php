@@ -11,7 +11,35 @@ $step = 2;
     <div class="mb-4 pb-4"></div>
     <section class="shop-checkout container">
         <h2 class="page-title">Shipping and Checkout</h2>
-        <?php include './layouts/cart-topbar.php'; ?>
+         
+        {{-- ````````` CART TOPBAR LAYOUT ```````````` --}}
+        
+        <div class="checkout-steps">
+            <a href="{{URL('my-cart')}}" class="checkout-steps__item">
+                <span class="checkout-steps__item-number">01</span>
+                <span class="checkout-steps__item-title">
+                    <span>Shopping Bag</span>
+                    <em>Manage Your Items List</em>
+                </span>
+            </a>
+            <a href="javascript:void(0)" class="checkout-steps__item<?= ($step??0) > 1 ? "  active" : "" ?>">
+                <span class="checkout-steps__item-number">02</span>
+                <span class="checkout-steps__item-title">
+                    <span>Shipping and Checkout</span>
+                    <em>Checkout Your Items List</em>
+                </span>
+            </a>
+            <a href="confirm" class="checkout-steps__item<?= ($step??0) == 3 ? "  active" : "" ?>">
+                <span class="checkout-steps__item-number">03</span>
+                <span class="checkout-steps__item-title">
+                    <span>Confirmation</span>
+                    <em>Review And Submit Your Order</em>
+                </span>
+            </a>
+        </div>
+
+        {{-- ````````````CHECKOUT CART ```````````````````` --}}
+
         <form name="checkout-form" action="./shop_order_complete.html">
             <div class="checkout-form">
                 <div class="billing-info__wrapper">

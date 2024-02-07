@@ -226,7 +226,7 @@
                       <img loading="lazy" class="h-auto" src="<?= $url ?>assets/images/mocks/slider/mock3.png" width="570" height="631" alt="">
                   </div>
                   <h2>Men’s Spring Collection 2020</h2>
-                  <a href="#" class="btn-link btn-link_md default-underline text-uppercase fw-medium">
+                  <a href="{{url('womens-collections')}}" class="btn-link btn-link_md default-underline text-uppercase fw-medium">
                       Discover Now
                   </a>
                   <div class="category-masonry__item-category fw-medium">MEN COLLECTION</div>
@@ -237,7 +237,7 @@
                       <img loading="lazy" class="h-auto" src="<?= $url ?>assets/images/mocks/slider/mock5.webp" width="450" height="550" alt="">
                   </div>
                   <h2>Fresh Dresses</h2>
-                  <a href="#" class="btn-link btn-link_md default-underline text-uppercase fw-medium">Discover
+                  <a href="{{url('mens-collections')}}" class="btn-link btn-link_md default-underline text-uppercase fw-medium">Discover
                       Now</a>
                   <div class="category-masonry__item-category fw-medium">DRESSES</div>
               </div>
@@ -327,7 +327,9 @@
 
                     {{-- --- loop a trending products --- --}}
 
-                    <div class="swiper-slide product-card">
+                    <div class="swiper-slide product-card product-data">
+                        <input type="hidden" class="product_id" value="{{ $val['id'] }}">
+                        <input type="hidden" class="qty-value" value="1">
                       <div class="pc__img-wrapper">
                           <a href="{{ url('category/' . $val->category->slug . '/' . $val->slug) }}">
                            @if (count($img) > 1)
@@ -340,7 +342,7 @@
                               
                           </a>
                           <div class="anim_appear-bottom position-absolute bottom-0 start-0 w-100 d-none d-sm-flex align-items-center">
-                              <button class="btn btn-primary flex-grow-1 fs-base ps-3 ps-xxl-4 pe-0 border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
+                              <button class="btn btn-primary flex-grow-1 fs-base ps-3 ps-xxl-4 pe-0 border-0 text-uppercase fw-medium js-addToCart"  title="Add To Cart">Add To Cart</button>
                               <a href="{{ url('category/' . $val->category->slug . '/' . $val->slug) }}" class="btn btn-primary flex-grow-1 fs-base ps-0 pe-3 pe-xxl-4 border-0 text-uppercase fw-medium js-quick-view"  title="Quick view">Quick View</a>
                           </div>
                           <button class="pc__btn-wl position-absolute bg-body rounded-circle border-0 text-primary js-add-wishlist" title="Add To Wishlist">

@@ -117,7 +117,7 @@ Route::middleware(['auth'])->group(function () {
 
    // ------------ wish list --------------------
 
-   Route::get('/wishlist', [WishlistController::class, 'index']);
+   Route::get('/profile/wishlist', [WishlistController::class, 'index']);
 
    // ----------------- add a rating ------------------
 
@@ -157,7 +157,7 @@ Route::middleware(['auth'])->group(function () {
       Route::get('/profile/account', 'profile_account');
       Route::get('/profile/address', 'profile_address');
       Route::get('/profile/orders', 'profile_orders');
-      Route::get('/profile/wishlist', 'profile_wishlist');
+      // Route::get('/profile/wishlist', 'profile_wishlist');
 
 
       Route::post('/profile-about', 'about_profile');

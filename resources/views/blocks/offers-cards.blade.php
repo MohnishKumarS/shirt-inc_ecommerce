@@ -7,7 +7,7 @@
                     <div class="content_abs content_bottom content_left content_bottom-md content_left-md">
                         <p class="text-uppercase mb-1">Women's Collections</p>
                         <h3 class="text-uppercase"><strong>50% Off</strong> on all tops</h3>
-                        <a href="#" class="btn-link default-underline text-uppercase fw-medium">Shop Now</a>
+                        <a href="{{url('womens-collections')}}" class="btn-link default-underline text-uppercase fw-medium">Shop Now</a>
                     </div>
                 </div>
             </div>
@@ -18,7 +18,7 @@
                     <div class="content_abs content_bottom content_left content_bottom-md content_left-md">
                         <p class="text-uppercase mb-1">Men's Collections</p>
                         <h3 class="text-uppercase"><strong>75% off</strong> on all T-Shirts</h3>
-                        <a href="#" class="btn-link default-underline text-uppercase fw-medium">Shop Now</a>
+                        <a href="{{url('mens-collections')}}" class="btn-link default-underline text-uppercase fw-medium">Shop Now</a>
                     </div>
                 </div>
                 <div class="position-relative flex-grow-1 mt-lg-1">

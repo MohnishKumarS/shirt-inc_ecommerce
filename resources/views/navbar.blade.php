@@ -12,10 +12,10 @@ $logoEle =
     </div>';
 
 $cart_icon = asset('assets/icons/icon_cart.svg');
-$cartBtn = "<button class='header-tools__item header-tools__cart js-open-aside' data-aside='cartDrawer' title='Cart'>
+$cartBtn = "<a class='header-tools__item header-tools__cart js-open-aside' data-aside='cartDrawer' title='Cart'>
     <img src='{$cart_icon}' alt='cart Icon'>
         <span class='cart-amount d-block position-absolute js-cart-items-count'>3</span>
-    </button>";
+    </a>";
 
 ?>
 <!-- Elements End -->
@@ -137,11 +137,14 @@ $cartBtn = "<button class='header-tools__item header-tools__cart js-open-aside' 
                 @endauth
             </div>
 
-            <a href="<?= $url ?>wishlist" title="Wishlist" class="header-tools__item">
+            <a href="{{url('profile/wishlist')}}" title="Wishlist" class="header-tools__item">
                 <img src="{{ asset('assets/icons/icon_heart.svg') }}" alt="User Icon">
             </a>
 
-            <?= $cartBtn ?>
+            <a class='header-tools__item header-tools__cart'  title='Cart'  href="{{ url('/my-cart') }}">
+                <img src='{{asset('assets/icons/icon_cart.svg')}}' alt='cart Icon'>
+                    <span class='cart-amount d-block position-absolute js-cart-items-count '>0</span>
+                </a>
         </div>
     </div>
 </header>
@@ -170,7 +173,10 @@ $cartBtn = "<button class='header-tools__item header-tools__cart js-open-aside' 
         </a>
 
         <?= $logoEle ?>
-        <?= $cartBtn ?>
+        <a class='header-tools__item header-tools__cart'  title='Cart'  href="{{ url('/my-cart') }}">
+            <img src='{{asset('assets/icons/icon_cart.svg')}}' alt='cart Icon'>
+                <span class='cart-amount d-block position-absolute js-cart-items-count '>0</span>
+            </a>
 
     </div>
 

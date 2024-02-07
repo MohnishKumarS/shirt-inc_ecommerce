@@ -135,13 +135,13 @@ function pureFadeOut(e) {
         const $increase = $qty.querySelector('.qty-control__increase');
         const $number = $qty.querySelector('.qty-control__number');
 
-        $reduce.addEventListener('click', function () {
-          $number.value = parseInt($number.value) > 1 ? parseInt($number.value) - 1 : parseInt($number.value);
-        });
+        // $reduce.addEventListener('click', function () {
+        //   $number.value = parseInt($number.value) > 1 ? parseInt($number.value) - 1 : parseInt($number.value);
+        // });
 
-        $increase.addEventListener('click', function () {
-          $number.value = parseInt($number.value) + 1;
-        });
+        // $increase.addEventListener('click', function () {
+        //   $number.value = parseInt($number.value) + 1;
+        // });
       });
     }
 

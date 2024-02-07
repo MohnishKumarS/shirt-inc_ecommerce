@@ -6,7 +6,7 @@ $(document).ready(function () {
     
     // ------------ addTocart btn --------------------
 
-    $(document).on('click','.addToCart', function (e) {
+    $(document).on('click','.js-addToCart', function (e) {
         e.preventDefault();
 
         var com_size = $(this).closest('.product-data').find('.com_size');
@@ -77,7 +77,7 @@ $(document).ready(function () {
 
     // ------------------ add to wishlist -----------------
 
-    $('.addtoWishlist').on('click', function (e) {
+    $('.js-add-wishlist').on('click', function (e) {
         e.preventDefault();
         // console.log(e.target);
         $pro_id = $(this).closest('.product-data').find('.product_id').val();
@@ -98,7 +98,7 @@ $(document).ready(function () {
 
 
             success: function (data) {
-                // console.log(data);
+                console.log(data);
                 // --------- alert message --------------
                     swal.fire('', data.message, data.status);
                     countwishlist();
@@ -191,18 +191,18 @@ $(document).ready(function () {
             url: "/count-cart",
             success: function (data) {
                 console.log(data);
-                $('.cart-counts').css('display','none');
+                $('.js-cart-items-count').css('display','none');
 
                 if(data.count > 0){
-                    $('.cart-counts').css('display','initial');
-                    $('.cart-counts').html(data.count);
+                    $('.js-cart-items-count').css('display','initial');
+                    $('.js-cart-items-count').html(data.count);
                 }
               
            
             }
         });
     }
-    //  ---------------------- count cart ----------------------
+    //  ---------------------- count wishlist  ----------------------
 
     function countwishlist() {
 
@@ -211,12 +211,10 @@ $(document).ready(function () {
             url: "/count-wishlist",
             success: function (data) {
                 console.log(data);
-                $('.wishlist-counts').css('display','none');
-                $('.nav-wishlist .fa-heart').css('color','initial');
+                $('.js-wishlist-count').css('display','none');
                 if(data.count > 0){
-                    $('.nav-wishlist .fa-heart').css('color','#d85151');
-                    $('.wishlist-counts').css('display','initial');
-                    $('.wishlist-counts').html(data.count);
+                    $('.js-wishlist-count').css('display','initial');
+                    $('.js-wishlist-count').html(data.count);
                 }
                
            
@@ -241,7 +239,7 @@ $(document).ready(function () {
             },
             success: function (data) {
 
-                swal.fire('', data.status, 'success');
+                swal.fire('', data.message, data.status);
                 countwishlist();
                 //    window.location.reload();
                 $('.wish-item').load(location.href + ' .wish-item');
@@ -252,7 +250,7 @@ $(document).ready(function () {
 
     // --------------- increment --------------
 
-    $(document).on('click', '.increment-btn', function (e) {
+    $(document).on('click', '.qty-control__increase', function (e) {
         e.preventDefault();
 
         // $qty_value = $('.qty-value').val();
@@ -271,9 +269,9 @@ $(document).ready(function () {
 
     // ----------------- decrement ------------------
 
-    $(document).on('click', '.decrement-btn', function (e) {
+    $(document).on('click', '.qty-control__reduce', function (e) {
         e.preventDefault();
-
+  
         $qty_val = $(this).closest('.product-data').find('.qty-value').val();
         var val = parseInt($qty_val);
         val = isNaN(val) ? 1 : val;

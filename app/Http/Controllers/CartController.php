@@ -30,7 +30,7 @@ class CartController extends Controller
     ->get();
 
         
-        return view('cart',\compact('cart','category'));
+        return view('cart.mycart',\compact('cart','category'));
     }
     
  // ---------- add to cart -------------
@@ -189,6 +189,6 @@ class CartController extends Controller
       $cart =  Cart::where('user_id',Auth::id())->get();
 
        
-        return view('checkout',\compact('cart','user_address','states'));
+        return view('cart.checkout',\compact('cart','user_address','states'));
     }
 }

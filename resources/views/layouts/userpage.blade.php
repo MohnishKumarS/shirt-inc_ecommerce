@@ -23,13 +23,13 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?= $url ?>assets/icons/icon.css">
+    <link rel="stylesheet" href="{{asset('assets/icons/icon.css')}}">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="<?= $url ?>assets/vendors/swiper/swiper.min.css" type="text/css">
-    <link rel="stylesheet" href="<?= $url ?>assets/vendors/toaster/style.css" type="text/css">
-    <link rel="stylesheet" href="<?= $url ?>assets/styles/style.css" type="text/css">
-    <link rel="stylesheet" href="<?= $url ?>assets/styles/custom.css" type="text/css">
+    <link rel="stylesheet" href="{{asset('assets/vendors/swiper/swiper.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('assets/vendors/toaster/style.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('assets/styles/style.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('assets/styles/custom.css')}}" type="text/css">
 
     {{-- --------------- toast popup ---------------- --}}
 
@@ -103,13 +103,13 @@
 
     @include('links.js')
 
-    <script src="<?= $url ?>assets/scripts/jquery.min.js"></script>
-<script src="<?= $url ?>assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="<?= $url ?>assets/vendors/bootstrap/bootstrap-slider.min.js"></script>
-<script src="<?= $url ?>assets/vendors/swiper/swiper.min.js"></script>
-<script src="<?= $url ?>assets/vendors/toaster/script.js"></script>
+    <script src="{{asset('assets/scripts/jquery.min.js')}}"></script>
+<script src="{{asset('assets/vendors/bootstrap/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('assets/vendors/bootstrap/bootstrap-slider.min.js')}}"></script>
+<script src="{{asset('assets/vendors/swiper/swiper.min.js')}}"></script>
+<script src="{{asset('assets/vendors/toaster/script.js')}}"></script>
 
-<script src="<?= $url ?>assets/scripts/main.js"></script>
+<script src="{{asset('assets/scripts/main.js')}}"></script>
 
 
 

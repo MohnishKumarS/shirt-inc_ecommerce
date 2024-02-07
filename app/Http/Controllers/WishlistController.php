@@ -25,7 +25,7 @@ class WishlistController extends Controller
         ->where('wishlists.user_id',Auth::id())
         ->select('category.name','category.slug')
         ->get();
-        return view('wishlist',\compact('wishlist','cat'));
+        return view('profile.wishlist',\compact('wishlist','cat'));
     }
 
     // -----------add_to_wishlist ----------------
@@ -71,7 +71,9 @@ class WishlistController extends Controller
 
         $wish->delete();
 
-        return \response()->json(['text'=> 'Product removed Successfully','toast'=>'Success !','type'=>'success']);
+        // return \response()->json(['text'=> 'Product removed Successfully','toast'=>'Success !','type'=>'success']);
+
+        return \response()->json(['message'=>'Product removed Successfully','status'=>'success']);
 
     }
 }

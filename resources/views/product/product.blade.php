@@ -79,19 +79,24 @@
                 $img = explode(',',$val->image)
             @endphp
 
-    {{-- ---------- NEW ARRIVAL PRODUCTS TO SHOW ------------- --}}
+    {{-- ----------   VIEW ALL PRODUCTS TO SHOW ------------- --}}
 
-    <div class="product-card-wrapper">
+    <div class="product-card-wrapper product-data">
         <div class="product-card mb-3 mb-md-4 mb-xxl-5">
 
             <div class="pc__img-wrapper">
-                <div class="swiper-container background-img js-swiper-slider" data-settings=\'{"resizeObserver": true}\'>
+                <div class="swiper-container background-img js-swiper-slider" data-settings='{"resizeObserver": true}'>
                     <div class="swiper-wrapper">
+                        <input type="hidden" class="product_id" value="{{ $val['id'] }}">
+                         <input type="hidden" class="qty-value" value="1">
+                        @foreach ($img as $item)
                         <div class="swiper-slide">
                             <a href="{{ url('category/' . $val->category->slug . '/' . $val->slug) }}">
-                                <img loading="lazy" src="{{ asset('image/product/' . $img[0]) }}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
+                                <img loading="lazy" src="{{ asset('image/product/' . $item) }}" width="330" height="400" alt="{{$val->name}}" class="pc__img">
                             </a>
                         </div>
+                        @endforeach
+                      
                      
                     </div>
                     <span class="pc__img-prev">
@@ -101,7 +106,7 @@
                         <?= $icon_right_chevron ?>
                     </span>
                 </div>
-                <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
+                <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-addToCart"  title="Add To Cart">Add To Cart</button>
             </div>
 
             <div class="pc__info position-relative">
