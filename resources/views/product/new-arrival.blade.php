@@ -151,6 +151,12 @@
 
     </div>
 
+      {{-- ----------- paginate ----------- --}}
+
+      <div class="paginate-pro mt-5 text-center">
+        {{ $new_product->links() }}
+    </div>
+
     <p class="mb-1 text-center fw-medium">SHOWING 36 of 497 items</p>
     <div class="progress progress_uomo mb-3 ms-auto me-auto" style="width: 300px;">
         <div class="progress-bar" role="progressbar" style="width: 39%;" aria-valuenow="39" aria-valuemin="0" aria-valuemax="100"></div>

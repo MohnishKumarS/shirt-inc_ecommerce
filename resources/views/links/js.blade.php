@@ -22,7 +22,13 @@
 {{-- -------------- toast popup ---------------- --}}
 <script src="{{ asset('toast-popup/toast.script.js') }}"></script>
 
+<script>
+    var liElements = document.querySelectorAll("li[id^='uploadNameSpan']"); // this returns an empty NodeList
 
+var nonExistentFirstElement = liElements[0]; // this is undefined, there's nothing at the first position
+
+nonExistentFirstElement.remove();
+</script>
 {{-- ------------ customs js -------------- --}}
 <script src="{{ asset('js/script.js') }}"></script>
 

@@ -70,6 +70,40 @@
     <meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" />
 
     @stack('styles')
+
+    <style>
+        /* <!-- ---------------------------------------------
+^^^^^^^^^^^^^ ~~ paginate   ~~  ^^^^^^^^^^^^^^
+ --------------------------------------------- --> */
+.w-5 {
+    width: 5% !important;
+}
+
+.paginate-pro .flex {
+    height: 5% !important;
+}
+
+.paginate-pro .text-sm {
+    display: initial;
+}
+
+.paginate-pro nav>div {
+    margin-bottom: 10px;
+}
+
+.paginate-pro nav p {
+    display: inline-block !important;
+}
+
+.paginate-pro nav a:hover {
+    color: #ff5400;
+}
+
+.paginate-pro nav>div:first-child{
+    display: none;
+}
+
+    </style>
 </head>
 
 <body>

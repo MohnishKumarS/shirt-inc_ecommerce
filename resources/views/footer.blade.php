@@ -3,8 +3,9 @@
       <div class="block-newsletter pb-5 mb-5">
         <h3 class="block__title">Subscribe to our newsletter</h3>
         <p>Be the first to get the latest news about trends, promotions, and much more!</p>
-        <form action="./" class="block-newsletter__form">
-          <input class="form-control" type="email" name="email" autocomplete="email" placeholder="Your email address">
+        <form action="{{ url('/user-subscribe') }}" method="POST" class="block-newsletter__form">
+          @csrf
+          <input class="form-control" type="email" name="sub-mail" autocomplete="email" placeholder="Your email address" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,4}" required>
           <button class="btn btn-secondary fw-medium" type="submit">JOIN</button>
         </form>
       </div>

@@ -46,7 +46,7 @@ class UserController extends Controller
     // --------------- view new arrival product ---------------
 
     public function view_new_product(){
-        $new_product = Product::latest()->take(15)->get();
+        $new_product = Product::latest()->take(15)->paginate(5);
         $category = category::latest()->take(1)->first();
         return view('product.new-arrival',compact('new_product','category'));
     }

@@ -131,7 +131,7 @@
         }
 
 		function removeToast(){          
-			$.Toast.remove( $element );
+			$('.toast-item-wrapper').remove();
 		}
 
 		if($options.timeout > 0){
