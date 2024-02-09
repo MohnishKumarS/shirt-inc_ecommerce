@@ -13,7 +13,7 @@ $freq_img = explode(',', $freq_boug->image);
 //  print_r($img);
 @endphp
 
-<section class="product-single container">
+<section class="product-single container product-data">
     <div class="row">
         <div class="col-lg-7">
             <div class="product-single__media" data-media-type="vertical-thumbnail">
@@ -89,16 +89,72 @@ $freq_img = explode(',', $freq_boug->image);
                 <span class="reviews-note text-lowercase text-secondary ms-1">8k+ reviews</span>
             </div>
             <div class="product-single__price">
-                <span class="current-price">Rs {{ $product->selling_price }}</span>
+                <span class="current-price">Rs. </span>
             </div>
             <div class="product-single__short-desc">
                 <p>Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui.
                     Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc,
                     ut aliquet magna posuere eget.</p>
             </div>
+            <div>
+                @php
+                    $size = json_decode($product->size_list);
+                    $men_size = $product->couple_men_size ? json_decode($product->couple_men_size) : '';
+                    $women_size = $product->couple_women_size ? json_decode($product->couple_women_size) : '';
+                    // print_r($men_size);
+                    // print_r(gettype($men_size))
+                @endphp
+                <label>Sizes</label>
+                @if ($men_size && $women_size)
+                    {{-- -------- couples size -------- --}}
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-8">
+                            <select class="form-select men_size" required>
+                                <option selected value="">Select Men's size</option>
+                                {{-- ---- size get in database --- --}}
+                                @foreach ($men_size as $val)
+                                    <option value="{{ $val }}">{{ $val }}
+                                    </option>
+                                @endforeach
+
+                            </select>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-8 mt-3 mt-md-0">
+                            <select class="form-select women_size" required>
+                                <option selected value="">Select Women's size</option>
+                                {{-- ---- size get in database --- --}}
+                                @foreach ($women_size as $val)
+                                    <option value="{{ $val }}">{{ $val }}
+                                    </option>
+                                @endforeach
+
+                            </select>
+                        </div>
+                    </div>
+                @else
+                    {{-- -------- common size -------- --}}
+                    <div class="row">
+                        <div class="col-lg-6 col-md-4 col-sm-6">
+
+                            <select class="form-select com_size" required>
+                                <option selected value="">Choose your size</option>
+                                {{-- ---- size get in database --- --}}
+                                @foreach ($size as $val)
+                                    <option value="{{ $val }}">{{ $val }}
+                                    </option>
+                                @endforeach
+
+                            </select>
+
+                        </div>
+                    </div>
+                @endif
+                <div class="error text-danger"></div>
+
+            </div>
             <form name="addtocart-form" method="post">
                 <div class="product-single__swatches">
-                    <div class="product-swatch text-swatches">
+                    {{-- <div class="product-swatch text-swatches">
                         <label>Sizes</label>
                         <div class="swatch-list">
                             <input type="radio" name="size" id="swatch-1">
@@ -113,7 +169,7 @@ $freq_img = explode(',', $freq_boug->image);
                             <label class="swatch js-swatch" for="swatch-5" aria-label="Extra Large" data-bs-toggle="tooltip" data-bs-placement="top" title="Extra Large">XL</label>
                         </div>
                         <a href="#" class="sizeguide-link" data-bs-toggle="modal" data-bs-target="#sizeGuide">Size Guide</a>
-                    </div>
+                    </div> --}}
                     {{-- <div class="product-swatch color-swatches">
                         <label>Color</label>
                         <div class="swatch-list">
@@ -127,16 +183,17 @@ $freq_img = explode(',', $freq_boug->image);
                     </div> --}}
                 </div>
                 <div class="product-single__addtocart">
+                    <input type="hidden" class="product_id"  value="{{ $product['id'] }}">
                     <div class="qty-control position-relative">
-                        <input type="number" name="quantity" value="1" min="1" class="qty-control__number text-center">
-                        <div class="qty-control__reduce">-</div>
-                        <div class="qty-control__increase">+</div>
+                        <input type="number" name="quantity" value="1" min="1" class="qty-control__number qty-value text-center ">
+                        <div class="qty-control__reduce change_Qty">-</div>
+                        <div class="qty-control__increase change_Qty">+</div>
                     </div><!-- .qty-control -->
-                    <button type="submit" class="btn btn-primary btn-addtocart js-open-aside" data-aside="cartDrawer">Add to Cart</button>
+                    <button type="submit" class="btn btn-primary btn-addtocart js-addToCart">Add to Cart</button>
                 </div>
             </form>
             <div class="product-single__addtolinks">
-                <a href="#" class="menu-link menu-link_us-s add-to-wishlist">
+                <a href="javascript:void(0)" class="menu-link menu-link_us-s js-add-wishlist" title="Add To Wishlist">
                     <?= $icon_heart ?>
                     <span>Add to Wishlist</span>
                 </a>

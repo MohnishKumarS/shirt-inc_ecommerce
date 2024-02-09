@@ -373,7 +373,7 @@ $(document).ready(function () {
     // ------------------- change  womens size ---------------------------
 
     $(document).on('change','.women_size',function(e){
-  
+        
         e.preventDefault();
         $pro_id = $(this).closest('.product-data').find('.product_id').val();
         $women_size = $(this).val();
@@ -404,7 +404,7 @@ $(document).ready(function () {
     // ---------------------- validate select size in cart page ----------------
 
     $(document).on('click','.checkout-event',function(){
-
+        console.log('asdas');
     var check = true; // <=== Default return value
         $("select").each(function(ind,val){
             $opt  =  $(val).find(":selected").val();
@@ -427,6 +427,7 @@ $(document).ready(function () {
             }
            
         })
+        console.log(check);
 
         if(check){  // true means redirect to checkout --
              window.location.href = "/checkout";

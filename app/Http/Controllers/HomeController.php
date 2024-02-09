@@ -45,13 +45,12 @@ class HomeController extends Controller
     // ------------  user  profile account------------------
     
     public function profile_account(){
-        // $addr = Useraddress::where('user_id',Auth::id())->get();
-        // return $addr;
         return view('profile.account');
     }
 
     public function profile_address(){
-        return view('profile.address');
+        $addr = Useraddress::where('user_id',Auth::id())->get();
+        return view('profile.address',compact('addr'));
     }
 
     public function profile_orders(){

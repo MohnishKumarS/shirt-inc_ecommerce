@@ -169,6 +169,7 @@ class UserController extends Controller
                     $rating_value = 0;
                 }
                
+                // return $product;
 
                 return view('product.view-product',\compact('product','freq_boug','related_product','popular_product','rating','rating_value','user_rate','review'));
                

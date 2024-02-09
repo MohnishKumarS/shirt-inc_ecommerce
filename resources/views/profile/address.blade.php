@@ -42,21 +42,30 @@
         <div class="col-lg-9">
           <div class="page-content my-account__address">
             <p class="notice">The following addresses will be used on the checkout page by default.</p>
+            <h5>Shipping Address</h5>
             <div class="my-account__address-list">
-              <div class="my-account__address-item">
-                <div class="my-account__address-item__title">
-                  <h5>Billing Address</h5>
-                  <a href="#">Edit</a>
-                </div>
-                <div class="my-account__address-item__detail">
-                  <p>Daniel Robinson</p>
-                  <p>1418 River Drive, Suite 35 Cottonhall, CA 9622</p>
-                  <p>United States</p>
-                  <br>
-                  <p>sale@gmail.com</p>
-                  <p>+1 246-345-0695</p>
-                </div>
-              </div>
+              
+              @if (count($addr) > 0)
+                  @foreach ($addr as $item)
+                  <div class="my-account__address-item">
+                    <div class="my-account__address-item__title">
+                                  
+                      <a href="#">Edit</a>
+                    </div>
+                    <div class="my-account__address-item__detail">
+                      <p>{{$item->full_name}}</p>
+                      <p>{{ $item->address . $item->city}} </p>
+                      <p>{{$item->state}} - {{ $item->pincode }}</p>
+                      <br>
+                      <p>{{Auth::user()->email}}</p>
+                      <p>{{$item->phone}}</p>
+                    </div>
+                  </div>
+                  @endforeach
+              @else
+              <h5>No Address found!</h5>
+              @endif
+{{--              
               <div class="my-account__address-item">
                 <div class="my-account__address-item__title">
                   <h5>Shipping Address</h5>
@@ -70,7 +79,7 @@
                   <p>sale@gmail.com</p>
                   <p>+1 246-345-0695</p>
                 </div>
-              </div>
+              </div> --}}
             </div>
           </div>
         </div>

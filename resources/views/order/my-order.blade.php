@@ -13,7 +13,7 @@
                     <div class="row">
                         <div class="col">
 
-                            @if ($order->count() > 0)
+                            @if ()
                                 <div class="table-responsive">
                                     <table class="table table-bordered  text-center">
                                         <tr class="table-primary">

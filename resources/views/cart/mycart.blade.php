@@ -77,7 +77,78 @@
                                             <h4>{{ $val->product->name }}</h4>
                                             <ul class="shopping-cart__product-item__options">
                                                 {{-- <li>Color: Yellow</li> --}}
-                                                <li>Size: L</li>
+
+                                                 {{-- ----------- product size --------------- --}}
+                                                 <div>
+                                                    @php
+                                                        $size = json_decode($val->product->size_list);
+                                                        $men_size = $val->product->couple_men_size ? json_decode($val->product->couple_men_size) : '';
+                                                        $women_size = $val->product->couple_women_size ? json_decode($val->product->couple_women_size) : '';
+                                                        // print_r($men_size);
+                                                        // print_r(gettype($men_size))
+                                                    @endphp
+                                                    <label for="" class="text-sm">size <span
+                                                            class="text-danger">*</span></label>
+
+                                                    @if ($men_size && $women_size)
+                                                        {{-- -------- couples size -------- --}}
+                                                        <div class="row">
+                                                            <div class=" col-6">
+                                                                <select class="form-select men_size"
+                                                                    required>
+                                                                    <option selected value="">Select
+                                                                        Men's size
+                                                                    </option>
+                                                                    {{-- ---- size get in database --- --}}
+                                                                    @foreach ($men_size as $value)
+                                                                        <option value="{{ $value }}"
+                                                                            {{ $val->mens_size == $value ? 'selected' : '' }}>
+                                                                            {{ $value }}</option>
+                                                                    @endforeach
+
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <select class="form-select women_size"
+                                                                    required>
+                                                                    <option selected value="">Select
+                                                                        Women's size
+                                                                    </option>
+                                                                    {{-- ---- size get in database --- --}}
+                                                                    @foreach ($women_size as $value)
+                                                                        <option value="{{ $value }}"
+                                                                            {{ $val->womens_size == $value ? 'selected' : '' }}>
+                                                                            {{ $value }}</option>
+                                                                    @endforeach
+
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    @else
+                                                        {{-- -------- common size -------- --}}
+                                                        <div class="row">
+                                                            <div class="col-6">
+
+                                                                <select class="form-select com_size"
+                                                                    required>
+                                                                    <option selected value="">Choose
+                                                                        your size
+                                                                    </option>
+                                                                    {{-- ---- size get in database --- --}}
+                                                                    @foreach ($size as $value)
+                                                                        <option value="{{ $value }}"
+                                                                            {{ $val->product_size == $value ? 'selected' : '' }}>
+                                                                            {{ $value }}</option>
+                                                                    @endforeach
+
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+                                                    @endif
+
+
+                                                </div>
                                             </ul>
                                         </div>
                                     </td>
@@ -161,7 +232,7 @@
                     </div>
                     <div class="mobile_fixed-btn_wrapper">
                         <div class="button-wrapper container">
-                            <a href="<?= $url ?>checkout" class="btn btn-primary btn-checkout">PROCEED TO CHECKOUT</a>
+                            <button  class="btn btn-primary btn-checkout  checkout-event">PROCEED TO CHECKOUT</button>
                         </div>
                     </div>
                 </div>
