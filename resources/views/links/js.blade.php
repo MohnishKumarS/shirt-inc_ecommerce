@@ -1,44 +1,3 @@
-{{-- ------------ sweatalert ------------- --}}
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
-{{-- ----- jquery --------- --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
-    integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-{{-- ----- bootstrap --------- --}}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
-</script>
-
-{{-- ------------- search auto complete  --}}
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-
-{{-- -------------- owl carousel ---------------- --}}
-
-<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-
-{{-- -------------- toast popup ---------------- --}}
-<script src="{{ asset('toast-popup/toast.script.js') }}"></script>
-
-<script>
-    var liElements = document.querySelectorAll("li[id^='uploadNameSpan']"); // this returns an empty NodeList
-
-var nonExistentFirstElement = liElements[0]; // this is undefined, there's nothing at the first position
-
-nonExistentFirstElement.remove();
-</script>
-{{-- ------------ customs js -------------- --}}
-<script src="{{ asset('js/script.js') }}"></script>
-
-{{-- ------------ loading animate js -------------- --}}
-<script src="{{ asset('js/loading.js') }}"></script>
-
-{{-- ------------ payment checkout js -------------- --}}
-<script src="{{ asset('js/payment.js') }}"></script>
-
-
 
 @if (session('status'))
     <script>
@@ -85,43 +44,21 @@ nonExistentFirstElement.remove();
 {{-- -------------- search  auto complete ------------- --}}
 
 <script>
-    var availableTags = [];
-    $.ajax({
-        type: "get",
-        url: "/product-list",
+    // var availableTags = [];
+    // $.ajax({
+    //     type: "get",
+    //     url: "/product-list",
 
-        success: function(data) {
-            startAutocomplete(data)
+    //     success: function(data) {
+    //         startAutocomplete(data)
 
-        }
-    });
+    //     }
+    // });
 
-    function startAutocomplete(arr) {
-        $("#search-product-list").autocomplete({
-            source: arr
-        });
-    }
+    // function startAutocomplete(arr) {
+    //     $("#search-product-list").autocomplete({
+    //         source: arr
+    //     });
+    // }
 
-
-    // ------------- owl-carousel ------------------
-
-
-    $('.owl-carousel').owlCarousel({
-        loop: false,
-        margin: 10,
-        dots: false,
-        nav: true,
-        responsive: {
-            0: {
-                items: 1
-            },
-            600: {
-                items: 2
-            },
-
-            1000: {
-                items: 4
-            }
-        }
-    })
 </script>

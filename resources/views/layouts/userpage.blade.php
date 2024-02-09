@@ -69,6 +69,7 @@
         content="Shop for t-shirts for men and women online at Shirt-Inc the one-stop destination for all official merchandise of superheroes and movies" />
     <meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" />
 
+      <!-- styles -->
     @stack('styles')
 
     <style>
@@ -145,9 +146,29 @@
 
 <script src="{{asset('assets/scripts/main.js')}}"></script>
 
+{{-- ------------ sweatalert ------------- --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+{{-- ------------- search auto complete  --}}
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+{{-- -------------- toast popup ---------------- --}}
+<script src="{{ asset('toast-popup/toast.script.js') }}"></script>
+
+
+{{-- ------------ customs js -------------- --}}
+<script src="{{ asset('js/script.js') }}"></script>
+
+{{-- ------------ payment checkout js -------------- --}}
+<script src="{{ asset('js/payment.js') }}"></script>
+
 
 
     @yield('scripts')
+      <!-- Scripts -->
+    @stack('scripts')
 
 </body>
 
