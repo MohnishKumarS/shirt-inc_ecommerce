@@ -21,7 +21,7 @@ class OrderController extends Controller
 
     public function my_order(){
         $order = Order::where('user_id',Auth::id())->orderBy('created_at','desc')->paginate(10);
-        return view('order.my-order',\compact('order'));
+        return view('profile.orders',\compact('order'));
     }
 
     // ------------------ view my  order --------------

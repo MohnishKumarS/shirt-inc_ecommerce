@@ -54,7 +54,7 @@ class UserController extends Controller
     // --------------- womens products -----------------
 
     public function womens_collections(){
-        $womens_collect = Product::where('type','womens')->latest()->get();
+        $womens_collect = Product::where('type','womens')->latest()->paginate(10);
         return view('product.womens-product',compact('womens_collect'));
         
         }
@@ -62,7 +62,7 @@ class UserController extends Controller
     // --------------- mens products -----------------
 
     public function mens_collections(){
-        $mens_collect = Product::where('type','mens')->latest()->get();
+        $mens_collect = Product::where('type','mens')->latest()->paginate(10);
         return view('product.mens-product',compact('mens_collect'));
 
         }
@@ -70,7 +70,7 @@ class UserController extends Controller
     // --------------- unisex products -----------------
 
     public function unisex_collections(){
-        $unisex_collect = Product::where('type','unisex')->latest()->get();
+        $unisex_collect = Product::where('type','unisex')->latest()->paginate(10);
         return view('product.unisex-product',compact('unisex_collect'));
 
         }

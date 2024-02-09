@@ -103,7 +103,7 @@ Route::middleware(['auth'])->group(function () {
 
    Route::post('/payment-refund', [PaymentController::class, 'phonePeRefundAPI'])->name('phonepe.payment.refund');
 
-   Route::view('/order-success', 'order.order-success');
+   Route::view('/order-confirm', 'cart.order-confirm');
 
    Route::get('/my-cart', [CartController::class, 'my_cart']);
 
@@ -111,7 +111,7 @@ Route::middleware(['auth'])->group(function () {
 
    Route::post('/place-order', [OrderController::class, 'place_order']);
 
-   Route::get('/my-order', [OrderController::class, 'my_order']);
+   Route::get('/profile/orders', [OrderController::class, 'my_order']);
 
    Route::get('/view-order/{id}', [OrderController::class, 'view_order']);
 
@@ -156,7 +156,7 @@ Route::middleware(['auth'])->group(function () {
 
       Route::get('/profile/account', 'profile_account');
       Route::get('/profile/address', 'profile_address');
-      Route::get('/profile/orders', 'profile_orders');
+      // Route::get('/profile/orders', 'profile_orders');
       // Route::get('/profile/wishlist', 'profile_wishlist');
 
 

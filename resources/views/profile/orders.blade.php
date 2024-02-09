@@ -1,6 +1,6 @@
 @extends('layouts.userpage')
 
-@section('title', 'Profile')
+@section('title', 'Orders')
 
 @section('content')
 
@@ -41,6 +41,8 @@
         {{-- - -- end account side bar ----- --}}
         <div class="col-lg-9">
           <div class="page-content my-account__orders-list">
+
+            @if ($order->count() > 0)
             <table class="orders-table">
               <thead>
                 <tr>
@@ -52,36 +54,75 @@
                 </tr>
               </thead>
               <tbody>
+
+                @foreach ($order as $val)
                 <tr>
-                  <td>#2416</td>
-                  <td>October 1, 2023</td>
-                  <td>On hold</td>
-                  <td>Rs.1,200.65 for 3 items</td>
-                  <td><button class="btn btn-primary">VIEW</button></td>
+                  <td>{{ $val->tracking_no }}</td>
+                  <td>{{ $val->created_at->format('M d,Y') }}</td>
+                  <td>
+                    <div>
+                      @switch($val->status)
+                          @case(1)
+                              <span class="text-primary">Order Confirm</span>
+                          @break
+
+                          @case(2)
+                              <span class="text-info">In progress</span>
+                          @break
+
+                          @case(3)
+                              <span class="text-warning">Out for Delivery</span>
+                          @break
+
+                          @case(4)
+                              <span class="text-success">Delivered</span>
+                          @break
+
+                          @default
+                              <span class="text-danger">Pending</span>
+                      @endswitch
+                  </div>
+
+                     {{-- --- admin -- message --}}
+                     @if ($val->message)
+                     <div class="text-sm text-normal">
+                         <span><i
+                                 class="fa-regular fa-comment-dots me-1 fa-lg"></i></span>
+                         {{ $val->message }}
+                     </div>
+                 @endif
+
+                  </td>
+                  <td>Rs.{{ $val->total_price }} for {{$val->orderitem->count()}} items</td>
+                  <td><a href="{{ url('view-order/' . $val->id) }}" class="btn btn-primary">VIEW</a></td>
                 </tr>
-                <tr>
-                  <td>#2417</td>
-                  <td>October 2, 2023</td>
-                  <td>On hold</td>
-                  <td>Rs.1,200.65 for 3 items</td>
-                  <td><button class="btn btn-primary">VIEW</button></td>
-                </tr>
-                <tr>
-                  <td>#2418</td>
-                  <td>October 3, 2023</td>
-                  <td>On hold</td>
-                  <td>Rs.1,200.65 for 3 items</td>
-                  <td><button class="btn btn-primary">VIEW</button></td>
-                </tr>
-                <tr>
-                  <td>#2419</td>
-                  <td>October 4, 2023</td>
-                  <td>On hold</td>
-                  <td>Rs.1,200.65 for 3 items</td>
-                  <td><button class="btn btn-primary">VIEW</button></td>
-                </tr>
+                @endforeach
+             
+           
               </tbody>
             </table>
+
+            {{-- -------- pagination ---------- --}}
+            <div class="paginate-pro mt-5 text-end">
+              {{ $order->links() }}
+          </div>
+            @else
+                  {{-- ---- empty orders list ---- --}}
+                  <div class="" style="padding: 0px 0 40px">
+                    <div class="text-center">
+                        <img src="{{ asset('image/empty/no-orders.webp') }}" alt="orders-empty"
+                            class="img-fluid">
+                        <h3>Sorry, You have no<span class="title-hlorg"> Order!</span></h3>
+                        <p class="text-sm text-normal">Go find the product you like. Looks like you haven't
+                            made your choice yet... </p>
+                        <div class="mt-4">
+                            <a href="{{ url('/collections') }}" class="btn-float d-inline-block"> <i
+                                    class="fa-solid fa-bag-shopping me-1"></i> Go Shopping....</a>
+                        </div>
+                    </div>
+                </div>
+            @endif
+         
           </div>
         </div>
       </div>

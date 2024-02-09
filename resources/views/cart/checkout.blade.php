@@ -29,7 +29,7 @@ $step = 2;
                     <em>Checkout Your Items List</em>
                 </span>
             </a>
-            <a href="confirm" class="checkout-steps__item<?= ($step??0) == 3 ? "  active" : "" ?>">
+            <a href="{{url('order-confirm')}}" class="checkout-steps__item<?= ($step??0) == 3 ? "  active" : "" ?>">
                 <span class="checkout-steps__item-number">03</span>
                 <span class="checkout-steps__item-title">
                     <span>Confirmation</span>

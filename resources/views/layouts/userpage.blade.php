@@ -77,7 +77,7 @@
 ^^^^^^^^^^^^^ ~~ paginate   ~~  ^^^^^^^^^^^^^^
  --------------------------------------------- --> */
 .w-5 {
-    width: 5% !important;
+    width: 3% !important;
 }
 
 .paginate-pro .flex {

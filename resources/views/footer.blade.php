@@ -11,9 +11,10 @@
       </div>
       <div class="block-links">
         <ul class="list-unstyled d-flex gap-0 gap-md-5 align-items-center justify-content-center mb-4 flex-column flex-md-row">
-          <li class="sub-menu__item"><a href="<?= $url ?>shop" class="menu-link menu-link_us-s">Returns Policy</a></li>
-          <li class="sub-menu__item"><a href="<?= $url ?>shop" class="menu-link menu-link_us-s">Track Your Order</a></li>
-          <li class="sub-menu__item"><a href="<?= $url ?>shop" class="menu-link menu-link_us-s">Shipping & Delivery</a></li>
+          <li class="sub-menu__item"><a href="{{ url('return-policy')}}" class="menu-link menu-link_us-s">Returns Policy</a></li>
+          <li class="sub-menu__item"><a href="{{ url('terms-and-conditions')}}" class="menu-link menu-link_us-s">Terms and conditions</a></li>
+          <li class="sub-menu__item"><a href="{{ url('privacy-policy')}}" class="menu-link menu-link_us-s">Privacy Policy</a></li>
+          <li class="sub-menu__item"><a href="{{ url('shipping-and-delivery-policy')}}" class="menu-link menu-link_us-s">Shipping & Delivery</a></li>
         </ul>
         <ul class="social-links list-unstyled d-flex flex-wrap align-items-center justify-content-center mb-5">
           <li>
@@ -47,10 +48,10 @@
   
     <div class="footer-bottom">
       <div class="container d-md-flex align-items-center">
-        <span class="footer-copyright me-auto">©2023 Shirt Inc</span>
+        <span class="footer-copyright me-auto">©{{date('Y')}} Shirt Inc</span>
         <div class="d-md-flex align-items-center">
           <span class="footer-copyright me-auto">Designed by&nbsp;</span>
-          <a class="menu-link menu-link_us-s" href="">Xtreme Marketing Agency</a>
+          <a class="menu-link menu-link_us-s" href="https://xtremedm.com/" target="_blank">Xtreme Marketing Agency</a>
         </div>
       </div>
     </div>

@@ -101,7 +101,7 @@
 
                                             <div class="pc__info position-relative">
                                                 <p class="pc__category">{{ $val->product->category->name }}</p>
-                                                <h6 class="pc__title">{{ $val->product->name }}</h6>
+                                                <a href="{{ url('category/' . $val->product->category->slug . '/' . $val->product->slug) }}" class="pc__title">{{ $val->product->name }}</a>
                                                 <div class="product-card__price d-flex">
                                                     <span class="money price">Rs.{{ $val->product->selling_price }} </span>
                                                 </div>
