@@ -90,6 +90,9 @@ $cartBtn = "<a class='header-tools__item header-tools__cart js-open-aside' data-
                     </div>
                 </li>
                 <li class="navigation__item">
+                    <a href="{{url('themes')}}" class="navigation__link">Themes</a>
+                </li>
+                <li class="navigation__item">
                     <a href="<?= $url ?>new-arrival" class="navigation__link">New Arrival</a>
                 </li>
                 @php

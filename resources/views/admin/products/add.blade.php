@@ -175,6 +175,18 @@
                         <option value="Kids">Kids</option>
                       </select>
                 </div>
+                <div class="col-md-6 mb-3">
+                    <label for="" class="form-label">Themes Type</label>
+                    <select class="form-select"  name='product_theme' required>
+                        <option selected value="">Choose a themes style</option>
+                        <option value="Gym">Gym</option>
+                        <option value="Travel">Travel</option>
+                        <option value="Comedy">Comedy</option>
+                        <option value="Anime">Anime</option>
+                        <option value="Friends">Friends</option>
+                        <option value="Jokes">Jokes</option>
+                      </select>
+                </div>
                 <div class="col-md-12 mb-3">
                     <div>
                         <label for="" class="form-label">Action</label>

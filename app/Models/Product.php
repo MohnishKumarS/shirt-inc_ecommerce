@@ -12,7 +12,7 @@ class Product extends Model
 
     protected $table = 'products';
     protected $fillable = ['category_id','name','slug','desc','original_price','selling_price','image','quantity'
-    ,'size_list','couple_men_size','couple_women_size','type','status','trending','freq_bought','offer_menu','offer_msg'];
+    ,'size_list','couple_men_size','couple_women_size','type','themes','status','trending','freq_bought','offer_menu','offer_msg'];
 
 
     // ----------- relationship ----

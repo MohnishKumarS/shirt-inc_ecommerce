@@ -194,6 +194,18 @@
                         <option value="Womens" @if($data->type == "Womens") selected @endif>Womens</option>
                       </select>
                 </div>
+                <div class="col-md-6 mb-3">
+                    <label for="" class="form-label">Product Themes</label>
+                    <select class="form-select"  name='product_theme' required>
+                        <option selected value="">Choose a product style</option>
+                        <option value="Gym" @if($data->themes == "Gym") selected @endif>Gym</option>
+                        <option value="Travel" @if($data->themes == "Travel") selected @endif>Travel</option>
+                        <option value="Comedy" @if($data->themes == "Comedy") selected @endif>Comedy</option>
+                        <option value="Anime" @if($data->themes == "Anime") selected @endif>Anime</option>
+                        <option value="Friends" @if($data->themes == "Friends") selected @endif>Friends</option>
+                        <option value="Jokes" @if($data->themes == "Jokes") selected @endif>Jokes</option>
+                      </select>
+                </div>
                 <div class="col-md-12 mb-3">
                     <div>
                         <label for="" class="form-label">Action</label>
