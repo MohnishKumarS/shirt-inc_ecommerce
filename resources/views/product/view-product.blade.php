@@ -89,7 +89,7 @@ $freq_img = explode(',', $freq_boug->image);
                 <span class="reviews-note text-lowercase text-secondary ms-1">8k+ reviews</span>
             </div>
             <div class="product-single__price">
-                <span class="current-price">Rs. </span>
+                <span class="current-price">Rs. {{ $product->selling_price }}</span>
             </div>
             <div class="product-single__short-desc">
                 <p>Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui.
@@ -107,7 +107,7 @@ $freq_img = explode(',', $freq_boug->image);
                 <label>Sizes</label>
                 @if ($men_size && $women_size)
                     {{-- -------- couples size -------- --}}
-                    <div class="row">
+                    <div class="row mb-3">
                         <div class="col-lg-6 col-md-6 col-8">
                             <select class="form-select men_size" required>
                                 <option selected value="">Select Men's size</option>
@@ -133,7 +133,7 @@ $freq_img = explode(',', $freq_boug->image);
                     </div>
                 @else
                     {{-- -------- common size -------- --}}
-                    <div class="row">
+                    <div class="row mb-3">
                         <div class="col-lg-6 col-md-4 col-sm-6">
 
                             <select class="form-select com_size" required>
