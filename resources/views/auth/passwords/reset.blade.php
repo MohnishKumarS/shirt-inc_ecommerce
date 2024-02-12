@@ -1,6 +1,6 @@
 @extends('layouts.userpage')
 
-@section('title', 'Welcome to E-Shop')
+@section('title', 'Welcome to Shirt-inc')
 
 @section('content')
 
@@ -11,13 +11,13 @@
         <div class="mb-4 pb-4"></div>
         <section class="login-register container">
             <h2 class="section-title text-center fs-3 mb-xl-5">Change Your Password</h2>
-            <p>We will send you an email to reset your password</p>
+            {{-- <p>We will send you an email to reset your password</p> --}}
             <div class="reset-form">
                 <form method="POST" action="{{ route('password.update') }}" class="needs-validation" novalidate>
                     @csrf
                     <input type="hidden" name="token" value="{{ $token }}">
                     <div class="form-floating mb-3">
-                        <input name="login_email" type="email" class="form-control form-control_gray" value="{{ $email ?? old('email') }}"
+                        <input name="email" type="email" class="form-control form-control_gray" value="{{ $email ?? old('email') }}"
                             id="customerNameEmailInput" placeholder="Email address *" required> 
                         <label for="customerNameEmailInput">Email address *</label>
                     </div>

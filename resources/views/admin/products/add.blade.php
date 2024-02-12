@@ -179,12 +179,12 @@
                     <label for="" class="form-label">Themes Type</label>
                     <select class="form-select"  name='product_theme' required>
                         <option selected value="">Choose a themes style</option>
-                        <option value="Gym">Gym</option>
-                        <option value="Travel">Travel</option>
-                        <option value="Comedy">Comedy</option>
-                        <option value="Anime">Anime</option>
-                        <option value="Friends">Friends</option>
-                        <option value="Jokes">Jokes</option>
+                        @forelse ($theme as $val)
+                        <option value="{{$val->theme}}">{{$val->theme}}</option>
+                        @empty
+                        <option value="">No themes found !</option>
+                        @endforelse
+                       
                       </select>
                 </div>
                 <div class="col-md-12 mb-3">

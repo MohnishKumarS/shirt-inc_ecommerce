@@ -18,8 +18,8 @@ return new class extends Migration
             $table->tinyInteger('quantity');
             $table->smallInteger('price');
             $table->string('size');
-            $table->string('mens_size')->nullabel();
-            $table->string('womens_size')->nullabel();
+            $table->string('mens_size')->nullable();
+            $table->string('womens_size')->nullable();
             $table->timestamps();
         });
     }

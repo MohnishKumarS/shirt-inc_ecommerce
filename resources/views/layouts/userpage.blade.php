@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="UTF-8">
@@ -136,7 +136,7 @@
         ^^^^^^^^^^^^^ ~~ js include   ~~  ^^^^^^^^^^^^^^
          --------------------------------------------- -->
 
-    @include('links.js')
+
 
     <script src="{{asset('assets/scripts/jquery.min.js')}}"></script>
 <script src="{{asset('assets/vendors/bootstrap/bootstrap.bundle.min.js')}}"></script>
@@ -165,6 +165,7 @@
 <script src="{{ asset('js/payment.js') }}"></script>
 
 
+@include('links.js')
 
     @yield('scripts')
       <!-- Scripts -->

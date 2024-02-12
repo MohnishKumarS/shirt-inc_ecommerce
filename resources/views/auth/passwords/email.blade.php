@@ -1,6 +1,6 @@
 @extends('layouts.userpage')
 
-@section('title', 'Welcome to E-Shop')
+@section('title', 'Welcome to Shirt-inc')
 
 @section('content')
 
@@ -14,6 +14,7 @@
             <h2 class="section-title text-center fs-3 mb-xl-5">Reset Your Password</h2>
             <p>We will send you an email to reset your password</p>
             <div class="reset-form">
+
                 <form method="POST" action="{{ route('password.email') }}" name="reset-form" class="needs-validation" novalidate >
                     @csrf
                     <div class="form-floating mb-3">

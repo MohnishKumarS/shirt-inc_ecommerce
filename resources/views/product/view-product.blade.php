@@ -92,9 +92,7 @@ $freq_img = explode(',', $freq_boug->image);
                 <span class="current-price">Rs. {{ $product->selling_price }}</span>
             </div>
             <div class="product-single__short-desc">
-                <p>Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui.
-                    Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc,
-                    ut aliquet magna posuere eget.</p>
+                <p> {{ $product->desc }} </p>
             </div>
             <div>
                 @php
@@ -130,6 +128,7 @@ $freq_img = explode(',', $freq_boug->image);
 
                             </select>
                         </div>
+                        <div class="error text-danger"></div>
                     </div>
                 @else
                     {{-- -------- common size -------- --}}
@@ -145,11 +144,12 @@ $freq_img = explode(',', $freq_boug->image);
                                 @endforeach
 
                             </select>
+                            <div class="error text-danger"></div>
 
                         </div>
                     </div>
                 @endif
-                <div class="error text-danger"></div>
+                
 
             </div>
             <form name="addtocart-form" method="post">
@@ -438,13 +438,13 @@ $freq_img = explode(',', $freq_boug->image);
 <section class="products-carousel container">
     <h2 class="h3 text-uppercase mb-4 pb-xl-2 mb-xl-4">Related <strong>Products</strong></h2>
 
-    <div id="related_products" class="position-relative">
+    <div id="related_products " class="position-relative ">
         <div class="swiper-container js-swiper-slider" data-settings='{
             "autoplay": false,
             "slidesPerView": 4,
             "slidesPerGroup": 4,
             "effect": "none",
-            "loop": true,
+            "loop": false,
             "pagination": {
               "el": "#related_products .products-pagination",
               "type": "bullets",
@@ -483,7 +483,9 @@ $freq_img = explode(',', $freq_boug->image);
                 $dis_count = round(($dis / $item->original_price) * 100);
                  @endphp
 
-                    <div class="swiper-slide product-card">
+                    <div class="swiper-slide product-card product-data">
+                        <input type="hidden" class="product_id" value="{{ $item['id'] }}">
+                        <input type="hidden" class="qty-value" value="1">
                         <div class="pc__img-wrapper">
                             <a href="{{ url('category/' . $item->category->slug . '/' . $item->slug) }}">
                                 @if (count($img) > 1)
@@ -494,7 +496,7 @@ $freq_img = explode(',', $freq_boug->image);
                                 
                                 @endif
                             </a>
-                            <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
+                            <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-addToCart"  title="Add To Cart">Add To Cart</button>
                         </div>
 
                         <div class="pc__info position-relative">
@@ -533,21 +535,21 @@ $freq_img = explode(',', $freq_boug->image);
 <section class="products-carousel container">
     <h2 class="h3 text-uppercase mb-4 pb-xl-2 mb-xl-4">POPULAR <strong>Products</strong></h2>
 
-    <div id="related_products" class="position-relative">
+    <div id="popular_products" class="position-relative ">
         <div class="swiper-container js-swiper-slider" data-settings='{
             "autoplay": false,
             "slidesPerView": 4,
             "slidesPerGroup": 4,
             "effect": "none",
-            "loop": true,
+            "loop": false,
             "pagination": {
-              "el": "#related_products .products-pagination",
+              "el": "#popular_products .products-pagination",
               "type": "bullets",
               "clickable": true
             },
             "navigation": {
-              "nextEl": "#related_products .products-carousel__next",
-              "prevEl": "#related_products .products-carousel__prev"
+              "nextEl": "#popular_products .products-carousel__next",
+              "prevEl": "#popular_products .products-carousel__prev"
             },
             "breakpoints": {
               "320": {
@@ -578,7 +580,9 @@ $freq_img = explode(',', $freq_boug->image);
                 $dis_count = round(($dis / $item->original_price) * 100);
                  @endphp
 
-                    <div class="swiper-slide product-card">
+                    <div class="swiper-slide product-card product-data">
+                        <input type="hidden" class="product_id" value="{{ $item['id'] }}">
+                        <input type="hidden" class="qty-value" value="1">
                         <div class="pc__img-wrapper">
                             <a href="{{ url('category/' . $item->category->slug . '/' . $item->slug) }}">
                                 @if (count($img) > 1)
@@ -589,7 +593,7 @@ $freq_img = explode(',', $freq_boug->image);
                                 
                                 @endif
                             </a>
-                            <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
+                            <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-addToCart" title="Add To Cart">Add To Cart</button>
                         </div>
 
                         <div class="pc__info position-relative">

@@ -13,6 +13,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\admin\ThemeController;
 use App\Http\Controllers\Admin\PosterController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
@@ -269,7 +270,15 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
 
 
+   // -------------------  Themes section ------------------
 
+   Route::controller(ThemeController::class)->group(function(){
+
+      Route::get('/themes-artist', 'index');
+      Route::post('/add-themes', 'add_theme');
+      Route::get('/delete-theme/{id}','delete_theme');
+
+   });
 
    // --------------------- category ------------------------
 
@@ -338,10 +347,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
    });
 });
 
-Route::get('/clear-cache', function () {
-   $exitCode = Artisan::call('cache:clear');
-   // return what you want
-});
+
 
 Route::get('/clear', function() {
    

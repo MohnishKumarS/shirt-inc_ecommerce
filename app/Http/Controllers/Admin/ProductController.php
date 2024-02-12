@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Cart;
+use App\Models\Theme;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Wishlist;
@@ -32,8 +33,9 @@ class ProductController extends Controller
     public function add_product()
     {
         $category = Category::all();
+        $theme = Theme::all();
 
-        return view('admin/products/add', \compact('category'));
+        return view('admin/products/add', \compact('category','theme'));
     }
 
     public function insert_product(Request $req)
@@ -103,8 +105,9 @@ class ProductController extends Controller
 
         $data = Product::find($id);
         $category = Category::all();
+        $theme = Theme::all();
         // return $category;
-        return  view('admin/products/edit', \compact('data', 'category'));
+        return  view('admin/products/edit', \compact('data', 'category','theme'));
     }
 
     public function update_product(Request $req, $id)

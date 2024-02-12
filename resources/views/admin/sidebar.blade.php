@@ -63,9 +63,17 @@
             <span class="nav-link-text ms-1">Orders</span>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link text-white {{Request::is('themes')? 'active':''}}" href="{{ url('themes-artist')}}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">smart_toy</i>
+            </div>
+            <span class="nav-link-text ms-1">Themes</span>
+          </a>
+        </li>
        
         <li class="nav-item">
-          <a class="nav-link text-white {{Request::is('slider')? 'active':''}}" href="{{ url('slider-image')}}">
+          <a class="nav-link text-white {{Request::is('slider-image')? 'active':''}}" href="{{ url('slider-image')}}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">slideshow</i>
             </div>
@@ -73,7 +81,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white {{Request::is('slider')? 'active':''}}" href="{{ url('ads-poster')}}">
+          <a class="nav-link text-white {{Request::is('ads-poster')? 'active':''}}" href="{{ url('ads-poster')}}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">add_a_photo</i>
             </div>

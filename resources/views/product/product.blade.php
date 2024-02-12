@@ -187,7 +187,7 @@
                     </div>
                     <div class="dash-border-line"></div>
                     <div class="my-3">
-                        <button class="btn-primary w-100" type="submit">Apply</button>
+                        <button class="btn btn-primary w-100" type="submit">Apply</button>
                     </div>
                 </form>
             </div>

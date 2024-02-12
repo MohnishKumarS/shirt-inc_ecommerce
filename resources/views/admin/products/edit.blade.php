@@ -197,13 +197,12 @@
                 <div class="col-md-6 mb-3">
                     <label for="" class="form-label">Product Themes</label>
                     <select class="form-select"  name='product_theme' required>
-                        <option selected value="">Choose a product style</option>
-                        <option value="Gym" @if($data->themes == "Gym") selected @endif>Gym</option>
-                        <option value="Travel" @if($data->themes == "Travel") selected @endif>Travel</option>
-                        <option value="Comedy" @if($data->themes == "Comedy") selected @endif>Comedy</option>
-                        <option value="Anime" @if($data->themes == "Anime") selected @endif>Anime</option>
-                        <option value="Friends" @if($data->themes == "Friends") selected @endif>Friends</option>
-                        <option value="Jokes" @if($data->themes == "Jokes") selected @endif>Jokes</option>
+                      <option selected value="">Choose a theme style</option>
+                      @forelse ($theme as $val)
+                      <option value="{{$val->theme}}" {{$val->theme == $data->themes ? 'selected' : ''}}>{{$val->theme}}</option>
+                      @empty
+                      <option value="">No themes found !</option>
+                      @endforelse
                       </select>
                 </div>
                 <div class="col-md-12 mb-3">

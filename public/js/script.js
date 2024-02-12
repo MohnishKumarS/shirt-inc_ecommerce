@@ -13,6 +13,7 @@ $(document).ready(function () {
         var men_size = $(this).closest('.product-data').find('.men_size');
         var women_size = $(this).closest('.product-data').find('.women_size');
         var error = $('.error')
+        console.log(com_size.val());
         if(com_size || men_size || women_size){
             if( com_size.val() == '' || men_size.val() == '' || women_size.val() == ''){
                 error.text('Please choose a size');
