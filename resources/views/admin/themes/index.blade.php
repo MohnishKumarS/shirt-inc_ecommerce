@@ -43,7 +43,8 @@
     <div class="card-header">
         <h4>Themes  <i class="material-icons opacity-10">post_add</i></h4>
     </div>
-
+<div class="card-body">
+    
     <div>
         <table class="table table-striped text-center">
             <tr class="text-center">
@@ -83,5 +84,6 @@
     
         </table>
     </div>
+</div>
 </div>
 @endsection

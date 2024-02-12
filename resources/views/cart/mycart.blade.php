@@ -74,7 +74,11 @@
                                     </td>
                                     <td>
                                         <div class="shopping-cart__product-item__detail">
-                                            <h4>{{ $val->product->name }}</h4>
+                                            <h4>
+                                                <a href="{{url('category/'.$val->product->category->slug.'/'.$val->product->slug)}}">
+                                                    {{ $val->product->name }}
+                                                </a>
+                                            </h4>
                                             <ul class="shopping-cart__product-item__options">
                                                 {{-- <li>Color: Yellow</li> --}}
 

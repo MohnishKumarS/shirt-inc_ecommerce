@@ -140,13 +140,14 @@ $cartBtn = "<a class='header-tools__item header-tools__cart js-open-aside' data-
                 @endauth
             </div>
 
-            <a href="{{url('profile/wishlist')}}" title="Wishlist" class="header-tools__item">
+            <a href="{{url('profile/wishlist')}}" title="Wishlist" class="header-tools__item header-tools__cart">
                 <img src="{{ asset('assets/icons/icon_heart.svg') }}" alt="User Icon">
+                <span class='cart-amount d-block position-absolute js-wishlist-count'>0</span>
             </a>
 
             <a class='header-tools__item header-tools__cart'  title='Cart'  href="{{ url('/my-cart') }}">
                 <img src='{{asset('assets/icons/icon_cart.svg')}}' alt='cart Icon'>
-                    <span class='cart-amount d-block position-absolute js-cart-items-count '>0</span>
+                    <span class='cart-amount d-block position-absolute js-cart-items-count'>0</span>
                 </a>
         </div>
     </div>

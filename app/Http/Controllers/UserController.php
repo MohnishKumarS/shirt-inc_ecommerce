@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Theme;
 use App\Models\Poster;
 use App\Models\Rating;
 use App\Models\Review;
@@ -80,6 +81,7 @@ class UserController extends Controller
     public function view_category($slug,Request $req){
         if(Category::where('slug',$slug)->exists()){
             $all_category = Category::orderBy('id','desc')->get();
+            $all_themes = Theme::all();
             $category = category::where('slug',$slug)->get(); 
 
             // -----  filter  a product ---------------
@@ -136,7 +138,7 @@ class UserController extends Controller
             }
 
            
-           return view('product.product',\compact('all_product','all_category','category'));
+           return view('product.product',\compact('all_product','all_category','category','all_themes'));
      
 
         }else{

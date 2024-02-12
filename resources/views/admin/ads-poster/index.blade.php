@@ -51,7 +51,7 @@
             <h4>Slider Poster <i class="material-icons opacity-10">post_add</i></h4>
         </div>
 
-        <div>
+        <div class="card-body">
             <table class="table table-striped">
                 <tr class="text-center">
                     <th>Id</th>

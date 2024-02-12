@@ -115,7 +115,24 @@
                             </div>
                         </div>
                     </div>
-                    <div class="dash-border-line"></div>
+                    <hr>
+                    <div>
+                        <h6 class="sidebar-head">Categories</h6>
+                        <div>
+                            @foreach ($all_themes as $item)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="theme_side"
+                                        value="{{ $item->slug }}"
+                                        {{ Request::get('theme_side') == $item->slug ? 'checked' : '' }}>
+                                    <label class="form-check-label sidebar-title">
+                                        {{ $item->theme }}
+                                    </label>
+                                </div>
+                            @endforeach
+
+                        </div>
+                    </div>
+                    <hr>
                     <div>
                         <h6 class="sidebar-head">Categories</h6>
                         <div>
@@ -132,6 +149,7 @@
 
                         </div>
                     </div>
+                    
                     {{-- <div class="dash-border-line"></div>
       <div>
           <h6 class="sidebar-head">products</h6>
@@ -162,7 +180,7 @@
               </div>
           </div>
       </div> --}}
-                    <div class="dash-border-line"></div>
+                   <hr>
                     <div>
                         <h6 class="sidebar-head">price</h6>
                         <div>
@@ -196,7 +214,7 @@
 
     <div class="col-lg-9">
         
-    <div class="products-grid row row-cols-1 row-cols-lg-3 row-cols-md-3  row-cols-sm-2 gy-4" id="products-grid">
+    <div class="products-grid row row-cols-1 row-cols-xl-4 row-cols-lg-3 row-cols-md-3  row-cols-sm-2 gy-4" id="products-grid">
    
                {{-- ----------   VIEW ALL PRODUCTS TO SHOW ------------- --}}
 

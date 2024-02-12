@@ -359,7 +359,12 @@ $step = 2;
                                 Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="<?= $url ?>privacy-policy" target="_blank">privacy policy</a>.
                             </div>
                         </div>
-                        <a href="<?= $url ?>confirm" class="btn btn-primary btn-checkout payment-btn">PLACE ORDER</a>
+                        <div class="mobile_fixed-btn_wrapper">
+                            <div class="button-wrapper container">
+                                <button  class="btn btn-primary btn-checkout payment-btn">PLACE ORDER</button>
+                            </div>
+                        </div>
+                       
                     </div>
                 </div>
             </div>

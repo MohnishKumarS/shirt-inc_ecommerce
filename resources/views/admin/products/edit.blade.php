@@ -198,6 +198,7 @@
                     <label for="" class="form-label">Product Themes</label>
                     <select class="form-select"  name='product_theme' required>
                       <option selected value="">Choose a theme style</option>
+                      <option value="null">None</option>
                       @forelse ($theme as $val)
                       <option value="{{$val->theme}}" {{$val->theme == $data->themes ? 'selected' : ''}}>{{$val->theme}}</option>
                       @empty
