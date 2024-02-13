@@ -34,11 +34,12 @@
             <span class="breadcrumb-separator menu-link fw-medium ps-1 pe-1">/</span>
             <a href="{{ url('collections') }}" class="menu-link menu-link_us-s text-uppercase fw-medium">Collections</a>
             <span class="breadcrumb-separator menu-link fw-medium ps-1 pe-1">/</span>
-            <a href="javascript:void(0)" class="menu-link menu-link_us-s text-uppercase fw-medium">{{ $category[0]->name }}</a>
+            <a href="javascript:void(0)" class="menu-link menu-link_us-s text-uppercase fw-medium">{{ $category->name }}</a>
         </div>
 
         <div class="shop-acs d-flex align-items-center justify-content-between justify-content-md-end flex-grow-1">
-            <select class="shop-acs__select form-select w-auto border-0 py-0 order-1 order-md-0" aria-label="Sort Items" name="total-number">
+            <form action="{{ URL::current() }}" method="get">
+            <select class="shop-acs__select form-select w-auto border-0 py-0 order-1 order-md-0" aria-label="Sort Items" name="sort">
                 <option selected>Default Sorting</option>
                 <option value="1">Featured</option>
                 <option value="2">Best selling</option>
@@ -49,6 +50,7 @@
                 <option value="3">Date, old to new</option>
                 <option value="3">Date, new to old</option>
             </select>
+            </form>
 
             <div class="shop-asc__seprator mx-3 bg-light d-none d-md-block order-md-0"></div>
 
@@ -59,20 +61,21 @@
                 <button class="btn-link fw-medium js-cols-size" data-target="products-grid" data-cols="4">4</button>
             </div><!-- /.col-size -->
 
-            <div class="shop-asc__seprator mx-3 bg-light d-none d-lg-block order-md-1"></div>
+            {{-- <div class="shop-asc__seprator mx-3 bg-light d-none d-lg-block order-md-1"></div>
 
             <div class="shop-filter d-flex align-items-center order-0 order-md-3">
                 <button class="btn-link btn-link_f d-flex align-items-center ps-0 js-open-aside" data-aside="shopFilter">
-                    <?= $icon_filter ?> &nbsp;
+                     &nbsp;
                     <span class="text-uppercase fw-medium d-inline-block align-middle">Filter</span>
                 </button>
-            </div>
+            </div> --}}
         </div>
     </div>
 
-    <div class="row" id="">
+    <div class="row">
 
     {{-- ----------- SIDE BAR FILTERS ----------- --}}
+
     <div class="col-lg-3 col-md-3 p-0 d-none d-lg-block">
         <div class="pro-sidebar-section border p-2">
             <div class="pro-sidebar">
@@ -82,7 +85,7 @@
                         <div class="d-flex justify-content-between">
                             <h5 class="sidebar-head top">Filters</h5>
                             <div>
-                                <a href="{{ URL::current() }}" class="clear-all">Clear all</a>
+                                <a href="{{ URL::current() }}" class="clear-all text-danger">Clear all</a>
                             </div>
                         </div>
                         <div class="dash-border-line mt-2"></div>
@@ -117,13 +120,13 @@
                     </div>
                     <hr>
                     <div>
-                        <h6 class="sidebar-head">Categories</h6>
+                        <h6 class="sidebar-head">Themes</h6>
                         <div>
                             @foreach ($all_themes as $item)
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="theme_side"
+                                    <input class="form-check-input" type="radio" name="theme_type"
                                         value="{{ $item->slug }}"
-                                        {{ Request::get('theme_side') == $item->slug ? 'checked' : '' }}>
+                                        {{ Request::get('theme_type') == $item->slug ? 'checked' : '' }}>
                                     <label class="form-check-label sidebar-title">
                                         {{ $item->theme }}
                                     </label>
@@ -134,13 +137,13 @@
                     </div>
                     <hr>
                     <div>
-                        <h6 class="sidebar-head">Categories</h6>
+                        <h6 class="sidebar-head">Collections</h6>
                         <div>
                             @foreach ($all_category as $item)
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="cat_side"
+                                    <input class="form-check-input" type="radio" name="cat_type"
                                         value="{{ $item->slug }}"
-                                        {{ Request::get('cat_side') == $item->slug ? 'checked' : '' }}>
+                                        {{ Request::get('cat_type') == $item->slug ? 'checked' : '' }}>
                                     <label class="form-check-label sidebar-title">
                                         {{ $item->name }}
                                     </label>
@@ -182,7 +185,7 @@
       </div> --}}
                    <hr>
                     <div>
-                        <h6 class="sidebar-head">price</h6>
+                        <h6 class="sidebar-head">Price</h6>
                         <div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="sort_price"
@@ -213,6 +216,22 @@
     </div>
 
     <div class="col-lg-9">
+
+        @if (count($all_product) == 0)
+        <div class="container">
+            <div class="text-center">
+                <img src="{{ asset('image/empty/no-product-found.png') }}" alt="empty-product"
+                    loading="lazy">
+                <h3>Sorry, No Product <span class="title-hlorg"> Found!</span></h3>
+                <p class="text-sm text-normal">Wondering why all of a sudden we are receiving the
+                    error message "Sorry, this product or category was not found" </p>
+                <div class="mt-4">
+                    <a href="{{ url('/collections') }}" class="btn btn-primary"> <i
+                            class="fa-solid fa-bag-shopping me-1"></i> Continue Shopping....</a>
+                </div>
+            </div>
+        </div>
+    @else
         
     <div class="products-grid row row-cols-1 row-cols-xl-4 row-cols-lg-3 row-cols-md-3  row-cols-sm-2 gy-4" id="products-grid">
    
@@ -220,9 +239,16 @@
 
    @foreach($all_product as $val)
    @php
-       $img = explode(',',$val->image)
-   @endphp
+       $img = explode(',',$val->image);
+             // ------ discount percentage ------
+             $dis = $val->original_price - $val->selling_price;
+           $dis_count = round(($dis / $val->original_price) * 100);
 
+        //    ---------- check wishlist active -----------
+        // use App\Models\Wishlist;
+        $wishactive = App\Models\Wishlist::where('user_id',Auth::user()->id)->where('product_id',$val->id)->first();
+
+   @endphp
 
      <div class="col">
 <div class="product-card-wrapper product-data" >
@@ -273,18 +299,20 @@
            <span class="reviews-note text-lowercase text-secondary ms-1">8k+ reviews</span>
        </div>  --}}
 
-       <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Add To Wishlist">
+       <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist @if($wishactive) wishActive  @endif" title="Add To Wishlist">
            <?= $icon_heart; ?>
        </button>
    </div>
 
    <div class="pc-labels position-absolute top-0 start-0 w-100 d-flex justify-content-between">
+       @if ($val->offer_menu)
        <div class="pc-labels__left">
-           <span class="pc-label pc-label_new d-block bg-white">NEW</span>
+        <span class="pc-label pc-label_new d-block bg-white">{{$val->offer_msg}}</span>
        </div>
+       @endif
 
        <div class="pc-labels__right">
-           <span class="pc-label pc-label_sale d-block text-white">-67%</span>
+           <span class="pc-label pc-label_sale d-block text-white">-{{ $dis_count }}%</span>
        </div>
    </div>
 </div>
@@ -292,16 +320,19 @@
         </div>
         @endforeach
     </div>
+               <!-- Paginate -->
+               <div class="paginate-pro mt-5 text-center">
+                {{ $all_product->links() }}
+            </div>
+    @endif
+
     </div>
 
        
 
     </div>
 
-        <!-- Paginate -->
-        <div class="paginate-pro mt-5 text-center">
-            {{ $all_product->links() }}
-        </div>
+ 
 
  
 </section>

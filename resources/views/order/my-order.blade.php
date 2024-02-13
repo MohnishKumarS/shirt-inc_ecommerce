@@ -64,7 +64,7 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="{{ url('view-order/' . $val->id) }}" class="btn-glow p-2">View
+                                                    <a href="{{ url('view-order/' . $val->id) }}" class="btn btn-primary">View
                                                         order </a>
                                                 </td>
                                             </tr>

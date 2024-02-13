@@ -128,7 +128,7 @@
                                 <p class="text-sm text-normal">Look like you have not added anything to you cart. Go ahead &
                                     explore top Collections... </p>
                                 <div class="mt-4">
-                                    <a href="{{ url('/collections') }}" class="btn-float d-inline-block"> <i
+                                    <a href="{{ url('/collections') }}" class="btn btn-primary"> <i
                                             class="fa-solid fa-bag-shopping me-1"></i> Continue Shopping....</a>
                                 </div>
                             </div>

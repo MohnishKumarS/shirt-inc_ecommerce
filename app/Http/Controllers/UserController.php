@@ -78,65 +78,37 @@ class UserController extends Controller
 
     // --------------- view all product in search category -----------
 
-    public function view_category($slug,Request $req){
-        if(Category::where('slug',$slug)->exists()){
+    public function view_category($cat_slug,Request $req){
+        if(Category::where('slug',$cat_slug)->exists()){
             $all_category = Category::orderBy('id','desc')->get();
             $all_themes = Theme::all();
-            $category = category::where('slug',$slug)->get(); 
+            $category = category::where('slug',$cat_slug)->first(); 
 
-            // -----  filter  a product ---------------
-           if(isset($_GET['cat_side'])){
-            $cat_name = $_GET['cat_side'];
-            } ;
-           if(isset($_GET['pro_type'])){
-            $pro_type = $_GET['pro_type'];
-            } ;
-           if(isset($_GET['sort_price'])){
-            $sort_price = $_GET['sort_price'];
-            } ;
+            // -----  filter  a product ---------------    
+   
+        $all_product = Product::latest();
+    
+    if ($req->has('sort_price')) {
+        $all_product = Product::orderBy('selling_price', $req->get('sort_price'));
+    }
+    if($req->has('theme_type')) {
+        $theme = Theme::where('slug',$req->get('theme_type'))->first();
+        $all_product->where('themes',$theme->theme);
+    }
+    if ($req->has('cat_type')) {
+        $cat =  Category::where('slug',$req->get('cat_type'))->first();
+        $all_product->where('category_id', $cat->id);
+    }else{
+         $all_product->where('category_id', $category->id);
+    }
 
-           
-            if($req->get('cat_side') && $req->get('pro_type') && $req->get('sort_price')){
-               
-                $cat = Category::where('slug',$cat_name)->first();
-                $all_product = Product::orderBy('selling_price',$sort_price)->where('category_id',$cat->id)
-                ->where('type',$pro_type)->latest()->paginate(3);
-            }
-            elseif($req->get('cat_side') && $req->get('pro_type')){
+    if ($req->has('pro_type')) {
+        $all_product->where('type', $req->get('pro_type'));
+    }
 
-                $cat = Category::where('slug',$cat_name)->first();
-                $all_product = Product::where('category_id',$cat->id)->where('type',$pro_type)->latest()->paginate(30);
-            }
-            elseif($req->get('cat_side') && $req->get('sort_price')){
 
-                $cat = Category::where('slug',$cat_name)->first();
-                $all_product = Product::orderBy('selling_price',$sort_price)->where('category_id',$cat->id)
-                ->where('type',$pro_type)->latest()->paginate(30);
-            }
-            elseif($req->get('sort_price') && $req->get('pro_type')){
-
-                $all_product = Product::orderBy('selling_price',$sort_price)->where('type',$pro_type)
-                ->where('category_id',$category[0]->id)->latest()->paginate(30);
-            }
-            elseif($req->get('cat_side')){
-
-                $cat = Category::where('slug',$cat_name)->first();
-                $all_product = Product::where('category_id',$cat->id)->latest()->paginate(30);
-            }
-            elseif($req->has('pro_type')){
-
-                $all_product = Product::where('category_id',$category[0]->id)
-                ->where('type',$pro_type)->latest()->paginate(30);
-            }
-            elseif($req->has('sort_price')){
-
-                $all_product = Product::orderBy('selling_price',$sort_price)
-                ->where('category_id',$category[0]->id)->latest()->paginate(30);
-            }
-            else{
-                $all_product = Product::where('category_id',$category[0]->id)->latest()->paginate(30);
-            }
-
+    $all_product = $all_product->paginate(20);
+    // return $all_product;
            
            return view('product.product',\compact('all_product','all_category','category','all_themes'));
      

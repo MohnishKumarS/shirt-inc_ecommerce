@@ -14544,6 +14544,7 @@ textarea.form-control.is-invalid {
 }
 
 .pc-label {
+  text-transform: capitalize;
   padding: 0.25rem 0.625rem 0.125rem;
   font-size: .75rem;
 }
