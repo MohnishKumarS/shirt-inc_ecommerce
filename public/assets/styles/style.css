@@ -14412,6 +14412,10 @@ textarea.form-control.is-invalid {
   margin-top: 1rem;
 }
 
+.pc__info .wishActive  #icon_heart path{
+  fill: red;
+}
+
 .pc__info.hover__content {
   margin-top: 0;
   min-width: auto;

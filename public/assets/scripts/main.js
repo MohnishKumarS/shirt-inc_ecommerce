@@ -1345,13 +1345,13 @@ function pureFadeOut(e) {
     });
   }
 
-  $('button.js-add-wishlist, a.add-to-wishlist').on('click', function () {
-    if ($(this).hasClass("active"))
-      $(this).removeClass("active");
-    else
-      $(this).addClass("active");
-    return false;
-  });
+  // $('button.js-add-wishlist, a.add-to-wishlist').on('click', function () {
+  //   if ($(this).hasClass("active"))
+  //     $(this).removeClass("active");
+  //   else
+  //     $(this).addClass("active");
+  //   return false;
+  // });
 
   if ($('[data-fancybox="gallery"]').length > 0) {
     $('[data-fancybox="gallery"]').fancybox({

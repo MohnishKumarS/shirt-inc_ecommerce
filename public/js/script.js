@@ -103,6 +103,9 @@ $(document).ready(function () {
                 // --------- alert message --------------
                     swal.fire('', data.message, data.status);
                     countwishlist();
+                    // $('.product-card-wrapper .pc__info .wishActive  #icon_heart path').css('fill','red');
+                    // $('.products-item').load(location.href + ' .products-item');
+                    $('.products-item').load(location.href + ' .products-item');
                     // $.Toast("Awww!", data.message, data.status, {
                     //     has_icon:true,
                     //     has_close_btn:true,
