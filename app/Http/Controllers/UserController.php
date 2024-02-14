@@ -44,6 +44,21 @@ class UserController extends Controller
         return view('category',\compact('all_category'));
     }
 
+    // ------------- view themes -------------------
+    public function view_themes(){
+        $themes = Theme::orderBy('id','desc')->get();
+        return view('themes',\compact('themes'));
+    }
+
+    // ---------   themes collections --------------
+
+    public function theme_collections($theme_slug){
+        return $theme_slug;
+        $theme = Theme::find($id);
+        $collections = $theme->collections;
+        return view('product.themes-product',\compact('collections','theme'));
+    }
+
     // --------------- view new arrival product ---------------
 
     public function view_new_product(){

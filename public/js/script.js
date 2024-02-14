@@ -55,20 +55,9 @@ $(document).ready(function () {
 
             success: function (data) {
 
-                // --------- alert message --------------
-                if (data.message == 'Login to Continue') {
-                    swal.fire('', data.message, data.status);
-                    setTimeout(() => {
-                        window.location.href = "/login";
-                    }, 2000);
-
-                }
-                 else {
                     swal.fire('', data.message, data.status);
                     countcart();
-                    // $('.nav-item').load(location.href + ' .nav-item');
-                }
-
+                    // $('.nav-item').load(location.href + ' .nav-item');              
 
             }
         });
@@ -99,13 +88,18 @@ $(document).ready(function () {
 
 
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 // --------- alert message --------------
                     swal.fire('', data.message, data.status);
                     countwishlist();
-                    // $('.product-card-wrapper .pc__info .wishActive  #icon_heart path').css('fill','red');
+
+                    if(data.status == 'success'){
+                    //  $get_id =    $('.product-data').attr('id');
+                        console.log($('#product-'+data.pro_id+ ' #icon_heart path'));
+                     $('#product-'+data.pro_id + ' #icon_heart path').css('fill','red');
+                       
+                    }
                     // $('.products-item').load(location.href + ' .products-item');
-                    $('.products-item').load(location.href + ' .products-item');
                     // $.Toast("Awww!", data.message, data.status, {
                     //     has_icon:true,
                     //     has_close_btn:true,

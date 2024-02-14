@@ -15,14 +15,14 @@
        
         {{-- ````````` CART TOPBAR LAYOUT ```````````` --}}
         <div class="checkout-steps">
-          <a  class="checkout-steps__item active">
+          <a  class="checkout-steps__item">
               <span class="checkout-steps__item-number">01</span>
               <span class="checkout-steps__item-title">
                   <span>Shopping Bag</span>
                   <em>Manage Your Items List</em>
               </span>
           </a>
-          <a href="{{url('checkout')}}" class="checkout-steps__item<?= ($step??0) > 1 ? "  active" : "" ?>">
+          <a href="{{url('checkout')}}" class="checkout-steps__item">
               <span class="checkout-steps__item-number">02</span>
               <span class="checkout-steps__item-title">
                   <span>Shipping and Checkout</span>
@@ -47,8 +47,12 @@
             </svg>
             <h3>Your order is completed!</h3>
             <p>Thank you. Your order has been received.</p>
+
+            <div class="my-4">
+                <a href="{{url('/profile/orders')}}" class="btn btn-primary">VIEW ORDER</a>
+            </div>
         </div>
-        <div class="order-info">
+        {{-- <div class="order-info">
             <div class="order-info__item">
                 <label>Order Number</label>
                 <span>13119</span>
@@ -108,7 +112,7 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div> --}}
     </div>
 
   </section>

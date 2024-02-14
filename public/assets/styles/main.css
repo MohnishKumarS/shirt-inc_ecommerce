@@ -1,0 +1,29 @@
+/* --- search --- */
+.ui-widget.ui-widget-content {
+  position: absolute;
+  top: 122px !important;
+  padding: 10px 0;
+  border-radius: 10px;
+  -webkit-box-shadow: 3px 3px 6px #00000041, -3px -1px 6px #00000041;
+  -moz-box-shadow: 3px 3px 6px #00000041, -3px -1px 6px #00000041;
+  box-shadow: 3px 3px 6px #00000041, -3px -1px 6px #00000041;
+  z-index: 100000;
+}
+
+.ui-widget.ui-widget-content .ui-menu-item .ui-menu-item-wrapper:hover {
+  color: #000000;
+  background-color: #fafafa;
+  border: 1px solid #dddddd;
+}
+
+@media (max-width:992px) {
+  .ui-widget.ui-widget-content {
+      top: 145px !important;
+
+  }
+}
+
+/* ----- adding extra styles ---- */
+.product-data .wishActive  #icon_heart path{
+  fill: red;
+}

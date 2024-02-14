@@ -12,8 +12,9 @@ class Theme extends Model
     protected $table = 'themes';
 
     protected $fillable = [
-        'theme',
+        'name',
         'slug',
+        'image',
         'status'
     ] ;
 }

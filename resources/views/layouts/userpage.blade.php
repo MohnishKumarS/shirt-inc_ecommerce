@@ -30,11 +30,13 @@
     <link rel="stylesheet" href="{{asset('assets/vendors/toaster/style.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('assets/styles/style.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('assets/styles/custom.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('assets/styles/main.css')}}" type="text/css">
 
     {{-- --------------- toast popup ---------------- --}}
+    <link rel="stylesheet" href="{{ asset('toast-popup/toast.style.min.css') }}">
 
-<link rel="stylesheet" href="{{ asset('toast-popup/toast.style.min.css') }}">
-
+    <!-- jquery ui -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
 
     <link rel="canonical" href="https://shirt-inc.com/">
@@ -138,7 +140,7 @@
 
 
 
-    <script src="{{asset('assets/scripts/jquery.min.js')}}"></script>
+<script src="{{asset('assets/scripts/jquery.min.js')}}"></script>
 <script src="{{asset('assets/vendors/bootstrap/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('assets/vendors/bootstrap/bootstrap-slider.min.js')}}"></script>
 <script src="{{asset('assets/vendors/swiper/swiper.min.js')}}"></script>

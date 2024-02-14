@@ -39,18 +39,25 @@ class CategoryController extends Controller
 
         $cat = new Category();
 
+        if ($req->hasFile('icons')) {
+            $file = $req->file('icons');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move(\public_path('image/category/icons/'), $filename);
+            $cat->icon = $filename;
+        }
         if ($req->hasFile('images')) {
             $file = $req->file('images');
             $ext = $file->getClientOriginalExtension();
             $filename = time() . '.' . $ext;
-            $file->move('image/category/', $filename);
+            $file->move(\public_path('image/category/'), $filename);
             $cat->image = $filename;
         }
         if ($req->hasFile('poster')) {
             $file = $req->file('poster');
             $ext = $file->getClientOriginalExtension();
             $fileimg = time() . '.' . $ext;
-            $file->move('image/category/', $filename);
+            $file->move(\public_path('image/category/'), $filename);
             $cat->poster = $fileimg;
         }
 
@@ -83,6 +90,17 @@ class CategoryController extends Controller
 
        
         $data = Category::find($id);
+        if ($req->hasFile('icon')) {
+            $path =  'image/category/icons/' . $data->icon;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+            $file = $req->file('icon');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move('image/category/icons/', $filename);
+            $data->icon = $filename;
+        }
         if ($req->hasFile('images')) {
             $path =  'image/category/' . $data->image;
             if (File::exists($path)) {
@@ -159,7 +177,7 @@ class CategoryController extends Controller
         // ---- delete category  
 
         // Category::destroy($id);
-        $data = Category::find($id);
+        $data = Category::findOrFail($id);
         // // --- delete category  image -----
         if ($data->image) {
             $path = 'image/category/' . $data->image;
@@ -169,6 +187,12 @@ class CategoryController extends Controller
         }
         if ($data->poster) {
             $path = 'image/category/' . $data->poster;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+        }
+        if ($data->icon) {
+            $path = 'image/category/icons/' . $data->icon;
             if (File::exists($path)) {
                 File::delete($path);
             }

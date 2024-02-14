@@ -55,6 +55,10 @@ Route::get('/category/{cate_slug}/{prod_slug}', [UserController::class, 'view_pr
 
 Route::get('/new-arrival', [UserController::class, 'view_new_product']);
 
+Route::get('/themes', [UserController::class, 'view_themes']);
+
+Route::get('/themes/{theme-slug}', [UserController::class, 'theme_collections']);
+
 Route::get('/womens-collections',[UserController::class,'womens_collections']);
 
 Route::get('/mens-collections',[UserController::class,'mens_collections']);
@@ -276,7 +280,9 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
       Route::get('/themes-artist', 'index');
       Route::post('/add-themes', 'add_theme');
-      Route::get('/delete-theme/{id}','delete_theme');
+      Route::get('/edit-theme/{id}', 'edit_theme');
+      Route::put('/update-theme/{id}','update_theme');
+      Route::delete('/delete-theme/{id}','delete_theme');
 
    });
 

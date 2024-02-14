@@ -23,14 +23,21 @@
                     <input type="text" class="form-control" name="desc" value="{{$data->desc}}">
                 </div>
                
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
+                    <label for="" class="form-label">Current Icon</label>
+                    <div>
+                        <img src="{{ asset('image/category/icons/'.$data->icon)}}" alt="" width="200" style="object-fit: contain">
+                    </div>
+                  
+                </div>
+                <div class="col-md-4 mb-3">
                     <label for="" class="form-label">Current Image</label>
                     <div>
                         <img src="{{ asset('image/category/'.$data->image)}}" alt="" width="200" style="object-fit: contain">
                     </div>
                   
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
                     <label for="" class="form-label">Current Poster</label>
                     <div>
                         @if ($data->poster)
@@ -44,13 +51,17 @@
                     </div>
                     
                 </div>
-                <div class="col-md-6 mb-3">
-                    <label for="" class="form-label">Choose another image</label>
-                    <input type="file" class="form-control" name="images" value="{{$data->image}}">
+                <div class="col-md-4 mb-3">
+                    <label for="" class="form-label">Choose another icon</label>
+                    <input type="file" class="form-control" name="icon">
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
+                    <label for="" class="form-label">Choose another image</label>
+                    <input type="file" class="form-control" name="images">
+                </div>
+                <div class="col-md-4 mb-3">
                     <label for="" class="form-label">Choose another Poster</label>
-                    <input type="file" class="form-control" name="poster" value="{{$data->name}}">
+                    <input type="file" class="form-control" name="poster">
                 </div>
                 <div class="col-md-6 mb-3">
                     <div>

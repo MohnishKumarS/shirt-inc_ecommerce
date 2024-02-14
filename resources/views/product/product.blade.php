@@ -128,7 +128,7 @@
                                         value="{{ $item->slug }}"
                                         {{ Request::get('theme_type') == $item->slug ? 'checked' : '' }}>
                                     <label class="form-check-label sidebar-title">
-                                        {{ $item->theme }}
+                                        {{ $item->name }}
                                     </label>
                                 </div>
                             @endforeach
@@ -243,16 +243,17 @@
              // ------ discount percentage ------
              $dis = $val->original_price - $val->selling_price;
            $dis_count = round(($dis / $val->original_price) * 100);
-
-        //    ---------- check wishlist active -----------
-        // use App\Models\Wishlist;
-        $wishactive = App\Models\Wishlist::where('user_id',Auth::user()->id)->where('product_id',$val->id)->first();
-
    @endphp
+   @auth
+        @php
+              //    ---------- check wishlist active -----------
+   $wishactive = App\Models\Wishlist::where('user_id',Auth::user()->id)->where('product_id',$val->id)->first();
+        @endphp
+   @endauth
 
-     <div class="col">
-<div class="product-card-wrapper product-data" >
-<div class="product-card mb-3 mb-md-4 mb-xxl-5">
+     <div class="col" >
+<div class="product-card-wrapper product-data" id='product-{{$val->id}}'>
+<div class="product-card mb-3 mb-md-4 mb-xxl-5" >
 
    <div class="pc__img-wrapper">
        <div class="swiper-container background-img js-swiper-slider" data-settings='{"resizeObserver": true}'>
@@ -299,7 +300,8 @@
            <span class="reviews-note text-lowercase text-secondary ms-1">8k+ reviews</span>
        </div>  --}}
 
-       <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist @if($wishactive) wishActive  @endif" title="Add To Wishlist">
+       <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist 
+      @auth  @if($wishactive) wishActive  @endif @endauth" title="Add To Wishlist">
            <?= $icon_heart; ?>
        </button>
    </div>

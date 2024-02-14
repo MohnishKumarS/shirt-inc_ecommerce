@@ -64,7 +64,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white {{Request::is('themes')? 'active':''}}" href="{{ url('themes-artist')}}">
+          <a class="nav-link text-white {{Request::is('themes-artist')? 'active':''}}" href="{{ url('themes-artist')}}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">smart_toy</i>
             </div>

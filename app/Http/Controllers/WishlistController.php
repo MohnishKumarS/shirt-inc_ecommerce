@@ -48,7 +48,7 @@ class WishlistController extends Controller
                     $fav->product_id = $product_id;
                     $fav->save();
     
-                    return  \response()->json(['message'=> $pro_name->name . 'Added to Favourite','status'=>'success']);
+                    return  \response()->json(['message'=> $pro_name->name . 'Added to Favourite','status'=>'success','pro_id'=>$product_id]);
                 }
               
             }

@@ -14409,10 +14409,10 @@ textarea.form-control.is-invalid {
 }
 
 .pc__info {
-  margin-top: 1rem;
+  margin-top: 1rem; 
 }
 
-.pc__info .wishActive  #icon_heart path{
+.product-data .wishActive  #icon_heart path{
   fill: red;
 }
 
@@ -22027,7 +22027,7 @@ a.add-to-wishlist.active .flaticon.flaticon-heart {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .popover-point {

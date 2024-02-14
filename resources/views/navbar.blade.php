@@ -119,8 +119,9 @@ $cartBtn = "<a class='header-tools__item header-tools__cart js-open-aside' data-
 
         <div class="header-tools d-flex align-items-center">
 
-            <form action="./" method="GET" class="header-search search-field d-none d-xxl-flex mx-4">
-                <input class="header-search__input w-100" type="text" name="search-keyword"
+            <form action="{{ url('search-product') }}" method="POST" class="header-search search-field d-none d-xxl-flex mx-4">
+                @csrf
+                <input class="header-search__input w-100" type="text" name="search_item" id="search-product-list"
                     placeholder="Search products...">
                 <button class="btn header-search__btn" type="submit" title="Search">
                     <img src="{{ asset('assets/icons/icon_search.svg') }}" alt="cart Icon">
@@ -186,22 +187,6 @@ $cartBtn = "<a class='header-tools__item header-tools__cart js-open-aside' data-
 
     <nav
         class="header-mobile__navigation navigation d-flex flex-column w-100 position-absolute top-100 bg-body overflow-auto">
-        <div class="container">
-            <form action="search.html" method="GET" class="search-field position-relative mt-4 mb-3">
-                <div class="position-relative">
-                    <input class="search-field__input w-100 border rounded-1" type="text" name="search-keyword"
-                        placeholder="Search products">
-                    <button class="btn-icon search-popup__submit pb-0 me-2" type="submit">
-                        <img src="{{ asset('assets/icons/icon_search.svg') }}" alt="User Icon">
-                    </button>
-                    <button class="btn-icon btn-close-lg search-popup__reset pb-0 me-2" type="reset"></button>
-                </div>
-
-                <div class="position-absolute start-0 top-100 m-0 w-100">
-                    <div class="search-result"></div>
-                </div>
-            </form>
-        </div>
 
         <div class="container">
             <div class="overflow-hidden">

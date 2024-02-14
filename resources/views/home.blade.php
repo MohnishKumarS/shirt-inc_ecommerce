@@ -64,7 +64,7 @@
                 "slidesPerView": 8,
                 "slidesPerGroup": 1,
                 "effect": "none",
-                "loop": true,
+                "loop": false,
                 "navigation": {
                   "nextEl": ".products-carousel__next-1",
                   "prevEl": ".products-carousel__prev-1"
@@ -87,7 +87,7 @@
                     "pagination": false
                   },
                   "1200": {
-                    "slidesPerView": 8,
+                    "slidesPerView": 7,
                     "slidesPerGroup": 1,
                     "spaceBetween": 60,
                     "pagination": false
@@ -324,10 +324,16 @@
                     $img = explode(',', $val->image);
                    
                     @endphp
+                       @auth
+                       @php
+                             //    ---------- check wishlist active -----------
+                  $wishactive = App\Models\Wishlist::where('user_id',Auth::user()->id)->where('product_id',$val->id)->first();
+                       @endphp
+                  @endauth
 
                     {{-- --- loop a trending products --- --}}
 
-                    <div class="swiper-slide product-card product-data">
+                    <div class="swiper-slide product-card product-data" id='product-{{$val->id}}'>
                         <input type="hidden" class="product_id" value="{{ $val['id'] }}">
                         <input type="hidden" class="qty-value" value="1">
                       <div class="pc__img-wrapper">
@@ -345,7 +351,7 @@
                               <button class="btn btn-primary flex-grow-1 fs-base ps-3 ps-xxl-4 pe-0 border-0 text-uppercase fw-medium js-addToCart"  title="Add To Cart">Add To Cart</button>
                               <a href="{{ url('category/' . $val->category->slug . '/' . $val->slug) }}" class="btn btn-primary flex-grow-1 fs-base ps-0 pe-3 pe-xxl-4 border-0 text-uppercase fw-medium js-quick-view"  title="Quick view">Quick View</a>
                           </div>
-                          <button class="pc__btn-wl position-absolute bg-body rounded-circle border-0 text-primary js-add-wishlist" title="Add To Wishlist">
+                          <button class="pc__btn-wl position-absolute bg-body rounded-circle border-0 text-primary js-add-wishlist @auth  @if($wishactive) wishActive  @endif @endauth " title="Add To Wishlist">
                               {!!$icon_heart!!}
                               {{-- <img src="{{ asset("assets/icons/icon_heart.svg") }}" alt="heart Icon"> --}}
                           </button>

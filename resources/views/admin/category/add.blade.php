@@ -23,6 +23,20 @@
                     <label for="" class="form-label">Description</label>
                     <input type="text" class="form-control" name="desc" required>
                 </div>
+
+           
+                <div class="col-md-4 mb-3">
+                    <label for="" class="form-label">Category Icon</label>
+                    <input type="file" class="form-control" name="icon" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="" class="form-label">Category Image</label>
+                    <input type="file" class="form-control" name="images" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="" class="form-label">Poster Image</label>
+                    <input type="file" class="form-control" name="poster"  >
+                </div>
                 <div class="col-md-6 mb-3">
                     <div>
                      <label for="" class="form-label">Product type</label>
@@ -56,15 +70,6 @@
                         <label class="form-check-label" >Popular</label>
                       </div>
                     
-                </div>
-           
-                <div class="col-md-6 mb-3">
-                    <label for="" class="form-label">Category Image</label>
-                    <input type="file" class="form-control" name="images" required>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="" class="form-label">Poster Image</label>
-                    <input type="file" class="form-control" name="poster"  >
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="" class="form-label">Meta Title</label>

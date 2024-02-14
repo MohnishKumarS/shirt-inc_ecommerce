@@ -9,19 +9,23 @@
     </div>
     <div class="card-body">
        <div class="add-slider">
-           <form action="{{url('/add-themes')}}" method="post"> 
+           <form action="{{url('/add-themes')}}" method="post" enctype="multipart/form-data"> 
             @csrf
                 <div class="row">
-                    <div class="col-md-5 mb-3">
-                        <label for="" class="form-label">Themes name:</label>
+                    <div class="col-md-6 mb-3">
+                        <label for="" class="form-label">Name:</label>
                         <input type="text" class="form-control"  name="themes" required>
                     </div>
-                    <div class="col-md-5 mb-3">
-                        <label for="" class="form-label">Slug name:</label>
+                    <div class="col-md-6 mb-3">
+                        <label for="" class="form-label">Slug:</label>
                         <input type="text" class="form-control"  name="slug" required>
                     </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="" class="form-label">Image:</label>
+                        <input type="file" class="form-control"  name="image" required>
+                    </div>
                    
-                    <div class="col-md-2 mb-3">
+                    <div class="col-md-6 mb-3">
                         <label for="" class="form-label">Status :</label>
                         <div>
                             <div class="form-check form-check-inline">
@@ -59,7 +63,7 @@
             @forelse ($theme as $val)
                 <tr>
                   <th>{{$i++}}</th>
-                  <td>{{$val->theme}}</td>
+                  <td>{{$val->name}}</td>
                   <td>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox"

@@ -18,14 +18,14 @@
                     <em>Manage Your Items List</em>
                 </span>
             </a>
-            <a href="{{url('checkout')}}" class="checkout-steps__item<?= ($step??0) > 1 ? "  active" : "" ?>">
+            <a  class="checkout-steps__item<?= ($step??0) > 1 ? "  active" : "" ?>">
                 <span class="checkout-steps__item-number">02</span>
                 <span class="checkout-steps__item-title">
                     <span>Shipping and Checkout</span>
                     <em>Checkout Your Items List</em>
                 </span>
             </a>
-            <a href="confirm" class="checkout-steps__item<?= ($step??0) == 3 ? "  active" : "" ?>">
+            <a class="checkout-steps__item<?= ($step??0) == 3 ? "  active" : "" ?>">
                 <span class="checkout-steps__item-number">03</span>
                 <span class="checkout-steps__item-title">
                     <span>Confirmation</span>

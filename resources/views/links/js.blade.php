@@ -44,21 +44,21 @@
 {{-- -------------- search  auto complete ------------- --}}
 
 <script>
-    // var availableTags = [];
-    // $.ajax({
-    //     type: "get",
-    //     url: "/product-list",
+    var availableTags = [];
+    $.ajax({
+        type: "get",
+        url: "/product-list",
 
-    //     success: function(data) {
-    //         startAutocomplete(data)
+        success: function(data) {
+            startAutocomplete(data)
 
-    //     }
-    // });
+        }
+    });
 
-    // function startAutocomplete(arr) {
-    //     $("#search-product-list").autocomplete({
-    //         source: arr
-    //     });
-    // }
+    function startAutocomplete(arr) {
+        $("#search-product-list").autocomplete({
+            source: arr
+        });
+    }
 
 </script>
