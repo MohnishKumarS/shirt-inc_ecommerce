@@ -57,7 +57,7 @@ Route::get('/new-arrival', [UserController::class, 'view_new_product']);
 
 Route::get('/themes', [UserController::class, 'view_themes']);
 
-Route::get('/themes/{theme-slug}', [UserController::class, 'theme_collections']);
+Route::get('/themes/{theme_slug}', [UserController::class, 'theme_collections']);
 
 Route::get('/womens-collections',[UserController::class,'womens_collections']);
 
@@ -85,15 +85,13 @@ Route::view('/about-us','about');
 
 // ---------------- policy page  -----------------------
 
-Route::get('/cancellation-policy', function () {
+Route::get('/return&cancellation-policy', function () {
    return view('policy.cancellation-policy');
 });
 
 Route::view('privacy-policy', 'policy.privacy-policy');
 
 Route::view('terms-and-conditions', 'policy.terms-condition');
-
-Route::view('return-policy', 'policy.return-policy');
 
 Route::view('shipping-and-delivery-policy', 'policy.shipping-and-delivery-policy');
 
@@ -282,7 +280,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
       Route::post('/add-themes', 'add_theme');
       Route::get('/edit-theme/{id}', 'edit_theme');
       Route::put('/update-theme/{id}','update_theme');
-      Route::delete('/delete-theme/{id}','delete_theme');
+      Route::get('/delete-theme/{id}','delete_theme');
 
    });
 

@@ -20,14 +20,18 @@ class ProductController extends Controller
     {
 
         $cat_list = Category::all();
+        $theme_list = Theme::all();
         $product = Product::when($req->cat_id != null, function ($q) use ($req) {
             return $q->where('category_id', $req->cat_id);
         })
             ->when($req->action != null, function ($q) use ($req) {
                 return $q->where($req->action, true);
             })
+            ->when($req->themes != null, function ($q) use ($req) {
+                return $q->where('themes', $req->themes);
+            })
             ->latest()->paginate(10);
-        return \view('admin/products/index', \compact('product', 'cat_list'));
+        return \view('admin/products/index', \compact('product', 'cat_list','theme_list'));
     }
 
     public function add_product()

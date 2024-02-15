@@ -200,7 +200,7 @@
                       <option selected value="">Choose a theme style</option>
                       <option value="null">None</option>
                       @forelse ($theme as $val)
-                      <option value="{{$val->theme}}" {{$val->theme == $data->themes ? 'selected' : ''}}>{{$val->theme}}</option>
+                      <option value="{{$val->slug}}" {{$val->slug == $data->themes ? 'selected' : ''}}>{{$val->name}}</option>
                       @empty
                       <option value="">No themes found !</option>
                       @endforelse

@@ -483,7 +483,14 @@ $freq_img = explode(',', $freq_boug->image);
                 $dis_count = round(($dis / $item->original_price) * 100);
                  @endphp
 
-                    <div class="swiper-slide product-card product-data">
+                @auth
+                @php
+                    //    ---------- check wishlist active -----------
+                $wishactive = App\Models\Wishlist::where('user_id',Auth::user()->id)->where('product_id',$item->id)->first();
+                @endphp
+                @endauth
+
+                    <div class="swiper-slide product-card product-data" id='product-{{$item->id}}'>
                         <input type="hidden" class="product_id" value="{{ $item['id'] }}">
                         <input type="hidden" class="qty-value" value="1">
                         <div class="pc__img-wrapper">
@@ -506,7 +513,7 @@ $freq_img = explode(',', $freq_boug->image);
                                 <span class="money price">Rs.{{ $item->selling_price }}</span>
                             </div>
 
-                            <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Add To Wishlist">
+                            <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist @auth  @if($wishactive) wishActive  @endif @endauth" title="Add To Wishlist">
                                {!! $icon_heart !!}
                             </button>
                         </div>
@@ -580,7 +587,15 @@ $freq_img = explode(',', $freq_boug->image);
                 $dis_count = round(($dis / $item->original_price) * 100);
                  @endphp
 
-                    <div class="swiper-slide product-card product-data">
+        
+                 @auth
+                 @php
+                       //    ---------- check wishlist active -----------
+            $wishactive = App\Models\Wishlist::where('user_id',Auth::user()->id)->where('product_id',$item->id)->first();
+                 @endphp
+                 @endauth
+
+                    <div class="swiper-slide product-card product-data" id='product-{{$item->id}}'>
                         <input type="hidden" class="product_id" value="{{ $item['id'] }}">
                         <input type="hidden" class="qty-value" value="1">
                         <div class="pc__img-wrapper">
@@ -603,7 +618,7 @@ $freq_img = explode(',', $freq_boug->image);
                                 <span class="money price">Rs.{{ $item->selling_price }}</span>
                             </div>
 
-                            <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Add To Wishlist">
+                            <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist @auth  @if($wishactive) wishActive  @endif @endauth" title="Add To Wishlist">
                                {!! $icon_heart !!}
                             </button>
                         </div>

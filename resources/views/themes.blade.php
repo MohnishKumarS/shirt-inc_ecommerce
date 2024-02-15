@@ -9,8 +9,8 @@
   <div class="mb-3 mb-md-4 mb-xl-5 pb-2 pt-1"></div>
 
   <section class="grid-banner container mb-3" id="section-grid-banner">
-      <div class="row">
-          <h2 class="section-title text-center mb-3 pb-xl-2 mb-xl-4">Themes Collections</h2>
+      <div class="row lookbook">
+          <h2 class="page-title">Themes Collections</h2>
           
           @forelse ($themes as $item)
           <div class="col-lg-4">

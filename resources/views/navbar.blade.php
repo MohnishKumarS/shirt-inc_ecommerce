@@ -18,6 +18,17 @@ $cartBtn = "<a class='header-tools__item header-tools__cart js-open-aside' data-
     </a>";
 
 ?>
+        @php
+        use App\Models\Category;
+        use App\Models\Theme;
+        $category = Category::where('status', 1)
+            ->latest()
+            ->first();
+
+         $category_list = Category::all();   
+         $theme_list = Theme::all();   
+    @endphp
+    
 <!-- Elements End -->
 
 <!-- Desktop header begin -->
@@ -43,47 +54,43 @@ $cartBtn = "<a class='header-tools__item header-tools__cart js-open-aside' data-
             <ul class="navigation__list list-unstyled d-flex">
                 <li class="navigation__item">
                     <a href="<?= $url ?>collections" class="navigation__link">Collections</a>
-                    <div class="box-menu" style="width: 600px;">
+                    <div class="box-menu start-0 w-100">
                         <div class="col pe-4">
+                            <h6>CATEGORY</h6>
                             <ul class="sub-menu__list list-unstyled">
+
+                                @if (count($category_list) > 0)                                  
+                                @foreach ($category_list as $item)
                                 <li class="sub-menu__item">
-                                    <a href="<?= $url ?>collections/pants-womens" class="menu-link menu-link_us-s">
-                                        Pants Women
+                                    <a href="{{url('category/'.$item->slug)}}" class="menu-link menu-link_us-s">
+                                        {{ $item->name}}
                                     </a>
                                 </li>
+                                @endforeach
+                                @endif
+                                                                                          
+                            </ul>
+                        </div>
+                        <div class="col pe-4">
+                            <h6>THEMES</h6>
+                            <ul class="sub-menu__list list-unstyled">
+                             
+                                @if (count($theme_list) > 0)                                  
+                                @foreach ($theme_list as $item)
                                 <li class="sub-menu__item">
-                                    <a href="<?= $url ?>collections/thalapathy-leo" class="menu-link menu-link_us-s">
-                                        Thalapathy Leo
+                                    <a href="{{url('themes/'.$item->slug)}}" class="menu-link menu-link_us-s">
+                                        {{ $item->name}}
                                     </a>
                                 </li>
-                                <li class="sub-menu__item">
-                                    <a href="<?= $url ?>collections/t-shirt" class="menu-link menu-link_us-s">
-                                        T-Shirt
-                                    </a>
-                                </li>
-                                <li class="sub-menu__item">
-                                    <a href="<?= $url ?>collections/sweat-shirt" class="menu-link menu-link_us-s">
-                                        Swear Shirt
-                                    </a>
-                                </li>
+                                @endforeach
+                                @endif
+
                             </ul>
                         </div>
                         <div class="col pe-4">
                             <ul class="sub-menu__list list-unstyled">
-                                <li class="sub-menu__item">
-                                    <a href="<?= $url ?>collections/oversized-t-shirt" class="menu-link menu-link_us-s">
-                                        Oversized Shirt
-                                    </a>
-                                </li>
-                                <li class="sub-menu__item">
-                                    <a href="<?= $url ?>collections/couple-t-shirt" class="menu-link menu-link_us-s">
-                                        Couple T-Shirt
-                                    </a>
-                                </li>
-                                <li class="sub-menu__item">
-                                    <a href="<?= $url ?>collections/hoodies" class="menu-link menu-link_us-s">
-                                        Hoodies
-                                    </a>
+                            <li class="sub-menu__item">
+                                    <img src="<?= $url ?>assets/images/mocks/slider/1.png"/>
                                 </li>
                             </ul>
                         </div>
@@ -93,15 +100,10 @@ $cartBtn = "<a class='header-tools__item header-tools__cart js-open-aside' data-
                     <a href="{{url('themes')}}" class="navigation__link">Themes</a>
                 </li>
                 <li class="navigation__item">
-                    <a href="<?= $url ?>new-arrival" class="navigation__link">New Arrival</a>
+                    <a href="{{url('new-arrival')}}" class="navigation__link">New Arrival</a>
                 </li>
-                @php
-                    use App\Models\Category;
-                    $category = Category::where('status', 1)
-                        ->latest()
-                        ->first();
-                @endphp
-
+        
+        
                 @if ($category)
                     <li class="navigation__item">
                         <a href="{{ url('category/' . $category->slug) }}"
@@ -149,6 +151,13 @@ $cartBtn = "<a class='header-tools__item header-tools__cart js-open-aside' data-
             <a class='header-tools__item header-tools__cart'  title='Cart'  href="{{ url('/my-cart') }}">
                 <img src='{{asset('assets/icons/icon_cart.svg')}}' alt='cart Icon'>
                     <span class='cart-amount d-block position-absolute js-cart-items-count'>0</span>
+                </a>
+                <a class="header-tools__item" href="#" data-bs-toggle="modal" data-bs-target="#siteMap">
+                    <svg class="nav-icon" width="25" height="18" viewBox="0 0 25 18" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="25" height="2" />
+                        <rect y="8" width="20" height="2" />
+                        <rect y="16" width="25" height="2" />
+                    </svg>
                 </a>
         </div>
     </div>
@@ -205,26 +214,44 @@ $cartBtn = "<a class='header-tools__item header-tools__cart js-open-aside' data-
                                 &nbsp; Collections
                             </a>
                             <ul class="list-unstyled">
+                            
+                                @if (count($category_list) > 0)                                  
+                                @foreach ($category_list as $item)
                                 <li class="sub-menu__item">
-                                    <a href="<?= $url ?>collections/pants-womens" class="menu-link menu-link_us-s">
-                                        Pants Women
+                                    <a href="{{url('category/'.$item->slug)}}" class="menu-link menu-link_us-s">
+                                        {{ $item->name}}
                                     </a>
                                 </li>
+                                @endforeach
+                                @endif
+                                
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link js-nav-right d-flex align-items-center">
+                            Themes &nbsp;
+                            <img src="{{ asset('assets/icons/icon_right_chevron.svg') }}" alt="User Icon">
+
+                        </a>
+                        <div class="sub-menu position-absolute top-0 start-100 w-100 d-none">
+                            <a href="#"
+                                class="navigation__link js-nav-left d-flex align-items-center border-bottom mb-2">
+                                <img src="{{ asset('assets/icons/icon_left_chevron.svg') }}" alt="User Icon">
+                                &nbsp; Themes
+                            </a>
+                            <ul class="list-unstyled">
+                            
+                                @if (count($theme_list) > 0)                                  
+                                @foreach ($theme_list as $item)
                                 <li class="sub-menu__item">
-                                    <a href="<?= $url ?>collections/thalapathy-leo" class="menu-link menu-link_us-s">
-                                        Thalapathy Leo
+                                    <a href="{{url('themes/'.$item->slug)}}" class="menu-link menu-link_us-s">
+                                        {{ $item->name}}
                                     </a>
                                 </li>
-                                <li class="sub-menu__item">
-                                    <a href="<?= $url ?>collections/t-shirt" class="menu-link menu-link_us-s">
-                                        T-Shirt
-                                    </a>
-                                </li>
-                                <li class="sub-menu__item">
-                                    <a href="<?= $url ?>collections/sweat-shirt" class="menu-link menu-link_us-s">
-                                        Swear Shirt
-                                    </a>
-                                </li>
+                                @endforeach
+                                @endif
+
                             </ul>
                         </div>
                     </li>

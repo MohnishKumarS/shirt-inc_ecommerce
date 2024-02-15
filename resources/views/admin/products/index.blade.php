@@ -29,6 +29,19 @@
                             </select>
                         </div>
                         <div class="col-md-2">
+                            <label>Filter by Themes</label>
+                            <select class="form-select" name="themes">
+                                <option selected value="">Choose a Theme</option>
+                                @forelse ($theme_list as $item)
+                                    <option value="{{ $item->slug }}"
+                                        {{ Request::get('themes') == $item->slug ? 'selected' : '' }}>{{ $item->name }}
+                                    </option>
+                                @empty
+                                    <option value="">No themes found</option>
+                                @endforelse
+                            </select>
+                        </div>
+                        <div class="col-md-2">
                             <label>Filter by action</label>
                             <select class="form-select" name="action">
                                 <option selected value="">Choose a status</option>

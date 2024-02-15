@@ -69,8 +69,20 @@ class ThemeController extends Controller
     }
 
 
-    public function delete_theme(Theme $id){
-        $id->delete();
+    public function delete_theme($id){
+        $theme = Theme::findOrFail($id);
+        if($theme){
+            if ($theme->image) {
+                $path = 'image/themes/' . $theme->image;
+                if (File::exists($path)) {
+                    File::delete($path);
+                }
+            }
+            $theme->delete();
         return redirect()->back()->with('status','Theme Deleted successfully');
+        }else{
+            return redirect()->back()->with('status','something went wrong');
+        }
+        
     }
 }

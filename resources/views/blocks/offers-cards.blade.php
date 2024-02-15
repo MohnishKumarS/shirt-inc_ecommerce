@@ -1,4 +1,4 @@
-<section class="collections-grid collections-grid_masonry" id="section-collections-grid_masonry">
+<section class="collections-grid offer-masonry collections-grid_masonry" id="section-collections-grid_masonry">
     <div class="container h-md-100">
         <div class="row h-md-100">
             <div class="col-lg-6 h-md-100">

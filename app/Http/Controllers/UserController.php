@@ -52,11 +52,40 @@ class UserController extends Controller
 
     // ---------   themes collections --------------
 
-    public function theme_collections($theme_slug){
-        return $theme_slug;
-        $theme = Theme::find($id);
-        $collections = $theme->collections;
-        return view('product.themes-product',\compact('collections','theme'));
+    public function theme_collections($theme_slug, Request $req){
+
+        if($theme = Theme::where('slug',$theme_slug)->exists()){
+            $theme = Theme::where('slug',$theme_slug)->first();
+            $all_category = Category::orderBy('id','desc')->get();
+            $all_themes = Theme::all();
+        //   return   $themeProduct = Product::where('themes','All Superheroes')->latest()->paginate(15);
+
+                        // -----  filter  a product ---------------    
+   
+        $themeProduct = Product::latest();
+    
+        if ($req->has('sort_price')) {
+            $themeProduct = Product::orderBy('selling_price', $req->get('sort_price'));
+        }
+        if($req->has('theme_type')) {
+            $themeProduct->where('themes',$req->get('theme_type'));
+        }else{
+            $themeProduct->where('themes',$theme->slug);
+        }
+        if ($req->has('cat_type')) {
+            $cat =  Category::where('slug',$req->get('cat_type'))->first();
+            $themeProduct->where('category_id', $cat->id);
+        }
+    
+        if ($req->has('pro_type')) {
+            $themeProduct->where('type', $req->get('pro_type'));
+        }
+    
+    
+        $themeProduct = $themeProduct->paginate(20);
+            return view('product.themes-product',\compact('themeProduct','all_category','all_themes','theme'));
+        }
+     
     }
 
     // --------------- view new arrival product ---------------
@@ -107,8 +136,7 @@ class UserController extends Controller
         $all_product = Product::orderBy('selling_price', $req->get('sort_price'));
     }
     if($req->has('theme_type')) {
-        $theme = Theme::where('slug',$req->get('theme_type'))->first();
-        $all_product->where('themes',$theme->theme);
+        $all_product->where('themes',$req->get('theme_type'));
     }
     if ($req->has('cat_type')) {
         $cat =  Category::where('slug',$req->get('cat_type'))->first();

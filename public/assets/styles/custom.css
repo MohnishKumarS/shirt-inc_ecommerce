@@ -6,7 +6,7 @@
     background: #1697dc;
 }
 
-.topbar a{
+.topbar a {
     color: #fff;
 }
 
@@ -57,33 +57,85 @@
     flex: 1 1;
 }
 
-.header-fullwidth .header-desk_type_1{
+.header-fullwidth .header-desk_type_1 {
     padding: 1em 1.25rem;
 }
 
-.header-mobile{
+.header-mobile {
     height: auto;
 }
 
-.header-mobile .container{
+.header-mobile .container {
     padding: var(--bs-gutter-x, 0.9375rem);
     max-width: 100%;
 }
 
-.header-mobile .topbar{
+.header-mobile .topbar {
     justify-content: center;
 }
 
-.header.header_sticky-active .logo__image{
+.header.header_sticky-active .logo__image {
     max-height: 75px;
 }
 
-.header.header_sticky-active.header-fullwidth .header-desk_type_1{
+.header.header_sticky-active.header-fullwidth .header-desk_type_1 {
     padding: 0.75em;
 }
 
-@media  (min-width: 992px) {
-    .slideshow{
+.footer .logo img {
+    object-fit: contain;
+}
+
+.policies h6 {
+    display: inline-block;
+    border-bottom: 0.5px solid #00000073;
+}
+
+.policies a {
+    font-weight: 600;
+}
+
+.policies .menu-link_us-s {
+    position: relative;
+}
+
+.policies .menu-link_us-s:after {
+    top: auto;
+    bottom: -2px;
+}
+
+@media (min-width: 992px) {
+    .slideshow {
         height: 40em;
+    }
+}
+
+@media (max-width: 992px) {
+
+    .collections-grid_masonry .collection-grid__item,
+    .offer-masonry .collection-grid__item {
+        height: 17.8125rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .home-page .slideshow {
+        height: 28vh;
+    }
+
+    .footer-column:last-child,
+    .footer-store-info {
+        text-align: center;
+    }
+
+    .footer .social-links {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-bottom {
+        text-align: center;
     }
 }

@@ -12,7 +12,7 @@
                     <h3>uh-oh Page Not <span class="title-hlorg"> Found...</span></h3>
                     <p class="text-sm text-normal">We're sorry, the page you are trying to reach doesn't exist.... </p>
                     <div class="mt-4">
-                        <a href="{{ url('/') }}" class="btn-float d-inline-block"> <i
+                        <a href="{{ url('/') }}" class="btn btn-primary"> <i
                                 class="fa-solid fa-bag-shopping me-1"></i> Go to Home</a>
                     </div>
                 </div>
