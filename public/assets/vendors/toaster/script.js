@@ -11,7 +11,7 @@ $('document').ready(() => {
 });
 
 const toast = (delay = 2000) => {
-    if(toastCount < 3){
+    if(toastCount < 2){
         setTimeout(() => {
             $('.notification-wrapper').addClass('show');
         }, delay);

@@ -2,8 +2,53 @@
 
 @section('title', 'Collections')
 
-
+@push('styles')
+    <style>
+        .slideshow.category_slider{
+            height: 25em !important;
+        }
+    </style>
+@endpush
 @section('content')
+
+    {{-- ````````` CATEGORY SLIDER ```````````` --}}
+
+    <section class="swiper-container js-swiper-slider slideshow full-width_padding swiper-number-pagination category_slider" data-settings='{
+        "autoplay": {
+          "delay": 5000
+        },
+        "slidesPerView": 1,
+        "effect": "fade",
+        "loop": true
+      }'>
+    <div class="swiper-wrapper">
+        
+  
+        @foreach ($categoryPoster as $item)
+        <div class="swiper-slide">
+          <div class="overflow-hidden position-relative h-100">
+              <div class="slideshow-bg">
+                <a href="{{ url('category/'.$item->slug) }}" title="{{$item->name}}" >
+                  <img loading="lazy" src="{{ asset('image/category/' . $item->poster) }}" width="1783" height="800" alt="{{$item->slug}}" class="slideshow-bg__img object-fit-cover object-position-right">
+                </a>
+              </div>
+         
+          </div>
+      </div>
+        @endforeach
+  
+    </div>
+  
+    <div class="container">
+        <div class="slideshow-pagination slideshow-number-pagination d-flex align-items-center position-absolute bottom-0 mb-5 position-xxl-right-center">
+        </div>
+    </div>
+  </section>
+      <div class="pt-1 pb-5"></div>
+
+
+
+
 
 <div class="mb-4 pb-4"></div>
 <section class="lookbook container">

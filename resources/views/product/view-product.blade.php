@@ -198,9 +198,24 @@ $freq_img = explode(',', $freq_boug->image);
                     <span>Add to Wishlist</span>
                 </a>
                 <share-button class="share-button">
-                    <button class="menu-link menu-link_us-s to-share border-0 bg-transparent d-flex align-items-center">
+                    <button class=" to-share border-0 bg-transparent d-flex align-items-center">
                         <?= $icon_share ?>
-                        <span>Share</span>
+                        {{-- <span>Share</span> --}}
+                        <span class="social-m-icon ">
+                            <a href="https://web.whatsapp.com/send?text=Check%20out%20this%20page:{{ urlencode(URL::current()) }}" class="menu-link menu-link_us-s">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                        </span>
+                        <span class="social-m-icon ">
+                            <a href="" class="menu-link menu-link_us-s">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                        </span>
+                        <span class="social-m-icon ">
+                            <a href="" class="menu-link menu-link_us-s">
+                                <i class="fa-brands fa-facebook"></i>
+                            </a>
+                        </span>
                     </button>
                     <details id="Details-share-template__main" class="m-1 xl:m-1.5" hidden="">
                         <summary class="btn-solid m-1 xl:m-1.5 pt-3.5 pb-3 px-5">+</summary>

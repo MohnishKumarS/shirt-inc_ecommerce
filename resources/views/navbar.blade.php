@@ -36,9 +36,9 @@ $cartBtn = "<a class='header-tools__item header-tools__cart js-open-aside' data-
     <!-- Topbar Begin -->
     <nav class="topbar">
         <div class="btn-wrapper d-flex align-items-center">
-            <a href="{{ url('womens-collections') }}" class="tag-btn active">Women</a>
-            <a href="{{ url('mens-collections') }}" class="tag-btn">Men</a>
-            <a href="{{ url('unisex-collections') }}" class="tag-btn">unisex</a>
+            <a href="{{ url('womens-collections') }}" class="tag-btn {{ Request::is('womens-collections') ? 'active' : '' }}">Women</a>
+            <a href="{{ url('mens-collections') }}" class="tag-btn {{ Request::is('mens-collections') ? 'active' : '' }}">Men</a>
+            <a href="{{ url('unisex-collections') }}" class="tag-btn {{ Request::is('unisex-collections') ? 'active' : '' }}">unisex</a>
         </div>
         <div class="link-wrapper d-flex align-items-center">
             <a class="navigation__link" href="<?= $url ?>">Customize</a>
@@ -55,7 +55,7 @@ $cartBtn = "<a class='header-tools__item header-tools__cart js-open-aside' data-
                 <li class="navigation__item">
                     <a href="<?= $url ?>collections" class="navigation__link">Collections</a>
                     <div class="box-menu start-0 w-100">
-                        <div class="col pe-4">
+                        <div class="col pe-4 ">
                             <h6>CATEGORY</h6>
                             <ul class="sub-menu__list list-unstyled">
 
@@ -71,17 +71,61 @@ $cartBtn = "<a class='header-tools__item header-tools__cart js-open-aside' data-
                                                                                           
                             </ul>
                         </div>
+                
                         <div class="col pe-4">
-                            <h6>THEMES</h6>
                             <ul class="sub-menu__list list-unstyled">
-                             
+                            <li class="sub-menu__item">
+                                    <img src="<?= $url ?>assets/images/mocks/slider/1.png"/>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="navigation__item">
+                    <a href="{{url('themes')}}" class="navigation__link">Themes</a>
+                    <div class="box-menu start-0 w-100">
+                    
+                        <div class="col pe-4">
+                            <ul class="sub-menu__list list-unstyled">
+                                @php
+                                    $i = 0;
+                                @endphp
                                 @if (count($theme_list) > 0)                                  
                                 @foreach ($theme_list as $item)
-                                <li class="sub-menu__item">
-                                    <a href="{{url('themes/'.$item->slug)}}" class="menu-link menu-link_us-s">
-                                        {{ $item->name}}
-                                    </a>
-                                </li>
+                                    @if ($i < 4)
+                                    <li class="sub-menu__item">
+                                        <a href="{{url('themes/'.$item->slug)}}" class="menu-link menu-link_us-s">
+                                            {{ $item->name}}
+                                        </a>
+                                    </li>
+                                    @endif
+
+                                    @php
+                                        $i++;
+                                    @endphp
+                                @endforeach
+                                @endif
+
+                            </ul>
+                        </div>
+                        <div class="col pe-4">
+                            <ul class="sub-menu__list list-unstyled">
+                                @php
+                                    $i = 0;
+                                @endphp
+                                @if (count($theme_list) > 0)                                  
+                                @foreach ($theme_list as $item)
+                                    @if ($i > 3)
+                                    <li class="sub-menu__item">
+                                        <a href="{{url('themes/'.$item->slug)}}" class="menu-link menu-link_us-s">
+                                            {{ $item->name}}
+                                        </a>
+                                    </li>
+                                    @endif
+
+                                    @php
+                                        $i++;
+                                    @endphp
                                 @endforeach
                                 @endif
 
@@ -96,9 +140,7 @@ $cartBtn = "<a class='header-tools__item header-tools__cart js-open-aside' data-
                         </div>
                     </div>
                 </li>
-                <li class="navigation__item">
-                    <a href="{{url('themes')}}" class="navigation__link">Themes</a>
-                </li>
+
                 <li class="navigation__item">
                     <a href="{{url('new-arrival')}}" class="navigation__link">New Arrival</a>
                 </li>
@@ -169,9 +211,9 @@ $cartBtn = "<a class='header-tools__item header-tools__cart js-open-aside' data-
     <!-- Topbar Begin -->
     <nav class="topbar">
         <div class="btn-wrapper d-flex align-items-center">
-            <a href="{{ url('womens-collections') }}" class="tag-btn active">Women</a>
-            <a href="{{ url('mens-collections') }}" class="tag-btn">Men</a>
-            <a href="{{ url('unisex-collections') }}" class="tag-btn">unisex</a>
+            <a href="{{ url('womens-collections') }}" class="tag-btn {{ Request::is('womens-collections') ? 'active' : '' }}">Women</a>
+            <a href="{{ url('mens-collections') }}" class="tag-btn {{Request::is('mens-collections') ? 'active' : ''}}">Men</a>
+            <a href="{{ url('unisex-collections') }}" class="tag-btn {{Request::is('unisex-collections') ? 'active' : ''}}">unisex</a>
         </div>
     </nav>
     <!-- Topbar End -->

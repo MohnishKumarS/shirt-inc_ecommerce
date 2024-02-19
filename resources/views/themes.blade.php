@@ -1,10 +1,50 @@
 @extends('layouts.userpage')
 
 @section('title', 'Themes')
-
+@push('styles')
+    <style>
+        .slideshow.themes_slider{
+            height: 25em !important;
+        }
+    </style>
+@endpush
 @section('content')
 
-<main>
+      {{-- ````````` THEMES SLIDER ```````````` --}}
+
+      <section class="swiper-container js-swiper-slider slideshow full-width_padding swiper-number-pagination themes_slider" data-settings='{
+        "autoplay": {
+          "delay": 5000
+        },
+        "slidesPerView": 1,
+        "effect": "fade",
+        "loop": true
+      }'>
+    <div class="swiper-wrapper">
+        
+  
+        @foreach ($themePoster as $item)
+        <div class="swiper-slide">
+          <div class="overflow-hidden position-relative h-100">
+              <div class="slideshow-bg">
+                <a href="{{ url('themes/'.$item->slug) }}" title="{{$item->name}}" >
+                  <img loading="lazy" src="{{ asset('image/themes/poster/' . $item->poster) }}" width="1783" height="800" alt="{{$item->slug}}" class="slideshow-bg__img object-fit-cover object-position-right">
+                </a>
+              </div>
+         
+          </div>
+      </div>
+        @endforeach
+  
+    </div>
+  
+    <div class="container">
+        <div class="slideshow-pagination slideshow-number-pagination d-flex align-items-center position-absolute bottom-0 mb-5 position-xxl-right-center">
+        </div>
+    </div>
+  </section>
+      <div class="pt-1 pb-5"></div>
+
        
   <div class="mb-3 mb-md-4 mb-xl-5 pb-2 pt-1"></div>
 
@@ -27,6 +67,6 @@
       </div>
   </section>
   
-</main>
+
 
 @endsection

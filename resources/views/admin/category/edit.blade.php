@@ -73,7 +73,7 @@
                           </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" name="popular" {{$data->popular == '1'? 'checked' : ''}}>
-                            <label class="form-check-label" >Popular</label>
+                            <label class="form-check-label" >Active poster</label>
                           </div>
                 </div>
                 <div class="col-md-6 mb-3">

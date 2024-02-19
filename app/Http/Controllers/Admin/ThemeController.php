@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 
 
@@ -24,12 +24,26 @@ class ThemeController extends Controller
         $data->slug = Str::slug($req->slug);
         $data->status = $req->active ? '1' : '0';
 
+        if ($req->hasFile('icon')) {
+            $file = $req->file('icon');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move(\public_path('image/themes/icon'), $filename);
+            $data->icon = $filename;
+        }
         if ($req->hasFile('image')) {
             $file = $req->file('image');
             $ext = $file->getClientOriginalExtension();
             $filename = time() . '.' . $ext;
             $file->move(\public_path('image/themes/'), $filename);
-            $cat->image = $filename;
+            $data->image = $filename;
+        }
+        if ($req->hasFile('poster')) {
+            $file = $req->file('poster');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move(\public_path('image/themes/poster'), $filename);
+            $data->poster = $filename;
         }
 
         $data->save();
@@ -49,7 +63,18 @@ class ThemeController extends Controller
         $theme = Theme::findOrFail($id);
 
         $theme->name = $req->themes;
-        $theme->slug = $req->slug;
+        $theme->slug = Str::slug($req->slug);
+        if ($req->hasFile('icon')) {
+            $path =  'image/themes/icon' . $theme->image;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+            $file = $req->file('icon');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move('image/themes/icon', $filename);
+            $theme->icon = $filename;
+        }
         if ($req->hasFile('image')) {
             $path =  'image/themes/' . $theme->image;
             if (File::exists($path)) {
@@ -60,6 +85,17 @@ class ThemeController extends Controller
             $filename = time() . '.' . $ext;
             $file->move('image/themes/', $filename);
             $theme->image = $filename;
+        }
+        if ($req->hasFile('poster')) {
+            $path =  'image/themes/poster' . $theme->image;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+            $file = $req->file('poster');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move('image/themes/poster', $filename);
+            $theme->poster = $filename;
         }
         $theme->status = $req->active? '1' : '0';
         $theme->save();

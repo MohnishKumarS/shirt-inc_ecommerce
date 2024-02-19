@@ -67,7 +67,7 @@
                       </div>
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox"  name="popular" >
-                        <label class="form-check-label" >Popular</label>
+                        <label class="form-check-label" >Active Poster</label>
                       </div>
                     
                 </div>

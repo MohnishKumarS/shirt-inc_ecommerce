@@ -32,22 +32,25 @@ class UserController extends Controller
         $slider_active = Slider::where('active',1)->latest('id')->take(1)->first();
         $slider = Slider::where('active',0)->latest('id')->take(4)->get();
         $poster = Poster::where('active',1)->latest('id')->take(1)->first();
+        $theme = Theme::all();
         // return $slider_active;
-        return view('home',\compact('trending',"category","popular",'slider_active','slider','poster'));
+        return view('home',\compact('trending',"category","popular",'slider_active','slider','poster','theme'));
     }
 
    // ------------- view category -----------------------
 
     public function category(){
         $all_category = Category::orderBy('id','desc')->get();
+        $categoryPoster = Category::where('poster','!=','')->where('popular','1')->latest()->get();
         // return $all_category;
-        return view('category',\compact('all_category'));
+        return view('category',\compact('all_category','categoryPoster'));
     }
 
     // ------------- view themes -------------------
     public function view_themes(){
         $themes = Theme::orderBy('id','desc')->get();
-        return view('themes',\compact('themes'));
+        $themePoster = Theme::where('poster','!=','')->where('status','1')->latest()->get();
+        return view('themes',\compact('themes','themePoster'));
     }
 
     // ---------   themes collections --------------

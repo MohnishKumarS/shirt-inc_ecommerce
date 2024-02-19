@@ -14,7 +14,9 @@ class Theme extends Model
     protected $fillable = [
         'name',
         'slug',
+        'icon',
         'image',
+        'poster',
         'status'
     ] ;
 }

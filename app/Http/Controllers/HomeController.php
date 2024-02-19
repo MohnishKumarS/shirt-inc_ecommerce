@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Subscribe;
 use App\Models\User;
+use App\Models\Contactus;
+use App\Models\Subscribe;
 use App\Models\Useraddress;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,18 @@ class HomeController extends Controller
     // {
     //     $this->middleware('auth');
     // }
+
+    // ---------- user contact us -----------
+
+    public function user_contact_us(Request $req){
+        if(Contactus::create($req->all())){
+            return redirect()->back()->with('toast','Success...')->with('text', 'Your message has been sent successfully')->with('type','success');
+        }else{
+            return redirect()->back()->with('toast','Oops...')->with('text', 'something went wrong...')->with('type','error');
+        }
+       
+        
+    }
 
     // ----------- user subscribe -------------
 

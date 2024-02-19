@@ -20,9 +20,17 @@
                         <label for="" class="form-label">Slug:</label>
                         <input type="text" class="form-control"  name="slug" required>
                     </div>
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-4 mb-3">
+                        <label for="" class="form-label">Icon:</label>
+                        <input type="file" class="form-control"  name="icon" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
                         <label for="" class="form-label">Image:</label>
                         <input type="file" class="form-control"  name="image" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="" class="form-label">Poster:</label>
+                        <input type="file" class="form-control"  name="poster">
                     </div>
                    
                     <div class="col-md-6 mb-3">
@@ -30,7 +38,7 @@
                         <div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" name="active" >
-                                <label class="form-check-label" >Active</label>
+                                <label class="form-check-label" >Active poster</label>
                               </div>
                         </div>
                     </div>
@@ -53,6 +61,7 @@
         <table class="table table-striped text-center">
             <tr class="text-center">
                 <th>#</th>
+                <th>Icon</th>
                 <th>Name</th>
                 <th>Status</th>
                 <th>Action</th>
@@ -63,6 +72,7 @@
             @forelse ($theme as $val)
                 <tr>
                   <th>{{$i++}}</th>
+                  <td><img src="{{url('image/themes/icon/'.$val->icon)}}" style="object-fit: contain" width="100" alt="{{$val->slug}}"></td>
                   <td>{{$val->name}}</td>
                   <td>
                     <div class="form-check form-check-inline">

@@ -27,3 +27,10 @@
 .product-data .wishActive  #icon_heart path{
   fill: red;
 }
+
+
+/* ------- view -product social media icon --- */
+
+.to-share .social-m-icon i{
+  font-size: 20px;
+}

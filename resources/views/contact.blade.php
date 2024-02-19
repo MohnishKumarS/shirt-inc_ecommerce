@@ -24,19 +24,25 @@
                     </div>
                 </div>
                 <div class="contact-us__form">
-                    <form name="contact-us-form" class="needs-validation" novalidate>
+                    <form action="{{url('user-contact-us')}}" method="POST" class="needs-validation" novalidate>
+                        @csrf
                         <h3 class="mb-5">Get In Touch</h3>
                         <div class="form-floating my-4">
-                            <input type="text" class="form-control" id="contact_us_name" placeholder="Name *" required>
+                            <input type="text" class="form-control" id="contact_us_name" placeholder="Name *" name="name" pattern=".{4,}" title="Username must be at least 4 characters long." required>
                             <label for="contact_us_name">Name *</label>
                         </div>
                         <div class="form-floating my-4">
-                            <input type="email" class="form-control" id="contact_us_email" placeholder="Email address *"
+                            <input type="email" class="form-control" id="contact_us_email" placeholder="Email address *" name="email"
                                 required>
                             <label for="contact_us_name">Email address *</label>
                         </div>
+                        <div class="form-floating my-4">
+                            <input type="text" class="form-control" id="contact_us_email" placeholder="Mobile *" name="mobile" onkeyup="this.value = this.value.replace(/[^0-9]/g,'')"
+                            pattern="[0-9]{10}" title="Please enter a 10-digit mobile number" maxlength="10"   required>
+                            <label for="contact_us_name">Mobile *</label>
+                        </div>
                         <div class="my-4">
-                            <textarea class="form-control form-control_gray" placeholder="Your Message" cols="30" rows="8" required></textarea>
+                            <textarea class="form-control form-control_gray" placeholder="Your Message" cols="30" rows="8" name="message" required></textarea>
                         </div>
                         <div class="my-4">
                             <button type="submit" class="btn btn-primary">Submit</button>

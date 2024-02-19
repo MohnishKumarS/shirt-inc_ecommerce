@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('themes', function (Blueprint $table) {
+        Schema::create('contactuses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug');
-            $table->string('icon');
-            $table->string('image');
-            $table->string('poster')->nullable();
-            $table->tinyInteger('status')->default('0');
+            $table->string('email');
+            $table->string('mobile');
+            $table->longText('message');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('themes');
+        Schema::dropIfExists('contactuses');
     }
 };

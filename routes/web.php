@@ -13,7 +13,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\admin\ThemeController;
+use App\Http\Controllers\Admin\ThemeController;
 use App\Http\Controllers\Admin\PosterController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
@@ -78,6 +78,8 @@ Route::post('/search-product', [UserController::class, 'search_product']);
 // ------------------ user subscription -----------
 
 Route::post('/user-subscribe', [HomeController::class, 'user_subscribe']);
+
+Route::post('/user-contact-us',[HomeController::class, 'user_contact_us']);
 
 // -------------- contact page ---------------
 Route::view('/contact','contact');
@@ -359,6 +361,7 @@ Route::get('/clear', function() {
    Artisan::call('config:clear');
    Artisan::call('config:cache');
    Artisan::call('view:clear');
+   Artisan::call('optimize');
 
    return "Cleared!";
 
