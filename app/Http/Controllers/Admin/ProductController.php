@@ -83,6 +83,7 @@ class ProductController extends Controller
             'selling_price' => $req->selling_p,
             'image' => \implode(',', $image),
             'quantity' => $req->quantity,
+            'colors' =>  $req->colors ? json_encode(explode(",",$req->colors)): null,
             'type' => $req->product_type,
             'themes' => $req->product_theme,
             'size_list' => \json_encode($req->size),
@@ -161,6 +162,7 @@ class ProductController extends Controller
         $pro->original_price = $req->original_p;
         $pro->selling_price = $req->selling_p;
         $pro->quantity = $req->quantity;
+        $pro->colors = $req->colors? json_encode(explode(",",$req->colors)) : null;
         $pro->type = $req->product_type;
         $pro->themes = $req->product_theme;
         $pro->size_list = \json_encode($req->size);

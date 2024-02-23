@@ -42,6 +42,7 @@ class CartController extends Controller
         $product_size = $req->size;
         $men_size = $req->has('men_size') ? $req->men_size : null ;
         $women_size = $req->has('women_size') ? $req->women_size : null ;
+        $product_color = $req->has('color') ? json_encode(explode(':',$req->color)) : null ;
 
         if(Auth::check()){
 
@@ -56,6 +57,7 @@ class CartController extends Controller
                     $cart->user_id = Auth::id();
                     $cart->product_id = $product_id;
                     $cart->product_qty = $product_qty;
+                    $cart->product_color = $product_color;
                     $cart->product_size = $product_size;
                     $cart->mens_size = $men_size;
                     $cart->womens_size = $women_size;
@@ -129,6 +131,21 @@ class CartController extends Controller
             $cart->save();
         }
        
+    }
+
+    // ------------------- update - color  ------------
+
+    public function update_color(Request $req){
+        $pro_id = $req->product_id;
+        $pro_color = $req->product_color;
+        
+
+        if(Cart::where('product_id',$pro_id)->where('user_id',Auth::id())->exists()){
+            $cart = Cart::where('product_id',$pro_id)->where('user_id',Auth::id())->first();
+            $cart->product_color = $pro_color;
+            $cart->save();
+        }
+        return 'success';
     }
 
     // ---------------  update a cart size -------------------

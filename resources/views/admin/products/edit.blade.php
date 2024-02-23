@@ -105,6 +105,18 @@
                     <label for="" class="form-label">Image</label>
                     <input type="file" class="form-control" name="images[]" multiple>
                 </div>
+                @php
+                    // $color =  implode(",",$data->colors);
+                    if ($data->colors) {
+                      $col = json_decode($data->colors);
+                    $color = implode(',',$col);
+                    }
+
+                @endphp
+                <div class="col-md-6 mb-3">
+                  <label for="" class="form-label">Colors</label>
+                  <input type="text" class="form-control" name="colors" value="{{$color?? ''}}">
+               </div>
                 <div class="col-md-6 mb-3">
                     <label for="" class="form-label">Quantity</label>
                     <input type="number" class="form-control" value="{{$data->quantity}}" name="quantity" required>
@@ -198,7 +210,7 @@
                     <label for="" class="form-label">Product Themes</label>
                     <select class="form-select"  name='product_theme' required>
                       <option selected value="">Choose a theme style</option>
-                      <option value="null">None</option>
+                      <option value="none" {{$data->themes == 'none'? 'selected' : ''}}>None</option>
                       @forelse ($theme as $val)
                       <option value="{{$val->slug}}" {{$val->slug == $data->themes ? 'selected' : ''}}>{{$val->name}}</option>
                       @empty

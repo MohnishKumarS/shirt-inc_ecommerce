@@ -12,19 +12,31 @@ $(document).ready(function () {
         var com_size = $(this).closest('.product-data').find('.com_size');
         var men_size = $(this).closest('.product-data').find('.men_size');
         var women_size = $(this).closest('.product-data').find('.women_size');
-        var error = $('.error')
-        console.log(com_size.val());
+        var com_color = $(this).closest('.product-data').find('#js-colors');
+        var size_error = $('.js-size-error')
+        var color_error = $('.js-color-error')
+
         if(com_size || men_size || women_size){
             if( com_size.val() == '' || men_size.val() == '' || women_size.val() == ''){
-                error.text('Please choose a size');
+                size_error.text('Please choose a size');
                 return ;
             }else{
-                error.text('');
+                size_error.text('');
                 $size = com_size.val() ;
                 $men_size = men_size.val() ;
                 $women_size = women_size.val() ;
             }
                       
+        }
+        if(com_color){
+            if( com_color.val() == ''){
+                color_error.text('Please choose a color');
+                return ;
+            }else{
+                color_error.text('');
+                $com_color = com_color.val() ;
+
+            }
         }
 
         // // console.log(e.target);
@@ -47,6 +59,7 @@ $(document).ready(function () {
             data: {
                 pro_id: $pro_id,
                 pro_qty: $pro_qty,
+                color:$com_color,
                 size:$size,
                 men_size:$men_size,
                 women_size:$women_size,
@@ -301,14 +314,50 @@ $(document).ready(function () {
             data: data,
 
             success: function (data) {
-                //    window.location.reload();
+                // console.log(data);
                 $('.cart-item').load(location.href + ' .cart-item');
             }
         });
 
     })
+    // ----------------- change color ----------------
 
-    // ------------------- change size ---------------------------
+    $(document).on('change', '.js-color-change', function (e) {
+        e.preventDefault();
+        $pro_id = $(this).closest('.product-data').find('.product_id').val();
+        $color = $(this).val();
+        console.log($color);
+        $imgValue = $(this).closest('.product-data').find('.js-color-img').val();
+        $imgValue = JSON.parse($imgValue);
+        console.log($imgValue[0]);
+  
+        if($color != ''){
+            $color_arr = $color.split(':');
+            $color_key = $color_arr[0];
+            $changeImg =   $(this).closest('.product-data').find('.js-cart__product-img img').attr('src','../../image/product/'+$imgValue[$color_key]);
+        }
+
+        data = {
+            'product_id': $pro_id,
+            'product_color': $color ? $color_arr : null 
+        };
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+            },
+            type: "post",
+            url: "/update-color",
+            data: data,
+
+            success: function (data) {
+                console.log(data);
+            }
+        });
+
+    })
+
+    // ------------------- change product size ---------------------------
 
     $(document).on('change','.com_size',function(e){
   
@@ -401,14 +450,14 @@ $(document).ready(function () {
 
     // ---------------------- validate select size in cart page ----------------
 
-    $(document).on('click','.checkout-event',function(){
-        console.log('asdas');
+    $(document).on('click','.js-checkout-event',function(){
+
     var check = true; // <=== Default return value
         $("select").each(function(ind,val){
             $opt  =  $(val).find(":selected").val();
             // console.log($opt);
             if(!$opt){
-                $.Toast("Oops!", "please select a product size ...", "error", {
+                $.Toast("Oops!", "please choose a size & color...", "error", {
                     has_icon: true,
                     has_close_btn: true,
                     position_class: 'toast-top-right',
@@ -425,7 +474,7 @@ $(document).ready(function () {
             }
            
         })
-        console.log(check);
+
 
         if(check){  // true means redirect to checkout --
              window.location.href = "/checkout";

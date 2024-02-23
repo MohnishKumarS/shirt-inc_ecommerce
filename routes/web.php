@@ -182,6 +182,8 @@ Route::post('/remove-cart', [CartController::class, 'remove_cart']);
 
 Route::post('/update-cart', [CartController::class, 'update_cart']);
 
+Route::post('/update-color', [CartController::class, 'update_color']);
+
 Route::post('/update-size', [CartController::class, 'update_size']);
 
 Route::post('/update-men-size', [CartController::class, 'update_men_size']);

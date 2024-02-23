@@ -249,20 +249,32 @@ $step = 2;
                                 @foreach ($cart as $item)
                                     @php
                                         $img = explode(',', $item->product->image);
+
+                                        $cart_color = $item->product_color ? json_decode($item->product_color) : '';
                                     @endphp
                                     <tr class="align-middle">
-                                        <td><img src="{{ asset('image/product/' . $img[0]) }}" width="65"
-                                                class="img-fluid" alt="products-image" loading="lazy"></td>
-                                        <td><span class="text-sm text-normal">{{ $item->product->name }}</span> <br>
+                                        <td>
+                                            @if ($cart_color)
+                                            <img src="{{ asset('image/product/' . $img[$cart_color[0]]) }}" width="65" class="img-fluid" alt="{{ $item->product->name }}" loading="lazy">
+                                            @else
+                                            <img src="{{ asset('image/product/' . $img[0]) }}" width="65" class="img-fluid" alt="{{ $item->product->name }}" loading="lazy">
+                                            @endif
+                                        </td>
+                                        <td><span>{{ $item->product->name }}</span> <br>
                                             {{-- - -- size cart --- --}}
-                                            <span class="text-md-b">
+                                            <span>
                                                 @if ($item->mens_size)
                                                     <small>(size for men:{{ $item->mens_size }} &
-                                                        women:{{ $item->womens_size }})</small>
+                                                        women : {{ $item->womens_size }})</small>
                                                 @else
-                                                    <small>(size:{{ $item->product_size }})</small>
+                                                    <small>(size : {{ $item->product_size }})</small>
                                                 @endif
                                             </span>
+                                            @if ($cart_color)
+                                              <div>
+                                                <small>(color : {{$cart_color[1]}})</small>
+                                              </div>
+                                            @endif
 
                                         </td>
                                         <td>{{ $item->product_qty }}</td>

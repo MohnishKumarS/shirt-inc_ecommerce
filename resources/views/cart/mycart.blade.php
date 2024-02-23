@@ -64,12 +64,20 @@
 
                             // ------ total cart  amount ---------
                             $cartTotal += $val->product->selling_price * $val->product_qty;
-                        @endphp
 
+                            $cart_color = $val->product_color ? json_decode($val->product_color) : '';
+
+                        @endphp
+                           
                                 <tr class="product-data">
                                     <td>
-                                        <div class="shopping-cart__product-item">
+                                        <div class="shopping-cart__product-item js-cart__product-img">
+                                            @if ($cart_color)
+                                            <img loading="lazy" src="{{ asset('image/product/' . $img[$cart_color[0]]) }}" width="120" height="120" alt="cart-product">
+                                            @else
                                             <img loading="lazy" src="{{ asset('image/product/' . $img[0]) }}" width="120" height="120" alt="cart-product">
+                                            @endif
+                                            
                                         </div>
                                     </td>
                                     <td>
@@ -88,6 +96,8 @@
                                                         $size = json_decode($val->product->size_list);
                                                         $men_size = $val->product->couple_men_size ? json_decode($val->product->couple_men_size) : '';
                                                         $women_size = $val->product->couple_women_size ? json_decode($val->product->couple_women_size) : '';
+                                                        $colors = $val->product->colors ? json_decode($val->product->colors) : '';
+                                                       
                                                         // print_r($men_size);
                                                         // print_r(gettype($men_size))
                                                     @endphp
@@ -131,7 +141,7 @@
                                                     @else
                                                         {{-- -------- common size -------- --}}
                                                         <div class="row">
-                                                            <div class="col-6">
+                                                            <div class="col-12 col-lg-6">
 
                                                                 <select class="form-select com_size"
                                                                     required>
@@ -153,6 +163,34 @@
 
 
                                                 </div>
+                                                
+                                              @if ($colors)
+                                              <div class="mt-2">
+                                                {{-- -------- product  colors-------- --}}
+
+                                              <label for="" class="text-sm">Colors <span
+                                                  class="text-danger">*</span></label>
+                                                 
+                                              <div class="row">
+                                                  <div class="col-12 col-lg-6">
+                                                      <input type="hidden" value="{{ json_encode($img) }}" class="js-color-img">
+                                                      <select class="form-select js-color-change"
+                                                          required>
+                                                          <option selected value="">Choose color </option>
+                                                          {{-- ---- colors get in cart table database --- --}}
+                                                          @foreach ($colors as $key=>$value)
+                                                              <option value="{{ $key . ':' . $value }}"
+                                                                @if($cart_color)  {{ $cart_color[1] == $value ? 'selected' : '' }} @endif>
+                                                                  {{ $value }}</option>
+                                                          @endforeach
+
+                                                      </select>
+
+                                                  </div>
+                                              </div>
+                                          </div>
+                                              @endif
+                                              
                                             </ul>
                                         </div>
                                     </td>
@@ -236,7 +274,7 @@
                     </div>
                     <div class="mobile_fixed-btn_wrapper">
                         <div class="button-wrapper container">
-                            <button  class="btn btn-primary btn-checkout  checkout-event">PROCEED TO CHECKOUT</button>
+                            <button  class="btn btn-primary btn-checkout  js-checkout-event">PROCEED TO CHECKOUT</button>
                         </div>
                     </div>
                 </div>

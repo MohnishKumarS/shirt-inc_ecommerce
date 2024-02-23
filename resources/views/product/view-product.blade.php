@@ -5,7 +5,8 @@
 @section('content')
 
 <div class="mb-md-1 pb-md-3"></div>
-@php
+<div class="view-single-product">
+    @php
 
 $img = explode(',', $product->image);
 $freq_img = explode(',', $freq_boug->image);
@@ -16,6 +17,9 @@ $freq_img = explode(',', $freq_boug->image);
 <section class="product-single container product-data">
     <div class="row">
         <div class="col-lg-7">
+            <div class="product-single_color text-center">
+                <img  alt="" class="img-fluid">
+            </div>
             <div class="product-single__media" data-media-type="vertical-thumbnail">
                 <div class="product-single__image">
                     <div class="swiper-container">
@@ -24,11 +28,11 @@ $freq_img = explode(',', $freq_boug->image);
                             @foreach ($img as $val)
                             <div class="swiper-slide product-single__image-item">
                                 <img loading="lazy" class="h-auto" src="{{ asset('image/product/' . $val) }}" width="674" height="674" alt="">
-                                <a data-fancybox="gallery" href="{{ asset('image/product/' . $val) }}" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
+                                {{-- <a data-fancybox="gallery" href="{{ asset('image/product/' . $val) }}" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
                                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <use href="#icon_zoom" />
                                     </svg>
-                                </a>
+                                </a> --}}
                             </div>
                             @endforeach
                             
@@ -96,6 +100,7 @@ $freq_img = explode(',', $freq_boug->image);
             </div>
             <div>
                 @php
+                    $colors = $product->colors ? json_decode($product->colors) : '';
                     $size = json_decode($product->size_list);
                     $men_size = $product->couple_men_size ? json_decode($product->couple_men_size) : '';
                     $women_size = $product->couple_women_size ? json_decode($product->couple_women_size) : '';
@@ -128,7 +133,7 @@ $freq_img = explode(',', $freq_boug->image);
 
                             </select>
                         </div>
-                        <div class="error text-danger"></div>
+                        <div class="js-size-error text-danger"></div>
                     </div>
                 @else
                     {{-- -------- common size -------- --}}
@@ -144,7 +149,7 @@ $freq_img = explode(',', $freq_boug->image);
                                 @endforeach
 
                             </select>
-                            <div class="error text-danger"></div>
+                            <div class="js-size-error text-danger"></div>
 
                         </div>
                     </div>
@@ -152,6 +157,53 @@ $freq_img = explode(',', $freq_boug->image);
                 
 
             </div>
+            {{--  colors  --}}
+          @if ($colors)
+          <div>
+            <label>Colors</label>
+            <div class="row mb-3">
+                <div class="col-lg-6 col-md-4 col-sm-6">
+
+                    <select class="form-select" id="js-colors" required>
+                        <option selected value="">Choose color</option>
+                        {{-- ---- size get in database --- --}}
+                        @foreach ($colors as $key => $val)
+                            <option value="{{ $key .':'. $val }}">{{ $val }}
+                            </option>
+                        @endforeach
+
+                    </select>
+                    <div class="js-color-error text-danger"></div>
+
+                </div>
+            </div>
+        </div>
+          @endif
+
+          @push('scripts')
+            <script>
+                let  $productImages = {!! json_encode($img) !!};
+                    // console.log($productImages);
+                  let  $colorSelect = document.getElementById('js-colors');
+                    if($colorSelect){
+                        $colorSelect.addEventListener('change', function() {
+                            // console.log($colorSelect.value);
+                        if($colorSelect.value != ''){
+                            $getColor = $colorSelect.value.split(':')[0];
+                             // Update the product image based on the selected color
+                            $('.product-single__media').css('display','none');
+                            $('.product-single_color img').attr('src','../../image/product/'+$productImages[$getColor])
+                        }else{             
+                            // Reload the page if the selected value is empty             
+                                location.reload();
+                         
+                        }
+
+          })
+                    }
+            </script>
+          @endpush
+
             <form name="addtocart-form" method="post">
                 <div class="product-single__swatches">
                     {{-- <div class="product-swatch text-swatches">
@@ -444,6 +496,7 @@ $freq_img = explode(',', $freq_boug->image);
         </div>
     </div>
 </section>
+</div>
 
 
 
