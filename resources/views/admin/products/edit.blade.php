@@ -90,7 +90,7 @@
                     <label for="" class="form-label">Selling Price</label>
                     <input type="number" class='form-control' value="{{$data->selling_price}}" name="selling_p"  required>
                 </div>
-                <div class="col-md-12 mb-3">
+                <div class="col-md-6 mb-3">
                     <label for="" class="form-label">Current Image</label>
                     @php
                         $img = explode(',',$data->image);
@@ -102,8 +102,24 @@
                    </div>
                 </div>
                 <div class="col-md-6 mb-3">
+                    <label for="" class="form-label">Current Design</label>
+                   <div>
+                    @if ($data->design)
+                    <img src="{{ asset('image/product/design/'.$data->design)}}" alt="product-design" class="img-fluid" width="200"  style="object-fit: contain">
+                    @else
+                     <div class="text-danger">
+                        No design image found !
+                     </div>
+                    @endif
+                   </div>
+                </div>
+                <div class="col-md-6 mb-3">
                     <label for="" class="form-label">Image</label>
                     <input type="file" class="form-control" name="images[]" multiple>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="" class="form-label">Design</label>
+                    <input type="file" class="form-control" name="design">
                 </div>
                 @php
                     // $color =  implode(",",$data->colors);

@@ -87,6 +87,10 @@
                     <input type="file" class="form-control" name="images[]" multiple required>
                 </div>
                 <div class="col-md-6 mb-3">
+                    <label for="" class="form-label">Design</label>
+                    <input type="file" class="form-control" name="design">
+                </div>
+                <div class="col-md-6 mb-3">
                   <label for="" class="form-label">Colors</label>
                   <input type="text" class="form-control" name="colors">
                </div>

@@ -61,11 +61,19 @@ class ProductController extends Controller
             foreach ($files as $file) {
                 $ext = \strtolower($file->getClientOriginalExtension());
                 $img_name =  rand(100, 100000) . '.' . $ext;
-                $destinate = \public_path('image/product');
+                $destinate = 'image/product/';
                 $file->move($destinate, $img_name);
 
                 $image[] = $img_name;
             }
+        }
+        $design = null;
+        if ($req->hasFile('design')) {
+            $file = $req->file('design');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move('image/product/design/', $filename);
+            $design = $filename;
         }
 
         $offer_msg = $req->offer_msg ? $req->offer_msg : 'new';
@@ -85,6 +93,7 @@ class ProductController extends Controller
             'quantity' => $req->quantity,
             'colors' =>  $req->colors ? json_encode(explode(",",$req->colors)): null,
             'type' => $req->product_type,
+            'design' => $design ?: null,
             'themes' => $req->product_theme,
             'size_list' => \json_encode($req->size),
             'couple_men_size' => $req->men_size ? \json_encode($req->men_size) : null,
@@ -127,7 +136,7 @@ class ProductController extends Controller
             // ----------- delete old image -----
             $old_img = explode(',', $pro->image);
             foreach ($old_img as $val) {
-                $path = \public_path('image/product/' . $val);
+                $path = 'image/product/' . $val;
                 if (File::exists($path)) {
                     File::delete($path);
                 }
@@ -138,13 +147,25 @@ class ProductController extends Controller
                 foreach ($files as $file) {
                     $ext = \strtolower($file->getClientOriginalExtension());
                     $img_name =  rand(100, 100000) . '.' . $ext;
-                    $destinate = \public_path('image/product');
+                    $destinate = 'image/product/';
                     $file->move($destinate, $img_name);
 
                     $images[] = $img_name;
                 }
                 $pro->image = implode(',', $images);
             }
+        }
+
+        if ($req->hasFile('design')) {
+            $path =  'image/product/design/' . $pro->design;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+            $file = $req->file('design');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move('image/product/design/', $filename);
+            $pro->design = $filename;
         }
 
         $offer_msg = $req->offer_msg ? $req->offer_msg : 'new';
@@ -240,7 +261,7 @@ class ProductController extends Controller
                 $all_img = explode(',', $pro->image);
 
                 foreach ($all_img as $val) {
-                    $path = \public_path('image/product/' . $val);
+                    $path = 'image/product/' . $val;
                     if (File::exists($path)) {
                         File::delete($path);
                     }

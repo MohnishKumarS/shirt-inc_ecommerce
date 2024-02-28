@@ -13,12 +13,63 @@ $freq_img = explode(',', $freq_boug->image);
 //  echo '<pre>';
 //  print_r($img);
 @endphp
+<style>
+    .product-single_color{
+        position: relative;
+    }
+    .product-single_img-design{
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 260px !important;
+        height: auto;
+        object-fit: cover;
+        opacity: .9;
+        z-index: 1;
 
+        @media only screen and (max-width:576px){
+            & {
+                width: 150px !important;
+            }
+        }
+    }
+
+</style>
+@push('scripts')
+<script>
+    let  $productImages = {!! json_encode($img) !!};
+        // console.log($productImages);
+        $('.product-single_color').css('display','none');
+      let  $colorSelect = document.getElementById('js-colors');
+        if($colorSelect){
+            $colorSelect.addEventListener('change', function() {
+                // console.log($colorSelect.value);
+            if($colorSelect.value != ''){
+                $getColor = $colorSelect.value.split(':')[0];
+                 // Update the product image based on the selected color
+                $('.product-single__media').css('display','none');
+                $('.product-single_color').css('display','block');
+                $('.product-single_color .product-single_img-color').attr('src','../../image/product/'+$productImages[$getColor])
+            }else{             
+                // Reload the page if the selected value is empty             
+                    location.reload();
+             
+            }
+
+})
+        }
+</script>
+@endpush
 <section class="product-single container product-data">
     <div class="row">
         <div class="col-lg-7">
             <div class="product-single_color text-center">
-                <img  alt="" class="img-fluid">
+                <img  alt="" class="img-fluid product-single_img-color">
+                @if ($product->design)
+                <img src="{{asset('image/product/design/'.$product->design)}}" class="product-single_img-design" width="360" height="360" alt="{{$product->slug}}">
+                @endif
+                
             </div>
             <div class="product-single__media" data-media-type="vertical-thumbnail">
                 <div class="product-single__image">
@@ -27,16 +78,21 @@ $freq_img = explode(',', $freq_boug->image);
                           
                             @foreach ($img as $val)
                             <div class="swiper-slide product-single__image-item">
-                                <img loading="lazy" class="h-auto" src="{{ asset('image/product/' . $val) }}" width="674" height="674" alt="">
+                                <img loading="lazy" class="h-auto" src="{{ asset('image/product/' . $val) }}" width="674" height="674" alt="{{$product->slug}}">
                                 {{-- <a data-fancybox="gallery" href="{{ asset('image/product/' . $val) }}" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
                                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <use href="#icon_zoom" />
                                     </svg>
                                 </a> --}}
+                                @if ($product->design)
+                                <img src="{{asset('image/product/design/'.$product->design)}}" class="product-single_img-design" width="360" height="360" alt="{{$product->slug}}">
+                                @endif
                             </div>
                             @endforeach
-                            
+
+                                                   
                         </div>
+                          
                         <div class="swiper-button-prev">
                             <?= $icon_left_chevron ?>
                         </div>
@@ -44,6 +100,7 @@ $freq_img = explode(',', $freq_boug->image);
                             <?= $icon_right_chevron ?>
                         </div>
                     </div>
+                
                 </div>
                 <div class="product-single__thumbnail">
                     <div class="swiper-container">
@@ -180,29 +237,7 @@ $freq_img = explode(',', $freq_boug->image);
         </div>
           @endif
 
-          @push('scripts')
-            <script>
-                let  $productImages = {!! json_encode($img) !!};
-                    // console.log($productImages);
-                  let  $colorSelect = document.getElementById('js-colors');
-                    if($colorSelect){
-                        $colorSelect.addEventListener('change', function() {
-                            // console.log($colorSelect.value);
-                        if($colorSelect.value != ''){
-                            $getColor = $colorSelect.value.split(':')[0];
-                             // Update the product image based on the selected color
-                            $('.product-single__media').css('display','none');
-                            $('.product-single_color img').attr('src','../../image/product/'+$productImages[$getColor])
-                        }else{             
-                            // Reload the page if the selected value is empty             
-                                location.reload();
-                         
-                        }
-
-          })
-                    }
-            </script>
-          @endpush
+     
 
             <form name="addtocart-form" method="post">
                 <div class="product-single__swatches">
@@ -254,7 +289,7 @@ $freq_img = explode(',', $freq_boug->image);
                         <?= $icon_share ?>
                         {{-- <span>Share</span> --}}
                         <span class="social-m-icon ">
-                            <a href="https://web.whatsapp.com/send?text=Check%20out%20this%20page:{{ urlencode(URL::current()) }}" class="menu-link menu-link_us-s">
+                            <a href="https://wa.me/send?text={{ urlencode(URL::current()) }}" class="menu-link menu-link_us-s">
                                 <i class="fa-brands fa-whatsapp"></i>
                             </a>
                         </span>

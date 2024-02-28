@@ -39,25 +39,25 @@ class CategoryController extends Controller
 
         $cat = new Category();
 
-        if ($req->hasFile('icons')) {
-            $file = $req->file('icons');
+        if ($req->hasFile('icon')) {
+            $file = $req->file('icon');
             $ext = $file->getClientOriginalExtension();
             $filename = time() . '.' . $ext;
-            $file->move(\public_path('image/category/icons/'), $filename);
+            $file->move('image/category/icons/', $filename);
             $cat->icon = $filename;
         }
         if ($req->hasFile('images')) {
             $file = $req->file('images');
             $ext = $file->getClientOriginalExtension();
             $filename = time() . '.' . $ext;
-            $file->move(\public_path('image/category/'), $filename);
+            $file->move('image/category/', $filename);
             $cat->image = $filename;
         }
         if ($req->hasFile('poster')) {
             $file = $req->file('poster');
             $ext = $file->getClientOriginalExtension();
             $fileimg = time() . '.' . $ext;
-            $file->move(\public_path('image/category/'), $filename);
+            $file->move('image/category/', $filename);
             $cat->poster = $fileimg;
         }
 

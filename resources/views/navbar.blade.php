@@ -1,23 +1,5 @@
 <!-- Elements Begin -->
-<?php
-$logoEle =
-    '<div class="logo">
-        <a href="' .
-    $url .
-    '">
-            <img src="' .
-    $url .
-    'assets/images/logo.png" alt="SHIRT-INC" class="logo__image d-block">
-        </a>
-    </div>';
 
-$cart_icon = asset('assets/icons/icon_cart.svg');
-$cartBtn = "<a class='header-tools__item header-tools__cart js-open-aside' data-aside='cartDrawer' title='Cart'>
-    <img src='{$cart_icon}' alt='cart Icon'>
-        <span class='cart-amount d-block position-absolute js-cart-items-count'>3</span>
-    </a>";
-
-?>
         @php
         use App\Models\Category;
         use App\Models\Theme;
@@ -42,18 +24,22 @@ $cartBtn = "<a class='header-tools__item header-tools__cart js-open-aside' data-
         </div>
         <div class="link-wrapper d-flex align-items-center">
             <a class="navigation__link" href="<?= $url ?>">Customize</a>
-            <a class="navigation__link" href="<?= $url ?>contact">Contact Us</a>
+            <a class="navigation__link" href="{{url('/contact')}}">Contact Us</a>
         </div>
     </nav>
     <!-- Topbar End -->
     <div class="header-desk header-desk_type_1">
 
-        <?= $logoEle ?>
+        <div class="logo">
+            <a href="{{url('/')}}">
+                <img src="{{asset('assets/images/logo.png')}}" alt="SHIRT-INC" class="logo__image d-block">
+            </a>
+        </div>
 
         <nav class="navigation">
             <ul class="navigation__list list-unstyled d-flex">
                 <li class="navigation__item">
-                    <a href="<?= $url ?>collections" class="navigation__link">Collections</a>
+                    <a href="{{url('/collections')}}" class="navigation__link">Collections</a>
                     <div class="box-menu start-0 w-100">
                         <div class="col pe-4 ">
                             <h6>CATEGORY</h6>
@@ -228,7 +214,11 @@ $cartBtn = "<a class='header-tools__item header-tools__cart js-open-aside' data-
             <span class="btn-close-lg position-absolute top-0 start-0 w-100"></span>
         </a>
 
-        <?= $logoEle ?>
+        <div class="logo">
+            <a href="{{url('/')}}">
+                <img src="{{asset('assets/images/logo.png')}}" alt="SHIRT-INC" class="logo__image d-block">
+            </a>
+        </div>
         <a class='header-tools__item header-tools__cart'  title='Cart'  href="{{ url('/my-cart') }}">
             <img src='{{asset('assets/icons/icon_cart.svg')}}' alt='cart Icon'>
                 <span class='cart-amount d-block position-absolute js-cart-items-count '>0</span>
@@ -299,7 +289,7 @@ $cartBtn = "<a class='header-tools__item header-tools__cart js-open-aside' data-
                     </li>
 
                     <li class="navigation__item">
-                        <a href="<?= $url ?>new-arrival" class="navigation__link">new arrival</a>
+                        <a href="{{url('/new-arrival')}}" class="navigation__link">new arrival</a>
                     </li>
 
                 
@@ -316,12 +306,13 @@ $cartBtn = "<a class='header-tools__item header-tools__cart js-open-aside' data-
                 @endif
 
                     <li class="navigation__item">
-                        <a href="<?= $url ?>about-us" class="navigation__link">About</a>
+                        <a href="{{url('/about-us')}}" class="navigation__link">About</a>
                     </li>
 
                     <li class="navigation__item">
-                        <a href="<?= $url ?>contact" class="navigation__link">Contact</a>
+                        <a href="{{url('/contact')}}" class="navigation__link">Contact</a>
                     </li>
+
                     @auth
                         <li class="navigation__item">
                             <a href="{{ route('logout') }}" class="navigation__link"
@@ -331,6 +322,13 @@ $cartBtn = "<a class='header-tools__item header-tools__cart js-open-aside' data-
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
+
+                        @else
+
+                        <li class="navigation__item">
+                            <a href="{{route('signin')}}" class="navigation__link">Login</a>
+                        </li>
+
                     @endauth
                 </ul>
             </div><!-- /.overflow-hidden -->

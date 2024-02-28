@@ -28,21 +28,21 @@ class ThemeController extends Controller
             $file = $req->file('icon');
             $ext = $file->getClientOriginalExtension();
             $filename = time() . '.' . $ext;
-            $file->move(\public_path('image/themes/icon'), $filename);
+            $file->move('image/themes/icon/', $filename);
             $data->icon = $filename;
         }
         if ($req->hasFile('image')) {
             $file = $req->file('image');
             $ext = $file->getClientOriginalExtension();
             $filename = time() . '.' . $ext;
-            $file->move(\public_path('image/themes/'), $filename);
+            $file->move('image/themes/', $filename);
             $data->image = $filename;
         }
         if ($req->hasFile('poster')) {
             $file = $req->file('poster');
             $ext = $file->getClientOriginalExtension();
             $filename = time() . '.' . $ext;
-            $file->move(\public_path('image/themes/poster'), $filename);
+            $file->move('image/themes/poster/', $filename);
             $data->poster = $filename;
         }
 

@@ -52,7 +52,7 @@
 
                 <tr class="align-middle">
                     <td>{{$i++}}</td>
-                    <td><img src="/image/category/{{$val['image']}}" style="object-fit: contain" width="150" height="100"></td>
+                    <td><img src="{{asset('image/category/'.$val->image)}}" style="object-fit: contain" width="150" height="100"></td>
                     <td>{{$val->name}}</td>
                     <td class="text-break">{{$val->desc}}</td>
                     <td >

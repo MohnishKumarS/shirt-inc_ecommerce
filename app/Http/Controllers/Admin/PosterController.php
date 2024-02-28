@@ -26,7 +26,7 @@ class PosterController extends Controller
     if ($file = $req->file('image')) {
       $ext = $file->getClientOriginalExtension();
       $img_name = time() . '.' . $ext;
-      $destinate = \public_path('image/slider');
+      $destinate = 'image/slider';
       $file->move($destinate, $img_name);
     }
 
@@ -58,7 +58,7 @@ class PosterController extends Controller
       }
       $file = $req->file('image');
       $img_name = time() . '.' . $file->getClientOriginalExtension();
-      $path = \public_path('image/slider');
+      $path = 'image/slider';
       $file->move($path, $img_name);
 
       $slider->image = $img_name;
@@ -103,7 +103,7 @@ class PosterController extends Controller
     if ($req->hasFile('image')) {
       $file = $req->file('image');
       $img_name = time() . '.' . $file->getClientOriginalExtension();
-      $path = \public_path('image/Ads-poster');
+      $path = 'image/Ads-poster';
       $file->move($path, $img_name);
     }
 
@@ -137,7 +137,7 @@ class PosterController extends Controller
       }
       $file = $req->file('image');
       $img_name = time() . '.' . $file->getClientOriginalExtension();
-      $path = \public_path('image/poster');
+      $path = 'image/poster';
       $file->move($path, $img_name);
 
       $poster->image = $img_name;
