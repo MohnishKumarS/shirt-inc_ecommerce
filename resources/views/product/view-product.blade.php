@@ -34,6 +34,23 @@ $freq_img = explode(',', $freq_boug->image);
             }
         }
     }
+    .preview-loading-spinner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .preview-loading-spinner svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
 </style>
 @push('scripts')
@@ -59,6 +76,12 @@ $freq_img = explode(',', $freq_boug->image);
 
 })
         }
+
+    window.onload = function () {
+    setTimeout(function () {
+      document.querySelector('.preview-loading-spinner').style.display = 'none';
+    }, 700)
+  }
 </script>
 @endpush
 <section class="product-single container product-data">
@@ -67,7 +90,7 @@ $freq_img = explode(',', $freq_boug->image);
             <div class="product-single_color text-center">
                 <img  alt="" class="img-fluid product-single_img-color">
                 @if ($product->design)
-                <img src="{{asset('image/product/design/'.$product->design)}}" class="product-single_img-design" width="360" height="360" alt="{{$product->slug}}">
+                <img src="{{asset('image/product/design/'.$product->design)}}" class="product-single_img-design" width="360" height="360" alt="{{$product->slug}}" loading="lazy">
                 @endif
                 
             </div>
@@ -85,7 +108,7 @@ $freq_img = explode(',', $freq_boug->image);
                                     </svg>
                                 </a> --}}
                                 @if ($product->design)
-                                <img src="{{asset('image/product/design/'.$product->design)}}" class="product-single_img-design" width="360" height="360" alt="{{$product->slug}}">
+                                <img src="{{asset('image/product/design/'.$product->design)}}" class="product-single_img-design" width="360" height="360" alt="{{$product->slug}}" loading="lazy">
                                 @endif
                             </div>
                             @endforeach
@@ -115,6 +138,17 @@ $freq_img = explode(',', $freq_boug->image);
                         </div>
                     </div>
                 </div>
+                <div class="preview-loading-spinner preview-loading-spinner-centered">
+                    <svg version="1.1" id="preview-loading-spinner-1" xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 50 50"
+                      style="enable-background: new 0 0 50 50" xml:space="preserve">
+                      <path fill="#000"
+                        d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25"
+                          dur="0.65s" repeatCount="indefinite" />
+                      </path>
+                    </svg>
+                  </div>
             </div>
         </div>
         <div class="col-lg-5">
