@@ -89,11 +89,12 @@ class ProductController extends Controller
             'desc' => $req->desc,
             'original_price' => $req->original_p,
             'selling_price' => $req->selling_p,
-            'image' => \implode(',', $image),
+            'image' => $image ? \implode(',', $image) : null,
             'quantity' => $req->quantity,
             'colors' =>  $req->colors ? json_encode(explode(",",$req->colors)): null,
             'type' => $req->product_type,
             'design' => $design ?: null,
+            'designType' => $req->designType == true ? true : false,
             'themes' => $req->product_theme,
             'size_list' => \json_encode($req->size),
             'couple_men_size' => $req->men_size ? \json_encode($req->men_size) : null,
@@ -189,6 +190,7 @@ class ProductController extends Controller
         $pro->size_list = \json_encode($req->size);
         $pro->couple_men_size = $req->men_size ? \json_encode($req->men_size) : null;
         $pro->couple_women_size = $req->women_size ? \json_encode($req->women_size) : null;
+        $pro->designType = $req->designType  == true ? true : false;
         $pro->status = $req->status  == true ? '1' : '0';
         $pro->trending = $req->trending  == true ? '1' : '0';
         $pro->offer_menu = $req->offer_menu  == true ? '1' : '0';

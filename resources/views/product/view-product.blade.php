@@ -14,7 +14,7 @@ $freq_img = explode(',', $freq_boug->image);
 //  print_r($img);
 @endphp
 <style>
-    .product-single_color{
+    /* .product-single_color{
         position: relative;
     }
     .product-single_img-design{
@@ -33,7 +33,7 @@ $freq_img = explode(',', $freq_boug->image);
                 width: 150px !important;
             }
         }
-    }
+    } */
     .preview-loading-spinner {
     position: absolute;
     top: 0;
@@ -52,48 +52,59 @@ $freq_img = explode(',', $freq_boug->image);
     transform: translate(-50%, -50%);
   }
 
-</style>
-@push('scripts')
-<script>
-    let  $productImages = {!! json_encode($img) !!};
-        // console.log($productImages);
-        $('.product-single_color').css('display','none');
-      let  $colorSelect = document.getElementById('js-colors');
-        if($colorSelect){
-            $colorSelect.addEventListener('change', function() {
-                // console.log($colorSelect.value);
-            if($colorSelect.value != ''){
-                $getColor = $colorSelect.value.split(':')[0];
-                 // Update the product image based on the selected color
-                $('.product-single__media').css('display','none');
-                $('.product-single_color').css('display','block');
-                $('.product-single_color .product-single_img-color').attr('src','../../image/product/'+$productImages[$getColor])
-            }else{             
-                // Reload the page if the selected value is empty             
-                    location.reload();
-             
-            }
-
-})
+  /* ------- product design style  ---- */
+  .product-single__designImgs{
+            height: 500px;
+            width: 100%;
+            position: relative;
+        }
+        .product-single__designImgs img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .product-single__designImgs .typeImg.active{
+            display: block;
+        }
+        .product-single__designImgs .typeImg{
+            display: none;
+        }
+        .design-image{
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%);
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            max-width: 160px;
         }
 
-    window.onload = function () {
-    setTimeout(function () {
-      document.querySelector('.preview-loading-spinner').style.display = 'none';
-    }, 700)
-  }
-</script>
-@endpush
+</style>
+
 <section class="product-single container product-data">
     <div class="row">
         <div class="col-lg-7">
-            <div class="product-single_color text-center">
+            @if ($product->designType)
+            <div class="product-single__designImgs">
+                <img src="{{asset('image/design/greyhalf.jpg')}}" class="typeImg" data-color="grey" data-type="half">
+                <img src="{{asset('image/design/redhalf.jpg')}}" class="typeImg" data-color="red" data-type="half">
+                <img src="{{asset('image/design/blackhalf.jpg')}}" class="typeImg" data-color="black" data-type="half">
+                <img src="{{asset('image/design/greyfull.jpg')}}" class="typeImg" data-color="grey" data-type="sleeve">
+                <img src="{{asset('image/design/redfull.webp')}}" class="typeImg" data-color="red" data-type="sleeve">
+                <img src="{{asset('image/design/whitefull.webp')}}" class="typeImg" data-color="black" data-type="sleeve">
+                <img src="{{asset('image/design/greyhoodie.jpg')}}" class="typeImg" data-color="grey" data-type="hoodie">
+                <img src="{{asset('image/design/redhoodie.webp')}}" class="typeImg" data-color="red" data-type="hoodie">
+                <img src="{{asset('image/design/blackhoodie.webp')}}" class="typeImg" data-color="black" data-type="hoodie">
+                <img src="{{asset('image/product/design/'.$product->design)}}"  class="design-image">
+            </div>
+            @else
+            {{-- <div class="product-single_color text-center">
                 <img  alt="" class="img-fluid product-single_img-color">
                 @if ($product->design)
                 <img src="{{asset('image/product/design/'.$product->design)}}" class="product-single_img-design" width="360" height="360" alt="{{$product->slug}}" loading="lazy">
                 @endif
-                
-            </div>
+            </div> --}}
             <div class="product-single__media" data-media-type="vertical-thumbnail">
                 <div class="product-single__image">
                     <div class="swiper-container">
@@ -107,9 +118,9 @@ $freq_img = explode(',', $freq_boug->image);
                                         <use href="#icon_zoom" />
                                     </svg>
                                 </a> --}}
-                                @if ($product->design)
+                                {{-- @if ($product->design)
                                 <img src="{{asset('image/product/design/'.$product->design)}}" class="product-single_img-design" width="360" height="360" alt="{{$product->slug}}" loading="lazy">
-                                @endif
+                                @endif --}}
                             </div>
                             @endforeach
 
@@ -150,6 +161,8 @@ $freq_img = explode(',', $freq_boug->image);
                     </svg>
                   </div>
             </div>
+            @endif
+        
         </div>
         <div class="col-lg-5">
             <div class="d-flex justify-content-between mb-4 pb-md-2">
@@ -189,6 +202,36 @@ $freq_img = explode(',', $freq_boug->image);
             <div class="product-single__short-desc">
                 <p> {{ $product->desc }} </p>
             </div>
+            {{-- ---colors and design style  --- --}}
+            @if ($product->designType)
+            <div class="mb-3">
+                <div class="product-single__swatches">
+                    <div class="product-swatch color-swatches">
+                       <label>Color</label>
+                       <div class="swatch-list">
+                           <input type="radio" name="color" id="swatch-11" value="black" checked>
+                           <label class="swatch swatch-color js-swatch" for="swatch-11" aria-label="Black" data-bs-toggle="tooltip" data-bs-placement="top" title="Black" style="color: #222"></label>
+                           <input type="radio" name="color" id="swatch-12" value="red" >
+                           <label class="swatch swatch-color js-swatch" for="swatch-12" aria-label="Red" data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="color: #C93A3E"></label>
+                           <input type="radio" name="color" id="swatch-13" value="grey">
+                           <label class="swatch swatch-color js-swatch" for="swatch-13" aria-label="Grey" data-bs-toggle="tooltip" data-bs-placement="top" title="Grey" style="color: #E4E4E4"></label>
+                       </div>
+                   </div> 
+               </div>
+
+               <div class="row">
+                <div class="col-6">
+                    <label>Types</label>
+                    <select class="form-select" id="product-style">
+                        <!-- <option selected>choose type</option> -->
+                        <option value="half" selected>Half Hand</option>
+                        <option value="sleeve">Full sleeve</option>
+                        <option value="hoodie">Hoodie</option>
+                      </select>
+                </div>
+               </div>
+            </div>
+            @endif
             <div>
                 @php
                     $colors = $product->colors ? json_decode($product->colors) : '';
@@ -202,7 +245,7 @@ $freq_img = explode(',', $freq_boug->image);
                 @if ($men_size && $women_size)
                     {{-- -------- couples size -------- --}}
                     <div class="row mb-3">
-                        <div class="col-lg-6 col-md-6 col-8">
+                        <div class="col-6">
                             <select class="form-select men_size" required>
                                 <option selected value="">Select Men's size</option>
                                 {{-- ---- size get in database --- --}}
@@ -213,7 +256,7 @@ $freq_img = explode(',', $freq_boug->image);
 
                             </select>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-8 mt-3 mt-md-0">
+                        <div class="col-6">
                             <select class="form-select women_size" required>
                                 <option selected value="">Select Women's size</option>
                                 {{-- ---- size get in database --- --}}
@@ -229,7 +272,7 @@ $freq_img = explode(',', $freq_boug->image);
                 @else
                     {{-- -------- common size -------- --}}
                     <div class="row mb-3">
-                        <div class="col-lg-6 col-md-4 col-sm-6">
+                        <div class="col-lg-6 col-md-4 col-6">
 
                             <select class="form-select com_size" required>
                                 <option selected value="">Choose your size</option>
@@ -249,7 +292,7 @@ $freq_img = explode(',', $freq_boug->image);
 
             </div>
             {{--  colors  --}}
-          @if ($colors)
+          {{-- @if ($colors)
           <div>
             <label>Colors</label>
             <div class="row mb-3">
@@ -257,7 +300,6 @@ $freq_img = explode(',', $freq_boug->image);
 
                     <select class="form-select" id="js-colors" required>
                         <option selected value="">Choose color</option>
-                        {{-- ---- size get in database --- --}}
                         @foreach ($colors as $key => $val)
                             <option value="{{ $key .':'. $val }}">{{ $val }}
                             </option>
@@ -269,7 +311,7 @@ $freq_img = explode(',', $freq_boug->image);
                 </div>
             </div>
         </div>
-          @endif
+          @endif --}}
 
      
 
@@ -779,5 +821,89 @@ $freq_img = explode(',', $freq_boug->image);
 
 
 @endsection
+
+@push('scripts')
+<script>
+    // ---- product fixed design image and change image depends on color
+//     let  $productImages = {!! json_encode($img) !!};
+//         // console.log($productImages);
+//         $('.product-single_color').css('display','none');
+//       let  $colorSelect = document.getElementById('js-colors');
+//         if($colorSelect){
+//             $colorSelect.addEventListener('change', function() {
+//                 // console.log($colorSelect.value);
+//             if($colorSelect.value != ''){
+//                 $getColor = $colorSelect.value.split(':')[0];
+//                  // Update the product image based on the selected color
+//                 $('.product-single__media').css('display','none');
+//                 $('.product-single_color').css('display','block');
+//                 $('.product-single_color .product-single_img-color').attr('src','../../image/product/'+$productImages[$getColor])
+//             }else{             
+//                 // Reload the page if the selected value is empty             
+//                     location.reload();
+             
+//             }
+
+// })
+//         }
+const spinner = document.querySelector('.preview-loading-spinner');
+
+if(spinner){
+    window.onload = function () {
+    setTimeout(function () {
+      spinner.style.display = 'none';
+    }, 700)
+  }
+}
+
+
+// ------ product design type selection ------
+document.addEventListener('DOMContentLoaded', function() {
+  const checkedColor = $('input[name="color"]:checked').val();
+    const checkedStyle = $('#product-style').val();
+    const productImages = document.querySelectorAll('.product-single__designImgs .typeImg');
+    
+    const colorRadios  = document.querySelectorAll('input[name="color"]');
+    const styleOptions = document.getElementById('product-style');
+
+    // Add change event listener to the select product style 
+   if(styleOptions){
+    styleOptions.addEventListener('change',function(){
+        const selectedStyle = styleOptions.value;
+        const selectedColor = $('input[name="color"]:checked').val();
+        checkSetActive(selectedColor,selectedStyle);
+    })
+   }
+
+    // Add change event listener to each radio button
+    colorRadios.forEach((radio) => {
+        radio.addEventListener('change',function(){
+            const selectedColor  = this.value;
+            const selectedStyle = $('#product-style').val();
+            checkSetActive(selectedColor,selectedStyle);
+        })
+    });
+    
+
+    checkSetActive(checkedColor, checkedStyle);
+
+    
+    function checkSetActive(color,style){
+        productImages.forEach(function(img){
+              // Show images with the same color and type, hide others
+            if(img.getAttribute('data-color') === color && img.getAttribute('data-type') === style){
+                img.classList.add('active');
+            }else{
+                img.classList.remove('active');
+            }
+        })
+
+    }
+
+
+});
+
+</script>
+@endpush
 
 

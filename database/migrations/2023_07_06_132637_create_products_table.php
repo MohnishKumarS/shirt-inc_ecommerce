@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('image');
             $table->string('quantity');
             $table->string('type');
+            $table->string('design');
+            $table->tinyInteger('designType')->default('0');
             $table->string('themes');
             $table->string('size_list');
             $table->string('couple_men_size');

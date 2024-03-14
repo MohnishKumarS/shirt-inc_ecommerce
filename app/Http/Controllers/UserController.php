@@ -42,7 +42,7 @@ class UserController extends Controller
     public function category(){
         $all_category = Category::orderBy('id','desc')->get();
         $categoryPoster = Category::where('poster','!=','')->where('popular','1')->latest()->get();
-        // return $all_category;
+        // return $categoryPoster;
         return view('category',\compact('all_category','categoryPoster'));
     }
 

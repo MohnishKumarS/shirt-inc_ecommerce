@@ -349,7 +349,7 @@
 
      {{-- ````````` LATEST PRODUCT ```````````` --}}
     <!-- ``````````````````````````````````` -->
-    <section class="products-carousel container">
+    <section class="latest-products-carousel container">
       <h2 class="section-title text-uppercase fw-bold text-center mb-4 pb-xl-2 mb-xl-4">Latest Products</h2>
   
       <div class="position-relative">
@@ -409,12 +409,16 @@
                         <input type="hidden" class="qty-value" value="1">
                       <div class="pc__img-wrapper">
                           <a href="{{ url('category/' . $val->category->slug . '/' . $val->slug) }}">
-                           @if (count($img) > 1)
-                           <img loading="lazy" src="{{ asset('image/product/' . $img[0]) }}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                           <img loading="lazy" src="{{ asset('image/product/' . $img[1]) }}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
+                           @if ($val->designType)
+                           <img loading="lazy" src="{{ asset('image/product/design/' . $val->design) }}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
                            @else
-                           <img loading="lazy" src="{{ asset('image/product/' . $img[0]) }}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                           
+                                @if (count($img) > 1)
+                                <img loading="lazy" src="{{ asset('image/product/' . $img[0]) }}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
+                                <img loading="lazy" src="{{ asset('image/product/' . $img[1]) }}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
+                                @else
+                                <img loading="lazy" src="{{ asset('image/product/' . $img[0]) }}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
+                                
+                                @endif
                            @endif
                               
                           </a>

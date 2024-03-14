@@ -4,26 +4,13 @@
 
 @section('content')
 
+@if ($theme->poster)
 <section class="full-width_padding">
-    <div class="full-width_border border-2" style="border-color: #eeeeee;">
-        <div class="shop-banner position-relative ">
-            <div class="shop-banner__content container position-absolute start-50 top-50 translate-middle">
-                <h2 class="stroke-text h1 smooth-16 text-uppercase fw-bold mb-3 mb-xl-4 mb-xl-5">Free Shipping</h2>
-                <ul class="d-flex flex-wrap list-unstyled text-uppercase h6">
-                    <li class="me-3 me-xl-4 pe-1"><a href="<?= $url ?>shop" class="menu-link menu-link_us-s menu-link_active">StayHome</a></li>
-                    <li class="me-3 me-xl-4 pe-1"><a href="<?= $url ?>shop" class="menu-link menu-link_us-s">New In</a></li>
-                    <li class="me-3 me-xl-4 pe-1"><a href="<?= $url ?>shop" class="menu-link menu-link_us-s">Jackets</a></li>
-                    <li class="me-3 me-xl-4 pe-1"><a href="<?= $url ?>shop" class="menu-link menu-link_us-s">Hoodies</a></li>
-                    <li class="me-3 me-xl-4 pe-1"><a href="<?= $url ?>shop" class="menu-link menu-link_us-s">Men</a></li>
-                    <li class="me-3 me-xl-4 pe-1"><a href="<?= $url ?>shop" class="menu-link menu-link_us-s">Women</a></li>
-                    <li class="me-3 me-xl-4 pe-1"><a href="<?= $url ?>shop" class="menu-link menu-link_us-s">Trousers</a></li>
-                    <li class="me-3 me-xl-4 pe-1"><a href="<?= $url ?>shop" class="menu-link menu-link_us-s">Accessories</a></li>
-                    <li class="me-3 me-xl-4 pe-1"><a href="<?= $url ?>shop" class="menu-link menu-link_us-s">Shoes</a></li>
-                </ul>
-            </div>
-        </div>
+    <div class="top_banners">
+        <img src="{{asset('image/themes/poster/'.$theme->poster)}}" alt="{{$theme->slug}}" loading="lazy" class="w-100">
     </div>
 </section>
+@endif
 
 <div class="mb-4 pb-lg-3"></div>
 

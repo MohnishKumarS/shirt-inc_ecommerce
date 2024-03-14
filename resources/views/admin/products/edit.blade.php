@@ -239,6 +239,10 @@
                         <label for="" class="form-label">Action</label>
                     </div>
                     <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox"  name="designType"  {{$data->designType == '1'? 'checked' : ''}}>
+                        <label class="form-check-label" >designType</label>
+                      </div>
+                    <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox"  name="status"  {{$data->status == '1'? 'checked' : ''}}>
                         <label class="form-check-label" >popular</label>
                       </div>

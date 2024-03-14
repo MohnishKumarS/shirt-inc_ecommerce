@@ -4,7 +4,7 @@
 
 @push('styles')
     <style>
-        .slideshow.category_slider{
+        .top_banners{
             height: 25em !important;
         }
     </style>
@@ -12,8 +12,8 @@
 @section('content')
 
     {{-- ````````` CATEGORY SLIDER ```````````` --}}
-
-    <section class="swiper-container js-swiper-slider slideshow full-width_padding swiper-number-pagination category_slider" data-settings='{
+    @if (count($categoryPoster) > 0)
+    <section class="swiper-container js-swiper-slider slideshow full-width_padding swiper-number-pagination top_banners" data-settings='{
         "autoplay": {
           "delay": 5000
         },
@@ -29,7 +29,7 @@
           <div class="overflow-hidden position-relative h-100">
               <div class="slideshow-bg">
                 <a href="{{ url('category/'.$item->slug) }}" title="{{$item->name}}" >
-                  <img loading="lazy" src="{{ asset('image/category/' . $item->poster) }}" width="1783" height="800" alt="{{$item->slug}}" class="slideshow-bg__img object-fit-cover object-position-right">
+                  <img loading="lazy" src="{{ asset('image/category/poster/' . $item->poster) }}" width="1783" height="800" alt="{{$item->slug}}" class="slideshow-bg__img object-fit-cover object-position-right">
                 </a>
               </div>
          
@@ -44,6 +44,8 @@
         </div>
     </div>
   </section>
+    @endif
+
       <div class="pt-1 pb-5"></div>
 
 

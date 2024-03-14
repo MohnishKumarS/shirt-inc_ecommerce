@@ -57,7 +57,7 @@ class CategoryController extends Controller
             $file = $req->file('poster');
             $ext = $file->getClientOriginalExtension();
             $fileimg = time() . '.' . $ext;
-            $file->move('image/category/', $filename);
+            $file->move('image/category/poster', $filename);
             $cat->poster = $fileimg;
         }
 
@@ -120,7 +120,7 @@ class CategoryController extends Controller
             $file = $req->file('poster');
             $ext = $file->getClientOriginalExtension();
             $filename = time() . '.' . $ext;
-            $file->move('image/category/', $filename);
+            $file->move('image/category/poster', $filename);
             $data->poster = $filename;
         }
 

@@ -84,7 +84,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="" class="form-label">Image</label>
-                    <input type="file" class="form-control" name="images[]" multiple required>
+                    <input type="file" class="form-control" name="images[]" multiple >
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="" class="form-label">Design</label>
@@ -200,6 +200,10 @@
                     <div>
                         <label for="" class="form-label">Action</label>
                     </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox"  name="designType">
+                        <label class="form-check-label" >designType</label>
+                      </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox"  name="status">
                         <label class="form-check-label" >popular</label>

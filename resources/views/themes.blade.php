@@ -1,18 +1,12 @@
 @extends('layouts.userpage')
 
 @section('title', 'Themes')
-@push('styles')
-    <style>
-        .slideshow.themes_slider{
-            height: 25em !important;
-        }
-    </style>
-@endpush
+
 @section('content')
 
       {{-- ````````` THEMES SLIDER ```````````` --}}
 
-      <section class="swiper-container js-swiper-slider slideshow full-width_padding swiper-number-pagination themes_slider" data-settings='{
+      <section class="swiper-container js-swiper-slider slideshow full-width_padding swiper-number-pagination top_banners" data-settings='{
         "autoplay": {
           "delay": 5000
         },

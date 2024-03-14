@@ -250,12 +250,55 @@ $step = 2;
                                     @php
                                         $img = explode(',', $item->product->image);
 
-                                        $cart_color = $item->product_color ? json_decode($item->product_color) : '';
+                                        $cart_design = $item->product_design ? json_decode($item->product_design) : '';
+
                                     @endphp
+                                      <style>
+                                        /* ------- product design style  ---- */
+                                          .product-single__designImgs{
+                                                      /* height: 500px; */
+                                                      width: 100%;
+                                                      position: relative;
+                                                  }
+                                                  .product-single__designImgs img{
+                                                      width: 65px;
+                                                      height: 100%;
+                                                      object-fit: contain;
+                                                  }
+                                                  .product-single__designImgs .typeImg.active{
+                                                      display: block;
+                                                  }
+                                                  .product-single__designImgs .typeImg{
+                                                      display: none;
+                                                  }
+                                                  .design-image{
+                                                      position: absolute;
+                                                      top: 0;
+                                                      left: 50%;
+                                                      transform: translate(-50%);
+                                                      width: 100%;
+                                                      height: 100%;
+                                                      object-fit: contain;
+                                                      max-width: 40px;
+                                                      user-select: none;
+                                                  }
+                                                
+                                  </style>
                                     <tr class="align-middle">
                                         <td>
-                                            @if ($cart_color)
-                                            <img src="{{ asset('image/product/' . $img[$cart_color[0]]) }}" width="65" class="img-fluid" alt="{{ $item->product->name }}" loading="lazy">
+                                            @if ($item->product->designType)
+                                            <div class="product-single__designImgs">
+                                                <img src="{{asset('image/design/greyhalf.jpg')}}" class="typeImg @if($cart_design[0] == 'grey' && $cart_design[1] == 'half') active @endif"  data-color="grey" data-type="half">
+                                                <img src="{{asset('image/design/redhalf.jpg')}}" class="typeImg @if($cart_design[0] == 'red' && $cart_design[1] == 'half') active @endif" data-color="red" data-type="half">
+                                                <img src="{{asset('image/design/blackhalf.jpg')}}" class="typeImg @if($cart_design[0] == 'black' && $cart_design[1] == 'half') active @endif" data-color="black" data-type="half">
+                                                <img src="{{asset('image/design/greyfull.jpg')}}" class="typeImg @if($cart_design[0] == 'grey' && $cart_design[1] == 'sleeve') active @endif" data-color="grey" data-type="sleeve">
+                                                <img src="{{asset('image/design/redfull.webp')}}" class="typeImg @if($cart_design[0] == 'red' && $cart_design[1] == 'sleeve') active @endif" data-color="red" data-type="sleeve">
+                                                <img src="{{asset('image/design/whitefull.webp')}}" class="typeImg @if($cart_design[0] == 'black' && $cart_design[1] == 'sleeve') active @endif" data-color="black" data-type="sleeve">
+                                                <img src="{{asset('image/design/greyhoodie.jpg')}}" class="typeImg @if($cart_design[0] == 'grey' && $cart_design[1] == 'hoodie') active @endif" data-color="grey" data-type="hoodie">
+                                                <img src="{{asset('image/design/redhoodie.webp')}}" class="typeImg @if($cart_design[0] == 'red' && $cart_design[1] == 'hoodie') active @endif" data-color="red" data-type="hoodie">
+                                                <img src="{{asset('image/design/blackhoodie.webp')}}" class="typeImg @if($cart_design[0] == 'black' && $cart_design[1] == 'hoodie') active @endif" data-color="black" data-type="hoodie">
+                                                <img src="{{asset('image/product/design/'.$item->product->design)}}"  class="design-image">
+                                            </div>
                                             @else
                                             <img src="{{ asset('image/product/' . $img[0]) }}" width="65" class="img-fluid" alt="{{ $item->product->name }}" loading="lazy">
                                             @endif
@@ -270,9 +313,9 @@ $step = 2;
                                                     <small>(size : {{ $item->product_size }})</small>
                                                 @endif
                                             </span>
-                                            @if ($cart_color)
+                                            @if ($cart_design)
                                               <div>
-                                                <small>(color : {{$cart_color[1]}})</small>
+                                                <small>(color : {{$cart_design[0]}} & type : {{$cart_design[1]}})</small>
                                               </div>
                                             @endif
 

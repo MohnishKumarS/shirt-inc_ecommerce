@@ -182,7 +182,7 @@ Route::post('/remove-cart', [CartController::class, 'remove_cart']);
 
 Route::post('/update-cart', [CartController::class, 'update_cart']);
 
-Route::post('/update-color', [CartController::class, 'update_color']);
+Route::post('/update-design-style', [CartController::class, 'update_design_style']);
 
 Route::post('/update-size', [CartController::class, 'update_size']);
 

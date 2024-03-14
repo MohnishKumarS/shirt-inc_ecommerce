@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('user_id');
             $table->string('product_id');
             $table->string('product_qty');
+            $table->string('product_color');
+            $table->string('product_design');
             $table->string('product_size');
             $table->string('mens_size');
             $table->string('womens_size');

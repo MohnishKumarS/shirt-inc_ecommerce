@@ -54,6 +54,7 @@
                         {{-- -------- CART LIST PRODUCT  ------------ --}}
                           @php
                             $cartTotal = 0;
+                            $radioIndex = 0;
                           @endphp
                         @foreach ($cart as $val)
                         @php
@@ -65,19 +66,60 @@
                             // ------ total cart  amount ---------
                             $cartTotal += $val->product->selling_price * $val->product_qty;
 
-                            $cart_color = $val->product_color ? json_decode($val->product_color) : '';
-
+                            // $cart_color = $val->product_color ? json_decode($val->product_color) : '';
+                            $cart_design = $val->product_design ? json_decode($val->product_design) : ['red','half'];
                         @endphp
                            
-                                <tr class="product-data">
+                                <tr class="product-data" id='pro-id-{{$val->product->id}}' >
                                     <td>
                                         <div class="shopping-cart__product-item js-cart__product-img">
-                                            @if ($cart_color)
-                                            <img loading="lazy" src="{{ asset('image/product/' . $img[$cart_color[0]]) }}" width="120" height="120" alt="cart-product">
+                                            <style>
+                                                  /* ------- product design style  ---- */
+                                                    .product-single__designImgs{
+                                                                /* height: 500px; */
+                                                                width: 100%;
+                                                                position: relative;
+                                                            }
+                                                            .product-single__designImgs img{
+                                                                width: 100%;
+                                                                height: 100%;
+                                                                object-fit: contain;
+                                                            }
+                                                            .product-single__designImgs .typeImg.active{
+                                                                display: block;
+                                                            }
+                                                            .product-single__designImgs .typeImg{
+                                                                display: none;
+                                                            }
+                                                            .design-image{
+                                                                position: absolute;
+                                                                top: 0;
+                                                                left: 50%;
+                                                                transform: translate(-50%);
+                                                                width: 100%;
+                                                                height: 100%;
+                                                                object-fit: contain;
+                                                                max-width: 80px;
+                                                            }
+                                            </style>
+                                            {{-- <img loading="lazy" src="{{ asset('image/product/' . $img[$cart_color[0]]) }}" width="120" height="120" alt="cart-product"> --}}
+                                            @if ($val->product->designType)
+                                            <div class="product-single__designImgs">
+                                                <img src="{{asset('image/design/greyhalf.jpg')}}" class="typeImg @if($cart_design[0] == 'grey' && $cart_design[1] == 'half') active @endif"  data-color="grey" data-type="half">
+                                                <img src="{{asset('image/design/redhalf.jpg')}}" class="typeImg @if($cart_design[0] == 'red' && $cart_design[1] == 'half') active @endif" data-color="red" data-type="half">
+                                                <img src="{{asset('image/design/blackhalf.jpg')}}" class="typeImg @if($cart_design[0] == 'black' && $cart_design[1] == 'half') active @endif" data-color="black" data-type="half">
+                                                <img src="{{asset('image/design/greyfull.jpg')}}" class="typeImg @if($cart_design[0] == 'grey' && $cart_design[1] == 'sleeve') active @endif" data-color="grey" data-type="sleeve">
+                                                <img src="{{asset('image/design/redfull.webp')}}" class="typeImg @if($cart_design[0] == 'red' && $cart_design[1] == 'sleeve') active @endif" data-color="red" data-type="sleeve">
+                                                <img src="{{asset('image/design/whitefull.webp')}}" class="typeImg @if($cart_design[0] == 'black' && $cart_design[1] == 'sleeve') active @endif" data-color="black" data-type="sleeve">
+                                                <img src="{{asset('image/design/greyhoodie.jpg')}}" class="typeImg @if($cart_design[0] == 'grey' && $cart_design[1] == 'hoodie') active @endif" data-color="grey" data-type="hoodie">
+                                                <img src="{{asset('image/design/redhoodie.webp')}}" class="typeImg @if($cart_design[0] == 'red' && $cart_design[1] == 'hoodie') active @endif" data-color="red" data-type="hoodie">
+                                                <img src="{{asset('image/design/blackhoodie.webp')}}" class="typeImg @if($cart_design[0] == 'black' && $cart_design[1] == 'hoodie') active @endif" data-color="black" data-type="hoodie">
+                                                <img src="{{asset('image/product/design/'.$val->product->design)}}"  class="design-image">
+                                            </div>
                                             @else
                                             <img loading="lazy" src="{{ asset('image/product/' . $img[0]) }}" width="120" height="120" alt="cart-product">
                                             @endif
-                                            
+ 
                                         </div>
                                     </td>
                                     <td>
@@ -88,7 +130,49 @@
                                                 </a>
                                             </h4>
                                             <ul class="shopping-cart__product-item__options">
-                                                {{-- <li>Color: Yellow</li> --}}
+                                                            {{-- ---colors and design style  --- --}}
+                                                                @if ($val->product->designType)
+                                                                <div class="mb-3">
+                                                                    {{-- <div class="product-single__swatches">
+                                                                        <div class="product-swatch color-swatches">
+                                                                        <label>Color</label>
+                                                                        <div class="swatch-list">
+                                                                            <input type="radio" name="color" id="swatch-{{$radioIndex}}" value="black"  class="colors">
+                                                                            <label class="swatch swatch-color js-swatch" for="swatch-{{$radioIndex}}" aria-label="Black" data-bs-toggle="tooltip" data-bs-placement="top" title="Black" style="color: #222"></label>
+                                                                            <input type="radio" name="color" id="swatch-{{$radioIndex + 1}}" value="red"  class="colors">
+                                                                            <label class="swatch swatch-color js-swatch" for="swatch-{{$radioIndex + 1}}" aria-label="Red" data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="color: #C93A3E"></label>
+                                                                            <input type="radio" name="color" id="swatch-{{$radioIndex + 2}}" value="grey" class="colors">
+                                                                            <label class="swatch swatch-color js-swatch" for="swatch-{{$radioIndex + 2}}" aria-label="Grey" data-bs-toggle="tooltip" data-bs-placement="top" title="Grey" style="color: #E4E4E4"></label>
+                                                                        </div>
+                                                                    </div> 
+                                                                </div>
+                                                                @php
+                                                                    $radioIndex += 3;
+                                                                @endphp --}}
+
+                                                                <div class="row">
+
+                                                                    <div class="col-6">
+                                                                        <label>Colors <span class="text-danger">*</span></label>
+                                                                        <select class="form-select js-product-color" id="product-color"  onchange = "changeDesign( {{ $val->product->id }} )">
+                                                                            <!-- <option selected>choose type</option> -->
+                                                                            <option value="black" {{$cart_design[0] == 'black' ? 'selected' : '' }}>Black</option>
+                                                                            <option value="red" {{$cart_design[0] == 'red' ? 'selected' : '' }}>Red</option>
+                                                                            <option value="grey" {{$cart_design[0] == 'grey' ? 'selected' : '' }}>Grey</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-6">
+                                                                        <label>Types <span class="text-danger">*</span></label>
+                                                                        <select class="form-select js-product-style" id="product-style"  onchange ="changeDesign( {{$val->product->id}} )">
+                                                                            <!-- <option selected>choose type</option> -->
+                                                                            <option value="half" {{$cart_design[1] == 'half' ? 'selected' : '' }}>Half Hand</option>
+                                                                            <option value="sleeve" {{$cart_design[1] == 'sleeve' ? 'selected' : '' }}>Full sleeve</option>
+                                                                            <option value="hoodie" {{$cart_design[1] == 'hoodie' ? 'selected' : '' }}>Hoodie</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                </div>
+                                                                @endif
 
                                                  {{-- ----------- product size --------------- --}}
                                                  <div>
@@ -96,13 +180,11 @@
                                                         $size = json_decode($val->product->size_list);
                                                         $men_size = $val->product->couple_men_size ? json_decode($val->product->couple_men_size) : '';
                                                         $women_size = $val->product->couple_women_size ? json_decode($val->product->couple_women_size) : '';
-                                                        $colors = $val->product->colors ? json_decode($val->product->colors) : '';
+                                                        // $colors = $val->product->colors ? json_decode($val->product->colors) : '';
                                                        
-                                                        // print_r($men_size);
-                                                        // print_r(gettype($men_size))
                                                     @endphp
-                                                    <label for="" class="text-sm">size <span
-                                                            class="text-danger">*</span></label>
+
+                                                    <label for="" class="text-sm">size <span class="text-danger">*</span></label>
 
                                                     @if ($men_size && $women_size)
                                                         {{-- -------- couples size -------- --}}
@@ -141,7 +223,7 @@
                                                     @else
                                                         {{-- -------- common size -------- --}}
                                                         <div class="row">
-                                                            <div class="col-12 col-lg-6">
+                                                            <div class="col-6">
 
                                                                 <select class="form-select com_size"
                                                                     required>
@@ -163,11 +245,9 @@
 
 
                                                 </div>
-                                                
-                                              @if ($colors)
-                                              <div class="mt-2">
-                                                {{-- -------- product  colors-------- --}}
-
+                                                  {{-- -------- product  colors-------- --}}
+                                              {{-- @if ($colors)
+                                              <div class="mt-2">                              
                                               <label for="" class="text-sm">Colors <span
                                                   class="text-danger">*</span></label>
                                                  
@@ -177,7 +257,7 @@
                                                       <select class="form-select js-color-change"
                                                           required>
                                                           <option selected value="">Choose color </option>
-                                                          {{-- ---- colors get in cart table database --- --}}
+                                                     
                                                           @foreach ($colors as $key=>$value)
                                                               <option value="{{ $key . ':' . $value }}"
                                                                 @if($cart_color)  {{ $cart_color[1] == $value ? 'selected' : '' }} @endif>
@@ -189,7 +269,7 @@
                                                   </div>
                                               </div>
                                           </div>
-                                              @endif
+                                              @endif --}}
                                               
                                             </ul>
                                         </div>
@@ -217,6 +297,31 @@
                                         </a>
                                     </td>
                                 </tr>
+
+                                <script>
+                                    //    function callActiveDesign(){
+                                    //     var productImages = document.querySelectorAll('#pro-id-{{$val->product->id}} .product-single__designImgs .typeImg');
+                                    //     // console.log(productImages);
+                                    //    var productDesign = {!! json_encode($cart_design) !!};
+                                    //     //  console.log(productDesign);
+                                    //      if(productDesign){
+                                    //         designSetActive(productDesign[0],productDesign[1])
+                                    //      }
+                                    //      function designSetActive(color,style){
+                                    //         console.log(color,style);
+                                    //         productImages.forEach(function(img){
+                                    //             // Show images with the same color and type, hide others
+                                    //             if(img.getAttribute('data-color') === color && img.getAttribute('data-type') === style){
+                                    //                 img.classList.add('active');
+                                    //             }else{
+                                    //                 img.classList.remove('active');
+                                    //             }
+                                    //         })
+
+                                    //     }
+                                    //    };callActiveDesign()
+
+                                </script>
 
                         @endforeach
 
@@ -286,3 +391,93 @@
 <div class="mb-5 pb-xl-5"></div>
 
 @endsection
+
+
+@push('scripts')
+<script>
+
+      // ---- product fixed design image and change image depends on color
+    
+    //   $(document).on('change','#product-style',function(e){
+    //     e.preventDefault();
+    //     $pro_id = $(this).closest('.product-data').find('.product_id').val();
+    //     $pro_color = $(this).closest('.product-data').find('#product-color').val();
+    //     $pro_style = $(this).val();
+    //     console.log($pro_color);
+    //   })
+// ----- change and update design style in CART PAGE -----
+      function changeDesign(productId){
+        $pro_id = productId;
+        $pro_color = $('#pro-id-'+$pro_id + ' .js-product-color').val();
+        $pro_style = $('#pro-id-'+$pro_id + ' .js-product-style').val();
+
+        designSetActive($pro_color,$pro_style,$pro_id);
+        // console.log($pro_color,$pro_style);
+
+        // ajax request
+   
+        $.ajax({
+            url:'/update-design-style',
+            type:'POST',
+            data:{
+                _token:'{{ csrf_token() }}',
+                product_id:$pro_id,
+                product_color:$pro_color,
+                product_style:$pro_style
+            },
+            success:function(data){
+                console.log(data);
+            }
+        })
+      }
+          
+    function designSetActive(color,style,id){
+        const productImages = document.querySelectorAll('#pro-id-'+id +' .product-single__designImgs .typeImg');
+        productImages.forEach(function(img){
+              // Show images with the same color and type, hide others
+            if(img.getAttribute('data-color') === color && img.getAttribute('data-type') === style){
+                img.classList.add('active');
+            }else{
+                img.classList.remove('active');
+            }
+        })
+
+    }
+
+// ------ product design type selection ------
+// document.addEventListener('DOMContentLoaded', function() {
+//   const checkedColor = $('input[name="color"]:checked').val();
+//     const checkedStyle = $('#product-style').val();
+//     const productImages = document.querySelectorAll('.product-single__designImgs .typeImg');
+    
+//     const colorRadios  = document.querySelectorAll('input[name="color"]');
+//     const styleOptions = document.getElementById('product-style');
+
+//     // Add change event listener to the select product style 
+//    if(styleOptions){
+//     styleOptions.addEventListener('change',function(){
+//         const selectedStyle = styleOptions.value;
+//         const selectedColor = $('input[name="color"]:checked').val();
+//         designSetActive(selectedColor,selectedStyle);
+//     })
+//    }
+
+//     // Add change event listener to each radio button
+//     colorRadios.forEach((radio) => {
+//         radio.addEventListener('change',function(){
+//             const selectedColor  = this.value;
+//             const selectedStyle = $('#product-style').val();
+//             designSetActive(selectedColor,selectedStyle);
+//         })
+//     });
+    
+
+//     designSetActive(checkedColor, checkedStyle);
+
+
+
+
+// });
+
+</script>
+@endpush

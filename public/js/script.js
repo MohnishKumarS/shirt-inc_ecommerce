@@ -12,9 +12,11 @@ $(document).ready(function () {
         var com_size = $(this).closest('.product-data').find('.com_size');
         var men_size = $(this).closest('.product-data').find('.men_size');
         var women_size = $(this).closest('.product-data').find('.women_size');
-        var com_color = $(this).closest('.product-data').find('#js-colors');
+        // var com_color = $(this).closest('.product-data').find('#js-colors');
+        var pro_color = $(this).closest('.product-data').find('input[name="color"]:checked');
+        var pro_style = $(this).closest('.product-data').find('#product-style');
         var size_error = $('.js-size-error')
-        var color_error = $('.js-color-error')
+        // var color_error = $('.js-color-error')
 
         if(com_size || men_size || women_size){
             if( com_size.val() == '' || men_size.val() == '' || women_size.val() == ''){
@@ -28,18 +30,26 @@ $(document).ready(function () {
             }
                       
         }
-        if(com_color){
-            if( com_color.val() == ''){
-                color_error.text('Please choose a color');
-                return ;
-            }else{
-                color_error.text('');
-                $com_color = com_color.val() ;
 
-            }
+        if(pro_style,pro_color){
+            $pro_color = pro_color.val();
+            $pro_style = pro_style.val();
+            $pro_design = [$pro_color,$pro_style];
         }
 
-        // // console.log(e.target);
+        // console.log($pro_design);
+ 
+        // if(com_color){
+        //     if( com_color.val() == ''){
+        //         color_error.text('Please choose a color');
+        //         return ;
+        //     }else{
+        //         color_error.text('');
+        //         $com_color = com_color.val() ;
+
+        //     }
+        // }
+
         $pro_id = $(this).closest('.product-data').find('.product_id').val();
         $pro_qty = $(this).closest('.product-data').find('.qty-value').val();
         if(!$size){
@@ -59,7 +69,7 @@ $(document).ready(function () {
             data: {
                 pro_id: $pro_id,
                 pro_qty: $pro_qty,
-                color:$com_color,
+                design:$pro_design,
                 size:$size,
                 men_size:$men_size,
                 women_size:$women_size,
@@ -314,7 +324,7 @@ $(document).ready(function () {
             data: data,
 
             success: function (data) {
-                // console.log(data);
+                // $('#pro-id-'+$pro_id+ ' .shopping-cart__subtotal').text(`Rs. ${data.price * $qty_val}`);
                 $('.cart-item').load(location.href + ' .cart-item');
             }
         });
@@ -322,40 +332,40 @@ $(document).ready(function () {
     })
     // ----------------- change color ----------------
 
-    $(document).on('change', '.js-color-change', function (e) {
-        e.preventDefault();
-        $pro_id = $(this).closest('.product-data').find('.product_id').val();
-        $color = $(this).val();
-        console.log($color);
-        $imgValue = $(this).closest('.product-data').find('.js-color-img').val();
-        $imgValue = JSON.parse($imgValue);
-        console.log($imgValue[0]);
+    // $(document).on('change', '.js-color-change', function (e) {
+    //     e.preventDefault();
+    //     $pro_id = $(this).closest('.product-data').find('.product_id').val();
+    //     $color = $(this).val();
+    //     console.log($color);
+    //     $imgValue = $(this).closest('.product-data').find('.js-color-img').val();
+    //     $imgValue = JSON.parse($imgValue);
+    //     console.log($imgValue[0]);
   
-        if($color != ''){
-            $color_arr = $color.split(':');
-            $color_key = $color_arr[0];
-            $changeImg =   $(this).closest('.product-data').find('.js-cart__product-img img').attr('src','../../image/product/'+$imgValue[$color_key]);
-        }
+    //     if($color != ''){
+    //         $color_arr = $color.split(':');
+    //         $color_key = $color_arr[0];
+    //         $changeImg =   $(this).closest('.product-data').find('.js-cart__product-img img').attr('src','../../image/product/'+$imgValue[$color_key]);
+    //     }
 
-        data = {
-            'product_id': $pro_id,
-            'product_color': $color ? $color_arr : null 
-        };
+    //     data = {
+    //         'product_id': $pro_id,
+    //         'product_color': $color ? $color_arr : null 
+    //     };
 
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
-            },
-            type: "post",
-            url: "/update-color",
-            data: data,
+    //     $.ajax({
+    //         headers: {
+    //             'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+    //         },
+    //         type: "post",
+    //         url: "/update-color",
+    //         data: data,
 
-            success: function (data) {
-                console.log(data);
-            }
-        });
+    //         success: function (data) {
+    //             console.log(data);
+    //         }
+    //     });
 
-    })
+    // })
 
     // ------------------- change product size ---------------------------
 

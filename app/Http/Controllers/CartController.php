@@ -42,7 +42,8 @@ class CartController extends Controller
         $product_size = $req->size;
         $men_size = $req->has('men_size') ? $req->men_size : null ;
         $women_size = $req->has('women_size') ? $req->women_size : null ;
-        $product_color = $req->has('color') ? json_encode(explode(':',$req->color)) : null ;
+        // $product_color = $req->has('color') ? json_encode(explode(':',$req->color)) : null ;
+        $product_design  = $req->has('design') ? json_encode($req->design) : null;
 
         if(Auth::check()){
 
@@ -57,7 +58,8 @@ class CartController extends Controller
                     $cart->user_id = Auth::id();
                     $cart->product_id = $product_id;
                     $cart->product_qty = $product_qty;
-                    $cart->product_color = $product_color;
+                    // $cart->product_color = $product_color;
+                    $cart->product_design = $product_design;
                     $cart->product_size = $product_size;
                     $cart->mens_size = $men_size;
                     $cart->womens_size = $women_size;
@@ -126,23 +128,27 @@ class CartController extends Controller
         $pro_qty = $req->product_qty;
 
         if(Cart::where('product_id',$pro_id)->where('user_id',Auth::id())->exists()){
+            $pro_price = Product::where('id',$pro_id)->first();
             $cart = Cart::where('product_id',$pro_id)->where('user_id',Auth::id())->first();
             $cart->product_qty = $pro_qty;
             $cart->save();
+
+            return \response()->json(['price'=> $pro_price->selling_price,'status'=>'success']);
         }
        
     }
 
     // ------------------- update - color  ------------
 
-    public function update_color(Request $req){
+    public function update_design_style(Request $req){
         $pro_id = $req->product_id;
+        $pro_style = $req->product_style;
         $pro_color = $req->product_color;
-        
+        $product_design = json_encode([$pro_color,$pro_style]);
 
         if(Cart::where('product_id',$pro_id)->where('user_id',Auth::id())->exists()){
             $cart = Cart::where('product_id',$pro_id)->where('user_id',Auth::id())->first();
-            $cart->product_color = $pro_color;
+            $cart->product_design = $product_design;
             $cart->save();
         }
         return 'success';

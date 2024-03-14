@@ -41,7 +41,7 @@
                     <label for="" class="form-label">Current Poster</label>
                     <div>
                         @if ($data->poster)
-                        <img src="{{ asset('image/category/'.$data->poster)}}" alt="category-poster" class="img-fluid" height="130" style="object-fit: contain">
+                        <img src="{{ asset('image/category/poster/'.$data->poster)}}" alt="category-poster" class="img-fluid" height="130" style="object-fit: contain">
                         @else
                          <div class="text-danger">
                             No poster image selected
