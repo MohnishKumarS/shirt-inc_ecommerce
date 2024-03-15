@@ -119,7 +119,7 @@ $(document).ready(function () {
                     if(data.status == 'success'){
                     //  $get_id =    $('.product-data').attr('id');
                         console.log($('#product-'+data.pro_id+ ' #icon_heart path'));
-                     $('#product-'+data.pro_id + ' #icon_heart path').css('fill','red');
+                     $('#pro-set-'+data.pro_id + ' #icon_heart path').css('fill','red');
                        
                     }
                     // $('.products-item').load(location.href + ' .products-item');

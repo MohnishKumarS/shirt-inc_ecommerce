@@ -55,29 +55,7 @@ $freq_img = explode(',', $freq_boug->image);
   /* ------- product design style  ---- */
   .product-single__designImgs{
             height: 500px;
-            width: 100%;
-            position: relative;
-        }
-        .product-single__designImgs img{
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-        .product-single__designImgs .typeImg.active{
-            display: block;
-        }
-        .product-single__designImgs .typeImg{
-            display: none;
-        }
-        .design-image{
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translate(-50%);
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            max-width: 160px;
+
         }
 
 </style>
@@ -166,7 +144,7 @@ $freq_img = explode(',', $freq_boug->image);
         </div>
         <div class="col-lg-5">
             <div class="d-flex justify-content-between mb-4 pb-md-2">
-                <div class="breadcrumb mb-0 d-none d-md-block flex-grow-1">
+                <div class="breadcrumb mb-0  flex-grow-1">
                     <a href="{{url('/')}}" class="menu-link menu-link_us-s text-uppercase fw-medium">Home</a>
                     <span class="breadcrumb-separator menu-link fw-medium ps-1 pe-1">/</span>
                     <a href="{{ url('collections') }}" class="menu-link menu-link_us-s text-uppercase fw-medium">Collections</a>
@@ -669,18 +647,21 @@ $freq_img = explode(',', $freq_boug->image);
                 @endphp
                 @endauth
 
-                    <div class="swiper-slide product-card product-data" id='product-{{$item->id}}'>
+                    <div class="swiper-slide product-card product-data" id='pro-set-{{$item->id}}'>
                         <input type="hidden" class="product_id" value="{{ $item['id'] }}">
                         <input type="hidden" class="qty-value" value="1">
                         <div class="pc__img-wrapper">
                             <a href="{{ url('category/' . $item->category->slug . '/' . $item->slug) }}">
+                                @if ($item->image != '')
                                 @if (count($img) > 1)
-                                <img loading="lazy" src="{{ asset('image/product/' . $img[0]) }}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                                <img loading="lazy" src="{{ asset('image/product/' . $img[1]) }}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
+                                <img loading="lazy" src="{{ asset('image/product/' . $img[0]) }}" width="330" height="400" alt="{{$item->slug}}" class="pc__img">
+                                <img loading="lazy" src="{{ asset('image/product/' . $img[1]) }}" width="330" height="400" alt="{{$item->slug}}" class="pc__img pc__img-second">
                                 @else
-                                <img loading="lazy" src="{{ asset('image/product/' . $img[0]) }}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                                
+                                <img loading="lazy" src="{{ asset('image/product/' . $img[0]) }}" width="330" height="400" alt="{{$item->slug}}" class="pc__img"> 
                                 @endif
+                            @else
+                                <img loading="lazy" src="{{ asset('image/product/design/' . $item->design) }}" width="330" height="400" alt="{{$item->slug}}" class="pc__img">            
+                            @endif
                             </a>
                             <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-addToCart"  title="Add To Cart">Add To Cart</button>
                         </div>
@@ -774,18 +755,21 @@ $freq_img = explode(',', $freq_boug->image);
                  @endphp
                  @endauth
 
-                    <div class="swiper-slide product-card product-data" id='product-{{$item->id}}'>
+                    <div class="swiper-slide product-card product-data" id='pro-set-{{$item->id}}'>
                         <input type="hidden" class="product_id" value="{{ $item['id'] }}">
                         <input type="hidden" class="qty-value" value="1">
                         <div class="pc__img-wrapper">
                             <a href="{{ url('category/' . $item->category->slug . '/' . $item->slug) }}">
+                                @if ($item->image != '')
                                 @if (count($img) > 1)
-                                <img loading="lazy" src="{{ asset('image/product/' . $img[0]) }}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                                <img loading="lazy" src="{{ asset('image/product/' . $img[1]) }}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
+                                <img loading="lazy" src="{{ asset('image/product/' . $img[0]) }}" width="330" height="400" alt="{{$item->slug}}" class="pc__img">
+                                <img loading="lazy" src="{{ asset('image/product/' . $img[1]) }}" width="330" height="400" alt="{{$item->slug}}" class="pc__img pc__img-second">
                                 @else
-                                <img loading="lazy" src="{{ asset('image/product/' . $img[0]) }}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                                
+                                <img loading="lazy" src="{{ asset('image/product/' . $img[0]) }}" width="330" height="400" alt="{{$item->slug}}" class="pc__img"> 
                                 @endif
+                            @else
+                                <img loading="lazy" src="{{ asset('image/product/design/' . $item->design) }}" width="330" height="400" alt="{{$item->slug}}" class="pc__img">            
+                            @endif
                             </a>
                             <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-addToCart" title="Add To Cart">Add To Cart</button>
                         </div>

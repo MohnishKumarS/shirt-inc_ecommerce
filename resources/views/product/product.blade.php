@@ -14,7 +14,7 @@
 
 <section class="shop-main container">
     <div class="d-flex justify-content-between mb-4 pb-md-2">
-        <div class="breadcrumb mb-0 d-none d-md-block flex-grow-1">
+        <div class="breadcrumb mb-0  flex-grow-1">
             <a href="{{url('/')}}" class="menu-link menu-link_us-s text-uppercase fw-medium">Home</a>
             <span class="breadcrumb-separator menu-link fw-medium ps-1 pe-1">/</span>
             <a href="{{ url('collections') }}" class="menu-link menu-link_us-s text-uppercase fw-medium">Collections</a>
@@ -23,7 +23,7 @@
         </div>
 
         <div class="shop-acs d-flex align-items-center justify-content-between justify-content-md-end flex-grow-1">
-            <form action="{{ URL::current() }}" method="get">
+            {{-- <form action="{{ URL::current() }}" method="get">
             <select class="shop-acs__select form-select w-auto border-0 py-0 order-1 order-md-0" aria-label="Sort Items" name="sort">
                 <option selected>Default Sorting</option>
                 <option value="1">Featured</option>
@@ -37,7 +37,7 @@
             </select>
             </form>
 
-            <div class="shop-asc__seprator mx-3 bg-light d-none d-md-block order-md-0"></div>
+            <div class="shop-asc__seprator mx-3 bg-light  order-md-0"></div> --}}
 
             <div class="col-size align-items-center order-1 d-none d-lg-flex">
                 <span class="text-uppercase fw-medium me-2">View</span>
@@ -203,6 +203,7 @@
     <div class="col-lg-9">
 
         @if (count($all_product) == 0)
+        {{-- --- if no product in list shows empty image --  --}}
         <div class="container">
             <div class="text-center">
                 <img src="{{ asset('image/empty/no-product-found.png') }}" alt="empty-product"
@@ -231,13 +232,13 @@
    @endphp
    @auth
         @php
-              //    ---------- check wishlist active -----------
-   $wishactive = App\Models\Wishlist::where('user_id',Auth::user()->id)->where('product_id',$val->id)->first();
+              //    ---------- check wishlist active or not -----------
+   $wishactive = App\Models\Wishlist::where('user_id',Auth::user()->id)->where('product_id',$val->id)->first(); 
         @endphp
    @endauth
 
      <div class="col" >
-<div class="product-card-wrapper product-data" id='product-{{$val->id}}'>
+<div class="product-card-wrapper product-data" id='pro-set-{{$val->id}}'>
 <div class="product-card mb-3 mb-md-4 mb-xxl-5" >
 
    <div class="pc__img-wrapper">
@@ -245,13 +246,22 @@
            <div class="swiper-wrapper">
                <input type="hidden" class="product_id" value="{{ $val['id'] }}">
                 <input type="hidden" class="qty-value" value="1">
-               @foreach ($img as $item)
+             
                <div class="swiper-slide">
                    <a href="{{ url('category/' . $val->category->slug . '/' . $val->slug) }}">
-                       <img loading="lazy" src="{{ asset('image/product/' . $item) }}" width="330" height="400" alt="{{$val->name}}" class="pc__img">
+                    @if ($val->image != '')
+                        @if (count($img) > 1)
+                        <img loading="lazy" src="{{ asset('image/product/' . $img[0]) }}" width="330" height="400" alt="{{$val->slug}}" class="pc__img">
+                        <img loading="lazy" src="{{ asset('image/product/' . $img[1]) }}" width="330" height="400" alt="{{$val->slug}}" class="pc__img pc__img-second">
+                        @else
+                        <img loading="lazy" src="{{ asset('image/product/' . $img[0]) }}" width="330" height="400" alt="{{$val->slug}}" class="pc__img"> 
+                        @endif
+                    @else
+                         <img loading="lazy" src="{{ asset('image/product/design/' . $val->design) }}" width="330" height="400" alt="{{$val->slug}}" class="pc__img">            
+                    @endif
                    </a>
                </div>
-               @endforeach
+              
              
             
            </div>
@@ -306,11 +316,12 @@
 </div>
         </div>
         @endforeach
+           <!-- Paginate -->
+           <div class="paginate-pro mt-5 text-center">
+            {{ $all_product->links() }}
+        </div>
     </div>
-               <!-- Paginate -->
-               <div class="paginate-pro mt-5 text-center">
-                {{ $all_product->links() }}
-            </div>
+            
     @endif
 
     </div>

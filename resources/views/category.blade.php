@@ -2,13 +2,6 @@
 
 @section('title', 'Collections')
 
-@push('styles')
-    <style>
-        .top_banners{
-            height: 25em !important;
-        }
-    </style>
-@endpush
 @section('content')
 
     {{-- ````````` CATEGORY SLIDER ```````````` --}}

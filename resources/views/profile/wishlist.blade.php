@@ -44,18 +44,14 @@
                 </div>
 
                 {{-- - -- end account side bar ----- --}}
-                <div class="col-lg-9">
-
-                    @if (count($wishlist) > 0)
-                        <div class="page-content my-account__wishlist wish-item">
+                <div class="col-lg-9 ">
+                    <div class="wish-item">
+                        @if (count($wishlist) > 0)
+                        <div class="page-content my-account__wishlist">
                             <div class="products-grid row row-cols-2 row-cols-lg-3" id="products-grid">
 
 
                                 @foreach ($wishlist as $val)
-                                    @php
-                                        $img = explode(',', $val->product->image);
-                                    @endphp
-
                                     {{-- ------- WISHLIST PRODUCTS ------------ --}}
 
                                     <div class="product-card-wrapper  product-data">
@@ -69,16 +65,23 @@
                                                 <div class="swiper-container background-img js-swiper-slider"
                                                     data-settings='{"resizeObserver": true}'>
                                                     <div class="swiper-wrapper">
-
-                                                        @foreach ($img as $item)
+        
                                                             <div class="swiper-slide">
-                                                                <img loading="lazy"
-                                                                    src="{{ asset('image/product/' . $item) }}"
-                                                                    width="330" height="400"
-                                                                    alt="Cropped Faux leather Jacket" class="pc__img">
+                                                             @if ($val->product->image != '')
+                                                             @php
+                                                             $img = explode(',', $val->product->image);
+                                                             @endphp
+                                                                @if (count($img) > 1)
+                                                                <img loading="lazy" src="{{ asset('image/product/' . $img[0]) }}" width="330" height="400" alt="{{$val->product->slug}}" class="pc__img">
+                                                                <img loading="lazy" src="{{ asset('image/product/' . $img[1]) }}" width="330" height="400" alt="{{$val->product->slug}}" class="pc__img pc__img-second">
+                                                                @else
+                                                                <img loading="lazy" src="{{ asset('image/product/' . $img[0]) }}" width="330" height="400" alt="{{$val->product->slug}}" class="pc__img"> 
+                                                                @endif
+                                                            @else
+                                                                <img loading="lazy" src="{{ asset('image/product/design/' . $val->product->design) }}" width="330" height="400" alt="{{$val->product->slug}}" class="pc__img">            
+                                                            @endif
                                                             </div><!-- /.pc__img-wrapper -->
-                                                        @endforeach
-
+                                                   
 
                                                     </div>
                                                     <span class="pc__img-prev">
@@ -120,7 +123,7 @@
                         </div>
                     @else
                         {{-- ---- empty favorite ---- --}}
-                        <div class="" style="padding: 0px 0 40px">
+                        <div class="mb-5" >
                             <div class="text-center">
                                 <img src="{{ asset('image/empty/emp-3.webp') }}" alt="wishlist-empty" class="img-fluid"
                                     loading="lazy">
@@ -134,6 +137,8 @@
                             </div>
                         </div>
                     @endif
+                    </div>
+               
                 </div>
             </div>
         </section>

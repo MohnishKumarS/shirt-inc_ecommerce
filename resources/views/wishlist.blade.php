@@ -94,7 +94,7 @@
                         </div>
                     @else
                         {{-- ---- empty favorite ---- --}}
-                        <div class="" style="padding: 0px 0 40px">
+                        <div  style="padding: 0px 0 40px">
                             <div class="text-center">
                                 <img src="{{ asset('image/empty/emp-3.webp') }}" alt="wishlist-empty" class="img-fluid"
                                     loading="lazy">

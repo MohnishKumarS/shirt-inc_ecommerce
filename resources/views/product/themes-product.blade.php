@@ -16,7 +16,7 @@
 
 <section class="shop-main container">
     <div class="d-flex justify-content-between mb-4 pb-md-2">
-        <div class="breadcrumb mb-0 d-none d-md-block flex-grow-1">
+        <div class="breadcrumb mb-0  flex-grow-1">
             <a href="{{url('/')}}" class="menu-link menu-link_us-s text-uppercase fw-medium">Home</a>
             <span class="breadcrumb-separator menu-link fw-medium ps-1 pe-1">/</span>
             <a href="{{ url('themes') }}" class="menu-link menu-link_us-s text-uppercase fw-medium">Themes</a>
@@ -25,21 +25,6 @@
         </div>
 
         <div class="shop-acs d-flex align-items-center justify-content-between justify-content-md-end flex-grow-1">
-            <form action="{{ URL::current() }}" method="get">
-            <select class="shop-acs__select form-select w-auto border-0 py-0 order-1 order-md-0" aria-label="Sort Items" name="sort">
-                <option selected>Default Sorting</option>
-                <option value="1">Featured</option>
-                <option value="2">Best selling</option>
-                <option value="3">Alphabetically, A-Z</option>
-                <option value="3">Alphabetically, Z-A</option>
-                <option value="3">Price, low to high</option>
-                <option value="3">Price, high to low</option>
-                <option value="3">Date, old to new</option>
-                <option value="3">Date, new to old</option>
-            </select>
-            </form>
-
-            <div class="shop-asc__seprator mx-3 bg-light d-none d-md-block order-md-0"></div>
 
             <div class="col-size align-items-center order-1 d-none d-lg-flex">
                 <span class="text-uppercase fw-medium me-2">View</span>
@@ -48,14 +33,6 @@
                 <button class="btn-link fw-medium js-cols-size" data-target="products-grid" data-cols="4">4</button>
             </div><!-- /.col-size -->
 
-            {{-- <div class="shop-asc__seprator mx-3 bg-light d-none d-lg-block order-md-1"></div>
-
-            <div class="shop-filter d-flex align-items-center order-0 order-md-3">
-                <button class="btn-link btn-link_f d-flex align-items-center ps-0 js-open-aside" data-aside="shopFilter">
-                     &nbsp;
-                    <span class="text-uppercase fw-medium d-inline-block align-middle">Filter</span>
-                </button>
-            </div> --}}
         </div>
     </div>
 
@@ -239,7 +216,7 @@
    @endauth
 
      <div class="col" >
-<div class="product-card-wrapper product-data" id='product-{{$val->id}}'>
+<div class="product-card-wrapper product-data" id='pro-set-{{$val->id}}'>
 <div class="product-card mb-3 mb-md-4 mb-xxl-5" >
 
    <div class="pc__img-wrapper">
@@ -247,13 +224,22 @@
            <div class="swiper-wrapper">
                <input type="hidden" class="product_id" value="{{ $val['id'] }}">
                 <input type="hidden" class="qty-value" value="1">
-               @foreach ($img as $item)
+             
                <div class="swiper-slide">
                    <a href="{{ url('category/' . $val->category->slug . '/' . $val->slug) }}">
-                       <img loading="lazy" src="{{ asset('image/product/' . $item) }}" width="330" height="400" alt="{{$val->name}}" class="pc__img">
+                    @if ($val->image != '')
+                        @if (count($img) > 1)
+                        <img loading="lazy" src="{{ asset('image/product/' . $img[0]) }}" width="330" height="400" alt="{{$val->slug}}" class="pc__img">
+                        <img loading="lazy" src="{{ asset('image/product/' . $img[1]) }}" width="330" height="400" alt="{{$val->slug}}" class="pc__img pc__img-second">
+                        @else
+                        <img loading="lazy" src="{{ asset('image/product/' . $img[0]) }}" width="330" height="400" alt="{{$val->slug}}" class="pc__img"> 
+                        @endif
+                    @else
+                        <img loading="lazy" src="{{ asset('image/product/design/' . $val->design) }}" width="330" height="400" alt="{{$val->slug}}" class="pc__img">            
+                    @endif
                    </a>
                </div>
-               @endforeach
+         
              
             
            </div>

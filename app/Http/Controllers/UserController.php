@@ -27,14 +27,15 @@ class UserController extends Controller
 
     public function index(){
         $trending = Product::where("trending",1)->latest('id')->take(12)->get(); 
-        $category = Category::orderBy('id','desc')->take(10)->get();
+        $category = Category::orderBy('id','desc')->take(12)->get();
         $popular = Product::where('status',1)->latest('id')->take(9)->get();
         $slider_active = Slider::where('active',1)->latest('id')->take(1)->first();
         $slider = Slider::where('active',0)->latest('id')->take(4)->get();
         $poster = Poster::where('active',1)->latest('id')->take(1)->first();
         $theme = Theme::all();
-        // return $slider_active;
-        return view('home',\compact('trending',"category","popular",'slider_active','slider','poster','theme'));
+        $design = Product::where('design','!=','')->latest()->take(10)->get();
+        // return $design;
+        return view('home',\compact('trending',"category","popular",'slider_active','slider','poster','theme','design'));
     }
 
    // ------------- view category -----------------------
@@ -94,7 +95,7 @@ class UserController extends Controller
     // --------------- view new arrival product ---------------
 
     public function view_new_product(){
-        $new_product = Product::latest()->take(15)->paginate(5);
+        $new_product = Product::latest()->take(15)->paginate(10);
         $category = category::latest()->take(1)->first();
         return view('product.new-arrival',compact('new_product','category'));
     }
@@ -110,7 +111,7 @@ class UserController extends Controller
     // --------------- mens products -----------------
 
     public function mens_collections(){
-        $mens_collect = Product::where('type','mens')->latest()->paginate(10);
+        $mens_collect = Product::where('type','mens')->latest()->paginate(4);
         return view('product.mens-product',compact('mens_collect'));
 
         }

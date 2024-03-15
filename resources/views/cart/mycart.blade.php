@@ -75,31 +75,12 @@
                                         <div class="shopping-cart__product-item js-cart__product-img">
                                             <style>
                                                   /* ------- product design style  ---- */
-                                                    .product-single__designImgs{
-                                                                /* height: 500px; */
-                                                                width: 100%;
-                                                                position: relative;
-                                                            }
-                                                            .product-single__designImgs img{
-                                                                width: 100%;
-                                                                height: 100%;
-                                                                object-fit: contain;
-                                                            }
-                                                            .product-single__designImgs .typeImg.active{
-                                                                display: block;
-                                                            }
-                                                            .product-single__designImgs .typeImg{
-                                                                display: none;
-                                                            }
-                                                            .design-image{
-                                                                position: absolute;
-                                                                top: 0;
-                                                                left: 50%;
-                                                                transform: translate(-50%);
-                                                                width: 100%;
-                                                                height: 100%;
-                                                                object-fit: contain;
-                                                                max-width: 80px;
+
+                                                            .product-single__designImgs .design-image{
+
+                                                                width: 50px;
+                                                                height: 50px;
+
                                                             }
                                             </style>
                                             {{-- <img loading="lazy" src="{{ asset('image/product/' . $img[$cart_color[0]]) }}" width="120" height="120" alt="cart-product"> --}}

@@ -91,21 +91,28 @@
                     <input type="number" class='form-control' value="{{$data->selling_price}}" name="selling_p"  required>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="" class="form-label">Current Image</label>
-                    @php
-                        $img = explode(',',$data->image);
-                    @endphp
+                    <label for="" class="form-label">Current Image</label>                  
                    <div>
-                        @foreach ($img as $val)
-                            <img src="{{asset('image/product/'.$val)}}" alt="" width="150" class="border p-1" style="object-fit: cover" loading="lazy">
-                        @endforeach
+                    @if ($data->image != '')
+                    @php
+                    $img = explode(',',$data->image);
+                    @endphp
+                    @foreach ($img as $val)
+                    <img src="{{asset('image/product/'.$val)}}" alt="" width="150" class="border p-1" style="object-fit: cover" loading="lazy">
+                    @endforeach
+                    @else
+                    <div class="text-danger">
+                      No image found !
+                   </div>
+                    @endif
+                    
                    </div>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="" class="form-label">Current Design</label>
                    <div>
                     @if ($data->design)
-                    <img src="{{ asset('image/product/design/'.$data->design)}}" alt="product-design" class="img-fluid" width="200"  style="object-fit: contain">
+                    <img src="{{ asset('image/product/design/'.$data->design)}}" alt="product-design" class="img-fluid" width="150"  style="object-fit: contain">
                     @else
                      <div class="text-danger">
                         No design image found !

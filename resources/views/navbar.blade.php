@@ -326,7 +326,7 @@
                         @else
 
                         <li class="navigation__item">
-                            <a href="{{route('signin')}}" class="navigation__link">Login</a>
+                            <a href="{{route('signin')}}" class="navigation__link">Login/Register</a>
                         </li>
 
                     @endauth

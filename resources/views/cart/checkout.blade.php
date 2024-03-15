@@ -250,37 +250,17 @@ $step = 2;
                                     @php
                                         $img = explode(',', $item->product->image);
 
-                                        $cart_design = $item->product_design ? json_decode($item->product_design) : '';
+                                        $cart_design = $item->product_design ? json_decode($item->product_design) : ['red','half'];
 
                                     @endphp
                                       <style>
                                         /* ------- product design style  ---- */
-                                          .product-single__designImgs{
-                                                      /* height: 500px; */
-                                                      width: 100%;
-                                                      position: relative;
-                                                  }
+
                                                   .product-single__designImgs img{
                                                       width: 65px;
-                                                      height: 100%;
-                                                      object-fit: contain;
                                                   }
-                                                  .product-single__designImgs .typeImg.active{
-                                                      display: block;
-                                                  }
-                                                  .product-single__designImgs .typeImg{
-                                                      display: none;
-                                                  }
-                                                  .design-image{
-                                                      position: absolute;
-                                                      top: 0;
-                                                      left: 50%;
-                                                      transform: translate(-50%);
-                                                      width: 100%;
-                                                      height: 100%;
-                                                      object-fit: contain;
-                                                      max-width: 40px;
-                                                      user-select: none;
+                                                  .product-single__designImgs .design-image{
+                                                      width: 15px;
                                                   }
                                                 
                                   </style>
