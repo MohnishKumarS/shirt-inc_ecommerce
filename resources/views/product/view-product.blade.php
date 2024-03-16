@@ -65,13 +65,13 @@ $freq_img = explode(',', $freq_boug->image);
         <div class="col-lg-7">
             @if ($product->designType)
             <div class="product-single__designImgs">
-                <img src="{{asset('image/design/greyhalf.jpg')}}" class="typeImg" data-color="grey" data-type="half">
+                <img src="{{asset('image/design/greyhalf.png')}}" class="typeImg" data-color="grey" data-type="half">
                 <img src="{{asset('image/design/redhalf.jpg')}}" class="typeImg" data-color="red" data-type="half">
                 <img src="{{asset('image/design/blackhalf.jpg')}}" class="typeImg" data-color="black" data-type="half">
-                <img src="{{asset('image/design/greyfull.jpg')}}" class="typeImg" data-color="grey" data-type="sleeve">
+                <img src="{{asset('image/design/greyfull.png')}}" class="typeImg" data-color="grey" data-type="sleeve">
                 <img src="{{asset('image/design/redfull.webp')}}" class="typeImg" data-color="red" data-type="sleeve">
                 <img src="{{asset('image/design/whitefull.webp')}}" class="typeImg" data-color="black" data-type="sleeve">
-                <img src="{{asset('image/design/greyhoodie.jpg')}}" class="typeImg" data-color="grey" data-type="hoodie">
+                <img src="{{asset('image/design/greyhoodie.png')}}" class="typeImg" data-color="grey" data-type="hoodie">
                 <img src="{{asset('image/design/redhoodie.webp')}}" class="typeImg" data-color="red" data-type="hoodie">
                 <img src="{{asset('image/design/blackhoodie.webp')}}" class="typeImg" data-color="black" data-type="hoodie">
                 <img src="{{asset('image/product/design/'.$product->design)}}"  class="design-image">
