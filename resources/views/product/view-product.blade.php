@@ -65,15 +65,21 @@ $freq_img = explode(',', $freq_boug->image);
         <div class="col-lg-7">
             @if ($product->designType)
             <div class="product-single__designImgs">
-                <img src="{{asset('image/design/greyhalf.png')}}" class="typeImg" data-color="grey" data-type="half">
-                <img src="{{asset('image/design/redhalf.jpg')}}" class="typeImg" data-color="red" data-type="half">
-                <img src="{{asset('image/design/blackhalf.jpg')}}" class="typeImg" data-color="black" data-type="half">
-                <img src="{{asset('image/design/greyfull.png')}}" class="typeImg" data-color="grey" data-type="sleeve">
-                <img src="{{asset('image/design/redfull.webp')}}" class="typeImg" data-color="red" data-type="sleeve">
-                <img src="{{asset('image/design/whitefull.webp')}}" class="typeImg" data-color="black" data-type="sleeve">
-                <img src="{{asset('image/design/greyhoodie.png')}}" class="typeImg" data-color="grey" data-type="hoodie">
-                <img src="{{asset('image/design/redhoodie.webp')}}" class="typeImg" data-color="red" data-type="hoodie">
-                <img src="{{asset('image/design/blackhoodie.webp')}}" class="typeImg" data-color="black" data-type="hoodie">
+                <img src="{{asset('image/design/Tshirt-grey.png')}}" class="typeImg" data-color="grey" data-type="half">
+                <img src="{{asset('image/design/Tshirt-red.png')}}" class="typeImg" data-color="red" data-type="half">
+                <img src="{{asset('image/design/Tshirt-black.png')}}" class="typeImg" data-color="black" data-type="half">
+                <img src="{{asset('image/design/Tshirt-white.png')}}" class="typeImg" data-color="white" data-type="half">
+                <img src="{{asset('image/design/Tshirt-blue.png')}}" class="typeImg" data-color="blue" data-type="half">
+                <img src="{{asset('image/design/sweat-grey.png')}}" class="typeImg" data-color="grey" data-type="sleeve">
+                <img src="{{asset('image/design/sweat-red.png')}}" class="typeImg" data-color="red" data-type="sleeve">
+                <img src="{{asset('image/design/sweat-black.png')}}" class="typeImg" data-color="black" data-type="sleeve">
+                <img src="{{asset('image/design/sweat-white.png')}}" class="typeImg" data-color="white" data-type="sleeve">
+                <img src="{{asset('image/design/sweat-blue.png')}}" class="typeImg" data-color="blue" data-type="sleeve">
+                <img src="{{asset('image/design/hoodie-grey.png')}}" class="typeImg" data-color="grey" data-type="hoodie">
+                <img src="{{asset('image/design/hoodie-red.png')}}" class="typeImg" data-color="red" data-type="hoodie">
+                <img src="{{asset('image/design/hoodie-black.png')}}" class="typeImg" data-color="black" data-type="hoodie">
+                <img src="{{asset('image/design/hoodie-white.png')}}" class="typeImg" data-color="white" data-type="hoodie">
+                <img src="{{asset('image/design/hoodie-blue.png')}}" class="typeImg" data-color="blue" data-type="hoodie">
                 <img src="{{asset('image/product/design/'.$product->design)}}"  class="design-image">
             </div>
             @else
@@ -193,6 +199,10 @@ $freq_img = explode(',', $freq_boug->image);
                            <label class="swatch swatch-color js-swatch" for="swatch-12" aria-label="Red" data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="color: #C93A3E"></label>
                            <input type="radio" name="color" id="swatch-13" value="grey">
                            <label class="swatch swatch-color js-swatch" for="swatch-13" aria-label="Grey" data-bs-toggle="tooltip" data-bs-placement="top" title="Grey" style="color: #E4E4E4"></label>
+                           <input type="radio" name="color" id="swatch-14" value="white">
+                           <label class="swatch swatch-color js-swatch" for="swatch-14" aria-label="White" data-bs-toggle="tooltip" data-bs-placement="top" title="White" style="color: #faf5f5"></label>
+                           <input type="radio" name="color" id="swatch-15" value="blue">
+                           <label class="swatch swatch-color js-swatch" for="swatch-15" aria-label="blue" data-bs-toggle="tooltip" data-bs-placement="top" title="Blue" style="color: #223cd1"></label>
                        </div>
                    </div> 
                </div>

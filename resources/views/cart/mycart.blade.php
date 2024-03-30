@@ -86,15 +86,21 @@
                                             {{-- <img loading="lazy" src="{{ asset('image/product/' . $img[$cart_color[0]]) }}" width="120" height="120" alt="cart-product"> --}}
                                             @if ($val->product->designType)
                                             <div class="product-single__designImgs">
-                                                <img src="{{asset('image/design/greyhalf.jpg')}}" class="typeImg @if($cart_design[0] == 'grey' && $cart_design[1] == 'half') active @endif"  data-color="grey" data-type="half">
-                                                <img src="{{asset('image/design/redhalf.jpg')}}" class="typeImg @if($cart_design[0] == 'red' && $cart_design[1] == 'half') active @endif" data-color="red" data-type="half">
-                                                <img src="{{asset('image/design/blackhalf.jpg')}}" class="typeImg @if($cart_design[0] == 'black' && $cart_design[1] == 'half') active @endif" data-color="black" data-type="half">
-                                                <img src="{{asset('image/design/greyfull.jpg')}}" class="typeImg @if($cart_design[0] == 'grey' && $cart_design[1] == 'sleeve') active @endif" data-color="grey" data-type="sleeve">
-                                                <img src="{{asset('image/design/redfull.webp')}}" class="typeImg @if($cart_design[0] == 'red' && $cart_design[1] == 'sleeve') active @endif" data-color="red" data-type="sleeve">
-                                                <img src="{{asset('image/design/whitefull.webp')}}" class="typeImg @if($cart_design[0] == 'black' && $cart_design[1] == 'sleeve') active @endif" data-color="black" data-type="sleeve">
-                                                <img src="{{asset('image/design/greyhoodie.jpg')}}" class="typeImg @if($cart_design[0] == 'grey' && $cart_design[1] == 'hoodie') active @endif" data-color="grey" data-type="hoodie">
-                                                <img src="{{asset('image/design/redhoodie.webp')}}" class="typeImg @if($cart_design[0] == 'red' && $cart_design[1] == 'hoodie') active @endif" data-color="red" data-type="hoodie">
-                                                <img src="{{asset('image/design/blackhoodie.webp')}}" class="typeImg @if($cart_design[0] == 'black' && $cart_design[1] == 'hoodie') active @endif" data-color="black" data-type="hoodie">
+                                                <img src="{{asset('image/design/Tshirt-grey.png')}}" class="typeImg @if($cart_design[0] == 'grey' && $cart_design[1] == 'half') active @endif"  data-color="grey" data-type="half">
+                                                <img src="{{asset('image/design/Tshirt-red.png')}}" class="typeImg @if($cart_design[0] == 'red' && $cart_design[1] == 'half') active @endif" data-color="red" data-type="half">
+                                                <img src="{{asset('image/design/Tshirt-black.png')}}" class="typeImg @if($cart_design[0] == 'black' && $cart_design[1] == 'half') active @endif" data-color="black" data-type="half">
+                                                <img src="{{asset('image/design/Tshirt-white.png')}}" class="typeImg @if($cart_design[0] == 'white' && $cart_design[1] == 'half') active @endif" data-color="white" data-type="half">
+                                                <img src="{{asset('image/design/Tshirt-blue.png')}}" class="typeImg @if($cart_design[0] == 'blue' && $cart_design[1] == 'half') active @endif" data-color="blue" data-type="half">
+                                                <img src="{{asset('image/design/sweat-grey.png')}}" class="typeImg @if($cart_design[0] == 'grey' && $cart_design[1] == 'sleeve') active @endif" data-color="grey" data-type="sleeve">
+                                                <img src="{{asset('image/design/sweat-red.png')}}" class="typeImg @if($cart_design[0] == 'red' && $cart_design[1] == 'sleeve') active @endif" data-color="red" data-type="sleeve">
+                                                <img src="{{asset('image/design/sweat-black.png')}}" class="typeImg @if($cart_design[0] == 'black' && $cart_design[1] == 'sleeve') active @endif" data-color="black" data-type="sleeve">
+                                                <img src="{{asset('image/design/sweat-white.png')}}" class="typeImg @if($cart_design[0] == 'white' && $cart_design[1] == 'sleeve') active @endif" data-color="white" data-type="sleeve">
+                                                <img src="{{asset('image/design/sweat-blue.png')}}" class="typeImg @if($cart_design[0] == 'blue' && $cart_design[1] == 'sleeve') active @endif" data-color="blue" data-type="sleeve">
+                                                <img src="{{asset('image/design/hoodie-grey.png')}}" class="typeImg @if($cart_design[0] == 'grey' && $cart_design[1] == 'hoodie') active @endif" data-color="grey" data-type="hoodie">
+                                                <img src="{{asset('image/design/hoodie-red.png')}}" class="typeImg @if($cart_design[0] == 'red' && $cart_design[1] == 'hoodie') active @endif" data-color="red" data-type="hoodie">
+                                                <img src="{{asset('image/design/hoodie-black.png')}}" class="typeImg @if($cart_design[0] == 'black' && $cart_design[1] == 'hoodie') active @endif" data-color="black" data-type="hoodie">
+                                                <img src="{{asset('image/design/hoodie-white.png')}}" class="typeImg @if($cart_design[0] == 'white' && $cart_design[1] == 'hoodie') active @endif" data-color="white" data-type="hoodie">
+                                                <img src="{{asset('image/design/hoodie-blue.png')}}" class="typeImg @if($cart_design[0] == 'blue' && $cart_design[1] == 'hoodie') active @endif" data-color="blue" data-type="hoodie">
                                                 <img src="{{asset('image/product/design/'.$val->product->design)}}"  class="design-image">
                                             </div>
                                             @else
@@ -140,6 +146,8 @@
                                                                             <option value="black" {{$cart_design[0] == 'black' ? 'selected' : '' }}>Black</option>
                                                                             <option value="red" {{$cart_design[0] == 'red' ? 'selected' : '' }}>Red</option>
                                                                             <option value="grey" {{$cart_design[0] == 'grey' ? 'selected' : '' }}>Grey</option>
+                                                                            <option value="white" {{$cart_design[0] == 'white' ? 'selected' : '' }}>White</option>
+                                                                            <option value="blue" {{$cart_design[0] == 'blue' ? 'selected' : '' }}>Blue</option>
                                                                         </select>
                                                                     </div>
                                                                     <div class="col-6">
