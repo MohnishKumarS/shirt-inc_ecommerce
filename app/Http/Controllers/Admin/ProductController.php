@@ -208,7 +208,22 @@ class ProductController extends Controller
     {
 
         if ($pro = Product::find($id)) {
-            
+            // delete the product from user cart and wishlist
+            if (Cart::where('product_id', $id)->exists()) {
+                $cartItems = Cart::where('product_id', $id)->get();
+                // Loop through the retrieved items and delete each one
+                foreach ($cartItems as $cartItem) {
+                    $cartItem->delete();
+                }
+            }
+            if (Wishlist::where('product_id', $id)->exists()) {
+                $wishItems = Wishlist::where('product_id', $id)->get();
+                // Loop through the retrieved items and delete each one
+                foreach ($wishItems as $wishItem) {
+                    $wishItem->delete();
+                }
+            }
+
             $pro->delete();
             return \redirect('/products')->with('status', 'Product Deleted Successfully');
         } else {

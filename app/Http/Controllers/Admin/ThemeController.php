@@ -114,6 +114,18 @@ class ThemeController extends Controller
                     File::delete($path);
                 }
             }
+            if ($theme->icon) {
+                $path = 'image/themes/icon/' . $theme->icon;
+                if (File::exists($path)) {
+                    File::delete($path);
+                }
+            }
+            if ($theme->poster) {
+                $path = 'image/themes/poster/' . $theme->poster;
+                if (File::exists($path)) {
+                    File::delete($path);
+                }
+            }
             $theme->delete();
         return redirect()->back()->with('status','Theme Deleted successfully');
         }else{

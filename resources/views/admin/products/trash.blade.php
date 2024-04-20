@@ -27,7 +27,6 @@
                         {{-- check if product is available or not ----- --}}
                         @php
                             $i = 1;
-
                         @endphp
                         @foreach ($product as $val)
                             @php
@@ -37,8 +36,13 @@
                             <tr class="align-middle">
    
                                 <td>{{ $i++ }}</td>
-                                <td><img src="{{ asset('/image/product/' . $img[0]) }}" alt="" width="100"
-                                        height="150" style="object-fit: contain"></td>
+                                <td>
+                                    @if ($val->designType)
+                                    <img src="{{ asset('/image/product/design/' . $val->design) }}" alt="product-design" width="100" height="150" style="object-fit: contain">
+                                    @else
+                                    <img src="{{ asset('/image/product/' . $img[0]) }}" alt="product-image" width="100" height="150" style="object-fit: contain">
+                                    @endif
+                                </td>
                                 <td>{{ $val->category->slug }}</td>
                                 <td>{{ $val->name }}</td>
 

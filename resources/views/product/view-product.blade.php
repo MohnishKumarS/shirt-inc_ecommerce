@@ -89,6 +89,10 @@ $freq_img = explode(',', $freq_boug->image);
                 <img src="{{asset('image/product/design/'.$product->design)}}" class="product-single_img-design" width="360" height="360" alt="{{$product->slug}}" loading="lazy">
                 @endif
             </div> --}}
+            @php
+                $img = explode(',', $product->image);
+                $freq_img = explode(',', $freq_boug->image);
+            @endphp
             <div class="product-single__media" data-media-type="vertical-thumbnail">
                 <div class="product-single__image">
                     <div class="swiper-container">

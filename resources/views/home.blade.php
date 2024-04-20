@@ -169,7 +169,7 @@
                      
                       @foreach ($theme as $item)
                       <div class="swiper-slide">
-                        <img loading="lazy" class="w-100 h-auto mb-3" src="{{ asset('image/themes/' . $item->image) }}" width="124" height="124" alt="category-list">
+                        <img loading="lazy" class="w-100 h-auto mb-3" src="{{ asset('image/themes/icon/' . $item->icon) }}" width="124" height="124" alt="category-list">
                         <div class="text-center">
                             <a href="{{ url('themes/'.$item->slug) }}" class="menu-link fw-medium">{{$item->name}}</a>
                         </div>
@@ -349,6 +349,8 @@
 
      {{-- ````````` LATEST PRODUCT ```````````` --}}
     <!-- ``````````````````````````````````` -->
+  
+    @if (count($trending) > 0)
     <section class="latest-products  container">
       <h2 class="section-title text-uppercase fw-bold text-center mb-4 pb-xl-2 mb-xl-4">Latest Products</h2>
   
@@ -461,10 +463,15 @@
   </section>
 
     <div class="mb-4 mb-xl-5 pt-1 pb-5"></div>
+    @endif
+
 
 
      {{-- ````````` DESIGN PRODUCT ```````````` --}}
     <!-- ``````````````````````````````````` -->
+
+    @if (count($design) > 0)
+        
     <section class="designed-products container">
       <h2 class="section-title text-uppercase fw-bold text-center mb-4 pb-xl-2 mb-xl-4">Designed Products</h2>
   
@@ -578,7 +585,7 @@
 
     <div class="mb-4 mb-xl-5 pt-1 pb-5"></div>
 
-
+    @endif
 
      {{-- ````````` SERVICE BLOCK ```````````` --}}
     <!-- ``````````````````````````````````` -->

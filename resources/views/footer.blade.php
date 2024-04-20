@@ -599,12 +599,12 @@
   </div>
   <!-- Login Drawer End -->
   
-  @php
+  {{-- @php
       $notify = App\Models\Product::where('status','1')->latest()->first();
       $img = explode(',', $notify->image);
-  @endphp
+  @endphp --}}
   <!-- Notification Element End -->
-  <div class="notification-wrapper">
+  {{-- <div class="notification-wrapper">
     <div class="notification">
       <button class="close">
         <?= $icon_close ?>
@@ -617,5 +617,5 @@
         <p><a href="{{url('category/'.$notify->category->slug.'/'.$notify->slug)}}">{{$notify->name}}</a><b>🎉🎉 grab now</b> </p>
       </div>
     </div>
-  </div>
+  </div> --}}
   <!-- Notification Element End -->
