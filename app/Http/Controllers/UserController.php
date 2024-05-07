@@ -33,7 +33,7 @@ class UserController extends Controller
         $slider = Slider::where('active',0)->latest('id')->take(4)->get();
         $poster = Poster::where('active',1)->latest('id')->take(1)->first();
         $theme = Theme::all();
-        $design = Product::where('design','!=','')->latest()->take(10)->get();
+        $design = Product::where('designType',1)->latest()->take(10)->get();
         // return $design;
         return view('home',\compact('trending',"category","popular",'slider_active','slider','poster','theme','design'));
     }

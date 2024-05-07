@@ -31,7 +31,7 @@ class ProductController extends Controller
                 return $q->where('themes', $req->themes);
             })
             ->latest()->paginate(10);
-        return \view('admin/products/index', \compact('product', 'cat_list','theme_list'));
+        return \view('admin/products/index', \compact('product', 'cat_list', 'theme_list'));
     }
 
     public function add_product()
@@ -39,7 +39,7 @@ class ProductController extends Controller
         $category = Category::all();
         $theme = Theme::all();
 
-        return view('admin/products/add', \compact('category','theme'));
+        return view('admin/products/add', \compact('category', 'theme'));
     }
 
     public function insert_product(Request $req)
@@ -60,7 +60,7 @@ class ProductController extends Controller
         if ($files = $req->file('images')) {
             foreach ($files as $file) {
                 $ext = \strtolower($file->getClientOriginalExtension());
-                $img_name =  rand(100, 100000) . '.' . $ext;
+                $img_name =  rand(100, 1000000) . '.' . $ext;
                 $destinate = 'image/product/';
                 $file->move($destinate, $img_name);
 
@@ -91,7 +91,7 @@ class ProductController extends Controller
             'selling_price' => $req->selling_p,
             'image' => $image ? \implode(',', $image) : null,
             'quantity' => $req->quantity,
-            'colors' =>  $req->colors ? json_encode(explode(",",$req->colors)): null,
+            'colors' =>  $req->colors ? json_encode(explode(",", $req->colors)) : null,
             'type' => $req->product_type,
             'design' => $design ?: null,
             'designType' => $req->designType == true ? true : false,
@@ -118,16 +118,16 @@ class ProductController extends Controller
     public function edit_product($id)
     {
 
-        $data = Product::find($id);
+        $data = Product::findOrFail($id);
         $category = Category::all();
         $theme = Theme::all();
         // return $category;
-        return  view('admin/products/edit', \compact('data', 'category','theme'));
+        return  view('admin/products/edit', \compact('data', 'category', 'theme'));
     }
 
     public function update_product(Request $req, $id)
     {
-        $pro = Product::find($id);
+        $pro = Product::findOrFail($id);
         // return $pro;
         $req->validate([
             'size' => 'required',
@@ -184,7 +184,7 @@ class ProductController extends Controller
         $pro->original_price = $req->original_p;
         $pro->selling_price = $req->selling_p;
         $pro->quantity = $req->quantity;
-        $pro->colors = $req->colors? json_encode(explode(",",$req->colors)) : null;
+        $pro->colors = $req->colors ? json_encode(explode(",", $req->colors)) : null;
         $pro->type = $req->product_type;
         $pro->themes = $req->product_theme;
         $pro->size_list = \json_encode($req->size);
@@ -211,14 +211,14 @@ class ProductController extends Controller
             // delete the product from user cart and wishlist
             if (Cart::where('product_id', $id)->exists()) {
                 $cartItems = Cart::where('product_id', $id)->get();
-                // Loop through the retrieved items and delete each one
+                
                 foreach ($cartItems as $cartItem) {
                     $cartItem->delete();
                 }
             }
             if (Wishlist::where('product_id', $id)->exists()) {
                 $wishItems = Wishlist::where('product_id', $id)->get();
-                // Loop through the retrieved items and delete each one
+                
                 foreach ($wishItems as $wishItem) {
                     $wishItem->delete();
                 }
@@ -239,6 +239,9 @@ class ProductController extends Controller
         // return \response()->json($req->ids);
         $pro_ids = $req->ids;
         if (count($pro_ids) > 0) {
+
+            Cart::where('product_id',$pro_ids)->delete();
+            Wishlist::where('product_id',$pro_ids)->delete();
 
             Product::whereIn('id', $pro_ids)->delete();
 
@@ -283,25 +286,32 @@ class ProductController extends Controller
                         File::delete($path);
                     }
                 }
-                // ---- delete in cart page  and fav page 
-
-                if (Cart::where('product_id', $id)->exists()) {
-                    $cartItems = Cart::where('product_id', $id)->get();
-                    // Loop through the retrieved items and delete each one
-                    foreach ($cartItems as $cartItem) {
-                        $cartItem->delete();
-                    }
-                }
-                if (Wishlist::where('product_id', $id)->exists()) {
-                    $wishItems = Wishlist::where('product_id', $id)->get();
-                    // Loop through the retrieved items and delete each one
-                    foreach ($wishItems as $wishItem) {
-                        $wishItem->delete();
-                    }
-                }
-
-                $pro->forceDelete();
             }
+            if ($pro->design) {
+                $path = 'image/product/design/' . $pro->design;
+                if (File::exists($path)) {
+                    File::delete($path);
+                }
+            }
+            // ---- delete all product in cart page  and fav page 
+
+            if (Cart::where('product_id', $id)->exists()) {
+                $cartItems = Cart::where('product_id', $id)->get();
+                // Loop through the retrieved items and delete each one
+                foreach ($cartItems as $cartItem) {
+                    $cartItem->delete();
+                }
+            }
+            if (Wishlist::where('product_id', $id)->exists()) {
+                $wishItems = Wishlist::where('product_id', $id)->get();
+                // Loop through the retrieved items and delete each one
+                foreach ($wishItems as $wishItem) {
+                    $wishItem->delete();
+                }
+            }
+
+            $pro->forceDelete();
+
 
             return \redirect()->route('trash')->with('status', 'Product Deleted Successfully');
         } else {

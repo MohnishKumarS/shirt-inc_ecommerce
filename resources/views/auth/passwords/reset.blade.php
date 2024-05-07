@@ -43,7 +43,7 @@
 
                     <div class="customer-option mt-4 text-center">
                         <span class="text-secondary">Back to</span>
-                        <a href="{{route('signin')}}" class="btn-text js-show-register">Login</a>
+                        <a href="{{route('login')}}" class="btn-text js-show-register">Login</a>
                     </div>
                 </form>
             </div>

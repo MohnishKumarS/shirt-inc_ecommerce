@@ -8,8 +8,8 @@
 <div class="view-single-product">
     @php
 
-$img = explode(',', $product->image);
-$freq_img = explode(',', $freq_boug->image);
+// $img = explode(',', $product->image);
+// $freq_img = explode(',', $freq_boug->image);
 //  echo '<pre>';
 //  print_r($img);
 @endphp

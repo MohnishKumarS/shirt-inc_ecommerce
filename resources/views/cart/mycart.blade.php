@@ -7,9 +7,10 @@
 <main class="cart-item">
     <div class="mb-4 pb-4"></div>
     <section class="shop-checkout container ">
-        <h2 class="page-title">Cart</h2>
+        <h2 class="page-title">myCart</h2>
         
-        {{-- ````````` CART TOPBAR LAYOUT ```````````` --}}
+        @if (count($cart) > 0)
+                   {{-- ````````` CART TOPBAR LAYOUT ```````````` --}}
         <div class="checkout-steps">
             <a  class="checkout-steps__item active">
                 <span class="checkout-steps__item-number">01</span>
@@ -374,6 +375,22 @@
                 </div>
             </div>
         </div>
+        @else
+                {{-- --- if no products in cart page  --  --}}
+                <div class="container">
+                    <div class="text-center">
+                        <img src="{{ asset('image/empty/cart-empty.png') }}" class="img-fluid" alt="empty-cart" loading="lazy">
+                        <h3>Your Cart is Empty!</h3>
+                        <p> Must add items on the cart before you proceed to check out.</p>
+                        <div class="mt-4">
+                            <a href="{{ url('/collections') }}" class="btn btn-primary"> <i
+                                    class="fa-solid fa-bag-shopping me-1"></i> Return to shop</a>
+                        </div>
+                    </div>
+                </div>
+            
+        @endif
+ 
     </section>
 </main>
 

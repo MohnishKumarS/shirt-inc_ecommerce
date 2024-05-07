@@ -1,81 +1,151 @@
-@extends('layouts.app')
+@extends('layouts.userpage')
+
+@section('title', 'Sign in to Shirt-inc')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                @endif
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+    <!-- ----------------- login - page ---------------- -->
+    <!-- =================================================== -->
+    <main>
+        <div class="mb-4 pb-4"></div>
+        <section class="login-register container">
+            <h2 class="d-none">Login & Register</h2>
+            <ul class="nav nav-tabs mb-5" id="login_register" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link nav-link_underscore active" id="login-tab" data-bs-toggle="tab"
+                        href="#tab-item-login" role="tab" aria-controls="tab-item-login" aria-selected="true">Login</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link nav-link_underscore" id="register-tab" data-bs-toggle="tab"
+                        href="#tab-item-register" role="tab" aria-controls="tab-item-register"
+                        aria-selected="false">Register</a>
+                </li>
+            </ul>
+            <div class="tab-content pt-2" id="login_register_tab_content">
+                <div class="tab-pane fade show active" id="tab-item-login" role="tabpanel" aria-labelledby="login-tab">
+                    <div class="login-form">
+                        <form name="login-form" method="POST" action="{{ route('login') }}" class="needs-validation" novalidate>
+                            @csrf
+                             {{-- -- error display message --- --}}
+                             @error('email')
+                             <div class="alert alert-danger" role="alert">
+                                 <strong>Login failed!</strong> Incorrect email or password. <i
+                                     class="fa-solid fa-circle-exclamation fs-6 ms-1"></i>
+                             </div>
+                         @enderror
+                            <div class="form-floating mb-3">
+                                <input name="email" type="text" class="form-control form-control_gray"
+                                    id="customerNameEmailInput1" placeholder="Email address *" required>
+                                <label for="customerNameEmailInput1">Email address *</label>
                             </div>
-                        </div>
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                            <div class="pb-3"></div>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                            <div class="form-floating mb-3">
+                                <input name="password" type="password" class="form-control form-control_gray"
+                                    id="customerPasswodInput" placeholder="Password *" required>
+                                <label for="customerPasswodInput">Password *</label>
+                            </div>
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>  
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
+                            <div class="d-flex align-items-center mb-3 pb-2">
+                                <div class="form-check mb-0">
+                                    <input name="remember" class="form-check-input form-check-input_fill"
+                                        type="checkbox" value="" id="flexCheckDefault1">
+                                    <label class="form-check-label text-secondary" for="flexCheckDefault1">Remember
+                                        me</label>
                                 </div>
+                                <a href="{{route('password.request')}}" class="btn-text ms-auto">Lost password?</a>
                             </div>
-                        </div>
 
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary w-25 ">
-                                    {{ __('Login') }}
-                                </button>
+                            <button class="btn btn-primary w-100 text-uppercase" type="submit">Log In</button>
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
+                            <div class="customer-option mt-4 text-center">
+                                <span class="text-secondary">No account yet?</span>
+                                <a href="#register-tab" class="btn-text js-show-register">Create Account</a>
                             </div>
-                        </div>
-                        <div class="col-md-6 offset-md-4 mt-3">
-                            <label for="" class="text-muted">Don't have an account?</label><a href="{{url('register')}}" class="ms-2 btn-link text-primary active">Sign Up</a>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+                </div>
+
+                {{-- --------- register tab ------- --}}
+
+                <div class="tab-pane fade" id="tab-item-register" role="tabpanel" aria-labelledby="register-tab">
+                    <div class="register-form">
+                        <form name="register-form" class="needs-validation" novalidate method="POST" action="{{ route('register') }}">
+                            @csrf
+                            <div class="form-floating mb-3">
+                                <input name="name" type="text" class="form-control form-control_gray" title="Username must be at least 4 characters long."
+                                    id="customerNameRegisterInput" placeholder="Username" required value="{{ old('name') }}" pattern=".{4,}">
+                                <label for="customerNameRegisterInput">Username</label>
+                            </div>
+
+                            <div class="pb-3"></div>
+
+                            <div class="form-floating mb-3">
+                                <input name="email" type="email" class="form-control form-control_gray"
+                                    id="customerEmailRegisterInput" placeholder="Email address *" required>
+                                <label for="customerEmailRegisterInput">Email address *</label>
+                            </div>
+
+                            <div class="pb-3"></div>
+
+                            <div class="form-floating mb-3">
+                                <input name="mobile" type="text" class="form-control form-control_gray" onkeyup="this.value = this.value.replace(/[^0-9]/g,'')" maxlength="10"
+                                pattern="[0-9]{10}" title="Please enter a 10-digit mobile number" id="customermobileRegisterInput" placeholder="Email address *" required>
+                                <label for="customermobileRegisterInput">Mobile *</label>
+                            </div>
+                            @error('mobile')
+                            <span class="text-danger" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+
+                            <div class="pb-3"></div>
+
+                            <div class="form-floating mb-3">
+                                <input name="password" type="password" class="form-control form-control_gray" pattern=".{8,}"
+                                    id="customerPasswodRegisterInput" placeholder="Password *" required>
+                                <label for="customerPasswodRegisterInput">Password *</label>
+                            </div>
+
+                            <div class="d-flex align-items-center mb-3 pb-2">
+                                <p class="m-0">Your personal data will be used to support your experience throughout
+                                    this website, to manage access to your account, and for other purposes described in
+                                    our privacy policy.</p>
+                            </div>
+
+                            <button class="btn btn-primary w-100 text-uppercase" type="submit">Register</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+        </section>
+    </main>
+
+    <div class="mb-4 mb-xl-5 pt-1 pb-5"></div>
+
+
+@endsection
+
+
+@section('scripts')
+
+<script>
+     function showpass(e) {
+        let input_box = $('.e-input-pass');
+        let eye_show = $(e).find('#eye-open');
+        //  console.log(input_box.attr('type'));
+        if(input_box.attr('type') === "password"){
+            input_box.attr('type','text');
+            eye_show.removeClass("fa-eye-slash");
+            eye_show.addClass("fa-eye");
+        }
+        else{
+            input_box.attr('type','password');
+            eye_show.removeClass("fa-eye");
+            eye_show.addClass("fa-eye-slash");
+        }
+       
+     }
+</script>
 @endsection

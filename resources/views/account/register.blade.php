@@ -74,7 +74,7 @@
                                 <button class="btn-blue w-100" type="submit">Create a new account</button>
                             </div>
                             <div class="elog-link">
-                                <h6>Already have an account? <a href="{{ route('signin')}}" class="e-link">login</a></h6>
+                                <h6>Already have an account? <a href="{{ route('login')}}" class="e-link">login</a></h6>
                             </div>
                         </div>
                     </form>

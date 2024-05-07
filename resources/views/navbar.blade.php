@@ -78,7 +78,7 @@
                                 @endphp
                                 @if (count($theme_list) > 0)                                  
                                 @foreach ($theme_list as $item)
-                                    @if ($i < 4)
+                                    @if ($i < 5)
                                     <li class="sub-menu__item">
                                         <a href="{{url('themes/'.$item->slug)}}" class="menu-link menu-link_us-s">
                                             {{ $item->name}}
@@ -99,9 +99,9 @@
                                 @php
                                     $i = 0;
                                 @endphp
-                                @if (count($theme_list) > 0)                                  
+                                @if (count($theme_list) > 4)                                  
                                 @foreach ($theme_list as $item)
-                                    @if ($i > 3)
+                                    @if ($i > 4)
                                     <li class="sub-menu__item">
                                         <a href="{{url('themes/'.$item->slug)}}" class="menu-link menu-link_us-s">
                                             {{ $item->name}}
@@ -160,7 +160,7 @@
 
             <div class="header-tools__item hover-container">
                 @guest
-                    <a title="Get Started" class="header-tools__item" href="{{ route('signin') }}">
+                    <a title="Get Started" class="header-tools__item" href="{{ route('login') }}">
                         <img src="{{ asset('assets/icons/icon_user.svg') }}" alt="User Icon">
                     </a>
                 @endguest
@@ -326,7 +326,7 @@
                         @else
 
                         <li class="navigation__item">
-                            <a href="{{route('signin')}}" class="navigation__link">Login/Register</a>
+                            <a href="{{route('login')}}" class="navigation__link">Login/Register</a>
                         </li>
 
                     @endauth

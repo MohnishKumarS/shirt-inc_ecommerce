@@ -71,7 +71,7 @@
         @endauth
         @guest
             <li class="sub-menu__item">
-              <a href="{{ url('acc/signin') }}" class="menu-link menu-link_us-s">Login</a>
+              <a href="{{ url('login') }}" class="menu-link menu-link_us-s">Login</a>
           </li>
         @endguest
             <li class="sub-menu__item">
@@ -179,7 +179,7 @@
       </a>
        @endauth
        @guest
-       <a href="{{ route('signin') }}" class="footer-mobile__link d-flex flex-column align-items-center">
+       <a href="{{ route('login') }}" class="footer-mobile__link d-flex flex-column align-items-center">
         <div class="position-relative">
           <?= $icon_user ?>
         </div>

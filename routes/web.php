@@ -36,9 +36,9 @@ use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 // ^^^^^^^^^^^^^ ~~ login  /// register  ~~  ^^^^^^^^^^^^^^
 //  --------------------------------------------- -->
 
-Route::get('acc/signin', [UserController::class, 'signIn'])->name('signin');
+// Route::get('acc/signin', [UserController::class, 'signIn'])->name('signin');
 
-Route::get('acc/signup', [UserController::class, 'signUp'])->name('signup');
+// Route::get('acc/signup', [UserController::class, 'signUp'])->name('signup');
 
 
 // -- /////////////////////////////

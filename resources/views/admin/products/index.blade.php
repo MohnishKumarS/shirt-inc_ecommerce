@@ -172,7 +172,7 @@
                         // console.log(ind,val);
                         pro_ids.push($(this).val())
                     })
-                    console.log(pro_ids.length);
+                    // console.log(pro_ids.length);
 
                     if (pro_ids.length > 0) {
                         // -------- send a ajax req 
@@ -190,7 +190,9 @@
                                 $.each(pro_ids, function(key, val) {
                                     $('#product_id-' + val).remove();
                                 })
-
+                                if(data.message == 'success') {
+                                    swal.fire(data.status)
+                                }
 
                             },
                             error: function(xhr, status, error) {
