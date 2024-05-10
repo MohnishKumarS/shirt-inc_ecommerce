@@ -16,12 +16,12 @@ class UserController extends Controller
 {
     // --- login  --- register ----
 
-    public function signUp(){
-        return \view('account.register');
-    }
-    public function signIn(){
-        return \view('account.login');
-    }
+    // public function signUp(){
+    //     return \view('account.register');
+    // }
+    // public function signIn(){
+    //     return \view('account.login');
+    // }
 
     // ---- home page ----
 
@@ -97,22 +97,25 @@ class UserController extends Controller
     public function view_new_product(){
         $new_product = Product::latest()->take(15)->paginate(10);
         $category = category::latest()->take(1)->first();
-        return view('product.new-arrival',compact('new_product','category'));
+        $themes = Theme::latest()->get();
+        return view('product.new-arrival',compact('new_product','category','themes'));
     }
 
     // --------------- womens products -----------------
 
     public function womens_collections(){
         $womens_collect = Product::where('type','womens')->latest()->paginate(10);
-        return view('product.womens-product',compact('womens_collect'));
+        $themes = Theme::latest()->get();
+        return view('product.womens-product',compact('womens_collect','themes'));
         
         }
 
     // --------------- mens products -----------------
 
     public function mens_collections(){
-        $mens_collect = Product::where('type','mens')->latest()->paginate(4);
-        return view('product.mens-product',compact('mens_collect'));
+        $mens_collect = Product::where('type','mens')->latest()->paginate(10);
+        $themes = Theme::latest()->get();
+        return view('product.mens-product',compact('mens_collect','themes'));
 
         }
 
@@ -120,7 +123,8 @@ class UserController extends Controller
 
     public function unisex_collections(){
         $unisex_collect = Product::where('type','unisex')->latest()->paginate(10);
-        return view('product.unisex-product',compact('unisex_collect'));
+        $themes = Theme::latest()->get();
+        return view('product.unisex-product',compact('unisex_collect','themes'));
 
         }
 

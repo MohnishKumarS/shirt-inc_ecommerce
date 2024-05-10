@@ -599,23 +599,33 @@
   </div>
   <!-- Login Drawer End -->
   
-  {{-- @php
+  @php
       $notify = App\Models\Product::where('status','1')->latest()->first();
-      $img = explode(',', $notify->image);
-  @endphp --}}
-  <!-- Notification Element End -->
-  {{-- <div class="notification-wrapper">
+  @endphp
+
+  @if (!empty($notify))
+        <!-- Notification Element End -->
+        @php
+             $imgs = explode(',', $notify->image);
+        @endphp
+  <div class="notification-wrapper">
     <div class="notification">
       <button class="close">
         <?= $icon_close ?>
       </button>
       <div class="image">
-        <img src="{{asset('image/product/'.$img[0])}}" alt="Women's Pant" />
+        @if ($notify->designType)
+        <img src="{{asset('image/product/design/'.$notify->design)}}" alt="{{$notify->slug}}" />
+        @else
+        <img src="{{asset('image/product/'.$imgs[0])}}" alt="{{$notify->slug}}" />
+        @endif
       </div>
       <div class="message">
         <h5>Placed order</h5>
-        <p><a href="{{url('category/'.$notify->category->slug.'/'.$notify->slug)}}">{{$notify->name}}</a><b>🎉🎉 grab now</b> </p>
+        <p><a href="{{url('category/'.$notify->category->slug.'/'.$notify->slug)}}">{{$notify->name}}</a><b>🎉🎉 GRAB NOW</b> </p>
       </div>
     </div>
-  </div> --}}
+  </div>
   <!-- Notification Element End -->
+  @endif
+

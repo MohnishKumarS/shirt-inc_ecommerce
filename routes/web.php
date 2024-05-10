@@ -213,9 +213,7 @@ Route::get('/count-wishlist', [WishlistController::class, 'count_wishlist']);
 
 Auth::routes();
 
-Route::fallback(function () {
-   return view('errors.404');
-});
+
 
 // <!-- ---------------------------------------------
 // ^^^^^^^^^^^^^ ~~ admin control ~~  ^^^^^^^^^^^^^^
@@ -367,4 +365,9 @@ Route::get('/clear', function() {
 
    return "Cleared!";
 
+});
+
+
+Route::fallback(function () {
+   return view('errors.404');
 });

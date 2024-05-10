@@ -15,19 +15,21 @@
             <p>We will send you an email to reset your password</p>
             <div class="reset-form">
 
-                <form method="POST" action="{{ route('password.email') }}" name="reset-form" class="needs-validation" novalidate >
+                <form method="POST" action="{{ route('password.email') }}" name="reset-form" class="needs-validation"
+                    novalidate>
                     @csrf
                     <div class="form-floating mb-3">
                         <input name="email" type="email" class="form-control form-control_gray"
                             value="{{ old('email') }}" id="customerNameEmailInput" placeholder="Email address *" required>
                         <label for="customerNameEmailInput">Email address *</label>
+
+                        @error('email')
+                            <span class="invalid-feedback d-block" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
 
-                    @error('email')
-                    <span class="invalid-feedback d-block" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
 
                     <button class="btn btn-primary w-100 text-uppercase" type="submit">Submit</button>
 
