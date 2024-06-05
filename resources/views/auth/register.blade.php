@@ -12,17 +12,18 @@
             <h2 class="d-none">Login & Register</h2>
             <ul class="nav nav-tabs mb-5" id="login_register" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link nav-link_underscore active" id="login-tab" data-bs-toggle="tab"
+                    <a class="nav-link nav-link_underscore" id="login-tab" data-bs-toggle="tab"
                         href="#tab-item-login" role="tab" aria-controls="tab-item-login" aria-selected="true">Login</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link nav-link_underscore" id="register-tab" data-bs-toggle="tab"
+                    <a class="nav-link nav-link_underscore active" id="register-tab" data-bs-toggle="tab"
                         href="#tab-item-register" role="tab" aria-controls="tab-item-register"
                         aria-selected="false">Register</a>
                 </li>
             </ul>
             <div class="tab-content pt-2" id="login_register_tab_content">
-                <div class="tab-pane fade show active" id="tab-item-login" role="tabpanel" aria-labelledby="login-tab">
+                {{-- --------- login tab ------- --}}
+                <div class="tab-pane fade" id="tab-item-login" role="tabpanel" aria-labelledby="login-tab">
                     <div class="login-form">
                         <form name="login-form" method="POST" action="{{ route('login') }}" class="needs-validation" novalidate>
                             @csrf
@@ -69,7 +70,7 @@
 
                 {{-- --------- register tab ------- --}}
 
-                <div class="tab-pane fade" id="tab-item-register" role="tabpanel" aria-labelledby="register-tab">
+                <div class="tab-pane fade show active" id="tab-item-register" role="tabpanel" aria-labelledby="register-tab">
                     <div class="register-form">
                         <form name="register-form" class="needs-validation" novalidate method="POST" action="{{ route('register') }}">
                             @csrf

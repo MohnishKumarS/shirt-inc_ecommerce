@@ -48,13 +48,13 @@
               @if (count($addr) > 0)
                   @foreach ($addr as $item)
                   <div class="my-account__address-item">
-                    <div class="my-account__address-item__title">
-                                  
+                    {{-- <div class="my-account__address-item__title">
+                    
                       <a href="#">Edit</a>
-                    </div>
+                    </div> --}}
                     <div class="my-account__address-item__detail">
-                      <p>{{$item->full_name}}</p>
-                      <p>{{ $item->address . $item->city}} </p>
+                      <p class="my-account__address-item__title">{{$item->full_name}}</p>
+                      <p>{{ $item->address }} , {{$item->city}}</p>
                       <p>{{$item->state}} - {{ $item->pincode }}</p>
                       <br>
                       <p>{{Auth::user()->email}}</p>

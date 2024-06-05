@@ -194,7 +194,7 @@ class PaymentController extends Controller
  
      
 
-        return redirect('/order-success');
+        return redirect('/order-confirm');
           }
 
 

@@ -78,7 +78,7 @@ class CategoryController extends Controller
 
     public function edit_category($id)
     {
-        $data = Category::find($id);
+        $data = Category::findOrFail($id);
         return view('admin.category.edit', \compact('data'));
     }
 
@@ -113,14 +113,14 @@ class CategoryController extends Controller
             $data->image = $filename;
         }
         if ($req->hasFile('poster')) {
-            $path =  'image/category/' . $data->poster;
+            $path =  'image/category/poster/' . $data->poster;
             if (File::exists($path)) {
                 File::delete($path);
             }
             $file = $req->file('poster');
             $ext = $file->getClientOriginalExtension();
             $filename = time() . '.' . $ext;
-            $file->move('image/category/poster', $filename);
+            $file->move('image/category/poster/', $filename);
             $data->poster = $filename;
         }
 
@@ -135,29 +135,35 @@ class CategoryController extends Controller
 
         $data->update();
 
-        return \redirect('/dashboard')->with('status', 'Category Updated Successfully');
+        return \redirect('/category')->with('status', 'Category Updated Successfully');
     }
 
     public function delete_category($id)
     {
-
-
-        // ------ delete all products related with this category ----
-        $product_check = Product::where('category_id', $id)->exists();
+        $data = Category::findOrFail($id);
+        if($data){
+         // ------ delete all products related with this category ----
+        $product_check = Product::withTrashed()->where('category_id', $id)->exists();
         if ($product_check) {
-            $product_all = Product::where('category_id', $id)->get();
-
+            $product_all = Product::withTrashed()->where('category_id', $id)->get();
             if (count($product_all) > 0) {
                 foreach ($product_all as $val) {
 
-                    $img = explode(',', $val->image);
-                    if (count($img) > 0) {
+                   
+                    if ($val->image) {
+                        $img = explode(',', $val->image);
                         foreach ($img as $image) {
                             $path = 'image/product/' . $image;
 
                             if (File::exists($path)) {
                                 File::delete($path);
                             }
+                        }
+                    }
+                    if ($val->design) {
+                        $path = 'image/product/design/' . $val->design;
+                        if (File::exists($path)) {
+                            File::delete($path);
                         }
                     }
                     // -------- delete all product in cart and wishlist ------
@@ -169,15 +175,13 @@ class CategoryController extends Controller
 
                 // ----- delete all product-------
 
-                $product_all = Product::where('category_id', $id)->delete();
+                $product_all = Product::where('category_id', $id)->forceDelete();
             }
         }
 
 
         // ---- delete category  
-
         // Category::destroy($id);
-        $data = Category::findOrFail($id);
         // // --- delete category  image -----
         if ($data->image) {
             $path = 'image/category/' . $data->image;
@@ -186,7 +190,7 @@ class CategoryController extends Controller
             }
         }
         if ($data->poster) {
-            $path = 'image/category/' . $data->poster;
+            $path = 'image/category/poster/' . $data->poster;
             if (File::exists($path)) {
                 File::delete($path);
             }
@@ -200,5 +204,7 @@ class CategoryController extends Controller
         $data->delete();
 
         return \redirect('/category')->with('status', 'Category deleted Successfully');
+        }
+
     }
 }

@@ -29,13 +29,13 @@ class UserController extends Controller
         $trending = Product::where("trending",1)->latest('id')->take(12)->get(); 
         $category = Category::orderBy('id','desc')->take(12)->get();
         $popular = Product::where('status',1)->latest('id')->take(9)->get();
-        $slider_active = Slider::where('active',1)->latest('id')->take(1)->first();
-        $slider = Slider::where('active',0)->latest('id')->take(4)->get();
-        $poster = Poster::where('active',1)->latest('id')->take(1)->first();
+        // $slider_active = Slider::where('active',1)->latest('id')->take(1)->first();
+        $slider = Slider::where('active',1)->latest('id')->take(3)->get();
+        // $poster = Poster::where('active',1)->latest('id')->take(1)->first();
         $theme = Theme::all();
         $design = Product::where('designType',1)->latest()->take(10)->get();
         // return $design;
-        return view('home',\compact('trending',"category","popular",'slider_active','slider','poster','theme','design'));
+        return view('home',\compact('trending',"category","popular",'slider','theme','design'));
     }
 
    // ------------- view category -----------------------

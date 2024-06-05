@@ -4752,7 +4752,7 @@ progress {
 }
 
 .text-success {
-  color: #def2d7 !important;
+  color: var(--bs-green) !important;
 }
 
 .text-info {
@@ -14451,6 +14451,7 @@ textarea.form-control.is-invalid {
   margin-bottom: .25rem;
   color: #767676;
   font-weight: 400;
+  text-transform: capitalize;
   line-height: 1.7143;
 }
 
@@ -21018,7 +21019,7 @@ a.add-to-wishlist.active .flaticon.flaticon-heart {
 @media (min-width: 768px) {
   .shopping-cart .cart-table .qty-control {
     width: 7.25rem;
-    margin: 0;
+    margin: auto;
   }
 }
 

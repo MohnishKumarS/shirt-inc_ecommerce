@@ -1,45 +1,40 @@
 @extends('layouts.userpage')
 
-@section('title', 'checkout')
+@section('title', 'Shipping and Checkout')
 
 @section('content')
-    @php
-        $step = 2;
-    @endphp
 
     <main>
         <div class="mb-4 pb-4"></div>
         <section class="shop-checkout container">
             <h2 class="page-title">Shipping and Checkout</h2>
 
-            {{-- ````````` CART TOPBAR LAYOUT ```````````` --}}
-
-            <div class="checkout-steps">
-                <a href="{{ URL('my-cart') }}" class="checkout-steps__item">
-                    <span class="checkout-steps__item-number">01</span>
-                    <span class="checkout-steps__item-title">
-                        <span>Shopping Bag</span>
-                        <em>Manage Your Items List</em>
-                    </span>
-                </a>
-                <a href="javascript:void(0)" class="checkout-steps__item<?= ($step ?? 0) > 1 ? '  active' : '' ?>">
-                    <span class="checkout-steps__item-number">02</span>
-                    <span class="checkout-steps__item-title">
-                        <span>Shipping and Checkout</span>
-                        <em>Checkout Your Items List</em>
-                    </span>
-                </a>
-                <a href="{{ url('order-confirm') }}" class="checkout-steps__item<?= ($step ?? 0) == 3 ? '  active' : '' ?>">
-                    <span class="checkout-steps__item-number">03</span>
-                    <span class="checkout-steps__item-title">
-                        <span>Confirmation</span>
-                        <em>Review And Submit Your Order</em>
-                    </span>
-                </a>
-            </div>
-
-
             @if ($cart->count() > 0)
+                {{-- ````````` CART TOPBAR LAYOUT ```````````` --}}
+
+                <div class="checkout-steps">
+                    <a href="{{ URL('my-cart') }}" class="checkout-steps__item">
+                        <span class="checkout-steps__item-number">01</span>
+                        <span class="checkout-steps__item-title">
+                            <span>Shopping Bag</span>
+                            <em>Manage Your Items List</em>
+                        </span>
+                    </a>
+                    <a href="javascript:void(0)" class="checkout-steps__item active">
+                        <span class="checkout-steps__item-number">02</span>
+                        <span class="checkout-steps__item-title">
+                            <span>Shipping and Checkout</span>
+                            <em>Checkout Your Items List</em>
+                        </span>
+                    </a>
+                    <a href="javascript:void(0)" class="checkout-steps__item">
+                        <span class="checkout-steps__item-number">03</span>
+                        <span class="checkout-steps__item-title">
+                            <span>Confirmation</span>
+                            <em>Review And Submit Your Order</em>
+                        </span>
+                    </a>
+                </div>
                 {{-- CHECKOUT CART --}}
                 <div class="checkout-form">
                     <div class="billing-info__wrapper">
@@ -75,9 +70,8 @@
                                         </div>
                                         <div class="col-8">
                                             <div class="address-details">
-                                                <h5 class="text-sm-bold mb-2">{{ $item->full_name }}</h5>
-                                                <p class="text-sm text-capitalize"><i
-                                                        class="fa-solid fa-location-dot me-2"></i>
+                                                <h5 class=" mb-2">{{ $item->full_name }}</h5>
+                                                <p class=" text-capitalize"><i class="fa-solid fa-location-dot me-2"></i>
                                                     {{ $item->address }},{{ $item->landmark }},<br>
                                                     {{ $item->city }} , {{ $item->state }} - {{ $item->pincode }}. <br>
                                                     <i class="fa-solid fa-phone me-2"></i>{{ $item->phone }}. <br>
@@ -236,15 +230,15 @@
                             @if ($cart->count() > 0)
                                 {{-- ---------- product in carts table --------------- --}}
                                 <table class="table text-center">
-                                    <tr class="text-sm-bold">
-                                        <th>Image</th>
-                                        <th>Name</th>
-                                        <th>Qty</th>
-                                        <th>Price</th>
+                                    <tr>
+                                        <th class="bg-light text-primary">Image</th>
+                                        <th class="bg-light text-primary">Name</th>
+                                        <th class="bg-light text-primary">Qty</th>
+                                        <th class="bg-light text-primary">Price</th>
                                     </tr>
                                     @php
                                         $total = 0;
-
+                                        $cartQty = 0;
                                     @endphp
                                     @foreach ($cart as $item)
                                         @php
@@ -258,12 +252,13 @@
                                         <style>
                                             /* ------- product design style  ---- */
 
-                                            .product-single__designImgs img {
-                                                width: 65px;
+                                            .product-single__designImgs .typeImg {
+                                                width: 85px;
+                                                margin:auto
                                             }
 
                                             .product-single__designImgs .design-image {
-                                                width: 15px;
+                                                width: 30px;
                                             }
                                         </style>
                                         <tr class="align-middle">
@@ -343,16 +338,24 @@
 
                                             </td>
                                             <td>{{ $item->product_qty }}</td>
-                                            <td>{{ $item->product->selling_price * $item->product_qty }}</td>
+                                            <td>₹ {{ $item->product->selling_price * $item->product_qty }}</td>
 
                                         </tr>
                                         @php
                                             $total = $total + $item->product_qty * $item->product->selling_price;
+                                            $cartQty += $item->product_qty;
                                         @endphp
                                     @endforeach
                                     <tr class="fw-bold">
                                         <td>Total</td>
-                                        <td colspan="3" class="text-end">₹ {{ $total }}</td>
+                                        <td colspan="3" class="text-end">
+                                            @if (count($cart) > 3 || $cartQty > 3)
+                                           <span class="alert-success px-1 me-1"> - 499 </span> ₹ {{ $total - 499 }}
+                                            @else
+                                            ₹ {{ $total }}
+                                            @endif
+                                            
+                                        </td>
                                     </tr>
 
                                 </table>
@@ -361,21 +364,19 @@
                                 {{-- <div class="my-3">
                                     <button class="btn-float w-100 payment-btn" type="button">Place Order</button>
                                 </div> --}}
-                                <div class="my-4">
+                                {{-- <div class="my-4">
                                     <a class="btn-float w-100 payment-btn">Place Order</a>
-                                </div>
+                                </div> --}}
                             @else
                                 <div class="text-center fs-5 text-danger">
                                     <p>No products in cart <i class="fa-solid fa-cart-plus mx-1"></i></p>
-
                                 </div>
                                 <hr>
                             @endif
 
 
 
-
-                            <div class="checkout__totals">
+                            {{-- <div class="checkout__totals">
                                 <h3>Your Order</h3>
                                 <table class="checkout-cart-items">
                                     <thead>
@@ -439,10 +440,12 @@
                                     throughout this website, and for other purposes described in our <a
                                         href="<?= $url ?>privacy-policy" target="_blank">privacy policy</a>.
                                 </div>
-                            </div>
+                            </div> --}}
+
+
                             <div class="mobile_fixed-btn_wrapper">
                                 <div class="button-wrapper container">
-                                    <button class="btn btn-primary btn-checkout payment-btn">PLACE ORDER</button>
+                                    <a class="btn btn-primary  payment-btn w-100">PLACE ORDER</a>
                                 </div>
                             </div>
 
@@ -505,14 +508,14 @@
                                 <div class="form-floating">
                                     <input type="text" class="form-control address" name="address" required
                                         placeholder="address">
-                                    <label class="">Address (House no,Building name,Street)*</label>
+                                    <label class="">Address*</label>
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-floating">
                                     <input type="text" class="form-control landmark" name="landmark"
                                         placeholder="landmark">
-                                    <label class="">Landmark (Optional)*</label>
+                                    <label class="">Landmark (Optional)</label>
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -556,7 +559,7 @@
                                     <textarea class="form-control del_instr" placeholder="Leave a comment here" name='del_instr'></textarea>
                                     <label for="floatingTextarea">Delivery Instruction (optional)*</label>
                                 </div>
-                                <div class="text-sm text-capitalize">Enter necessary information like door codes or
+                                <div class="fw-bold">Enter necessary information like door codes or
                                     drop-off instructions.</div>
                             </div>
                             <div class="col-lg-12">
@@ -585,8 +588,8 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn-blue btn-remove" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn-blue add_addr_btn">save address</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save address</button>
                 </div>
                 </form>
             </div>
@@ -620,14 +623,14 @@
                                 <div class="form-floating">
                                     <input type="text" class="form-control address" name="address" required
                                         placeholder="address">
-                                    <label class="">Address (House no,Building name,Street)*</label>
+                                    <label class="">Address*</label>
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-floating">
                                     <input type="text" class="form-control landmark" name="landmark"
                                         placeholder="landmark">
-                                    <label class="">Landmark (Optional)*</label>
+                                    <label class="">Landmark (Optional)</label>
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -669,7 +672,7 @@
                                     <textarea class="form-control del_instr" placeholder="Leave a comment here" name='del_instr'></textarea>
                                     <label for="floatingTextarea">Delivery Instruction (optional)*</label>
                                 </div>
-                                <div class="text-sm text-capitalize">Enter necessary information like door codes or
+                                <div class="fw-bold">Enter necessary information like door codes or
                                     drop-off instructions.</div>
                             </div>
                             <div class="col-lg-12">
@@ -698,8 +701,8 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn-blue btn-remove" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn-blue">update address</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                 </div>
                 </form>
             </div>

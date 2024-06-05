@@ -16,17 +16,17 @@
 <!-- Desktop header begin -->
 <header id="header" class="header header_sticky header-fullwidth">
     <!-- Topbar Begin -->
-    <nav class="topbar">
+    {{-- <nav class="topbar">
         <div class="btn-wrapper d-flex align-items-center">
             <a href="{{ url('womens-collections') }}" class="tag-btn {{ Request::is('womens-collections') ? 'active' : '' }}">Women</a>
             <a href="{{ url('mens-collections') }}" class="tag-btn {{ Request::is('mens-collections') ? 'active' : '' }}">Men</a>
             <a href="{{ url('unisex-collections') }}" class="tag-btn {{ Request::is('unisex-collections') ? 'active' : '' }}">unisex</a>
         </div>
         <div class="link-wrapper d-flex align-items-center">
-            <a class="navigation__link" href="<?= $url ?>">Customize</a>
+            <a class="navigation__link" href="">Customize</a>
             <a class="navigation__link" href="{{url('/contact')}}">Contact Us</a>
         </div>
-    </nav>
+    </nav> --}}
     <!-- Topbar End -->
     <div class="header-desk header-desk_type_1">
 
@@ -39,10 +39,10 @@
         <nav class="navigation">
             <ul class="navigation__list list-unstyled d-flex">
                 <li class="navigation__item">
-                    <a href="{{url('/collections')}}" class="navigation__link">Collections</a>
+                    <a href="{{url('/collections')}}" class="navigation__link">category</a>
                     <div class="box-menu start-0 w-100">
                         <div class="col pe-4 ">
-                            <h6>CATEGORY</h6>
+                            <h6>COLLECTION</h6>
                             <ul class="sub-menu__list list-unstyled">
 
                                 @if (count($category_list) > 0)                                  
@@ -195,13 +195,13 @@
 <!-- Mobile header begin -->
 <div class="header-mobile header_sticky">
     <!-- Topbar Begin -->
-    <nav class="topbar">
+    {{-- <nav class="topbar">
         <div class="btn-wrapper d-flex align-items-center">
             <a href="{{ url('womens-collections') }}" class="tag-btn {{ Request::is('womens-collections') ? 'active' : '' }}">Women</a>
             <a href="{{ url('mens-collections') }}" class="tag-btn {{Request::is('mens-collections') ? 'active' : ''}}">Men</a>
             <a href="{{ url('unisex-collections') }}" class="tag-btn {{Request::is('unisex-collections') ? 'active' : ''}}">unisex</a>
         </div>
-    </nav>
+    </nav> --}}
     <!-- Topbar End -->
     <div class="container d-flex align-items-center h-100">
         <a class="mobile-nav-activator d-block position-relative" href="#">
@@ -235,7 +235,7 @@
 
                     <li class="navigation__item">
                         <a href="#" class="navigation__link js-nav-right d-flex align-items-center">
-                            Collections &nbsp;
+                            Category &nbsp;
                             <img src="{{ asset('assets/icons/icon_right_chevron.svg') }}" alt="User Icon">
 
                         </a>
@@ -243,7 +243,7 @@
                             <a href="#"
                                 class="navigation__link js-nav-left d-flex align-items-center border-bottom mb-2">
                                 <img src="{{ asset('assets/icons/icon_left_chevron.svg') }}" alt="User Icon">
-                                &nbsp; Collections
+                                &nbsp; Category
                             </a>
                             <ul class="list-unstyled">
                             

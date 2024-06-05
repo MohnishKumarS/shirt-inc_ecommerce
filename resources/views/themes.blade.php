@@ -57,7 +57,7 @@
                 <div class="col-lg-4">
                     <a href="{{ url('themes/' . $item->slug) }}">
                         <div class="grid-banner__item position-relative mb-3">
-                            <img loading="lazy" class="w-100 h-auto" src="{{ asset('image/themes/' . $item->image) }}"
+                            <img loading="lazy" class="w-100 h-auto" src="{{ asset('image/themes/icon/' . $item->icon) }}"
                                 width="450" height="450" alt="{{ $item->name }}">
                         </div>
                     </a>

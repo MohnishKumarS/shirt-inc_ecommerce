@@ -22,6 +22,8 @@
                 </li>
             </ul>
             <div class="tab-content pt-2" id="login_register_tab_content">
+                {{-- --------- login tab ------- --}}
+                
                 <div class="tab-pane fade show active" id="tab-item-login" role="tabpanel" aria-labelledby="login-tab">
                     <div class="login-form">
                         <form name="login-form" method="POST" action="{{ route('login') }}" class="needs-validation" novalidate>

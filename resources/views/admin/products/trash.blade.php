@@ -43,7 +43,7 @@
                                     <img src="{{ asset('/image/product/' . $img[0]) }}" alt="product-image" width="100" height="150" style="object-fit: contain">
                                     @endif
                                 </td>
-                                <td>{{ $val->category->slug }}</td>
+                                {{-- <td>{{ $val->category->name }}</td> --}}
                                 <td>{{ $val->name }}</td>
 
                                 <td>

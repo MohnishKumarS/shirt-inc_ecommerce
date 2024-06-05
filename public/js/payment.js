@@ -9,7 +9,7 @@ $(document).ready(function () {
         if ($addr) {
             const addr_id = $addr;
             // Update the href attribute of the anchor tag with the new value
-            $(this).attr('href', "payment-method/"+ addr_id);
+            $(this).attr('href', "/payment-method/"+ addr_id);
             // return false;
 
         } else {
@@ -27,13 +27,6 @@ $(document).ready(function () {
             
             return false;
         }
-
-
-
-
-
-
-
 
 
     })

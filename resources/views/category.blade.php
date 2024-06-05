@@ -17,7 +17,6 @@
       }'>
             <div class="swiper-wrapper">
 
-
                 @foreach ($categoryPoster as $item)
                     <div class="swiper-slide">
                         <div class="overflow-hidden position-relative h-100">
@@ -53,7 +52,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 d-flex flex-column">
-                        @if ($all_category[0])
+                        @if (count($all_category) > 0)
                             <a href="{{ url('category/' . $all_category[0]->slug) }}"
                                 class="lookbook-collection__item position-relative flex-grow-1 mb-4 effect border-plus">
                                 <div class="lookbook-collection__item-image">
@@ -66,7 +65,7 @@
                                 </div>
                             </a>
                         @endif
-                        @if ($all_category[1])
+                        @if (count($all_category) > 1)
                             <a href="{{ url('category/' . $all_category[1]->slug) }}"
                                 class="lookbook-collection__item position-relative flex-grow-1 mb-4 effect border-plus">
                                 <div class="lookbook-collection__item-image">
@@ -82,7 +81,7 @@
 
                     </div>
                     <div class="col-lg-6">
-                        @if ($all_category[2])
+                        @if (count($all_category) > 2)
                             <a href="{{ url('category/' . $all_category[2]->slug) }}"
                                 class="lookbook-collection__item size-lg position-relative mb-4 effect border-plus">
                                 <div class="lookbook-collection__item-image">
@@ -99,7 +98,7 @@
                     </div><!-- /.col-md-6 -->
 
                     <div class="col-lg-6">
-                        @if ($all_category[3])
+                        @if (count($all_category) > 3)
                             <a href="{{ url('category/' . $all_category[3]->slug) }}"
                                 class="lookbook-collection__item size-lg position-relative mt-1 mb-4 effect border-plus">
                                 <div class="lookbook-collection__item-image">
@@ -115,7 +114,7 @@
 
                     </div><!-- /.col-md-6 -->
                     <div class="col-lg-6 d-flex flex-column">
-                        @if ($all_category[4])
+                        @if (count($all_category) > 4)
                             <a href="{{ url('category/' . $all_category[4]->slug) }}"
                                 class="lookbook-collection__item position-relative flex-grow-1 mt-1 mb-4 effect border-plus">
                                 <div class="lookbook-collection__item-image">
@@ -128,7 +127,7 @@
                                 </div>
                             </a>
                         @endif
-                        @if ($all_category[5])
+                        @if (count($all_category) > 5)
                             <a href="{{ url('category/' . $all_category[5]->slug) }}"
                                 class="lookbook-collection__item position-relative flex-grow-1 mt-1 mb-4 effect border-plus">
                                 <div class="lookbook-collection__item-image">
@@ -144,7 +143,7 @@
 
                     </div>
                     <div class="col-lg-12 d-flex flex-column">
-                        @if ($all_category[6])
+                        @if (count($all_category) > 6)
                             <a href="{{ url('category/' . $all_category[6]->slug) }}"
                                 class="lookbook-collection__item position-relative flex-grow-1 mt-1 mb-4 effect border-plus">
                                 <div class="lookbook-collection__item-image">

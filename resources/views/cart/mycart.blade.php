@@ -10,7 +10,7 @@
         <h2 class="page-title">myCart</h2>
         
         @if (count($cart) > 0)
-                   {{-- ````````` CART TOPBAR LAYOUT ```````````` --}}
+        {{-- ````````` CART TOPBAR LAYOUT ```````````` --}}
         <div class="checkout-steps">
             <a  class="checkout-steps__item active">
                 <span class="checkout-steps__item-number">01</span>
@@ -19,14 +19,14 @@
                     <em>Manage Your Items List</em>
                 </span>
             </a>
-            <a  class="checkout-steps__item<?= ($step??0) > 1 ? "  active" : "" ?>">
+            <a  class="checkout-steps__item">
                 <span class="checkout-steps__item-number">02</span>
                 <span class="checkout-steps__item-title">
                     <span>Shipping and Checkout</span>
                     <em>Checkout Your Items List</em>
                 </span>
             </a>
-            <a class="checkout-steps__item<?= ($step??0) == 3 ? "  active" : "" ?>">
+            <a class="checkout-steps__item">
                 <span class="checkout-steps__item-number">03</span>
                 <span class="checkout-steps__item-title">
                     <span>Confirmation</span>
@@ -36,14 +36,14 @@
         </div>
 
         {{-- ````````````SHOPPING CART ```````````````````` --}}
-        <div class="shopping-cart ">
+        <div class="shopping-cart">
             <div class="cart-table__wrapper">
                 <table class="cart-table">
                     <thead>
                         <tr>
                             <th>Product</th>
                             <th></th>
-                            <th>Price</th>
+                            {{-- <th>Price</th> --}}
                             <th>Quantity</th>
                             <th>Subtotal</th>
                             <th></th>
@@ -56,6 +56,7 @@
                           @php
                             $cartTotal = 0;
                             $radioIndex = 0;
+                            $cartQty = 0;
                           @endphp
                         @foreach ($cart as $val)
                         @php
@@ -67,6 +68,11 @@
                             // ------ total cart  amount ---------
                             $cartTotal += $val->product->selling_price * $val->product_qty;
 
+                            $cartQty += $val->product_qty;
+
+                            // -------- discount amount 
+                            // $discount_off = $cartTotal - 499;
+                            
                             // $cart_color = $val->product_color ? json_decode($val->product_color) : '';
                             $cart_design = $val->product_design ? json_decode($val->product_design) : ['red','half'];
                         @endphp
@@ -264,9 +270,9 @@
                                             </ul>
                                         </div>
                                     </td>
-                                    <td>
+                                    {{-- <td>
                                         <span class="shopping-cart__product-price">Rs.{{ $val->product->selling_price }}</span>
-                                    </td>
+                                    </td> --}}
                                     <td>
                                         <input type="hidden" class="product_id"  value="{{ $val->product['id'] }}">
                                         <div class="qty-control position-relative">
@@ -337,7 +343,7 @@
                                 </tr>
                                 <tr>
                                     <th>Shipping</th>
-                                    <td>
+                                    {{-- <td>
                                         <div class="form-check">
                                             <input class="form-check-input form-check-input_fill" type="checkbox" value="" id="free_shipping">
                                             <label class="form-check-label" for="free_shipping">Free shipping</label>
@@ -354,15 +360,32 @@
                                         <div>
                                             <a href="#" class="menu-link menu-link_us-s">CHANGE ADDRESS</a>
                                         </div>
+                                    </td> --}}
+                                    <td class="text-success">
+                                        FREE
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>GST</th>
-                                    <td>Rs.19</td>
+                                    <th>Our Discount</th>
+                                    <td>
+                                        @if (count($cart) > 3  || $cartQty > 3)
+                                        Rs.499 
+                                        @else
+                                        Rs.0
+                                        @endif
+                                        
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>Total</th>
-                                    <td>Rs.{{ $cartTotal }}</td>
+                                    <td>
+                                        @if (count($cart) > 3 || $cartQty > 3)
+                                        Rs.{{ $cartTotal - 499 }}
+                                        @else
+                                        Rs.{{ $cartTotal }}
+                                        @endif
+                                       
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

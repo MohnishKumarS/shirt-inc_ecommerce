@@ -83,7 +83,7 @@
             <li class="sub-menu__item">
                 <a href="{{ url('themes') }}" class="menu-link menu-link_us-s">Themes</a>
             </li>
-            <li class="sub-menu__item">
+            {{-- <li class="sub-menu__item">
                 <a href="{{ url('mens-collections') }}" class="menu-link menu-link_us-s">Mens Collections</a>
             </li>
             <li class="sub-menu__item">
@@ -91,7 +91,7 @@
             </li>
             <li class="sub-menu__item">
                 <a href="{{ url('unisex-collections') }}" class="menu-link menu-link_us-s">Unisex Collections</a>
-            </li>
+            </li> --}}
           </ul>
         </div>
   
