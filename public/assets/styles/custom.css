@@ -104,12 +104,6 @@
     bottom: -2px;
 }
 
-@media (min-width: 992px) {
-    .slideshow {
-        height: 40em;
-    }
-}
-
 @media (max-width: 992px) {
 
     .collections-grid_masonry .collection-grid__item,
@@ -120,9 +114,9 @@
 
 @media (max-width: 768px) {
 
-    .home-page .slideshow {
+    /* .home-page .slideshow {
         height: 28vh;
-    }
+    } */
 
     .footer-column:last-child,
     .footer-store-info {

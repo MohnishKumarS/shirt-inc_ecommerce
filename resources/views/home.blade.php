@@ -22,8 +22,8 @@
                 <div class="swiper-slide">
                     <div class="overflow-hidden position-relative h-100">
                         <div class="slideshow-bg">
-                            <img loading="lazy" src="{{ asset('image/slider/' . $item->image) }}" width="1783" height="800"
-                                alt="" class="slideshow-bg__img object-fit-cover object-position-right">
+                            <img loading="lazy" src="{{ asset('image/slider/' . $item->image) }}" width="1500" height="400"
+                                alt="" class="slideshow-bg__img">
                         </div>
                         <div hidden class="slideshow-text container position-absolute start-50 top-50 translate-middle">
                             <h6

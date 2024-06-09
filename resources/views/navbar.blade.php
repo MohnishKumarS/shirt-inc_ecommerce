@@ -32,7 +32,7 @@
 
         <div class="logo">
             <a href="{{url('/')}}">
-                <img src="{{asset('assets/images/logo.png')}}" alt="SHIRT-INC" class="logo__image d-block">
+                <img src="{{asset('assets/images/logo.png')}}" alt="SHIRT-INC" class="logo__image d-block" width="400" height="270">
             </a>
         </div>
 
@@ -42,7 +42,7 @@
                     <a href="{{url('/collections')}}" class="navigation__link">category</a>
                     <div class="box-menu start-0 w-100">
                         <div class="col pe-4 ">
-                            <h6>COLLECTION</h6>
+                            <h6>CATEGORY</h6>
                             <ul class="sub-menu__list list-unstyled">
 
                                 @if (count($category_list) > 0)                                  
@@ -216,7 +216,7 @@
 
         <div class="logo">
             <a href="{{url('/')}}">
-                <img src="{{asset('assets/images/logo.png')}}" alt="SHIRT-INC" class="logo__image d-block">
+                <img src="{{asset('assets/images/logo.png')}}" alt="SHIRT-INC" class="logo__image d-block" width="400" height="270">
             </a>
         </div>
         <a class='header-tools__item header-tools__cart'  title='Cart'  href="{{ url('/my-cart') }}">
