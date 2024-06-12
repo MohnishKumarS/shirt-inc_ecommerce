@@ -25,7 +25,6 @@ CREATE TABLE IF NOT EXISTS `carts` (
   `user_id` varchar(195) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `product_id` varchar(195) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `product_qty` varchar(195) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `product_color` varchar(195) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `product_design` varchar(195) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `product_size` varchar(195) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `mens_size` varchar(195) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -33,12 +32,13 @@ CREATE TABLE IF NOT EXISTS `carts` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=175 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=180 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table eshop.carts: ~2 rows (approximately)
-INSERT INTO `carts` (`id`, `user_id`, `product_id`, `product_qty`, `product_color`, `product_design`, `product_size`, `mens_size`, `womens_size`, `created_at`, `updated_at`) VALUES
-	(170, '1', '89', '1', NULL, NULL, 'L', NULL, NULL, '2024-05-14 07:07:06', '2024-05-14 07:07:06'),
-	(171, '1', '57', '1', NULL, '["blue","half"]', 'L', NULL, NULL, '2024-05-14 07:46:06', '2024-05-14 07:46:06');
+-- Dumping data for table eshop.carts: ~4 rows (approximately)
+INSERT INTO `carts` (`id`, `user_id`, `product_id`, `product_qty`, `product_design`, `product_size`, `mens_size`, `womens_size`, `created_at`, `updated_at`) VALUES
+	(170, '1', '89', '2', NULL, 'L', NULL, NULL, '2024-05-14 07:07:06', '2024-06-12 05:37:22'),
+	(171, '1', '57', '2', '["blue","half"]', 'L', NULL, NULL, '2024-05-14 07:46:06', '2024-06-12 05:37:24'),
+	(179, '2', '88', '4', '["black","sleeve"]', 'L', NULL, NULL, '2024-06-12 05:33:56', '2024-06-12 05:34:22');
 
 -- Dumping structure for table eshop.category
 CREATE TABLE IF NOT EXISTS `category` (
@@ -62,10 +62,10 @@ CREATE TABLE IF NOT EXISTS `category` (
 
 -- Dumping data for table eshop.category: ~6 rows (approximately)
 INSERT INTO `category` (`id`, `name`, `slug`, `desc`, `product_type`, `status`, `popular`, `icon`, `image`, `poster`, `meta_title`, `meta_desc`, `meta_keywords`, `created_at`, `updated_at`) VALUES
-	(1, 'Hoodies', 'hoodies', 'Change Your Perspective Hoodie', '', 0, 1, '1717392498.png', '1707902080.webp', '1698828773.png', 'Change Your Perspective Hoodie', 'Change Your Perspective Hoodie', 'Change Your Perspective Hoodie', '2023-08-16 06:11:02', '2024-06-02 23:58:18'),
-	(2, 'Couple T-Shirts', 'couple-t-shirts', 'Explore couple t shirt online from Be Awara at the best prices. We provide the best quality matching couple t-shirts with unique styles & patterns.', '', 0, 1, '1717400752.png', '1708003051.jpg', '1717575418.webp', NULL, NULL, NULL, '2023-08-16 06:20:18', '2024-06-05 02:46:58'),
-	(6, 'T-shirt', 't-shirt', 'T-shirts', '["Mens","Womens","Unisex"]', 0, 0, '1717397561.png', '1707902171.webp', '1698828104.png', 'T-shirt', 'T-shirt', 'T-shirt', '2023-08-28 05:07:34', '2024-06-03 01:22:41'),
-	(23, 'printed tees', 'printed-tees', 'printed tees', NULL, 1, 1, '1717397434.png', '1710158658.webp', '1710158658.webp', NULL, NULL, NULL, '2024-03-11 06:34:18', '2024-06-05 02:26:21');
+	(1, 'Hoodies', 'hoodies', 'Change Your Perspective Hoodie', '', 0, 0, '1718171062.png', '1718172939.webp', '1698828773.png', 'Change Your Perspective Hoodie', 'Change Your Perspective Hoodie', 'Change Your Perspective Hoodie', '2023-08-16 06:11:02', '2024-06-12 00:45:39'),
+	(2, 'Couple T-Shirts', 'couple-t-shirts', 'Explore couple t shirt online from Be Awara at the best prices. We provide the best quality matching couple t-shirts with unique styles & patterns.', '', 0, 1, '1718171080.png', '1718172479.avif', '1717575418.webp', NULL, NULL, NULL, '2023-08-16 06:20:18', '2024-06-12 00:37:59'),
+	(6, 'T-shirt', 't-shirt', 'T-shirts', '["Mens","Womens","Unisex"]', 0, 0, '1718171007.png', '1718172214.jpg', '1698828104.png', 'T-shirt', 'T-shirt', 'T-shirt', '2023-08-28 05:07:34', '2024-06-12 00:33:34'),
+	(23, 'Printed Tees', 'printed-tees', 'printed tees', NULL, 1, 1, '1718170978.png', '1718172187.gif', '1710158658.webp', NULL, NULL, NULL, '2024-03-11 06:34:18', '2024-06-12 02:22:00');
 
 -- Dumping structure for table eshop.contactuses
 CREATE TABLE IF NOT EXISTS `contactuses` (
@@ -178,9 +178,11 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table eshop.orders: ~0 rows (approximately)
+INSERT INTO `orders` (`id`, `user_id`, `address_id`, `total_price`, `status`, `payment_mode`, `payment_id`, `message`, `tracking_no`, `created_at`, `updated_at`) VALUES
+	(1, 2, 21, 1996, 0, 'NETBANKING', '{"success":true,"code":"PAYMENT_SUCCESS","message":"Your payment is successful.","data":{"merchantId":"PGTESTPAYUAT101","merchantTransactionId":"66697fca54bd1","transactionId":"T2406121631021606665356","amount":100,"state":"COMPLETED","responseCode":"SUCCESS","paymentInstrument":{"type":"NETBANKING","pgTransactionId":"1995464773","pgServiceTransactionId":"PG2212291607083344934300","bankTransactionId":null,"bankId":null,"arn":"12131261"}}}', NULL, 'shirt_inc-9182', '2024-06-12 05:30:46', '2024-06-12 05:30:46');
 
 -- Dumping structure for table eshop.order_item
 CREATE TABLE IF NOT EXISTS `order_item` (
@@ -195,9 +197,11 @@ CREATE TABLE IF NOT EXISTS `order_item` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table eshop.order_item: ~0 rows (approximately)
+INSERT INTO `order_item` (`id`, `order_id`, `product_id`, `quantity`, `price`, `size`, `mens_size`, `womens_size`, `created_at`, `updated_at`) VALUES
+	(1, '1', '89', '4', '499', 'S', NULL, NULL, '2024-06-12 05:30:46', '2024-06-12 05:30:46');
 
 -- Dumping structure for table eshop.password_resets
 CREATE TABLE IF NOT EXISTS `password_resets` (
@@ -267,7 +271,6 @@ CREATE TABLE IF NOT EXISTS `products` (
   `original_price` varchar(195) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `selling_price` varchar(195) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `colors` mediumtext COLLATE utf8mb4_unicode_ci,
   `quantity` varchar(195) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `type` varchar(195) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `design` varchar(195) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -288,53 +291,51 @@ CREATE TABLE IF NOT EXISTS `products` (
 ) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table eshop.products: ~50 rows (approximately)
-INSERT INTO `products` (`id`, `category_id`, `name`, `slug`, `desc`, `original_price`, `selling_price`, `image`, `colors`, `quantity`, `type`, `design`, `designType`, `themes`, `size_list`, `couple_men_size`, `couple_women_size`, `status`, `trending`, `freq_bought`, `offer_menu`, `offer_msg`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(14, '1', 'Otaku Hoodie', 'otaku-hoodie', 'Otaku Hoodie', '999', '599', '1692186155.webp', NULL, '50', 'Mens', NULL, 0, 'the-boys', '["S","M","L","XXL"]', NULL, NULL, '0', '1', '0', '0', 'new', '2023-08-16 06:12:35', '2024-02-15 00:28:17', NULL),
-	(15, '1', 'Law of Water', 'law-of-water', 'Law of Water (Back Print) - Yellow Hoodie', '1999', '1499', '1692186310.webp', NULL, '47', 'Mens', NULL, 0, 'the-boys', '["M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2023-08-16 06:15:10', '2024-02-13 05:37:45', NULL),
-	(16, '1', 'Empathy Hoodie', 'Empathy Hoodie', 'black pullover hoodie, Hoodie T-shirt Tracksuit Bluza Jacket', '888', '499', '1692186379.webp', NULL, '2', 'Unisex', NULL, 0, 'the-boys', '["S","M","L","XXL"]', NULL, NULL, '0', '1', '0', '0', 'new', '2023-08-16 06:16:19', '2023-11-04 03:44:11', NULL),
-	(17, '2', 'Sleep Mode Couple T-Shirt', 'Sleep Mode Couple T-Shirt', 'Vacation Mode - Sleep Mode Couple T-Shirt', '899', '299', '1692186844.jpg', NULL, '3', 'Unisex', NULL, 0, 'superman', '["M","L","XL"]', '["M","L","XL"]', '["S","M"]', '0', '0', '0', '0', 'new', '2023-08-16 06:24:04', '2023-08-31 07:39:07', NULL),
-	(18, '2', 'The Cook The Comali', 'The Cook The Comali', 'The Cook The Comali Couple T-shirt', '699', '199', '1692186942.jpg', NULL, '99', 'Unisex', NULL, 0, 'superman', '["S","L"]', '["M","L","XL"]', '["S"]', '0', '0', '0', '0', 'new', '2023-08-16 06:25:42', '2023-10-12 23:02:59', NULL),
-	(19, '2', 'Sorry - Not Sorry', 'sorry---not-sorry', 'Sorry - Not Sorry Couple T-Shirt', '799', '199', '1692187006.jpg', NULL, '2', 'Unisex', NULL, 0, 'all-superheros', '["S","L"]', '["M","L","XL"]', '["S","M"]', '0', '1', '0', '0', 'new', '2023-08-16 06:26:46', '2024-02-13 05:38:11', NULL),
-	(23, '2', 'Team Bride & Groom Couple T-Shirt', 'Team Bride & Groom Couple T-Shirt', 'Team Bride & Groom Couple T-Shirt', '599', '499', '7700.webp,7515.webp,9576.webp', NULL, '1', 'Unisex', NULL, 0, NULL, '["S","M","L","XXL"]', NULL, NULL, '0', '1', NULL, '0', NULL, '2023-08-25 02:11:17', '2023-08-25 02:11:17', NULL),
-	(30, '2', 'She is Mine He is Mine Printed Couple Tshirts', 'She is Mine He is Mine Printed Couple Tshirts', 'Hangout Hub HH76 She is Mine He is Mine Printed Couple Tshirts', '999', '699', '6806.jpg,1905.jpg,4426.jpg', NULL, '6', 'Unisex', NULL, 0, NULL, '["S"]', '["M","L","XL"]', '["S","M","L","XXL"]', '0', '1', NULL, '1', 'new', '2023-08-28 00:14:16', '2023-11-29 07:11:28', NULL),
-	(33, '2', 'Couple Tshirts for Couples | Printed One Love Heart T-Shirts', 'couple-tshirts-for-couples-|-printed-one-love-heart-t-shirts', 'Couple Tshirts for Couples | Printed One Love Heart T-Shirts', '999', '699', '778.jpg,1200.jpg,1408.jpg', NULL, '2', 'Unisex', NULL, 0, NULL, '["S"]', '["M","L","XL"]', '["S","M"]', '0', '0', '1', '1', 'new', '2023-08-28 00:31:15', '2023-12-16 07:50:39', NULL),
-	(35, '6', 'Bewakoof Men\'s Printed 100% Cotton T-Shirt - Regular Fit, Round Neck,', 'bewakoof-men\'s-printed-100%-cotton-t-shirt---regular-fit,-round-neck,', 'Bewakoof Men\'s Printed 100% Cotton T-Shirt - Regular Fit, Round Neck,', '699', '499', '8652.webp', NULL, '1', 'Mens', NULL, 0, 'cartoons', '["S","M","L","XL","XXL"]', NULL, NULL, '0', '1', '1', '1', 'new', '2023-08-28 05:13:11', '2024-02-15 00:31:11', NULL),
-	(36, '6', 'Toodlegram Plus Size T-Shirt, Pocket Panda Unisex T-Shirt', 'toodlegram-plus-size-t-shirt,-pocket-panda-unisex-t-shirt', 'Toodlegram Plus Size T-Shirt, Pocket Panda Unisex T-Shirt', '799', '588', '6037.png', NULL, '1', 'Unisex', NULL, 0, 'the-boys', '["M","L"]', NULL, NULL, '0', '0', '0', '1', 'new', '2023-08-30 04:55:21', '2024-02-13 05:38:33', NULL),
-	(50, '6', 'Symbol Men\'s Cotton Rich Solid Polo T-Shirt Regular Fit', 'symbol-men\'s-cotton-rich-solid-polo-t-shirt-regular-fit', 'Symbol Men\'s Cotton Rich Solid Polo T-Shirt Regular Fit', '699', '299', '18131.jpg,88947.jpg,8898.jpg', '["white","grey","pink"]', '65', 'Mens', NULL, 0, 'none', '["M","L","XL"]', NULL, NULL, '0', '1', '0', '0', 'new', '2024-02-23 06:49:18', '2024-02-23 06:52:37', NULL),
-	(51, '6', 'Lymio T Shirt for Men || Men T-Shirt', 'lymio-t-shirt-for-men-||-men-t-shirt', 'Lymio T Shirt for Men || Men T-Shirt', '788', '355', '10815.jpg,61598.jpg,39276.jpg', '["Red","Musterd","Navy"]', '23', 'Unisex', NULL, 0, 'none', '["S","M","L"]', NULL, NULL, '0', '1', '0', '0', 'new', '2024-02-23 06:57:37', '2024-02-23 07:38:40', NULL),
-	(56, '23', 'Men\'s Casual Printed Round Neck, Oversized Longline Drop Shoulder', 'men\'s-casual-printed-round-neck,-oversized-longline-drop-shoulder', 'Men\'s Casual Printed Round Neck, Oversized Longline Drop Shoulder', '788', '499', NULL, NULL, '77', 'Unisex', '1710488796.png', 1, 'cartoons', '["M","L","XL","XXL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-03-11 07:36:13', '2024-03-15 02:16:36', NULL),
-	(57, '23', 'Symbol Men\'s Marvel Regular Fit T-Shirt', 'symbol-men\'s-marvel-regular-fit-t-shirt', 'Symbol Men\'s Marvel Regular Fit T-Shirt', '677', '399', '315.webp', NULL, '78', 'Unisex', '1710222448.png', 1, 'cartoons', '["M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-03-12 00:06:51', '2024-03-14 01:09:30', NULL),
-	(58, '23', 'Official Naruto: Itachi Uchiha Men and Boys Oversize Fit Half Sleeve Graphic Printed Cotton', 'official-naruto:-itachi-uchiha-men-and-boys-oversize-fit-half-sleeve-graphic-printed-cotton', 'Official Naruto: Itachi Uchiha Men and Boys Oversize Fit Half Sleeve Graphic Printed Cotton', '788', '399', '5537.jpg', NULL, '99', 'Mens', '1710508201.png', 1, 'cartoons', '["L","XL","XXL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-03-15 02:19:27', '2024-04-20 05:03:12', NULL),
-	(59, '23', 'The Printpack Shinchan Cartoon Printed Half Sleeve Round Neck Boy Girl Dryfit Tshirt', 'the-printpack-shinchan-cartoon-printed-half-sleeve-round-neck-boy-girl-dryfit-tshirt', 'The Printpack Shinchan Cartoon Printed Half Sleeve Round Neck Boy Girl Dryfit Tshirt', '699', '299', NULL, NULL, '67', 'Unisex', '1710492255.png', 1, 'cartoons', '["M","L","XL","XXL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-03-15 02:25:50', '2024-05-07 06:06:35', NULL),
-	(61, '23', 'Ghost Rock Band Black T-Shirt', 'ghost-rock-band-black-t-shirt', 'Ghost Rock Band Black T-Shirt', '677', '299', '39598.png,27834.jpeg', NULL, '78', 'Unisex', NULL, 0, 'the-godfather', '["M","L","XL","XXL"]', NULL, NULL, '0', '1', '0', '0', 'new', '2024-03-15 07:45:06', '2024-04-20 05:38:54', NULL),
-	(62, '23', 'Vivienne Westwood T-Shirt', 'vivienne-westwood-t-shirt', 'Vivienne Westwood T-Shirt', '999', '199', '59866.png,29275.jpg', NULL, '78', 'Unisex', '1710508665.png', 1, 'cartoons', '["S","M","L","XL","XXL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-03-15 07:47:45', '2024-04-20 05:38:55', NULL),
-	(63, '23', 'Bad Cattitude', 'bad-cattitude', 'Bad Cattitude', '899', '497', '7390.png', NULL, '10', 'Unisex', '1713167588.png', 1, 'animal-lover', '["S","M","L"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-15 02:23:08', '2024-04-17 02:53:01', NULL),
-	(64, '23', 'Lacoste', 'lacoste', 'Lacoste', '899', '496', '62113.png', NULL, '10', 'Unisex', '1713178526.png', 1, 'animal-lover', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-15 02:31:29', '2024-04-17 02:52:50', NULL),
-	(65, '23', 'Monkey Style', 'monkey-style', 'Monkey Style', '899', '499', '30465.png', NULL, '10', 'Unisex', '1713168347.png', 1, 'animal-lover', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-15 02:35:47', '2024-04-17 02:52:41', NULL),
-	(66, '23', 'Your the CSS', 'your-the-css', 'Your the CSS', '899', '499', '59172.png', NULL, '10', 'Unisex', '1713180945.png', 1, 'it-guy', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-15 06:05:45', '2024-04-17 02:52:18', NULL),
-	(67, '23', 'Everything is under controle', 'everything-is-under-controle', 'Everything is under controle', '899', '496', '46052.png', NULL, '8', 'Unisex', '1713181090.png', 1, 'it-guy', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-15 06:08:10', '2024-04-17 02:52:08', NULL),
-	(68, '23', 'Stack Overflow', 'stack-overflow', 'Stack Overflow', '899', '496', '92507.png', NULL, '10', 'Unisex', '1713181165.png', 1, 'it-guy', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-15 06:09:25', '2024-04-17 02:51:55', NULL),
-	(69, '23', 'Photography Love', 'photography-love', 'Photography Love', '899', '495', '1005.png', NULL, '10', 'Unisex', '1713181250.png', 1, 'photography', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-15 06:10:50', '2024-04-17 02:51:33', NULL),
-	(70, '23', 'Smile Camera', 'smile-camera', 'Smile Camera', '899', '499', '96786.png', NULL, '7', 'Unisex', '1713181563.png', 1, 'photography', '["S","M","L","XL"]', NULL, NULL, '0', '1', '0', '0', 'new', '2024-04-15 06:16:03', '2024-04-17 02:51:23', NULL),
-	(71, '23', 'What the F', 'what-the-f', 'What the F', '899', '495', '78524.png', NULL, '5', 'Unisex', '1713181753.png', 1, 'photography', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-15 06:19:13', '2024-04-17 02:51:14', NULL),
-	(72, '23', 'Friends Forever', 'friends-forever', 'Friends Forever', '899', '499', '72808.png', NULL, '7', 'Unisex', '1713345460.png', 1, 'alcoholic', '["S","M","L","XL"]', NULL, NULL, '0', '1', '0', '0', 'new', '2024-04-15 06:29:46', '2024-05-07 05:39:21', NULL),
-	(73, '23', 'The Boys', 'the-boys', 'The Boys', '899', '496', '19598.png', NULL, '9', 'Unisex', '1713182599.png', 1, 'alcoholic', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-15 06:33:19', '2024-04-17 02:50:57', NULL),
-	(74, '23', 'you\'re the Sauce to my samosa"', 'you\'re-the-sauce-to-my-samosa"', 'you\'re the Sauce to my samosa"', '899', '499', '82978.png', NULL, '10', 'Unisex', '1713342451.png', 1, 'food', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 02:57:31', '2024-04-17 02:57:31', NULL),
-	(75, '23', 'TEA-RE*', 'tea-re*', 'TEA-RE*', '899', '499', '28707.png', NULL, '10', 'Unisex', '1713342519.png', 1, 'food', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 02:58:39', '2024-04-17 02:58:39', NULL),
-	(76, '23', 'Skip the therapy', 'skip-the-therapy', 'Skip the therapy', '899', '499', '97687.png', NULL, '10', 'Unisex', '1713342695.png', 1, 'food', '["S","M","L"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 03:01:35', '2024-04-17 03:01:35', NULL),
-	(77, '23', 'AM : PM', 'am-:-pm', 'AM : PM', '899', '499', '23639.png', NULL, '9', 'Unisex', '1713345692.png', 1, 'alcoholic', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 03:04:11', '2024-04-17 03:51:32', NULL),
-	(78, '23', 'Friends For Ever', 'friends-for-ever', 'Friends For Ever', '899', '499', '41840.png', NULL, '9', 'Unisex', '1713345713.png', 1, 'alcoholic', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 03:49:03', '2024-04-17 03:51:53', NULL),
-	(79, '23', 'IM EXORCISING', 'im-exorcising', 'IM EXORCISING', '899', '499', '46148.png', NULL, '9', 'Unisex', '1713349060.png', 1, 'gym', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 04:47:40', '2024-04-17 04:47:40', NULL),
-	(80, '23', 'SUMMER BODY', 'summer-body', 'SUMMER BODY', '899', '499', '21689.png', NULL, '9', 'Unisex', '1713349764.png', 1, 'gym', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 04:50:16', '2024-04-17 04:59:24', NULL),
-	(81, '23', 'DEAD LIFT', 'dead-lift', 'DEAD LIFT', '899', '499', '83682.png', NULL, '8', 'Unisex', '1713349336.png', 1, 'gym', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 04:52:16', '2024-05-14 06:58:04', NULL),
-	(82, '23', 'NIGHT RIDER', 'night-rider', 'NIGHT RIDER', '899', '499', '25533.png', NULL, '9', 'Unisex', '1713349571.png', 1, 'gym', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 04:56:11', '2024-04-17 04:56:11', NULL),
-	(83, '23', 'COME ON BOYS', 'come-on-boys', 'COME ON BOYS', '899', '499', '28912.png', NULL, '9', 'Unisex', '1713350276.png', 1, 'travel', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 05:07:56', '2024-04-17 05:07:56', NULL),
-	(84, '23', 'EVOLUTION', 'evolution', 'EVOLUTION', '899', '499', '22880.png', NULL, '9', 'Unisex', '1713350403.png', 1, 'travel', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 05:10:03', '2024-04-17 05:10:03', NULL),
-	(85, '23', 'Yoga Chicks', 'yoga-chicks', 'Yoga Chicks', '899', '499', '26165.png', NULL, '9', 'Unisex', '1713351084.png', 1, 'yoga', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 05:21:24', '2024-05-07 06:24:35', NULL),
-	(86, '23', 'YOGA', 'yoga', 'YOGA', '899', '499', '6112.png', NULL, '7', 'Unisex', '1713351193.png', 1, 'yoga', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 05:23:13', '2024-05-14 06:51:10', NULL),
-	(87, '23', 'PEACE', 'peace', 'PEACE', '899', '499', '9402.png', NULL, '8', 'Unisex', '1713351553.png', 1, 'yoga', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 05:29:13', '2024-05-14 06:51:10', NULL),
-	(88, '23', 'SPIDEY', 'spidey', 'SPIDEY', '899', '499', '84700.png', NULL, '8', 'Unisex', '1713352032.png', 1, 'marvel', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 05:37:12', '2024-05-14 06:51:10', NULL),
-	(89, '23', 'CAPTAIN AMERICA', 'captain-america', 'CAPTAIN AMERICA', '899', '499', '19119.png', NULL, '9', 'Unisex', '1713352428.png', 1, 'marvel', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 05:43:48', '2024-05-07 06:06:27', NULL);
+INSERT INTO `products` (`id`, `category_id`, `name`, `slug`, `desc`, `original_price`, `selling_price`, `image`, `quantity`, `type`, `design`, `designType`, `themes`, `size_list`, `couple_men_size`, `couple_women_size`, `status`, `trending`, `freq_bought`, `offer_menu`, `offer_msg`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(14, '1', 'Otaku Hoodie', 'otaku-hoodie', 'Otaku Hoodie', '999', '599', '1692186155.webp', '50', 'Mens', NULL, 0, 'the-boys', '["S","M","L","XXL"]', NULL, NULL, '0', '1', '0', '0', 'new', '2023-08-16 06:12:35', '2024-02-15 00:28:17', NULL),
+	(15, '1', 'Law of Water', 'law-of-water', 'Law of Water (Back Print) - Yellow Hoodie', '1999', '1499', '1692186310.webp', '47', 'Mens', NULL, 0, 'the-boys', '["M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2023-08-16 06:15:10', '2024-02-13 05:37:45', NULL),
+	(16, '1', 'Empathy Hoodie', 'Empathy Hoodie', 'black pullover hoodie, Hoodie T-shirt Tracksuit Bluza Jacket', '888', '499', '1692186379.webp', '2', 'Unisex', NULL, 0, 'the-boys', '["S","M","L","XXL"]', NULL, NULL, '0', '1', '0', '0', 'new', '2023-08-16 06:16:19', '2023-11-04 03:44:11', NULL),
+	(17, '2', 'Sleep Mode Couple T-Shirt', 'Sleep Mode Couple T-Shirt', 'Vacation Mode - Sleep Mode Couple T-Shirt', '899', '299', '1692186844.jpg', '3', 'Unisex', NULL, 0, 'superman', '["M","L","XL"]', '["M","L","XL"]', '["S","M"]', '0', '0', '0', '0', 'new', '2023-08-16 06:24:04', '2023-08-31 07:39:07', NULL),
+	(18, '2', 'The Cook The Comali', 'The Cook The Comali', 'The Cook The Comali Couple T-shirt', '699', '199', '1692186942.jpg', '99', 'Unisex', NULL, 0, 'superman', '["S","L"]', '["M","L","XL"]', '["S"]', '0', '0', '0', '0', 'new', '2023-08-16 06:25:42', '2023-10-12 23:02:59', NULL),
+	(19, '2', 'Sorry - Not Sorry', 'sorry---not-sorry', 'Sorry - Not Sorry Couple T-Shirt', '799', '199', '1692187006.jpg', '2', 'Unisex', NULL, 0, 'all-superheros', '["S","L"]', '["M","L","XL"]', '["S","M"]', '0', '1', '0', '0', 'new', '2023-08-16 06:26:46', '2024-02-13 05:38:11', NULL),
+	(23, '2', 'Team Bride & Groom Couple T-Shirt', 'Team Bride & Groom Couple T-Shirt', 'Team Bride & Groom Couple T-Shirt', '599', '499', '7700.webp,7515.webp,9576.webp', '1', 'Unisex', NULL, 0, NULL, '["S","M","L","XXL"]', NULL, NULL, '0', '1', NULL, '0', NULL, '2023-08-25 02:11:17', '2023-08-25 02:11:17', NULL),
+	(30, '2', 'She is Mine He is Mine Printed Couple Tshirts', 'She is Mine He is Mine Printed Couple Tshirts', 'Hangout Hub HH76 She is Mine He is Mine Printed Couple Tshirts', '999', '699', '6806.jpg,1905.jpg,4426.jpg', '6', 'Unisex', NULL, 0, NULL, '["S"]', '["M","L","XL"]', '["S","M","L","XXL"]', '0', '1', NULL, '1', 'new', '2023-08-28 00:14:16', '2023-11-29 07:11:28', NULL),
+	(33, '2', 'Couple Tshirts for Couples | Printed One Love Heart T-Shirts', 'couple-tshirts-for-couples-|-printed-one-love-heart-t-shirts', 'Couple Tshirts for Couples | Printed One Love Heart T-Shirts', '999', '699', '778.jpg,1200.jpg,1408.jpg', '2', 'Unisex', NULL, 0, NULL, '["S"]', '["M","L","XL"]', '["S","M"]', '0', '0', '1', '1', 'new', '2023-08-28 00:31:15', '2023-12-16 07:50:39', NULL),
+	(36, '6', 'Toodlegram Plus Size T-Shirt, Pocket Panda Unisex T-Shirt', 'toodlegram-plus-size-t-shirt,-pocket-panda-unisex-t-shirt', 'Toodlegram Plus Size T-Shirt, Pocket Panda Unisex T-Shirt', '799', '588', '29377.webp,23375.webp', '1', 'Unisex', NULL, 0, 'none', '["M","L"]', NULL, NULL, '1', '1', '0', '1', 'new', '2023-08-30 04:55:21', '2024-06-12 02:55:06', NULL),
+	(51, '6', 'Lymio T Shirt for Men || Men T-Shirt', 'lymio-t-shirt-for-men-||-men-t-shirt', 'Lymio T Shirt for Men || Men T-Shirt', '788', '355', '10815.jpg,61598.jpg,39276.jpg', '23', 'Unisex', NULL, 0, 'none', '["S","M","L"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-02-23 06:57:37', '2024-06-12 01:55:33', NULL),
+	(56, '23', 'Men\'s Casual Printed Round Neck, Oversized Longline Drop Shoulder', 'men\'s-casual-printed-round-neck,-oversized-longline-drop-shoulder', 'Men\'s Casual Printed Round Neck, Oversized Longline Drop Shoulder', '788', '499', NULL, '77', 'Unisex', '1710488796.png', 1, 'cartoons', '["M","L","XL","XXL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-03-11 07:36:13', '2024-03-15 02:16:36', NULL),
+	(57, '23', 'Symbol Men\'s Marvel Regular Fit T-Shirt', 'symbol-men\'s-marvel-regular-fit-t-shirt', 'Symbol Men\'s Marvel Regular Fit T-Shirt', '677', '399', '315.webp', '78', 'Unisex', '1710222448.png', 1, 'cartoons', '["M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-03-12 00:06:51', '2024-03-14 01:09:30', NULL),
+	(58, '23', 'Official Naruto: Itachi Uchiha Men and Boys Oversize Fit Half Sleeve Graphic Printed Cotton', 'official-naruto:-itachi-uchiha-men-and-boys-oversize-fit-half-sleeve-graphic-printed-cotton', 'Official Naruto: Itachi Uchiha Men and Boys Oversize Fit Half Sleeve Graphic Printed Cotton', '788', '399', '5537.jpg', '99', 'Mens', '1710508201.png', 1, 'cartoons', '["L","XL","XXL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-03-15 02:19:27', '2024-04-20 05:03:12', NULL),
+	(59, '23', 'The Printpack Shinchan Cartoon Printed Half Sleeve Round Neck Boy Girl Dryfit Tshirt', 'the-printpack-shinchan-cartoon-printed-half-sleeve-round-neck-boy-girl-dryfit-tshirt', 'The Printpack Shinchan Cartoon Printed Half Sleeve Round Neck Boy Girl Dryfit Tshirt', '699', '299', NULL, '67', 'Unisex', '1710492255.png', 1, 'none', '["M","L","XL","XXL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-03-15 02:25:50', '2024-06-12 04:17:33', NULL),
+	(61, '23', 'Ghost Rock Band Black T-Shirt', 'ghost-rock-band-black-t-shirt', 'Ghost Rock Band Black T-Shirt', '677', '299', '39598.png,27834.jpeg', '78', 'Unisex', NULL, 0, 'the-godfather', '["M","L","XL","XXL"]', NULL, NULL, '0', '1', '0', '0', 'new', '2024-03-15 07:45:06', '2024-04-20 05:38:54', NULL),
+	(62, '23', 'Vivienne Westwood T-Shirt', 'vivienne-westwood-t-shirt', 'Vivienne Westwood T-Shirt', '999', '199', '59866.png,29275.jpg', '78', 'Unisex', '1710508665.png', 1, 'cartoons', '["S","M","L","XL","XXL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-03-15 07:47:45', '2024-04-20 05:38:55', NULL),
+	(63, '23', 'Bad Cattitude', 'bad-cattitude', 'Bad Cattitude', '899', '497', '7390.png', '10', 'Unisex', '1713167588.png', 1, 'animal-lover', '["S","M","L"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-15 02:23:08', '2024-04-17 02:53:01', NULL),
+	(64, '23', 'Lacoste', 'lacoste', 'Lacoste', '899', '496', '62113.png', '10', 'Unisex', '1713178526.png', 1, 'animal-lover', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-15 02:31:29', '2024-04-17 02:52:50', NULL),
+	(65, '23', 'Monkey Style', 'monkey-style', 'Monkey Style', '899', '499', '30465.png', '10', 'Unisex', '1713168347.png', 1, 'animal-lover', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-15 02:35:47', '2024-04-17 02:52:41', NULL),
+	(66, '23', 'Your the CSS', 'your-the-css', 'Your the CSS', '899', '499', '59172.png', '10', 'Unisex', '1713180945.png', 1, 'it-guy', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-15 06:05:45', '2024-04-17 02:52:18', NULL),
+	(67, '23', 'Everything is under controle', 'everything-is-under-controle', 'Everything is under controle', '899', '496', '46052.png', '8', 'Unisex', '1713181090.png', 1, 'it-guy', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-15 06:08:10', '2024-04-17 02:52:08', NULL),
+	(68, '23', 'Stack Overflow', 'stack-overflow', 'Stack Overflow', '899', '496', '92507.png', '10', 'Unisex', '1713181165.png', 1, 'it-guy', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-15 06:09:25', '2024-04-17 02:51:55', NULL),
+	(69, '23', 'Photography Love', 'photography-love', 'Photography Love', '899', '495', '1005.png', '10', 'Unisex', '1713181250.png', 1, 'photography', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-15 06:10:50', '2024-04-17 02:51:33', NULL),
+	(70, '23', 'Smile Camera', 'smile-camera', 'Smile Camera', '899', '499', '96786.png', '7', 'Unisex', '1713181563.png', 1, 'photography', '["S","M","L","XL"]', NULL, NULL, '0', '1', '0', '0', 'new', '2024-04-15 06:16:03', '2024-04-17 02:51:23', NULL),
+	(71, '23', 'What the F', 'what-the-f', 'What the F', '899', '495', '78524.png', '5', 'Unisex', '1713181753.png', 1, 'photography', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-15 06:19:13', '2024-04-17 02:51:14', NULL),
+	(72, '23', 'Friends Forever', 'friends-forever', 'Friends Forever', '899', '499', '72808.png', '7', 'Unisex', '1713345460.png', 1, 'alcoholic', '["S","M","L","XL"]', NULL, NULL, '0', '1', '0', '0', 'new', '2024-04-15 06:29:46', '2024-05-07 05:39:21', NULL),
+	(73, '23', 'The Boys', 'the-boys', 'The Boys', '899', '496', '19598.png', '9', 'Unisex', '1713182599.png', 1, 'alcoholic', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-15 06:33:19', '2024-04-17 02:50:57', NULL),
+	(74, '23', 'you\'re the Sauce to my samosa"', 'you\'re-the-sauce-to-my-samosa"', 'you\'re the Sauce to my samosa"', '899', '499', '82978.png', '10', 'Unisex', '1713342451.png', 1, 'food', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 02:57:31', '2024-04-17 02:57:31', NULL),
+	(75, '23', 'TEA-RE*', 'tea-re*', 'TEA-RE*', '899', '499', '28707.png', '10', 'Unisex', '1713342519.png', 1, 'food', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 02:58:39', '2024-04-17 02:58:39', NULL),
+	(76, '23', 'Skip the therapy', 'skip-the-therapy', 'Skip the therapy', '899', '499', '97687.png', '10', 'Unisex', '1713342695.png', 1, 'food', '["S","M","L"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 03:01:35', '2024-04-17 03:01:35', NULL),
+	(77, '23', 'AM : PM', 'am-:-pm', 'AM : PM', '899', '499', '23639.png', '9', 'Unisex', '1713345692.png', 1, 'alcoholic', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 03:04:11', '2024-04-17 03:51:32', NULL),
+	(78, '23', 'Friends For Ever', 'friends-for-ever', 'Friends For Ever', '899', '499', '41840.png', '9', 'Unisex', '1713345713.png', 1, 'alcoholic', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 03:49:03', '2024-04-17 03:51:53', NULL),
+	(79, '23', 'IM EXORCISING', 'im-exorcising', 'IM EXORCISING', '899', '499', '46148.png', '9', 'Unisex', '1713349060.png', 1, 'gym', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 04:47:40', '2024-04-17 04:47:40', NULL),
+	(80, '23', 'SUMMER BODY', 'summer-body', 'SUMMER BODY', '899', '499', '21689.png', '9', 'Unisex', '1713349764.png', 1, 'gym', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 04:50:16', '2024-04-17 04:59:24', NULL),
+	(81, '23', 'DEAD LIFT', 'dead-lift', 'DEAD LIFT', '899', '499', '83682.png', '8', 'Unisex', '1713349336.png', 1, 'gym', '["S","M","L","XL"]', NULL, NULL, '1', '0', '0', '0', 'new', '2024-04-17 04:52:16', '2024-06-12 04:21:35', NULL),
+	(82, '23', 'NIGHT RIDER', 'night-rider', 'NIGHT RIDER', '899', '499', '25533.png', '9', 'Unisex', '1713349571.png', 1, 'gym', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 04:56:11', '2024-04-17 04:56:11', NULL),
+	(83, '23', 'COME ON BOYS', 'come-on-boys', 'COME ON BOYS', '899', '499', '28912.png', '9', 'Unisex', '1713350276.png', 1, 'travel', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 05:07:56', '2024-04-17 05:07:56', NULL),
+	(84, '23', 'EVOLUTION', 'evolution', 'EVOLUTION', '899', '499', '22880.png', '9', 'Unisex', '1713350403.png', 1, 'travel', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 05:10:03', '2024-04-17 05:10:03', NULL),
+	(85, '23', 'Yoga Chicks', 'yoga-chicks', 'Yoga Chicks', '899', '499', '26165.png', '9', 'Unisex', '1713351084.png', 1, 'yoga', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 05:21:24', '2024-05-07 06:24:35', NULL),
+	(86, '23', 'YOGA', 'yoga', 'YOGA', '899', '499', '6112.png', '7', 'Unisex', '1713351193.png', 1, 'yoga', '["S","M","L","XL"]', NULL, NULL, '1', '0', '0', '0', 'new', '2024-04-17 05:23:13', '2024-06-12 02:59:22', NULL),
+	(87, '23', 'PEACE', 'peace', 'PEACE', '899', '499', '9402.png', '8', 'Unisex', '1713351553.png', 1, 'yoga', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 05:29:13', '2024-05-14 06:51:10', NULL),
+	(88, '23', 'SPIDEY', 'spidey', 'SPIDEY', '899', '499', '84700.png', '8', 'Unisex', '1713352032.png', 1, 'marvel', '["S","M","L","XL"]', NULL, NULL, '0', '0', '0', '0', 'new', '2024-04-17 05:37:12', '2024-05-14 06:51:10', NULL),
+	(89, '23', 'CAPTAIN AMERICA', 'captain-america', 'CAPTAIN AMERICA', '899', '499', '19119.png', '5', 'Unisex', '1713352428.png', 1, 'marvel', '["S","M","L","XL"]', NULL, NULL, '1', '0', '0', '0', 'new', '2024-04-17 05:43:48', '2024-06-12 05:30:46', NULL);
 
 -- Dumping structure for table eshop.ratings
 CREATE TABLE IF NOT EXISTS `ratings` (
@@ -403,11 +404,10 @@ CREATE TABLE IF NOT EXISTS `sliders` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table eshop.sliders: ~5 rows (approximately)
+-- Dumping data for table eshop.sliders: ~3 rows (approximately)
 INSERT INTO `sliders` (`id`, `image`, `active`, `timer`, `created_at`, `updated_at`) VALUES
 	(11, '1717575481.webp', 1, 4000, NULL, '2024-06-05 02:48:01'),
-	(12, '1715086223.webp', 1, 3000, NULL, NULL),
-	(13, '1717575443.webp', 1, 4000, NULL, NULL);
+	(12, '1715086223.webp', 1, 3000, NULL, NULL);
 
 -- Dumping structure for table eshop.states
 CREATE TABLE IF NOT EXISTS `states` (
@@ -463,7 +463,7 @@ CREATE TABLE IF NOT EXISTS `subscribes` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table eshop.subscribes: ~14 rows (approximately)
 INSERT INTO `subscribes` (`id`, `email`, `location`, `created_at`, `updated_at`) VALUES
@@ -482,7 +482,8 @@ INSERT INTO `subscribes` (`id`, `email`, `location`, `created_at`, `updated_at`)
 	(13, 'asdsa@ass', NULL, '2023-12-07 05:00:41', '2023-12-07 05:00:41'),
 	(14, 'asdasd@asd', NULL, '2023-12-07 05:02:10', '2023-12-07 05:02:10'),
 	(15, 'adasda@Asda', NULL, '2023-12-18 02:46:46', '2023-12-18 02:46:46'),
-	(16, 'moni@asd', NULL, '2024-02-15 03:07:33', '2024-02-15 03:07:33');
+	(16, 'moni@asd', NULL, '2024-02-15 03:07:33', '2024-02-15 03:07:33'),
+	(17, 'gabodev603@noefa.com', NULL, '2024-06-11 05:48:24', '2024-06-11 05:48:24');
 
 -- Dumping structure for table eshop.themes
 CREATE TABLE IF NOT EXISTS `themes` (
@@ -559,10 +560,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table eshop.users: ~11 rows (approximately)
+-- Dumping data for table eshop.users: ~10 rows (approximately)
 INSERT INTO `users` (`id`, `name`, `email`, `mobile`, `email_verified_at`, `password`, `role`, `remember_token`, `created_at`, `updated_at`, `last_seen`, `deleted_at`) VALUES
-	(1, 'moniz', 'mohnish101998@gmail.com', '9678676558', NULL, '$2y$10$at/CexJaRNEpl4LPfRTlj.KpZz6jkp8pJgLqaccxMZW6ERAsZzj2C', 0, '3VuM9usAshj47rlez6amvDdN5ySC6CLLr1b0zB9bwh8JxIcT27vsNUqGEszi', '2023-07-05 07:18:11', '2024-05-14 07:52:03', '2024-05-14 07:52:03', NULL),
-	(2, 'lee', 'lee', '9678676558', NULL, '$2y$10$rzhnVoJiPxD15euchoXgDOUr/rziUBS1nyYC4LjP5ZO6icJqqUBxy', 1, 'EcMdFUkD687OaWNizxkonUHUrf6y6vPesEcYksdi9aQB7jA5wD3Wr71KwTNz', '2023-07-05 07:57:56', '2024-06-05 02:52:01', '2024-06-05 02:52:01', NULL),
+	(1, 'moniz', 'mohnish101998@gmail.com', '9678676558', NULL, '$2y$10$at/CexJaRNEpl4LPfRTlj.KpZz6jkp8pJgLqaccxMZW6ERAsZzj2C', 0, '3VuM9usAshj47rlez6amvDdN5ySC6CLLr1b0zB9bwh8JxIcT27vsNUqGEszi', '2023-07-05 07:18:11', '2024-06-12 05:48:07', '2024-06-12 05:48:07', NULL),
+	(2, 'lee', 'lee', '9678676558', NULL, '$2y$10$rzhnVoJiPxD15euchoXgDOUr/rziUBS1nyYC4LjP5ZO6icJqqUBxy', 1, 'EcMdFUkD687OaWNizxkonUHUrf6y6vPesEcYksdi9aQB7jA5wD3Wr71KwTNz', '2023-07-05 07:57:56', '2024-06-12 05:34:22', '2024-06-12 05:34:22', NULL),
 	(3, 'san', 'bitow5112s0@ibtrades.com', '9678567567', NULL, '$2y$10$vIqzWoskCIpjv2/bcXoPXekT8RtBc0UnRAG2b8pp05jaJZMgD9YX6', 0, 'v2TV19ciK3cMN8YZolnNuUCcfR68chnn4k4RRKT8rDn70ESmDo5n3wbufCrN', '2023-07-13 07:46:16', '2023-12-18 07:06:52', '2023-12-18 07:06:52', NULL),
 	(4, 'dinu', 'dinu@gmail.com', '9856587456', NULL, '$2y$10$l3GCwjsbxe8AuuivwVLeb.G/16zunplb597534xoJ489BTPCywBE6', 0, NULL, '2023-07-19 05:41:36', '2023-12-26 05:00:19', '2023-12-26 05:00:19', NULL),
 	(5, 'anwar', 'anwar@gmail.com', '1234567894', NULL, '$2y$10$knahZiQSOkVgX8s2R8W.pOAKOdNuikdaGpwHlKS63EPjO6da6Ax8S', 0, NULL, '2023-09-14 03:29:25', '2023-12-18 07:40:56', '2023-12-18 07:40:56', NULL),
@@ -583,11 +584,7 @@ CREATE TABLE IF NOT EXISTS `wishlists` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table eshop.wishlists: ~3 rows (approximately)
-INSERT INTO `wishlists` (`id`, `user_id`, `product_id`, `created_at`, `updated_at`) VALUES
-	(87, '1', '59', '2024-05-10 06:20:38', '2024-05-10 06:20:38'),
-	(89, '1', '89', '2024-05-14 07:02:33', '2024-05-14 07:02:33'),
-	(90, '1', '88', '2024-05-14 07:02:37', '2024-05-14 07:02:37');
+-- Dumping data for table eshop.wishlists: ~1 rows (approximately)
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

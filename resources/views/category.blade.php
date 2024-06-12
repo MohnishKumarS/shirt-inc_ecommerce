@@ -34,9 +34,9 @@
 
             </div>
 
-            <div class="container">
+            <div class="container d-none d-md-block">
                 <div
-                    class="slideshow-pagination slideshow-number-pagination d-flex align-items-center position-absolute bottom-0 mb-5 position-xxl-right-center">
+                    class="slideshow-pagination slideshow-number-pagination d-flex align-items-center position-absolute bottom-0  position-xxl-right-center">
                 </div>
             </div>
         </section>
@@ -57,11 +57,11 @@
                                 class="lookbook-collection__item position-relative flex-grow-1 mb-4 effect border-plus">
                                 <div class="lookbook-collection__item-image">
                                     <img loading="lazy" src="{{ asset('image/category/' . $all_category[0]->image) }}"
-                                        width="690" height="399" alt="">
+                                        width="690" height="399" alt="{{$all_category[0]->image}}">
                                 </div>
                                 <div class="content_abs content_bottom content_left content_bottom-md content_left-md">
-                                    <p class="text-uppercase mb-1 white-color">STARTING AT Rs19</p>
-                                    <h3 class="white-color">{{ $all_category[0]->name }}</h3>
+                                    {{-- <p class="text-uppercase mb-1 white-color">STARTING AT Rs19</p> --}}
+                                    {{-- <h3 class="white-color text-uppercase">{{ $all_category[0]->name }}</h3> --}}
                                 </div>
                             </a>
                         @endif
@@ -70,11 +70,11 @@
                                 class="lookbook-collection__item position-relative flex-grow-1 mb-4 effect border-plus">
                                 <div class="lookbook-collection__item-image">
                                     <img loading="lazy" src="{{ asset('image/category/' . $all_category[1]->image) }}"
-                                        width="690" height="399" alt="">
+                                        width="690" height="399" alt="{{$all_category[1]->image}}">
                                 </div>
                                 <div class="content_abs content_bottom content_left content_bottom-md content_left-md">
-                                    <p class="text-uppercase mb-1 white-color">STARTING AT Rs19</p>
-                                    <h3 class="white-color">{{ $all_category[1]->name }}</h3>
+                                    {{-- <p class="text-uppercase mb-1 white-color">STARTING AT Rs19</p> --}}
+                                    {{-- <h3 class="white-color text-uppercase">{{ $all_category[1]->name }}</h3> --}}
                                 </div>
                             </a>
                         @endif
@@ -86,11 +86,11 @@
                                 class="lookbook-collection__item size-lg position-relative mb-4 effect border-plus">
                                 <div class="lookbook-collection__item-image">
                                     <img loading="lazy" src="{{ asset('image/category/' . $all_category[2]->image) }}"
-                                        width="690" height="826" alt="">
+                                        width="690" height="826" alt="{{$all_category[2]->image}}">
                                 </div>
                                 <div class="content_abs content_bottom content_left content_bottom-md content_left-md">
-                                    <p class="text-uppercase mb-1">STARTİNG AT Rs.39</p>
-                                    <h3>{{ $all_category[2]->name }}</h3>
+                                    {{-- <p class="text-uppercase mb-1">STARTİNG AT Rs.39</p> --}}
+                                    {{-- <h3 class="white-color text-uppercase">{{ $all_category[2]->name }}</h3> --}}
                                 </div>
                             </a>
                         @endif
@@ -103,11 +103,11 @@
                                 class="lookbook-collection__item size-lg position-relative mt-1 mb-4 effect border-plus">
                                 <div class="lookbook-collection__item-image">
                                     <img loading="lazy" src="{{ asset('image/category/' . $all_category[3]->image) }}"
-                                        width="690" height="826" alt="">
+                                        width="690" height="826" alt="{{$all_category[3]->image}}">
                                 </div>
                                 <div class="content_abs content_bottom content_left content_bottom-md content_left-md">
-                                    <p class="text-uppercase mb-1">STARTİNG AT Rs.39</p>
-                                    <h3>{{ $all_category[3]->name }}</h3>
+                                    {{-- <p class="text-uppercase mb-1">STARTİNG AT Rs.39</p> --}}
+                                    {{-- <h3 class="white-color text-uppercase">{{ $all_category[3]->name }}</h3> --}}
                                 </div>
                             </a>
                         @endif
@@ -119,11 +119,11 @@
                                 class="lookbook-collection__item position-relative flex-grow-1 mt-1 mb-4 effect border-plus">
                                 <div class="lookbook-collection__item-image">
                                     <img loading="lazy" src="{{ asset('image/category/' . $all_category[4]->image) }}"
-                                        width="690" height="399" alt="">
+                                        width="690" height="399" alt="{{$all_category[4]->image}}">
                                 </div>
                                 <div class="content_abs content_bottom content_left content_bottom-md content_left-md">
-                                    <p class="text-uppercase mb-1">STARTING AT Rs.19</p>
-                                    <h3>{{ $all_category[4]->name }}</h3>
+                                    {{-- <p class="text-uppercase mb-1">STARTING AT Rs.19</p> --}}
+                                    {{-- <h3 class="white-color text-uppercase">{{ $all_category[4]->name }}</h3> --}}
                                 </div>
                             </a>
                         @endif
@@ -132,11 +132,11 @@
                                 class="lookbook-collection__item position-relative flex-grow-1 mt-1 mb-4 effect border-plus">
                                 <div class="lookbook-collection__item-image">
                                     <img loading="lazy" src="{{ asset('image/category/' . $all_category[5]->image) }}"
-                                        width="690" height="399" alt="">
+                                        width="690" height="399" alt="{{$all_category[5]->image}}">
                                 </div>
                                 <div class="content_abs content_bottom content_left content_bottom-md content_left-md">
-                                    <p class="text-uppercase mb-1">STARTING AT Rs.21</p>
-                                    <h3>{{ $all_category[5]->name }}</h3>
+                                    {{-- <p class="text-uppercase mb-1">STARTING AT Rs.21</p> --}}
+                                    {{-- <h3 class="white-color text-uppercase">{{ $all_category[5]->name }}</h3> --}}
                                 </div>
                             </a>
                         @endif
@@ -148,11 +148,11 @@
                                 class="lookbook-collection__item position-relative flex-grow-1 mt-1 mb-4 effect border-plus">
                                 <div class="lookbook-collection__item-image">
                                     <img loading="lazy" src="{{ asset('image/category/' . $all_category[6]->image) }}"
-                                        width="690" height="399" alt="">
+                                        width="690" height="399" alt="{{$all_category[6]->image}}">
                                 </div>
                                 <div class="content_abs content_bottom content_left content_bottom-md content_left-md">
-                                    <p class="text-uppercase mb-1">STARTING AT Rs19</p>
-                                    <h3>{{ $all_category[6]->name }}</h3>
+                                    {{-- <p class="text-uppercase mb-1">STARTING AT Rs19</p> --}}
+                                    {{-- <h3 class="white-color text-uppercase">{{ $all_category[6]->name }}</h3> --}}
                                 </div>
                             </a>
                         @endif

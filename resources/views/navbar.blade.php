@@ -1,16 +1,14 @@
 <!-- Elements Begin -->
 
-        @php
-        use App\Models\Category;
-        use App\Models\Theme;
-        $category = Category::where('status', 1)
-            ->latest()
-            ->first();
+@php
+    use App\Models\Category;
+    use App\Models\Theme;
+    $category = Category::where('status', 1)->latest()->first();
 
-         $category_list = Category::all();   
-         $theme_list = Theme::all();   
-    @endphp
-    
+    $category_list = Category::all();
+    $theme_list = Theme::all();
+@endphp
+
 <!-- Elements End -->
 
 <!-- Desktop header begin -->
@@ -31,65 +29,68 @@
     <div class="header-desk header-desk_type_1">
 
         <div class="logo">
-            <a href="{{url('/')}}">
-                <img src="{{asset('assets/images/logo.png')}}" alt="SHIRT-INC" class="logo__image d-block" width="400" height="270">
+            <a href="{{ url('/') }}">
+                <img src="{{ asset('assets/images/logo.png') }}" alt="SHIRT-INC" class="logo__image d-block" width="400"
+                    height="270">
             </a>
         </div>
 
         <nav class="navigation">
             <ul class="navigation__list list-unstyled d-flex">
                 <li class="navigation__item">
-                    <a href="{{url('/collections')}}" class="navigation__link">category</a>
+                    <a href="{{ url('/collections') }}" class="navigation__link">category</a>
                     <div class="box-menu start-0 w-100">
                         <div class="col pe-4 ">
                             <h6>CATEGORY</h6>
                             <ul class="sub-menu__list list-unstyled">
 
-                                @if (count($category_list) > 0)                                  
-                                @foreach ($category_list as $item)
+                                @if (count($category_list) > 0)
+                                    @foreach ($category_list as $item)
+                                        <li class="sub-menu__item">
+                                            <a href="{{ url('category/' . $item->slug) }}"
+                                                class="menu-link menu-link_us-s">
+                                                {{ $item->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                @endif
+
+                            </ul>
+                        </div>
+
+                        <div class="col pe-4">
+                            <ul class="sub-menu__list list-unstyled">
                                 <li class="sub-menu__item">
-                                    <a href="{{url('category/'.$item->slug)}}" class="menu-link menu-link_us-s">
-                                        {{ $item->name}}
-                                    </a>
-                                </li>
-                                @endforeach
-                                @endif
-                                                                                          
-                            </ul>
-                        </div>
-                
-                        <div class="col pe-4">
-                            <ul class="sub-menu__list list-unstyled">
-                            <li class="sub-menu__item">
-                                    <img src="<?= $url ?>assets/images/mocks/slider/1.png"/>
+                                    <img src="<?= $url ?>assets/images/mocks/slider/1.png" />
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </li>
                 <li class="navigation__item">
-                    <a href="{{url('themes')}}" class="navigation__link">Themes</a>
+                    <a href="{{ url('themes') }}" class="navigation__link">Themes</a>
                     <div class="box-menu start-0 w-100">
-                    
+
                         <div class="col pe-4">
                             <ul class="sub-menu__list list-unstyled">
                                 @php
                                     $i = 0;
                                 @endphp
-                                @if (count($theme_list) > 0)                                  
-                                @foreach ($theme_list as $item)
-                                    @if ($i < 5)
-                                    <li class="sub-menu__item">
-                                        <a href="{{url('themes/'.$item->slug)}}" class="menu-link menu-link_us-s">
-                                            {{ $item->name}}
-                                        </a>
-                                    </li>
-                                    @endif
+                                @if (count($theme_list) > 0)
+                                    @foreach ($theme_list as $item)
+                                        @if ($i < 5)
+                                            <li class="sub-menu__item">
+                                                <a href="{{ url('themes/' . $item->slug) }}"
+                                                    class="menu-link menu-link_us-s">
+                                                    {{ $item->name }}
+                                                </a>
+                                            </li>
+                                        @endif
 
-                                    @php
-                                        $i++;
-                                    @endphp
-                                @endforeach
+                                        @php
+                                            $i++;
+                                        @endphp
+                                    @endforeach
                                 @endif
 
                             </ul>
@@ -99,28 +100,29 @@
                                 @php
                                     $i = 0;
                                 @endphp
-                                @if (count($theme_list) > 4)                                  
-                                @foreach ($theme_list as $item)
-                                    @if ($i > 4)
-                                    <li class="sub-menu__item">
-                                        <a href="{{url('themes/'.$item->slug)}}" class="menu-link menu-link_us-s">
-                                            {{ $item->name}}
-                                        </a>
-                                    </li>
-                                    @endif
+                                @if (count($theme_list) > 4)
+                                    @foreach ($theme_list as $item)
+                                        @if ($i > 4)
+                                            <li class="sub-menu__item">
+                                                <a href="{{ url('themes/' . $item->slug) }}"
+                                                    class="menu-link menu-link_us-s">
+                                                    {{ $item->name }}
+                                                </a>
+                                            </li>
+                                        @endif
 
-                                    @php
-                                        $i++;
-                                    @endphp
-                                @endforeach
+                                        @php
+                                            $i++;
+                                        @endphp
+                                    @endforeach
                                 @endif
 
                             </ul>
                         </div>
                         <div class="col pe-4">
                             <ul class="sub-menu__list list-unstyled">
-                            <li class="sub-menu__item">
-                                    <img src="<?= $url ?>assets/images/mocks/slider/1.png"/>
+                                <li class="sub-menu__item">
+                                    <img src="<?= $url ?>assets/images/mocks/slider/1.png" />
                                 </li>
                             </ul>
                         </div>
@@ -128,10 +130,10 @@
                 </li>
 
                 <li class="navigation__item">
-                    <a href="{{url('new-arrival')}}" class="navigation__link">New Arrival</a>
+                    <a href="{{ url('new-arrival') }}" class="navigation__link">New Arrival</a>
                 </li>
-        
-        
+
+
                 @if ($category)
                     <li class="navigation__item">
                         <a href="{{ url('category/' . $category->slug) }}"
@@ -149,7 +151,8 @@
 
         <div class="header-tools d-flex align-items-center">
 
-            <form action="{{ url('search-product') }}" method="POST" class="header-search search-field d-none d-xxl-flex mx-4">
+            <form action="{{ url('search-product') }}" method="POST"
+                class="header-search search-field d-none d-xxl-flex mx-4">
                 @csrf
                 <input class="header-search__input w-100" type="text" name="search_item" id="search-product-list"
                     placeholder="Search products...">
@@ -171,25 +174,34 @@
                 @endauth
             </div>
 
-            <a href="{{url('profile/wishlist')}}" title="Wishlist" class="header-tools__item header-tools__cart">
+            <a href="{{ url('profile/wishlist') }}" title="Wishlist" class="header-tools__item header-tools__cart">
                 <img src="{{ asset('assets/icons/icon_heart.svg') }}" alt="User Icon">
                 <span class='cart-amount d-block position-absolute js-wishlist-count'>0</span>
             </a>
 
-            <a class='header-tools__item header-tools__cart'  title='Cart'  href="{{ url('/my-cart') }}">
-                <img src='{{asset('assets/icons/icon_cart.svg')}}' alt='cart Icon'>
-                    <span class='cart-amount d-block position-absolute js-cart-items-count'>0</span>
-                </a>
-                <a class="header-tools__item" href="#" data-bs-toggle="modal" data-bs-target="#siteMap">
-                    <svg class="nav-icon" width="25" height="18" viewBox="0 0 25 18" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="25" height="2" />
-                        <rect y="8" width="20" height="2" />
-                        <rect y="16" width="25" height="2" />
-                    </svg>
-                </a>
+            <a class='header-tools__item header-tools__cart' title='Cart' href="{{ url('/my-cart') }}">
+                <img src='{{ asset('assets/icons/icon_cart.svg') }}' alt='cart Icon'>
+                <span class='cart-amount d-block position-absolute js-cart-items-count'>0</span>
+            </a>
+            <a class="header-tools__item" href="#" data-bs-toggle="modal" data-bs-target="#siteMap">
+                <svg class="nav-icon" width="25" height="18" viewBox="0 0 25 18"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <rect width="25" height="2" />
+                    <rect y="8" width="20" height="2" />
+                    <rect y="16" width="25" height="2" />
+                </svg>
+            </a>
         </div>
     </div>
+    <!-- bottom Bar -->
+    <div class="bottombar">
+        <h5 class="txt-pop">
+            <span class="txt-rotate" data-period="2000"
+              data-rotate='[ "✨ Amazing Offer: Buy 3, Get 1 Free! ✨", "✨ Welcome Bonus: Enjoy 10% Off Your First Order! ✨" ]'></span>
+          </h5>
+    </div>
 </header>
+
 <!-- Desktop header end -->
 
 <!-- Mobile header begin -->
@@ -215,17 +227,24 @@
         </a>
 
         <div class="logo">
-            <a href="{{url('/')}}">
-                <img src="{{asset('assets/images/logo.png')}}" alt="SHIRT-INC" class="logo__image d-block" width="400" height="270">
+            <a href="{{ url('/') }}">
+                <img src="{{ asset('assets/images/logo.png') }}" alt="SHIRT-INC" class="logo__image d-block"
+                    width="400" height="270">
             </a>
         </div>
-        <a class='header-tools__item header-tools__cart'  title='Cart'  href="{{ url('/my-cart') }}">
-            <img src='{{asset('assets/icons/icon_cart.svg')}}' alt='cart Icon'>
-                <span class='cart-amount d-block position-absolute js-cart-items-count '>0</span>
-            </a>
+        <a class='header-tools__item header-tools__cart' title='Cart' href="{{ url('/my-cart') }}">
+            <img src='{{ asset('assets/icons/icon_cart.svg') }}' alt='cart Icon'>
+            <span class='cart-amount d-block position-absolute js-cart-items-count '>0</span>
+        </a>
 
     </div>
-
+    <!-- bottom Bar -->
+    <div class="bottombar">
+        <h5 class="txt-pop">✨
+            <span class="txt-rotate" data-period="2000"
+              data-rotate='[ " Amazing Offer: Buy 3, Get 1 Free! ✨", " Welcome Bonus: Enjoy 10% Off Your First Order! ✨" ]'></span>
+          </h5>
+    </div>
     <nav
         class="header-mobile__navigation navigation d-flex flex-column w-100 position-absolute top-100 bg-body overflow-auto">
 
@@ -246,17 +265,18 @@
                                 &nbsp; Category
                             </a>
                             <ul class="list-unstyled">
-                            
-                                @if (count($category_list) > 0)                                  
-                                @foreach ($category_list as $item)
-                                <li class="sub-menu__item">
-                                    <a href="{{url('category/'.$item->slug)}}" class="menu-link menu-link_us-s">
-                                        {{ $item->name}}
-                                    </a>
-                                </li>
-                                @endforeach
+
+                                @if (count($category_list) > 0)
+                                    @foreach ($category_list as $item)
+                                        <li class="sub-menu__item">
+                                            <a href="{{ url('category/' . $item->slug) }}"
+                                                class="menu-link menu-link_us-s">
+                                                {{ $item->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
                                 @endif
-                                
+
                             </ul>
                         </div>
                     </li>
@@ -273,15 +293,16 @@
                                 &nbsp; Themes
                             </a>
                             <ul class="list-unstyled">
-                            
-                                @if (count($theme_list) > 0)                                  
-                                @foreach ($theme_list as $item)
-                                <li class="sub-menu__item">
-                                    <a href="{{url('themes/'.$item->slug)}}" class="menu-link menu-link_us-s">
-                                        {{ $item->name}}
-                                    </a>
-                                </li>
-                                @endforeach
+
+                                @if (count($theme_list) > 0)
+                                    @foreach ($theme_list as $item)
+                                        <li class="sub-menu__item">
+                                            <a href="{{ url('themes/' . $item->slug) }}"
+                                                class="menu-link menu-link_us-s">
+                                                {{ $item->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
                                 @endif
 
                             </ul>
@@ -289,28 +310,28 @@
                     </li>
 
                     <li class="navigation__item">
-                        <a href="{{url('/new-arrival')}}" class="navigation__link">new arrival</a>
+                        <a href="{{ url('/new-arrival') }}" class="navigation__link">new arrival</a>
                     </li>
 
-                
+
                     @if ($category)
-                    <li class="navigation__item">
-                        <a href="{{ url('category/' . $category->slug) }}"
-                            class="navigation__link">{{ $category->name }}
-                            <span class='align-middle'>
-                                <img src="{{ asset('image/gif/gif3.gif') }}" width="30" style="object-fit: contain"
-                                    alt="new-trendy" loading="lazy">
-                            </span>
-                        </a>
-                    </li>
-                @endif
+                        <li class="navigation__item">
+                            <a href="{{ url('category/' . $category->slug) }}"
+                                class="navigation__link">{{ $category->name }}
+                                <span class='align-middle'>
+                                    <img src="{{ asset('image/gif/gif3.gif') }}" width="30"
+                                        style="object-fit: contain" alt="new-trendy" loading="lazy">
+                                </span>
+                            </a>
+                        </li>
+                    @endif
 
                     <li class="navigation__item">
-                        <a href="{{url('/about-us')}}" class="navigation__link">About</a>
+                        <a href="{{ url('/about-us') }}" class="navigation__link">About</a>
                     </li>
 
                     <li class="navigation__item">
-                        <a href="{{url('/contact')}}" class="navigation__link">Contact</a>
+                        <a href="{{ url('/contact') }}" class="navigation__link">Contact</a>
                     </li>
 
                     @auth
@@ -322,11 +343,9 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
-
-                        @else
-
+                    @else
                         <li class="navigation__item">
-                            <a href="{{route('login')}}" class="navigation__link">Login/Register</a>
+                            <a href="{{ route('login') }}" class="navigation__link">Login/Register</a>
                         </li>
 
                     @endauth

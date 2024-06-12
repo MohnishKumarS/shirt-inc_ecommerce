@@ -27,10 +27,10 @@ return new class extends Migration
             $table->string('size_list');
             $table->string('couple_men_size');
             $table->string('couple_women_size');
-            $table->string('status');
-            $table->string('trending');
-            $table->string('freq_bought');
-            $table->string('offer_menu');
+            $table->tinyInteger('status')->default('0');
+            $table->tinyInteger('trending')->default('0');
+            $table->tinyInteger('freq_bought')->default('0');
+            $table->tinyInteger('offer_menu')->default('0');
             $table->string('offer_msg');
             $table->timestamps();
         });

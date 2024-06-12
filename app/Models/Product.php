@@ -11,8 +11,8 @@ class Product extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = 'products';
-    protected $fillable = ['category_id','name','slug','desc','original_price','selling_price','image','quantity','colors'
-    ,'size_list','couple_men_size','couple_women_size','type','design', 'designType','themes','status','trending','freq_bought','offer_menu','offer_msg'];
+    protected $fillable = ['category_id','name','slug','desc','original_price','selling_price','image','quantity',
+    'size_list','couple_men_size','couple_women_size','type','design', 'designType','themes','status','trending','freq_bought','offer_menu','offer_msg'];
 
 
     // ----------- relationship ----

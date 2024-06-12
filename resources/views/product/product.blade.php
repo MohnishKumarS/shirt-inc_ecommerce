@@ -72,13 +72,13 @@
 
                             <div>
                                 <div class="d-flex justify-content-between">
-                                    <h5 class="sidebar-head top">Filters</h5>
+                                    <h5 class="sidebar-head">Filters</h5>
                                     <div>
                                         <a href="{{ URL::current() }}" class="clear-all text-danger">Clear all</a>
                                     </div>
                                 </div>
                                 <div class="dash-border-line mt-2"></div>
-                                <h6 class="sidebar-head">Gender</h6>
+                                {{-- <h6 class="sidebar-head">Gender</h6>
                                 <div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="pro_type" value="mens"
@@ -102,9 +102,9 @@
                                             unisex
                                         </label>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
-                            <hr>
+                            
                             <div>
                                 <h6 class="sidebar-head">Themes</h6>
                                 <div>
@@ -216,7 +216,7 @@
                         </div>
                     </div>
                 @else
-                    <div class="products-grid row row-cols-1 row-cols-xl-4 row-cols-lg-3 row-cols-md-3  row-cols-sm-2 gy-4"
+                    <div class="products-grid row row-cols-2 row-cols-xl-4 row-cols-lg-3 row-cols-md-3 gy-4"
                         id="products-grid">
 
                         {{-- ----------   VIEW ALL PRODUCTS TO SHOW ------------- --}}
@@ -281,12 +281,12 @@
 
 
                                                 </div>
-                                                <span class="pc__img-prev">
+                                                {{-- <span class="pc__img-prev">
                                                     <?= $icon_left_chevron ?>
                                                 </span>
                                                 <span class="pc__img-next">
                                                     <?= $icon_right_chevron ?>
-                                                </span>
+                                                </span> --}}
                                             </div>
                                             <button
                                                 class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-addToCart"

@@ -60,11 +60,40 @@
 }
 
 .product-single__designImgs .design-image {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  width: 140px;
-  height: 140px;
-  object-fit: contain;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+}
+
+/* PAGINATE */
+.w-5 {
+    width: 3% !important;
+}
+
+.paginate-pro .flex {
+    height: 5% !important;
+}
+
+.paginate-pro .text-sm {
+    display: initial;
+}
+
+.paginate-pro nav>div {
+    margin-bottom: 10px;
+}
+
+.paginate-pro nav p {
+    display: inline-block !important;
+}
+
+.paginate-pro nav a:hover {
+    color: #1697dc;
+}
+
+.paginate-pro nav>div:first-child {
+    display: none;
 }

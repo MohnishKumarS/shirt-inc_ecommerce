@@ -53,7 +53,7 @@
                             </div>
                         </div>
                         <div class="dash-border-line mt-2"></div>
-                        <h6 class="sidebar-head">Gender</h6>
+                        {{-- <h6 class="sidebar-head">Gender</h6>
                         <div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="pro_type"
@@ -80,9 +80,9 @@
                                     unisex
                                 </label>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
-                    <hr>
+                
                     <div>
                         <h6 class="sidebar-head">Themes</h6>
                         <div>
@@ -197,7 +197,7 @@
         </div>
     @else
         
-    <div class="products-grid row row-cols-1 row-cols-xl-4 row-cols-lg-3 row-cols-md-3  row-cols-sm-2 gy-4" id="products-grid">
+    <div class="products-grid row row-cols-2 row-cols-xl-4 row-cols-lg-3 row-cols-md-3  gy-4" id="products-grid">
    
                {{-- ----------   VIEW ALL PRODUCTS TO SHOW ------------- --}}
 
@@ -239,16 +239,14 @@
                     @endif
                    </a>
                </div>
-         
-             
             
            </div>
-           <span class="pc__img-prev">
+           {{-- <span class="pc__img-prev">
                <?= $icon_left_chevron ?>
            </span>
            <span class="pc__img-next">
                <?= $icon_right_chevron ?>
-           </span>
+           </span> --}}
        </div>
        <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-addToCart"  title="Add To Cart">Add To Cart</button>
    </div>

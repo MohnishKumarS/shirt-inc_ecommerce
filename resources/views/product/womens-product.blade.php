@@ -119,12 +119,12 @@
 
 
                                     </div>
-                                    <span class="pc__img-prev">
+                                    {{-- <span class="pc__img-prev">
                                         <?= $icon_left_chevron ?>
                                     </span>
                                     <span class="pc__img-next">
                                         <?= $icon_right_chevron ?>
-                                    </span>
+                                    </span> --}}
                                 </div>
                                 <button
                                     class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-addToCart "

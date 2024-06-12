@@ -116,8 +116,8 @@
                         <p class="text-sm text-normal">Go find the product you like. Looks like you haven't
                             made your choice yet... </p>
                         <div class="mt-4">
-                            <a href="{{ url('/collections') }}" class="btn-float d-inline-block"> <i
-                                    class="fa-solid fa-bag-shopping me-1"></i> Go Shopping....</a>
+                            <a href="{{ url('/collections') }}" class="btn btn-primary"> <i
+                                    class="fa-solid fa-bag-shopping me-1"></i> Go to Shop</a>
                         </div>
                     </div>
                 </div>

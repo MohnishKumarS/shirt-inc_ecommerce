@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="col">
                                     <div>
-                                        <button type="button" class="btn-prime" data-bs-toggle="modal"
+                                        <button type="button" class="btn btn-info" data-bs-toggle="modal"
                                             data-bs-target="#staticBackdrop">
                                             + Add new address
                                         </button>
@@ -237,8 +237,9 @@
                                         <th class="bg-light text-primary">Price</th>
                                     </tr>
                                     @php
-                                        $total = 0;
+                                        $totalAmount = 0;
                                         $cartQty = 0;
+                                        $OfferTotal = 0;
                                     @endphp
                                     @foreach ($cart as $item)
                                         @php
@@ -254,7 +255,7 @@
 
                                             .product-single__designImgs .typeImg {
                                                 width: 85px;
-                                                margin:auto
+                                                margin: auto
                                             }
 
                                             .product-single__designImgs .design-image {
@@ -342,20 +343,41 @@
 
                                         </tr>
                                         @php
-                                            $total = $total + $item->product_qty * $item->product->selling_price;
+                                            $totalAmount += $item->product_qty * $item->product->selling_price;
                                             $cartQty += $item->product_qty;
                                         @endphp
                                     @endforeach
+
+                                    {{-- // offer price --}}
+                                    @php
+                                        $check_old_order = App\Models\Order::where('user_id', Auth::id())->get();
+                                        $OfferTotal = $totalAmount;
+                                        $discountedAmount = 0;
+                                    @endphp
+                                    @if (count($check_old_order) == 0)
+                                        @php
+                                            $OfferTotal = round($OfferTotal * 0.9);
+                                            $discountedAmount += round($OfferTotal * 0.1);
+                                        @endphp
+                                    @endif
+                                    @if (count($cart) > 3 || $cartQty > 3)
+                                        @php
+                                            $OfferTotal = $OfferTotal - 499;
+                                            $discountedAmount += 499;
+                                        @endphp
+                                    @endif
+
+                                    @if ($discountedAmount)
+                                        <tr>
+                                            <td>Discount</td>
+                                            <td colspan="3" class="text-end">
+                                                <span class="text-success fw-bold">₹ {{$discountedAmount}} OFF</span>
+                                            </td>
+                                        </tr>
+                                    @endif
                                     <tr class="fw-bold">
                                         <td>Total</td>
-                                        <td colspan="3" class="text-end">
-                                            @if (count($cart) > 3 || $cartQty > 3)
-                                           <span class="alert-success px-1 me-1"> - 499 </span> ₹ {{ $total - 499 }}
-                                            @else
-                                            ₹ {{ $total }}
-                                            @endif
-                                            
-                                        </td>
+                                        <td colspan="3" class="text-end"> ₹ {{ $OfferTotal }} </td>
                                     </tr>
 
                                 </table>

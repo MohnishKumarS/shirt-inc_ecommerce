@@ -57,6 +57,7 @@
                             $cartTotal = 0;
                             $radioIndex = 0;
                             $cartQty = 0;
+                            $discountedTotal = 0;
                           @endphp
                         @foreach ($cart as $val)
                         @php
@@ -70,10 +71,7 @@
 
                             $cartQty += $val->product_qty;
 
-                            // -------- discount amount 
-                            // $discount_off = $cartTotal - 499;
-                            
-                            // $cart_color = $val->product_color ? json_decode($val->product_color) : '';
+                            // -------- cart design  
                             $cart_design = $val->product_design ? json_decode($val->product_design) : ['red','half'];
                         @endphp
                            
@@ -90,7 +88,6 @@
 
                                                             }
                                             </style>
-                                            {{-- <img loading="lazy" src="{{ asset('image/product/' . $img[$cart_color[0]]) }}" width="120" height="120" alt="cart-product"> --}}
                                             @if ($val->product->designType)
                                             <div class="product-single__designImgs">
                                                 <img src="{{asset('image/design/Tshirt-grey.png')}}" class="typeImg @if($cart_design[0] == 'grey' && $cart_design[1] == 'half') active @endif"  data-color="grey" data-type="half">
@@ -241,31 +238,7 @@
 
 
                                                 </div>
-                                                  {{-- -------- product  colors-------- --}}
-                                              {{-- @if ($colors)
-                                              <div class="mt-2">                              
-                                              <label for="" class="text-sm">Colors <span
-                                                  class="text-danger">*</span></label>
-                                                 
-                                              <div class="row">
-                                                  <div class="col-12 col-lg-6">
-                                                      <input type="hidden" value="{{ json_encode($img) }}" class="js-color-img">
-                                                      <select class="form-select js-color-change"
-                                                          required>
-                                                          <option selected value="">Choose color </option>
-                                                     
-                                                          @foreach ($colors as $key=>$value)
-                                                              <option value="{{ $key . ':' . $value }}"
-                                                                @if($cart_color)  {{ $cart_color[1] == $value ? 'selected' : '' }} @endif>
-                                                                  {{ $value }}</option>
-                                                          @endforeach
-
-                                                      </select>
-
-                                                  </div>
-                                              </div>
-                                          </div>
-                                              @endif --}}
+                            
                                               
                                             </ul>
                                         </div>
@@ -293,31 +266,6 @@
                                         </a>
                                     </td>
                                 </tr>
-
-                                <script>
-                                    //    function callActiveDesign(){
-                                    //     var productImages = document.querySelectorAll('#pro-id-{{$val->product->id}} .product-single__designImgs .typeImg');
-                                    //     // console.log(productImages);
-                                    //    var productDesign = {!! json_encode($cart_design) !!};
-                                    //     //  console.log(productDesign);
-                                    //      if(productDesign){
-                                    //         designSetActive(productDesign[0],productDesign[1])
-                                    //      }
-                                    //      function designSetActive(color,style){
-                                    //         console.log(color,style);
-                                    //         productImages.forEach(function(img){
-                                    //             // Show images with the same color and type, hide others
-                                    //             if(img.getAttribute('data-color') === color && img.getAttribute('data-type') === style){
-                                    //                 img.classList.add('active');
-                                    //             }else{
-                                    //                 img.classList.remove('active');
-                                    //             }
-                                    //         })
-
-                                    //     }
-                                    //    };callActiveDesign()
-
-                                </script>
 
                         @endforeach
 
@@ -365,26 +313,43 @@
                                         FREE
                                     </td>
                                 </tr>
+                                @php
+                                    $check_old_order = App\Models\Order::where('user_id',Auth::id())->get();
+                                    $discountedTotal = $cartTotal;
+                                @endphp
+
+                                @if (count($check_old_order) == 0)
+                                <tr>
+                                    <th>New User 10% OFF</th>
+                                    <td class="text-success">
+                                        <div>
+                                            Rs.{{  round($cartTotal * 0.1) }}
+                                            @php
+                                                $discountedTotal = round($discountedTotal * 0.9);
+                                            @endphp
+                                        </div>
+                                        
+                                    </td>
+                                </tr>
+                                @endif
+                          
                                 <tr>
                                     <th>Our Discount</th>
-                                    <td>
+                                    <td class="text-success">
                                         @if (count($cart) > 3  || $cartQty > 3)
                                         Rs.499 
+                                        @php
+                                            $discountedTotal = $discountedTotal - 499;
+                                        @endphp
                                         @else
                                         Rs.0
                                         @endif
-                                        
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Total</th>
-                                    <td>
-                                        @if (count($cart) > 3 || $cartQty > 3)
-                                        Rs.{{ $cartTotal - 499 }}
-                                        @else
-                                        Rs.{{ $cartTotal }}
-                                        @endif
-                                       
+                                    <td >
+                                      Rs.{{$discountedTotal}}
                                     </td>
                                 </tr>
                             </tbody>
@@ -425,15 +390,6 @@
 @push('scripts')
 <script>
 
-      // ---- product fixed design image and change image depends on color
-    
-    //   $(document).on('change','#product-style',function(e){
-    //     e.preventDefault();
-    //     $pro_id = $(this).closest('.product-data').find('.product_id').val();
-    //     $pro_color = $(this).closest('.product-data').find('#product-color').val();
-    //     $pro_style = $(this).val();
-    //     console.log($pro_color);
-    //   })
 // ----- change and update design style in CART PAGE -----
       function changeDesign(productId){
         $pro_id = productId;
@@ -472,41 +428,6 @@
         })
 
     }
-
-// ------ product design type selection ------
-// document.addEventListener('DOMContentLoaded', function() {
-//   const checkedColor = $('input[name="color"]:checked').val();
-//     const checkedStyle = $('#product-style').val();
-//     const productImages = document.querySelectorAll('.product-single__designImgs .typeImg');
-    
-//     const colorRadios  = document.querySelectorAll('input[name="color"]');
-//     const styleOptions = document.getElementById('product-style');
-
-//     // Add change event listener to the select product style 
-//    if(styleOptions){
-//     styleOptions.addEventListener('change',function(){
-//         const selectedStyle = styleOptions.value;
-//         const selectedColor = $('input[name="color"]:checked').val();
-//         designSetActive(selectedColor,selectedStyle);
-//     })
-//    }
-
-//     // Add change event listener to each radio button
-//     colorRadios.forEach((radio) => {
-//         radio.addEventListener('change',function(){
-//             const selectedColor  = this.value;
-//             const selectedStyle = $('#product-style').val();
-//             designSetActive(selectedColor,selectedStyle);
-//         })
-//     });
-    
-
-//     designSetActive(checkedColor, checkedStyle);
-
-
-
-
-// });
 
 </script>
 @endpush

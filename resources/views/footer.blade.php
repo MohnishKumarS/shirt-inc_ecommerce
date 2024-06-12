@@ -621,8 +621,8 @@
         @endif
       </div>
       <div class="message">
-        <h5>Placed order</h5>
-        <p><a href="{{url('category/'.$notify->category->slug.'/'.$notify->slug)}}">{{$notify->name}}</a><b>🎉🎉 GRAB NOW</b> </p>
+        <h5>ORDER NOW</h5>
+        <p><a href="{{url('category/'.$notify->category->slug.'/'.$notify->slug)}}">{{$notify->name}}</a><b>🎉🎉 Show NOW</b> </p>
       </div>
     </div>
   </div>

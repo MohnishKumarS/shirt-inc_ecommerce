@@ -36,9 +36,9 @@
 
             </div>
 
-            <div class="container">
+            <div class="container d-none d-md-block">
                 <div
-                    class="slideshow-pagination slideshow-number-pagination d-flex align-items-center position-absolute bottom-0 mb-5 position-xxl-right-center">
+                    class="slideshow-pagination slideshow-number-pagination d-flex align-items-center position-absolute bottom-0  position-xxl-right-center">
                 </div>
             </div>
         </section>
