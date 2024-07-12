@@ -26,7 +26,7 @@
                 
                 <div class="tab-pane fade show active" id="tab-item-login" role="tabpanel" aria-labelledby="login-tab">
                     <div class="login-form">
-                        <form name="login-form" method="POST" action="{{ route('login') }}" class="needs-validation" novalidate>
+                        <form name="login-form" method="POST" action="{{ route('login') }}" class="needs-validation" novalidate autocomplete="off">
                             @csrf
                              {{-- -- error display message --- --}}
                              @error('email')
@@ -34,9 +34,9 @@
                                  <strong>Login failed!</strong> Incorrect email or password. <i
                                      class="fa-solid fa-circle-exclamation fs-6 ms-1"></i>
                              </div>
-                         @enderror
+                            @enderror
                             <div class="form-floating mb-3">
-                                <input name="email" type="text" class="form-control form-control_gray"
+                                <input name="email" type="text" class="form-control form-control_gray" autocomplete="email"
                                     id="customerNameEmailInput1" placeholder="Email address *" required>
                                 <label for="customerNameEmailInput1">Email address *</label>
                             </div>
@@ -44,7 +44,7 @@
                             <div class="pb-3"></div>
 
                             <div class="form-floating mb-3">
-                                <input name="password" type="password" class="form-control form-control_gray"
+                                <input name="password" type="password" class="form-control form-control_gray" autocomplete="current-password"
                                     id="customerPasswodInput" placeholder="Password *" required>
                                 <label for="customerPasswodInput">Password *</label>
                             </div>
@@ -73,10 +73,10 @@
 
                 <div class="tab-pane fade" id="tab-item-register" role="tabpanel" aria-labelledby="register-tab">
                     <div class="register-form">
-                        <form name="register-form" class="needs-validation" novalidate method="POST" action="{{ route('register') }}">
+                        <form name="register-form" class="needs-validation" novalidate method="POST" action="{{ route('register') }}" autocomplete="off">
                             @csrf
                             <div class="form-floating mb-3">
-                                <input name="name" type="text" class="form-control form-control_gray" title="Username must be at least 4 characters long."
+                                <input name="name" type="text" class="form-control form-control_gray" title="Username must be at least 4 characters long." autocomplete="username"
                                     id="customerNameRegisterInput" placeholder="Username" required value="{{ old('name') }}" pattern=".{4,}">
                                 <label for="customerNameRegisterInput">Username</label>
                             </div>
@@ -84,7 +84,7 @@
                             <div class="pb-3"></div>
 
                             <div class="form-floating mb-3">
-                                <input name="email" type="email" class="form-control form-control_gray"
+                                <input name="email" type="email" class="form-control form-control_gray" autocomplete="email"
                                     id="customerEmailRegisterInput" placeholder="Email address *" required>
                                 <label for="customerEmailRegisterInput">Email address *</label>
                             </div>
@@ -105,7 +105,7 @@
                             <div class="pb-3"></div>
 
                             <div class="form-floating mb-3">
-                                <input name="password" type="password" class="form-control form-control_gray" pattern=".{8,}"
+                                <input name="password" type="password" class="form-control form-control_gray" pattern=".{8,}" autocomplete="new-password"
                                     id="customerPasswodRegisterInput" placeholder="Password *" required>
                                 <label for="customerPasswodRegisterInput">Password *</label>
                             </div>

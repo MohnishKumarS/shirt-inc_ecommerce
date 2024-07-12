@@ -35,7 +35,7 @@
                              </div>
                          @enderror
                             <div class="form-floating mb-3">
-                                <input name="email" type="text" class="form-control form-control_gray"
+                                <input name="email" type="text" class="form-control form-control_gray" autocomplete="email"
                                     id="customerNameEmailInput1" placeholder="Email address *" required>
                                 <label for="customerNameEmailInput1">Email address *</label>
                             </div>
@@ -43,7 +43,7 @@
                             <div class="pb-3"></div>
 
                             <div class="form-floating mb-3">
-                                <input name="password" type="password" class="form-control form-control_gray"
+                                <input name="password" type="password" class="form-control form-control_gray" autocomplete="current-password"
                                     id="customerPasswodInput" placeholder="Password *" required>
                                 <label for="customerPasswodInput">Password *</label>
                             </div>
@@ -75,7 +75,7 @@
                         <form name="register-form" class="needs-validation" novalidate method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="form-floating mb-3">
-                                <input name="name" type="text" class="form-control form-control_gray" title="Username must be at least 4 characters long."
+                                <input name="name" type="text" class="form-control form-control_gray" title="Username must be at least 4 characters long." autocomplete="username"
                                     id="customerNameRegisterInput" placeholder="Username" required value="{{ old('name') }}" pattern=".{4,}">
                                 <label for="customerNameRegisterInput">Username</label>
                             </div>
@@ -104,7 +104,7 @@
                             <div class="pb-3"></div>
 
                             <div class="form-floating mb-3">
-                                <input name="password" type="password" class="form-control form-control_gray" pattern=".{8,}"
+                                <input name="password" type="password" class="form-control form-control_gray" pattern=".{8,}" autocomplete="current-password"
                                     id="customerPasswodRegisterInput" placeholder="Password *" required>
                                 <label for="customerPasswodRegisterInput">Password *</label>
                             </div>

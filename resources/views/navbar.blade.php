@@ -183,14 +183,14 @@
                 <img src='{{ asset('assets/icons/icon_cart.svg') }}' alt='cart Icon'>
                 <span class='cart-amount d-block position-absolute js-cart-items-count'>0</span>
             </a>
-            <a class="header-tools__item" href="#" data-bs-toggle="modal" data-bs-target="#siteMap">
+            {{-- <a class="header-tools__item" href="#" data-bs-toggle="modal" data-bs-target="#siteMap">
                 <svg class="nav-icon" width="25" height="18" viewBox="0 0 25 18"
                     xmlns="http://www.w3.org/2000/svg">
                     <rect width="25" height="2" />
                     <rect y="8" width="20" height="2" />
                     <rect y="16" width="25" height="2" />
                 </svg>
-            </a>
+            </a> --}}
         </div>
     </div>
     <!-- bottom Bar -->

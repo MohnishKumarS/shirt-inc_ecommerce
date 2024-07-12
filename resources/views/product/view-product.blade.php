@@ -392,8 +392,8 @@
                                 </div>
                             </details>
                         </share-button>
-                        <script src="./js/details-disclosure.js" defer="defer"></script>
-                        <script src="./js/share.js" defer="defer"></script>
+                        {{-- <script src="./js/details-disclosure.js" defer="defer"></script>
+                        <script src="./js/share.js" defer="defer"></script> --}}
                     </div>
                     <div class="product-single__meta-info">
                         <div class="meta-item">
@@ -671,7 +671,7 @@
         <section class="products-carousel container">
             <h2 class="h3 text-uppercase mb-4 pb-xl-2 mb-xl-4">Related <strong>Products</strong></h2>
 
-            <div id="related_products " class="position-relative ">
+            <div id="related_products" class="position-relative ">
                 <div class="swiper-container js-swiper-slider"
                     data-settings='{
             "autoplay": false,
